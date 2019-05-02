@@ -1,20 +1,455 @@
-extends partial/layout.pug
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Browser Rendering | Rudy&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="JavascriptWebHTMLCSS">
+  
+  
+  
+  
+  <meta name="description" content="HTTP브라우저와 서버는 대부분 다른 컴퓨터에 있다.브라우저는 사용자 컴퓨터(어느나라의 어디의 누가 어떤 브라우저로 접속할지는 모른다)에 있고,서버는 모든 상황에, 최대한 많은 브라우저를 대응하려 노력한다. 심지어 익스 7,8까지도…(한국에서는 익스 9이상은 지원해줘야한다)   브라우저와 서버는 통신을 해야 하는데, 이를 위해 서버사이드 프로그램과 브라우저">
+<meta name="keywords" content="Javascript,Web,HTML,CSS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Browser Rendering">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/05/02/0501/index.html">
+<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="HTTP브라우저와 서버는 대부분 다른 컴퓨터에 있다.브라우저는 사용자 컴퓨터(어느나라의 어디의 누가 어떤 브라우저로 접속할지는 모른다)에 있고,서버는 모든 상황에, 최대한 많은 브라우저를 대응하려 노력한다. 심지어 익스 7,8까지도…(한국에서는 익스 9이상은 지원해줘야한다)   브라우저와 서버는 통신을 해야 하는데, 이를 위해 서버사이드 프로그램과 브라우저">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-02T04:35:28.534Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Browser Rendering">
+<meta name="twitter:description" content="HTTP브라우저와 서버는 대부분 다른 컴퓨터에 있다.브라우저는 사용자 컴퓨터(어느나라의 어디의 누가 어떤 브라우저로 접속할지는 모른다)에 있고,서버는 모든 상황에, 최대한 많은 브라우저를 대응하려 노력한다. 심지어 익스 7,8까지도…(한국에서는 익스 9이상은 지원해줘야한다)   브라우저와 서버는 통신을 해야 하는데, 이를 위해 서버사이드 프로그램과 브라우저">
+  
+    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
 
-block site_title
-    != page.title + ' • ' + config.title
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
 
-block description
-    - var desc = page.desc || page.title + ' - ' + config.author;
-    meta(name='description', content=desc)
+  <script src="/js/jquery-3.1.1.min.js"></script>
 
-block container
-    include mixins/post.pug
-    +post(page)
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/fashion.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
 
-block pagination
-    include mixins/paginator.pug
-    +post()
-    include partial/comment.pug
+</head>
+</html>
 
-block copyright
-    include partial/copyright.pug
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-0501" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Browser Rendering
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/05/02/0501/" class="article-date">
+	  <time datetime="2019-05-01T15:00:00.000Z" itemprop="datePublished">May 2, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+ 
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>브라우저와 서버는 대부분 다른 컴퓨터에 있다.<br>브라우저는 사용자 컴퓨터(어느나라의 어디의 누가 어떤 브라우저로 접속할지는 모른다)에 있고,<br>서버는 모든 상황에, 최대한 많은 브라우저를 대응하려 노력한다. 심지어 익스 7,8까지도…<br>(한국에서는 익스 9이상은 지원해줘야한다)  </p>
+<p>브라우저와 서버는 통신을 해야 하는데, 이를 위해 서버사이드 프로그램과 브라우저가 약속을 한다.<br>“http:// 는 <strong>http</strong> 라는 통신규약(서버와 브라우저간의 약속)을 사용해 정보를 교환하겠다는 뜻이다.”<br>브라우저가 서버에게 이니셜 요청을 했을때 주소창의 주소가 <code>https://www.naver.com</code> 이라면,<br>“나는 통신을 <code>https</code> 로 할거고, <code>www.naver.com</code> 이라는 서버로 페이지를 요청할거야.” 라는 뜻.<br>도메인네임서버에서 도메인을 IP주소로 변환한 뒤, IP주소로 서버의 위치를 알고 연결해준다.<br>만약 페이지를 요청하는 구문이 아무것도 없으면 서버는 메인페이지(index.html)을 보내는 것으로 기본 설정이 되어 있기에,<br>브라우저는 네이버의 메인 페이지를 받게 된다.  </p>
+<pre><code>파일은 어떻게 받지? -&gt; 케이블을 타고 패킷으로!  
+컴퓨터가 갖고 있는 파일은 0과 1로 이루어진 이진수의 집합체.  
+패킷은 데이터를 일정한 크기로 자른 것이다.  
+그 패킷들이 순서대로 시냇물 흐르듯 전송된다고 해서 스트림(stream) 이라고 한다.  
+</code></pre><h2 id="HTML-CSS-파싱"><a href="#HTML-CSS-파싱" class="headerlink" title="HTML/CSS 파싱"></a>HTML/CSS 파싱</h2><p>클라이언트 사이드에서는 index.html 파일(순수한 텍스트파일)을 받아서 메모리에 올린 후 파싱(해석)한다.<br><strong>파싱</strong>은 사람이 보기 좋으라고 써둔 소스코드를 브라우저가 이해하고 실행할 수 있도록 해석하는 것이다.<br>파일을 로드한(다운로드 받은) 상태에서 코드를 한 줄씩 읽다가<br>의미가 있는 내용이면 메모리에 기억하는데, 그 유의미한 정보를 <strong>토큰</strong>이라고 한다.  </p>
+<pre><code>HTML은 부자관계로 이루어진다. nesting, 중첩.  
+네스팅된 자식태그는 자식노드가 된다.  
+</code></pre><p>만약 link태그를 만나 CSS를 로딩해야 할 때가 되면, HTML의 파싱을 중단하고 다시 http를 이용해 서버에게 요청한다.<br>“나 style.css 라는 것 좀 줘.”(모든 파일은 서버에 있으니까)<br>서버는 해당 파일을 가지고 있는 곳에 가서 파일을 찾아서 패킷으로 잘라서 보낸다.<br>클라이언트는 파일을 받아서 메모리에 올리고 <strong>CSS 파싱</strong>을 시작한다.<br>CSS에는 선택자(selector)가 있고, 선택자와 선언블럭으로 이루어진 것을 룰셋이라고 부른다.  </p>
+<pre><code>body{
+    font-size : 16px;
+}
+</code></pre><p>이 룰셋들을 파서가 읽고 메모리에 써둔다. “body는 font-size가 16픽셀이더라” 라고.  </p>
+<p>CSS 파싱을 다 마치면 <strong>CSSOM 트리</strong>가 완성되고, HTML 파싱을 중단한 시점부터 다시 시작한다.<br>HTML 파싱을 다 마치면 <strong>DOM 트리</strong>가 완성된다.  </p>
+<p>DOM 트리(HTML의 파싱결과)와 CSSOM 트리(CSS의 파싱결과)가<br>브라우저가 관리하고있는 메모리에 자료구조로 만들어지면<br>DOM 트리와 CSSOM 트리를 합쳐서(merge) 렌더트리(렌더링 하기위한 트리)를 만든다.<br>이 렌더트리를 가지고 드디어 화면에 그리기 시작한다.  </p>
+<p>이 모든 일은 브라우저안에있는 <strong>렌더링 엔진</strong>이라는 프로그램이 한다.  </p>
+<h2 id="자바스크립트-파싱"><a href="#자바스크립트-파싱" class="headerlink" title="자바스크립트 파싱"></a>자바스크립트 파싱</h2><p>자바스크립트의 처리는 <strong>자바스크립트엔진</strong>이라는 프로그램이 한다.<br>HTML 파싱을 하다가 스크립트 태그를 만나면 HTML파싱이 멈춘다.<br>이것을 <strong>블로킹</strong>이 걸렸다고 한다.<br>스크립트 태그가 src 속성을 안 가지고 있다면 스크립트가 내장되어 있는 것이고,<br>src 속성을 가지고 있다면 서버에서 파일을 가져온다.  </p>
+<p>자바스크립트 엔진은 소스코드를 분석하며 의미를 갖는 최소 단위인 토큰들로 분리한다.  </p>
+<p><code>var a = 0;</code> 일 때<br><code>var</code>, <code>a</code>, <code>=</code>, <code>0</code>, <code>;</code> 이 모두 토큰이다.</p>
+<p>그리고 토큰들의 집합을 파싱하면서 <strong>신택스 트리</strong>, AST(Abstract Syntax Tree)를 만든다.  </p>
+<p>(자바스크립트엔진이 자바스크립트문법으로 이해했다는 뜻.<br>이해할 수 있다면 실행할 수 있다는 뜻이고, 명령을 할 수 있다는 뜻이다.)  </p>
+<p>파싱한 상태에서 바이트코드로 한 번 더 바꾼 후 실행을 하는데,<br>이때 돔과 관련이 있다면 <strong>돔을 조작</strong>할 수 있게 된다.<br>만약 스크립트가 헤드에 있다면 돔트리가 완성이 안된 상태라서 돔 조작이 불가능하다.<br>자바스크립트는 돔트리와 씨솜트리가 완성된 상태에서 실행해야 의미가 있다.  </p>
+<pre><code>- 그럼에도 스크립트태그를 헤드에 써야 한다면...  
+async: 병렬처리. 비동기. HTML파싱이 안 끝나도 js파싱이 끝나면 바로 실행한다.  
+defer: 파싱은 빨리하고 실행은 HTML 파싱이 끝나고 나중에 한다.  
+(그러나 둘 다 IE9이하에서는 지원이 안 되거나 부분지원 된다고 하니 그냥 body태그 아래에 쓰도록 하자)  
+</code></pre>
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/">Web</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/02/0429JS/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ECMAScript &amp; Javascript
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/02/js-basic/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Javascript Basic</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP"><span class="nav-number">1.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-CSS-파싱"><span class="nav-number">2.</span> <span class="nav-text">HTML/CSS 파싱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#자바스크립트-파싱"><span class="nav-number">3.</span> <span class="nav-text">자바스크립트 파싱</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+    <aside id="sidebar" class="outer">
+  
+    
+  <div class="widget_athemes_tabs">
+    <ul id="widget-tab" class="clearfix widget-tab-nav">
+      <li class="active"><a>Recent Posts</a></li>
+    </ul>
+    <div class="widget">
+      <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/02/0429JS/">ECMAScript &amp; Javascript</a></h6>
+              <span>May 2, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/02/0501/">Browser Rendering</a></h6>
+              <span>May 2, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/02/js-basic/">Javascript Basic</a></h6>
+              <span>May 2, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/03/17/Installing-Hexo/">Installing Hexo</a></h6>
+              <span>March 17, 2019</span>
+            </div>
+
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

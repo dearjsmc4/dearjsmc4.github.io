@@ -1,20 +1,428 @@
-extends partial/layout.pug
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>ECMAScript &amp; Javascript | Rudy&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Javascript">
+  
+  
+  
+  
+  <meta name="description" content="자바스크립트와 ECMA스크립트참고: What’s the difference between JavaScript and ECMAScript? ECMA International:표준을 만드는 단체.대부분의 키보드들이 같은 순서의 자음모음 순서를 가지고 있고 같은 위치의 스페이스 엔터 등등이 있다.그건 바로 대부분의 키보드 회사들이 쿼티레이아웃이라는 표준을 가지고">
+<meta name="keywords" content="Javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ECMAScript &amp; Javascript">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/05/02/0429JS/index.html">
+<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="자바스크립트와 ECMA스크립트참고: What’s the difference between JavaScript and ECMAScript? ECMA International:표준을 만드는 단체.대부분의 키보드들이 같은 순서의 자음모음 순서를 가지고 있고 같은 위치의 스페이스 엔터 등등이 있다.그건 바로 대부분의 키보드 회사들이 쿼티레이아웃이라는 표준을 가지고">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-02T04:35:30.120Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ECMAScript &amp; Javascript">
+<meta name="twitter:description" content="자바스크립트와 ECMA스크립트참고: What’s the difference between JavaScript and ECMAScript? ECMA International:표준을 만드는 단체.대부분의 키보드들이 같은 순서의 자음모음 순서를 가지고 있고 같은 위치의 스페이스 엔터 등등이 있다.그건 바로 대부분의 키보드 회사들이 쿼티레이아웃이라는 표준을 가지고">
+  
+    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
 
-block site_title
-    != page.title + ' • ' + config.title
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
 
-block description
-    - var desc = page.desc || page.title + ' - ' + config.author;
-    meta(name='description', content=desc)
+  <script src="/js/jquery-3.1.1.min.js"></script>
 
-block container
-    include mixins/post.pug
-    +post(page)
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/fashion.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
 
-block pagination
-    include mixins/paginator.pug
-    +post()
-    include partial/comment.pug
+</head>
+</html>
 
-block copyright
-    include partial/copyright.pug
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-0429JS" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      ECMAScript &amp; Javascript
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/05/02/0429JS/" class="article-date">
+	  <time datetime="2019-05-01T15:00:00.000Z" itemprop="datePublished">May 2, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+ 
+      
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="자바스크립트와-ECMA스크립트"><a href="#자바스크립트와-ECMA스크립트" class="headerlink" title="자바스크립트와 ECMA스크립트"></a>자바스크립트와 ECMA스크립트</h2><p>참고: <a href="https://medium.freecodecamp.org/whats-the-difference-between-javascript-and-ECMAscript-cba48c73a2b5" target="_blank" rel="noopener">What’s the difference between JavaScript and ECMAScript?</a></p>
+<p><strong>ECMA International</strong>:<br>표준을 만드는 단체.<br>대부분의 키보드들이 같은 순서의 자음모음 순서를 가지고 있고 같은 위치의 스페이스 엔터 등등이 있다.<br>그건 바로 대부분의 키보드 회사들이 쿼티레이아웃이라는 표준을 가지고 키보드를 만들기 때문이다.<br>그런 표준을 만들어내는 곳이다.  </p>
+<p><strong>ECMA-262</strong>:<br>ECMA international 에서 발표하는 표준.<br>스크립트 언어에서 통용되는 구체적 사양, 설명을 포함하고 있다.<br>ECMAScript의 명세번호라고 이해하자.  </p>
+<p><strong>Scripting Language</strong>:<br>요소나 시스템 위에서의 <strong>동작</strong>을 위해 만들어진 프로그래밍 언어.<br>걷다, 달리다, 점프하다 와 같은 명령들을 생각해보자.<br>이런 동작들은 사람이나 개나 게임캐릭터들처럼 그것을 수행해줄 무언가가 필요하다.<br>이 명령을 수행할 대상이 없이는 걷고 뛰고 점프하는 행동 자체가 불가능하다.<br>이러한 행동들이 스크립트언어가 겉으로 보이는 요소들을 조작하고 제어하는것과 비슷하다.<br>(그러니까 내가 요소이고 나를 걷고 뛰고 점프하도록 조작하고 제어하는 역할을 하는 것이 스크립트언어 라고 보면 될 듯?<br>그래서 웹상에서 동작을 제어하는 자바스크립트가 스크립트언어라고 불리는 것이겠지.)  </p>
+<p><strong>ECMAScript</strong>:<br>ECMA-262 기술규격에 정의된, 표준화된 스크립트 프로그래밍 언어.<br>스크립트 언어가 ECMAscript를 준수한다고 여겨지려면 반드시 지켜야하는 규칙과 세부사항, 가이드라인을 제공함.<br>스크립트언어의 기본 뼈대(코어)를 이룬다. 모든 스크립트 언어들이 기본적으로 갖춰야 하는 내용이니까.  </p>
+<p><strong>Javascript</strong>:<br>ECMAscript 표준을 준수하는 스크립트 언어. ECMAscript 와 브라우저가 별도로 지원하는 WEB API 를 포함하는 개념.  </p>
+<p><strong>Javascript Engine</strong>:<br>자바스크립트 코드를 이해하고 실행시킬 수 있는 통역기.<br>크롬의 v8, 파이어폭스의 스파이더몽키 등 웹 브라우저에서 사용된다.<br>브라우저의 자바스크립트 엔진은 사람이 언어를 이해하는 능력과 비슷하다.<br>자바스크립트 엔진은 걷다, 뛰다, 점프하다 와 같은 행동들이 어떤 뜻인지 <strong>이해</strong>한다.<br>사람이 걸으랄 때 걷고 점프하랄때 점프하고 뛰랄 때 뛸 수 있는 것도<br>그 행동들이 어떤 의미인지 알아듣기때문에 가능한 것.<br>그러니까 사람에게도 이런 자바스크립트 엔진이 들어있어서 그것들을 이해할 수 있다고 생각하면 될 듯.<br>해석해줄 엔진이 없다면 스크립트언어가 아무리 명령해도 알아들을 수 없겠지.<br>브라우저마다 엔진의 차이는 있다. 왜냐면 ECMAScript가 업데이트될 때 모든 브라우저들이 한꺼번에<br>업데이트 하는 것이 아니기 때문이며 각 브라우저의 엔진마다 어떻게 해석하고 구현할 것인지가 다르기 때문이다.  </p>
+<h2 id="WEB-API"><a href="#WEB-API" class="headerlink" title="WEB API?"></a>WEB API?</h2><p>그 전에 API가 무엇인지부터 생각해보자.<br><strong>API</strong>는 어플리케이션 프로그래밍 인터페이스.<br>모든 언어는 API를 지원하고, 그 API를 사용해서 코딩을 하는 것이다.<br>우리가 애플리케이션을 구현하기 위해 시간의 순서대로 배치해야할 부품들.<br>우리가 쓰는 함수들. 우리가 만들지는 않았지만 간편히 사용 가능한, 그 언어가 가지고 있는 조작장치.  </p>
+<p><strong>WEB API</strong>는 웹에서 여러 유용한 작업을 할 수 있도록 제공되는 API.<br>예를 들어 웹 오디오 API는 브라우저의 오디오를 조작하기 위한 메서드를 제공.<br>근데 그 뒷편에서 브라우저는 사실 더 복잡한 로우레벨코드를 실행 중.<br>내가 직접 그런 복잡한 일을 하지 않아도 되게 해주는 것이 브라우저 API.<br><code>setTimeout()</code>, <code>alert()</code> 같은 것들이 그 예시.<br>W3C에서 표준을 관리.<br>( 내가 직접 하려면 정말 복잡한 코드를 이해하고 쓸 줄 알아야 하지만<br>WEB API가 있음으로써 브라우저에서 내가 쉽게 할 수 있는 일들이 더 많아지는 것이라고 이해하면 되겠다. )  </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/02/0501/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Browser Rendering</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#자바스크립트와-ECMA스크립트"><span class="nav-number">1.</span> <span class="nav-text">자바스크립트와 ECMA스크립트</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB-API"><span class="nav-number">2.</span> <span class="nav-text">WEB API?</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+    <aside id="sidebar" class="outer">
+  
+    
+  <div class="widget_athemes_tabs">
+    <ul id="widget-tab" class="clearfix widget-tab-nav">
+      <li class="active"><a>Recent Posts</a></li>
+    </ul>
+    <div class="widget">
+      <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/02/0429JS/">ECMAScript &amp; Javascript</a></h6>
+              <span>May 2, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/02/0501/">Browser Rendering</a></h6>
+              <span>May 2, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/02/js-basic/">Javascript Basic</a></h6>
+              <span>May 2, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/03/17/Installing-Hexo/">Installing Hexo</a></h6>
+              <span>March 17, 2019</span>
+            </div>
+
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Javascript/">Javascript</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/">Web</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+        
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+          
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
