@@ -97,6 +97,65 @@
         
           <section id="main">
   
+    <article id="post-0429" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/02/0429/">ECMAScript &amp; Javascript</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/05/02/0429/" class="article-date">
+	  <time datetime="2019-05-01T15:00:00.000Z" itemprop="datePublished">May 2, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript/">Javascript</a>
+ 
+      <!--  -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="자바스크립트와-ECMA스크립트"><a href="#자바스크립트와-ECMA스크립트" class="headerlink" title="자바스크립트와 ECMA스크립트"></a>자바스크립트와 ECMA스크립트</h2><p>참고: <a href="https://medium.freecodecamp.org/whats-the-difference-between-javascript-and-ECMAscript-cba48c73a2b5" target="_blank" rel="noopener">What’s the difference between JavaScript and ECMAScript?</a></p>
+<p><strong>ECMA International</strong>:<br>표준을 만드는 단체.<br>대부분의 키보드들이 같은 순서의 자음모음 순서를 가지고 있고 같은 위치의 스페이스 엔터 등등이 있다.<br>그건 바로 대부분의 키보드 회사들이 쿼티레이아웃이라는 표준을 가지고 키보드를 만들기 때문이다.<br>그런 표준을 만들어내는 곳이다.  </p>
+<p><strong>ECMA-262</strong>:<br>ECMA international 에서 발표하는 표준.<br>스크립트 언어에서 통용되는 구체적 사양, 설명을 포함하고 있다.<br>ECMAScript의 명세번호라고 이해하자.  </p>
+<p><strong>Scripting Language</strong>:<br>요소나 시스템 위에서의 <strong>동작</strong>을 위해 만들어진 프로그래밍 언어.<br>걷다, 달리다, 점프하다 와 같은 명령들을 생각해보자.<br>이런 동작들은 사람이나 개나 게임캐릭터들처럼 그것을 수행해줄 무언가가 필요하다.<br>이 명령을 수행할 대상이 없이는 걷고 뛰고 점프하는 행동 자체가 불가능하다.<br>이러한 행동들이 스크립트언어가 겉으로 보이는 요소들을 조작하고 제어하는것과 비슷하다.<br>(그러니까 내가 요소이고 나를 걷고 뛰고 점프하도록 조작하고 제어하는 역할을 하는 것이 스크립트언어 라고 보면 될 듯?<br>그래서 웹상에서 동작을 제어하는 자바스크립트가 스크립트언어라고 불리는 것이겠지.)  </p>
+<p><strong>ECMAScript</strong>:<br>ECMA-262 기술규격에 정의된, 표준화된 스크립트 프로그래밍 언어.<br>스크립트 언어가 ECMAscript를 준수한다고 여겨지려면 반드시 지켜야하는 규칙과 세부사항, 가이드라인을 제공함.<br>스크립트언어의 기본 뼈대(코어)를 이룬다. 모든 스크립트 언어들이 기본적으로 갖춰야 하는 내용이니까.  </p>
+<p><strong>Javascript</strong>:<br>ECMAscript 표준을 준수하는 스크립트 언어. ECMAscript 와 브라우저가 별도로 지원하는 WEB API 를 포함하는 개념.  </p>
+<p><strong>Javascript Engine</strong>:<br>자바스크립트 코드를 이해하고 실행시킬 수 있는 통역기.<br>크롬의 v8, 파이어폭스의 스파이더몽키 등 웹 브라우저에서 사용된다.<br>브라우저의 자바스크립트 엔진은 사람이 언어를 이해하는 능력과 비슷하다.<br>자바스크립트 엔진은 걷다, 뛰다, 점프하다 와 같은 행동들이 어떤 뜻인지 <strong>이해</strong>한다.<br>사람이 걸으랄 때 걷고 점프하랄때 점프하고 뛰랄 때 뛸 수 있는 것도<br>그 행동들이 어떤 의미인지 알아듣기때문에 가능한 것.<br>그러니까 사람에게도 이런 자바스크립트 엔진이 들어있어서 그것들을 이해할 수 있다고 생각하면 될 듯.<br>해석해줄 엔진이 없다면 스크립트언어가 아무리 명령해도 알아들을 수 없겠지.<br>브라우저마다 엔진의 차이는 있다. 왜냐면 ECMAScript가 업데이트될 때 모든 브라우저들이 한꺼번에<br>업데이트 하는 것이 아니기 때문이며 각 브라우저의 엔진마다 어떻게 해석하고 구현할 것인지가 다르기 때문이다.  </p>
+<h2 id="WEB-API"><a href="#WEB-API" class="headerlink" title="WEB API?"></a>WEB API?</h2><p>그 전에 API가 무엇인지부터 생각해보자.<br><strong>API</strong>는 어플리케이션 프로그래밍 인터페이스.<br>모든 언어는 API를 지원하고, 그 API를 사용해서 코딩을 하는 것이다.<br>우리가 애플리케이션을 구현하기 위해 시간의 순서대로 배치해야할 부품들.<br>우리가 쓰는 함수들. 우리가 만들지는 않았지만 간편히 사용 가능한, 그 언어가 가지고 있는 조작장치.  </p>
+<p><strong>WEB API</strong>는 웹에서 여러 유용한 작업을 할 수 있도록 제공되는 API.<br>예를 들어 웹 오디오 API는 브라우저의 오디오를 조작하기 위한 메서드를 제공.<br>근데 그 뒷편에서 브라우저는 사실 더 복잡한 로우레벨코드를 실행 중.<br>내가 직접 그런 복잡한 일을 하지 않아도 되게 해주는 것이 브라우저 API.<br><code>setTimeout()</code>, <code>alert()</code> 같은 것들이 그 예시.<br>W3C에서 표준을 관리.<br>( 내가 직접 하려면 정말 복잡한 코드를 이해하고 쓸 줄 알아야 하지만<br>WEB API가 있음으로써 브라우저에서 내가 쉽게 할 수 있는 일들이 더 많아지는 것이라고 이해하면 되겠다. )  </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-0501" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -174,128 +233,11 @@ defer: 파싱은 빨리하고 실행은 HTML 파싱이 끝나고 나중에 한�
 <!-- Table of Contents -->
 
   
-    <article id="post-js-basic" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/02/js-basic/">Javascript Basic</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/05/02/js-basic/" class="article-date">
-	  <time datetime="2019-05-01T15:00:00.000Z" itemprop="datePublished">May 2, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript/">Javascript</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h1><p><strong>프로그래밍 입력, 저장, 처리, 출력에 관한 문법을 배워야 한다.</strong>  </p>
-<ul>
-<li>입력: ex) prompt.<br>보통 웹상에서의 입력은 form 으로 받는다.  </li>
-<li>저장: 변수를 이용한 저장. 쿠키 or 웹 스토리지  </li>
-<li>처리: 연산. 분기. 반복.  </li>
-<li>출력: 화면에 DOM을 추가.  </li>
-</ul>
-<h2 id="변수란"><a href="#변수란" class="headerlink" title="변수란?"></a>변수란?</h2><p>컴퓨터 프로그래밍에서 어떤 값을 담는 그릇. 이 그릇에도 종류라는 것이 있는데,  </p>
-<ul>
-<li>일반/원시타입: <strong>숫자, 문자, 불대수</strong>  </li>
-<li>여러종류를 담는 그릇: <strong>배열. (리스트. 딕트. 튜플. 셋)</strong><br>변수는 만들고, 값을 읽고, 값을 바꾸고, 값을 사용(연산의 피연산자, 함수의 매개변수)하게 된다.  </li>
-</ul>
-<p><code>a = “hi”</code> -&gt; a라는 이름을 가진 저장공간을 만들고, 그 안에 “hi”라는 값을 저장(할당)한다는 뜻.<br><code>alert(a);</code> -&gt; 알림창에 hi<br>a : a라는 저장공간의 이름(이름으로 부를때) / a라는 이름을 가진 저장공간(사용할 때)<br>= : 할당연산자. 저장하는 연산자. hi 를 a에 저장하라는 의미.<br>보통 = 은 같다는 의미인데. 프로그래밍에서는 저장한다는 의미가 되고, 같다는 == 로 표현.  </p>
-<p>변수명을 사용하게 되면 해당 내용의 용도가 명확해진다.<br>그러므로 무엇이 담겼는지 명확히 알려줘야한다.  </p>
-<p>숫자, 불리언값 등은 값을 그대로 쓰지만,<br>문자열은 홑따옴표/쌍따옴표로 감싸서 표기한다. 왜? -&gt; 그냥 쓰면 변수 혹은 예약어등과 헷갈릴 수 있기 때문이다.<br><code>Name = jake;</code> -&gt; jake 가 다른 변수인가?</p>
-<p><strong>이스케이프 문자</strong><br>쌍따옴표안에 쌍따옴표를 쓰고 싶을 때 백슬래시를 넣으면 되는데 이를 이스케이프문자라고 한다.<br>어떤 특별한 목적과 기능이 있는 문자라는 것. ex) <code>\n</code> 은 줄바꿈. New line 이라는 것.  </p>
-<h3 id="변수명을-만들-때-주의할-것"><a href="#변수명을-만들-때-주의할-것" class="headerlink" title="변수명을 만들 때 주의할 것"></a>변수명을 만들 때 주의할 것</h3><ol>
-<li>숫자는 변수이름 맨 앞에 사용하지 않을 것.  </li>
-<li>특수문자는 언더바만 사용할 것.  </li>
-<li>대소문자를 구분할 것.  </li>
-<li>명사, 동사로만 작성할 것.  </li>
-<li>예약어는 사용 금지.  </li>
-</ol>
-<h3 id="변수명을-작성하는-방법"><a href="#변수명을-작성하는-방법" class="headerlink" title="변수명을 작성하는 방법"></a>변수명을 작성하는 방법</h3><ol>
-<li>카멜 케이스 : yourName  </li>
-<li>파스칼 케이스 : YourName  </li>
-<li>스네이크 케이스 : your_name  </li>
-<li>+헝가리안 표기법 : strName/ intNumber (변수명 앞에 어떤 데이터타입인지 적어주는 방법)  </li>
-</ol>
-<p>demo 라는 아이디를 찾지 못한다고 오류가 떴던 이유 :<br>자바스크립트는 dom객체를 제어해서 글씨를 띄우려고 했는데,<br>위에서부터 읽다보니 demo 를 찾기도 전에 자바스크립트를 만나버린 것. 순차문제인것이다.<br>그래서 스크립트블록을 바디 맨 아래로 바꾸면 해결된다.  </p>
-<h2 id="프로그래밍-진행방식-세-가지"><a href="#프로그래밍-진행방식-세-가지" class="headerlink" title="프로그래밍 진행방식 세 가지"></a>프로그래밍 진행방식 세 가지</h2><ul>
-<li>순차: 위에서부터 아래로 한줄씩 실행해나가는 것.  </li>
-<li>분기: a를 실행할지 b를 실행할지 선택하는 것. (조건에 따라서)  </li>
-<li>반복: 컴퓨터는 반복적으로 빠르게 일을 잘한다. a,b중에 실행할 코드를 여러 번 반복하는 것.  </li>
-</ul>
-<p>document는 페이지문서 자체를 말한다.<br>document 에서 요소를 아이디로 찾을 때 -&gt; <code>document.getElementById</code></p>
-<p>Prompt 로 받은 값은 모두 문자열이 된다. 그래서 1+2 = 12    </p>
-<ul>
-<li>산술연산자: +, -, *, /, %(나머지 구하기.), **(거듭제곱)  </li>
-<li>문자연산자: + (문자를 이어붙임)  </li>
-</ul>
-<p>문자로 받았지만 산술연산을 해야 할 때 -&gt; type casting 형변환이 필요하다.<br><code>number(“값”)</code> -&gt; 값이 숫자가 된다. (꼭 대문자로 시작하게 써줘야함!)  </p>
-<h2 id="자바스크립트의-5가지-데이터-타입"><a href="#자바스크립트의-5가지-데이터-타입" class="headerlink" title="자바스크립트의 5가지 데이터 타입"></a>자바스크립트의 5가지 데이터 타입</h2><ul>
-<li>number  </li>
-<li>string  </li>
-<li>boolean<br>(숫자, 문자, 불린은 형변환 가능)  </li>
-<li>null(아무값도없음)  </li>
-<li>undefines(정의되지않음)  </li>
-</ul>
-<h2 id="if-조건문"><a href="#if-조건문" class="headerlink" title="if 조건문"></a>if 조건문</h2><p>if문에서는 if 가 필수고, else if 나 else 는 필수가 아니다.  </p>
-<p>if : 만약 조건식이 참이라면, 해당 부분의 실행구문을 실행하겠다.(하나의 if문에는 하나의 if만 들어갈수있다.)<br>else if : 그게 아니라 다음 조건식이 참이라면, 해당 부분의 실행구문을 실행하겠다.(0번부터 여러 번)<br>else : 이도저도 아니면, 해당 부분의 실행구문을 실행하겠다. (여긴 조건식이 없다. 이도저도 아닐때니까.)<br>실행구문은, 우리가 쓰고싶은 어떤 코드든 가능하다.  </p>
-<p><strong>조건식은 명제</strong><br>참과 거짓을 판별할 수 있는 문장. 결과값이 참과 거짓으로만 나오는 문장.<br>True/false,  1/0 로 표기. -&gt; boolean 값. Bool.<br>비교구문이 제일 많다. &gt;, &lt;, &gt;=, &lt;=, ==, != …  </p>
-<p>===, !== 는 종류까지 같은지 판별한다.  </p>
-<ul>
-<li>1 == true<br>true. 1은 곧 true 이다.  </li>
-<li>1 === true<br>false. 데이터타입이 다르다. 1은 숫자이고 true 는 불린 값이다.</li>
-</ul>
-<h2 id="반복문"><a href="#반복문" class="headerlink" title="반복문"></a>반복문</h2><ul>
-<li><p>몇 번을 반복할 것인가<br>for([초기화] ; [조건문] ; [증감식]){<br>  [실행할 코드]<br>}  </p>
-</li>
-<li><p>조건에 맞는 동안 반복<br>  While ([조건식]) { [실행할 코드] }<br>  While(true) = 무한반복  </p>
-<ul>
-<li>break : 만나는 순간 가장 가까운 반복문을 탈출한다.  </li>
-<li>continue : 만나는 순간 반복문이 다음 회차로 이동하여 넘어간다.  </li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript/">Javascript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next</a>
+    <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next</a>
   </nav>
 
 </section>
@@ -308,6 +250,18 @@ defer: 파싱은 빨리하고 실행은 HTML 파싱이 끝나고 나중에 한�
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/03/diary/">ECMAScript &amp; Javascript</a></h6>
+              <span>May 3, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -369,18 +323,6 @@ defer: 파싱은 빨리하고 실행은 HTML 파싱이 끝나고 나중에 한�
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/03/17/Installing-Hexo/">Installing Hexo</a></h6>
-              <span>March 17, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -390,7 +332,7 @@ defer: 파싱은 빨리하고 실행은 HTML 파싱이 끝나고 나중에 한�
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/잡담/">잡담</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -411,7 +353,7 @@ defer: 파싱은 빨리하고 실행은 HTML 파싱이 끝나고 나중에 한�
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -439,12 +381,12 @@ defer: 파싱은 빨리하고 실행은 HTML 파싱이 끝나고 나중에 한�
   <div class="clearfix container">
       <div class="site-info">
 	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
-        
+        <!-- 
             <span id="busuanzi_container_site_uv">
               本站访客数<span id="busuanzi_value_site_uv"></span>人次  
               本站总访问量<span id="busuanzi_value_site_pv"></span>次
             </span>
-          
+           -->
       </div>
       <div class="site-credit">
         Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dearjsmc4.github.io/"/>
-  <updated>2019-05-03T01:21:49.980Z</updated>
+  <updated>2019-05-03T02:21:18.139Z</updated>
   <id>https://dearjsmc4.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ECMAScript &amp; Javascript</title>
+    <link href="https://dearjsmc4.github.io/2019/05/03/diary/"/>
+    <id>https://dearjsmc4.github.io/2019/05/03/diary/</id>
+    <published>2019-05-03T02:21:30.000Z</published>
+    <updated>2019-05-03T02:21:18.139Z</updated>
+    
+    <content type="html"><![CDATA[<p>깃헙 블로그를 시작해보려고 했는데<br>공사만 며칠 걸린건지….  </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;깃헙 블로그를 시작해보려고 했는데&lt;br&gt;공사만 며칠 걸린건지….  &lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="잡담" scheme="https://dearjsmc4.github.io/categories/%EC%9E%A1%EB%8B%B4/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>예습과 질문정리(2)</title>
