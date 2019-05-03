@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>컴퓨터 공학 TIL 0417 | Rudy&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="CSTIL">
+  
+  
+  
+  
+  <meta name="description" content="파이썬 기초와 알고리즘 1일차What the heck is the event loop anyway?목표 : 수업이 끝나고 이 영상의 내용을 100% 이해할 수 있는 것   자바스크립트는 웹을 위한 언어로서 발전해왔기 때문에자바스크립트가 가지는 단점과 한계를 숙지하고 있어야 한다.   Foundation knowledge quiz    Recursion, i">
+<meta name="keywords" content="CS,TIL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="컴퓨터 공학 TIL 0417">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/05/03/0417/index.html">
+<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="파이썬 기초와 알고리즘 1일차What the heck is the event loop anyway?목표 : 수업이 끝나고 이 영상의 내용을 100% 이해할 수 있는 것   자바스크립트는 웹을 위한 언어로서 발전해왔기 때문에자바스크립트가 가지는 단점과 한계를 숙지하고 있어야 한다.   Foundation knowledge quiz    Recursion, i">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-03T02:43:18.368Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="컴퓨터 공학 TIL 0417">
+<meta name="twitter:description" content="파이썬 기초와 알고리즘 1일차What the heck is the event loop anyway?목표 : 수업이 끝나고 이 영상의 내용을 100% 이해할 수 있는 것   자바스크립트는 웹을 위한 언어로서 발전해왔기 때문에자바스크립트가 가지는 단점과 한계를 숙지하고 있어야 한다.   Foundation knowledge quiz    Recursion, i">
+  
+    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/fashion.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-0417" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      컴퓨터 공학 TIL 0417
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/05/03/0417/" class="article-date">
+	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/til/">TIL</a>
+ 
+      <!-- 
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+ -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="파이썬-기초와-알고리즘-1일차"><a href="#파이썬-기초와-알고리즘-1일차" class="headerlink" title="파이썬 기초와 알고리즘 1일차"></a>파이썬 기초와 알고리즘 1일차</h1><p><a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ" target="_blank" rel="noopener">What the heck is the event loop anyway?</a><br>목표 : 수업이 끝나고 이 영상의 내용을 100% 이해할 수 있는 것  </p>
+<p>자바스크립트는 웹을 위한 언어로서 발전해왔기 때문에<br>자바스크립트가 가지는 단점과 한계를 숙지하고 있어야 한다.  </p>
+<p>Foundation knowledge quiz  </p>
+<ul>
+<li>Recursion, index, sort, binary search -&gt; 자료구조. 알고리즘  </li>
+<li>Stack / heap -&gt; 메모리 레이아웃. 메모리 계층. 세그먼트.  </li>
+<li>Process, thread -&gt; OS  </li>
+<li>Call by value / call by reference -&gt; 함수관련  </li>
+<li>Native code  </li>
+<li>MVC Architecture  </li>
+<li>Write simple text-based games  </li>
+</ul>
+<p>오늘 배울 내용  </p>
+<ol>
+<li>메모리.  32bit와 64bit 의 차이는 무엇인가?  </li>
+<li>Number. 컴퓨터가 실제로 아는 것은 0과 1뿐인데 어떻게 정수와 실수, 문자를 인식하고 표현하는가.<br>( 픽셀 역시 4바이트짜리 숫자에 불과하다는 것. )  </li>
+</ol>
+<h2 id="메모리"><a href="#메모리" class="headerlink" title="메모리"></a>메모리</h2><ul>
+<li>32bit 컴퓨터와 64bit 컴퓨터의 차이  </li>
+</ul>
+<ol>
+<li><p>컴퓨터는 0과 1을 전압으로 읽는다. 0v는 0이고, 5v는 1이다.<br>CPU와 RAM 사이를 연결하는 와이어가 있다.<br>전압은 와이어로 흐르는데, 와이어가 8개라면 8bit 의 데이터를 보낼 수 있다.<br>16bit 는 16개, 32bit 는 32개, 64bit 는 64개의 와이어가 깔려 있는 것이다.<br>32bit 프로그램, 32bit 운영체제, 32bit 컴퓨터는 다 다른 것이다.</p>
+</li>
+<li><p>메모리 주소값.<br>2진수로 32개의 자릿수를 메모리주소로 쓴다. -&gt; 32bit<br>2진수로 64개의 자릿수를 메모리주소로 쓴다. -&gt; 64bit<br>메모리에서는 1byte 당 메모리주소 자릿수 하나를 할당해준다. (1byte = 8bit)<br>32bit 컴퓨터는 0 ~ 2^32-1 까지 메모리를 할당할 수 있는데, 4GB 짜리 램에 이미 메모리주소가 모두 할당되기 때문에<br>램을 하나 더 꽂더라도 메모리 주소가 할당될 수 없고 접근할 수 없기 때문에 사용할 수 없게 된다.  </p>
+</li>
+</ol>
+<h2 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h2><ul>
+<li>기수법  </li>
+</ul>
+<ol>
+<li>2진수  </li>
+<li>10진수  </li>
+<li>16진수  </li>
+<li>~8진수~  </li>
+</ol>
+<ul>
+<li>10진수 : 0,1,2,3,4,5,6,7,8,9 - 한 자릿수에 표현할 수 있는 숫자가 10개. -&gt; 밑수, radix  </li>
+<li>2진수 : 0,1 - 한 자릿수에 표현할 수 있는 숫자가 2개.  </li>
+<li>16진수 : 0,1,2,3 … 9, a,b,c,d,e,f -&gt; radix 가 16개.  </li>
+</ul>
+<p>16진수 하나는 2진수 4개로 표현된다.<br>32bit 메모리 주소는 16진수 8개로 표현된다.  </p>
+<ul>
+<li>2진수(BIN)  </li>
+<li>10진수(DEC)  </li>
+<li>16진수(HEX)  </li>
+</ul>
+<h3 id="10진수-gt-2진수"><a href="#10진수-gt-2진수" class="headerlink" title="10진수 -&gt; 2진수"></a>10진수 -&gt; 2진수</h3><p>37을 2진수로 바꾼다면,<br>32(2^<code>5</code>) + 4(2^<code>2</code>) + 1(2^<code>0</code>)<br><code>5</code>,4,3,<code>2</code>,1,<code>0</code><br>-&gt; 100101(2)</p>
+<ul>
+<li>연습문제</li>
+</ul>
+<ol>
+<li>27</li>
+<li>289</li>
+<li>1125</li>
+</ol>
+<h3 id="2진수-gt-10진수"><a href="#2진수-gt-10진수" class="headerlink" title="2진수 -&gt; 10진수"></a>2진수 -&gt; 10진수</h3><p>ex) 110010(2) = 2^5 + 2^4 + 2^1 = 32 + 16 + 2 = 50<br>거꾸로 543210 적어서 더하기  </p>
+<ul>
+<li>연습문제</li>
+</ul>
+<ol>
+<li>1101(2)</li>
+<li>1010(2)</li>
+<li>1111(2)</li>
+</ol>
+<h3 id="2진수-gt-16진수"><a href="#2진수-gt-16진수" class="headerlink" title="2진수 -&gt; 16진수"></a>2진수 -&gt; 16진수</h3><p>111 1011 -&gt; 뒤에서부터 4자리씩 자르고 앞에 빈자리는 0을 채워넣는다.<br>0111 1011 -&gt; 0x7b<br>16진수의 0 ~ 9는 2진수의 0 ~ 9와 똑같다.<br>9 이상의 10~16 이 나오면 a부터 f까지 할당.<br>a부터 f까지의 2진수는 외우면 된다.<br>a : 1010<br>b : 1011<br>c : 1100<br>d : 1101<br>e : 1110<br>f : 1111  </p>
+<ul>
+<li>연습문제  </li>
+</ul>
+<ol>
+<li>1111 1010(2)  </li>
+<li>11 0101(2)  </li>
+<li>101 1111 0110(2)  </li>
+<li>111 0011 0011(2)  </li>
+<li>101 0011 1001(2)  </li>
+<li>1111 0000 0101 1100(2)  </li>
+<li>0101 1100 1111(2)  </li>
+<li>1111 1010 1100 1101(2)  </li>
+</ol>
+<h3 id="16진수-gt-2진수"><a href="#16진수-gt-2진수" class="headerlink" title="16진수 -&gt; 2진수"></a>16진수 -&gt; 2진수</h3><p>거꾸로 세어나간 후에 맨 앞의 0들은 지워버리기.<br>ex) 0xf137 = 1111 0001 0011 0111<br>    0x1fac = 0001 1111 1010 1100  </p>
+<ul>
+<li>연습문제  </li>
+</ul>
+<ol>
+<li>0x1234  </li>
+<li>0xf1ac  </li>
+<li>0x7523  </li>
+<li>0xfacd  </li>
+</ol>
+<h2 id="숫자"><a href="#숫자" class="headerlink" title="숫자"></a>숫자</h2><p>자바스크립트는 모든 숫자가 double.<br>실수형 double 은 8byte. 더블을 헨들하려면 fpu. 무척 헤비한데<br>자바스크립트에서는 cpu 작업을 할일이 별로 없어서 그렇다.<br>자바스크립트는 웹을 위한 언어.<br>네트워크 통신을 할 때 일어나는 I/O bound(인풋아웃풋 작업) 가 많이 일어난다.<br>자바스크립트는 이러한 IO 작업을 헤비하게 처리할 수 있도록 만들어진 언어이다.<br>그래서 숫자가 double 이어도 큰 상관이 없는 것이다.  </p>
+<p>var a = 10<br>var b = 2.34<br>typeof(a)==typeof(b)<br>true<br>다른 언어에선 이와같은 결과가 불가능하다.<br>자바스크립트는 모든 숫자를 더블로 보기에 가능한 결과.</p>
+<h3 id="정수-integer"><a href="#정수-integer" class="headerlink" title="정수(integer)"></a>정수(integer)</h3><ul>
+<li><p>인티져 오버플로우<br>1바이트짜리 변수(-128부터 127까지 담을 수 있음)에 128이 들어가면 결과가 -128이 나오고<br>129 -&gt; -127<br>130 -&gt; -126<br>왜냐면 8비트를 사용한다고는 하지만 양수음수를 표현하려면 맨 앞의 첫 비트는 양수 / 음수를 구별할 sign 으로 쓰여야 하기 때문에<br>사실상 7비트만으로, 즉 양수 음수 각각 2^7 까지의 숫자를 표현한다고 볼 수 있다.  </p>
+</li>
+<li><p>1바이트(= 8비트) : 2^8, 256개의 숫자 가능<br>양수: 0~255. (0 ~ 2^8-1)<br>양수, 음수:  - 2^7 ~ 2^7-1 (-128 ~ 127) </p>
+</li>
+<li><p>2바이트(= 16비트) : 2^16, 65,536개의 숫자 가능<br>양수: 0 ~ 65535. (0 ~ 2^16-1)<br>양수, 음수:  - 2^15 ~ 2^15-1</p>
+</li>
+<li><p>4바이트(= 32비트) : 2^32, 4,294,967,296개의 숫자 가능<br>양수: 0 ~ 65535. (0 ~ 2^32-1)<br>양수, 음수:  - 2^31 ~ 2^31-1</p>
+</li>
+</ul>
+<h4 id="양수의-표현"><a href="#양수의-표현" class="headerlink" title="양수의 표현"></a>양수의 표현</h4><p>1바이트(8비트)로 양수를 표현할 때<br>ex) 34 = 2^5 + 2^1 -&gt; 100010(2)<br>총 여덟자리를 할당하고 첫 비트는 sign 으로 쓴다.<br>뒤에서부터 채운 뒤 남는 자리는 0으로 채운다.<br>-&gt; <code>0</code>0100010</p>
+<h4 id="음수의-표현"><a href="#음수의-표현" class="headerlink" title="음수의 표현"></a>음수의 표현</h4><ul>
+<li><p>9의 보수<br>자릿수가 바뀌지 않으면서 가장 큰 수가 되는 것.<br>6은 3의 9의 보수.<br>74는 25의 9의 보수.  </p>
+</li>
+<li><p>10의 보수 (모든 9의 보수에 1을 더하면 10의 보수가 됨)<br>어떤 숫자에 수를 더하면 자릿수가 바뀌는 것.<br>3의 10의 보수는 7.<br>25의 10의 보수는 75.  </p>
+</li>
+</ul>
+<p>음수는 2의 보수로 표현함.<br>ex)-43<br>43을 2진수로 바꾼 뒤 1바이트 정수형으로 표현하고 1의 보수에 1을 더해 2의 보수를 만든다.  </p>
+<p>43 = 2^5 + 2^3 + 2^1 + 2^0 = 101011(2)<br>00101011 의 1의 보수 = 11010100<br>+1 -&gt; 11010101<br>1101 = d<br>0101 = 5<br>-43 = 0xd5  </p>
+<p>(+)<br><a href="https://blueshirudy.tistory.com/12" target="_blank" rel="noopener">연습문제 풀이</a></p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/til/">TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cs/">CS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/03/0425/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          컴퓨터 공학 TIL 0425
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/03/0426/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">컴퓨터 공학 TIL 0426</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#파이썬-기초와-알고리즘-1일차"><span class="nav-number">1.</span> <span class="nav-text">파이썬 기초와 알고리즘 1일차</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#메모리"><span class="nav-number">1.1.</span> <span class="nav-text">메모리</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Number"><span class="nav-number">1.2.</span> <span class="nav-text">Number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10진수-gt-2진수"><span class="nav-number">1.2.1.</span> <span class="nav-text">10진수 -&gt; 2진수</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2진수-gt-10진수"><span class="nav-number">1.2.2.</span> <span class="nav-text">2진수 -&gt; 10진수</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2진수-gt-16진수"><span class="nav-number">1.2.3.</span> <span class="nav-text">2진수 -&gt; 16진수</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16진수-gt-2진수"><span class="nav-number">1.2.4.</span> <span class="nav-text">16진수 -&gt; 2진수</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#숫자"><span class="nav-number">1.3.</span> <span class="nav-text">숫자</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#정수-integer"><span class="nav-number">1.3.1.</span> <span class="nav-text">정수(integer)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#양수의-표현"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">양수의 표현</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#음수의-표현"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">음수의 표현</span></a></li></ol></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+        <!-- 
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+           -->
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
