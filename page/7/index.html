@@ -105,7 +105,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/02/0502/">예습과 질문정리(2)</a>
+      <a class="article-title" href="/2019/05/02/0502/">Javascript 7/8/9</a>
     </h1>
   
 
@@ -233,7 +233,7 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-0429" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0501" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -241,7 +241,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/02/0429/">ECMAScript &amp; Javascript</a>
+      <a class="article-title" href="/2019/05/02/0501/">Browser Rendering</a>
     </h1>
   
 
@@ -249,38 +249,56 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/02/0429/" class="article-date">
+	<a href="/2019/05/02/0501/" class="article-date">
 	  <time datetime="2019-05-01T15:00:00.000Z" itemprop="datePublished">May 2, 2019</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+    <a class="article-category-link" href="/categories/javascript/">Javascript</a>
  
       <!--  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="자바스크립트와-ECMA스크립트"><a href="#자바스크립트와-ECMA스크립트" class="headerlink" title="자바스크립트와 ECMA스크립트"></a>자바스크립트와 ECMA스크립트</h2><p>참고: <a href="https://medium.freecodecamp.org/whats-the-difference-between-javascript-and-ECMAscript-cba48c73a2b5" target="_blank" rel="noopener">What’s the difference between JavaScript and ECMAScript?</a></p>
-<p><strong>ECMA International</strong>:<br>표준을 만드는 단체.<br>대부분의 키보드들이 같은 순서의 자음모음 순서를 가지고 있고 같은 위치의 스페이스 엔터 등등이 있다.<br>그건 바로 대부분의 키보드 회사들이 쿼티레이아웃이라는 표준을 가지고 키보드를 만들기 때문이다.<br>그런 표준을 만들어내는 곳이다.  </p>
-<p><strong>ECMA-262</strong>:<br>ECMA international 에서 발표하는 표준.<br>스크립트 언어에서 통용되는 구체적 사양, 설명을 포함하고 있다.<br>ECMAScript의 명세번호라고 이해하자.  </p>
-<p><strong>Scripting Language</strong>:<br>요소나 시스템 위에서의 <strong>동작</strong>을 위해 만들어진 프로그래밍 언어.<br>걷다, 달리다, 점프하다 와 같은 명령들을 생각해보자.<br>이런 동작들은 사람이나 개나 게임캐릭터들처럼 그것을 수행해줄 무언가가 필요하다.<br>이 명령을 수행할 대상이 없이는 걷고 뛰고 점프하는 행동 자체가 불가능하다.<br>이러한 행동들이 스크립트언어가 겉으로 보이는 요소들을 조작하고 제어하는것과 비슷하다.<br>(그러니까 내가 요소이고 나를 걷고 뛰고 점프하도록 조작하고 제어하는 역할을 하는 것이 스크립트언어 라고 보면 될 듯?<br>그래서 웹상에서 동작을 제어하는 자바스크립트가 스크립트언어라고 불리는 것이겠지.)  </p>
-<p><strong>ECMAScript</strong>:<br>ECMA-262 기술규격에 정의된, 표준화된 스크립트 프로그래밍 언어.<br>스크립트 언어가 ECMAscript를 준수한다고 여겨지려면 반드시 지켜야하는 규칙과 세부사항, 가이드라인을 제공함.<br>스크립트언어의 기본 뼈대(코어)를 이룬다. 모든 스크립트 언어들이 기본적으로 갖춰야 하는 내용이니까.  </p>
-<p><strong>Javascript</strong>:<br>ECMAscript 표준을 준수하는 스크립트 언어. ECMAscript 와 브라우저가 별도로 지원하는 WEB API 를 포함하는 개념.  </p>
-<p><strong>Javascript Engine</strong>:<br>자바스크립트 코드를 이해하고 실행시킬 수 있는 통역기.<br>크롬의 v8, 파이어폭스의 스파이더몽키 등 웹 브라우저에서 사용된다.<br>브라우저의 자바스크립트 엔진은 사람이 언어를 이해하는 능력과 비슷하다.<br>자바스크립트 엔진은 걷다, 뛰다, 점프하다 와 같은 행동들이 어떤 뜻인지 <strong>이해</strong>한다.<br>사람이 걸으랄 때 걷고 점프하랄때 점프하고 뛰랄 때 뛸 수 있는 것도<br>그 행동들이 어떤 의미인지 알아듣기때문에 가능한 것.<br>그러니까 사람에게도 이런 자바스크립트 엔진이 들어있어서 그것들을 이해할 수 있다고 생각하면 될 듯.<br>해석해줄 엔진이 없다면 스크립트언어가 아무리 명령해도 알아들을 수 없겠지.<br>브라우저마다 엔진의 차이는 있다. 왜냐면 ECMAScript가 업데이트될 때 모든 브라우저들이 한꺼번에<br>업데이트 하는 것이 아니기 때문이며 각 브라우저의 엔진마다 어떻게 해석하고 구현할 것인지가 다르기 때문이다.  </p>
-<h2 id="WEB-API"><a href="#WEB-API" class="headerlink" title="WEB API?"></a>WEB API?</h2><p>그 전에 API가 무엇인지부터 생각해보자.<br><strong>API</strong>는 어플리케이션 프로그래밍 인터페이스.<br>모든 언어는 API를 지원하고, 그 API를 사용해서 코딩을 하는 것이다.<br>우리가 애플리케이션을 구현하기 위해 시간의 순서대로 배치해야할 부품들.<br>우리가 쓰는 함수들. 우리가 만들지는 않았지만 간편히 사용 가능한, 그 언어가 가지고 있는 조작장치.  </p>
-<p><strong>WEB API</strong>는 웹에서 여러 유용한 작업을 할 수 있도록 제공되는 API.<br>예를 들어 웹 오디오 API는 브라우저의 오디오를 조작하기 위한 메서드를 제공.<br>근데 그 뒷편에서 브라우저는 사실 더 복잡한 로우레벨코드를 실행 중.<br>내가 직접 그런 복잡한 일을 하지 않아도 되게 해주는 것이 브라우저 API.<br><code>setTimeout()</code>, <code>alert()</code> 같은 것들이 그 예시.<br>W3C에서 표준을 관리.<br>( 내가 직접 하려면 정말 복잡한 코드를 이해하고 쓸 줄 알아야 하지만<br>WEB API가 있음으로써 브라우저에서 내가 쉽게 할 수 있는 일들이 더 많아지는 것이라고 이해하면 되겠다. )  </p>
-
+        <h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>브라우저와 서버는 대부분 다른 컴퓨터에 있다.<br>브라우저는 사용자 컴퓨터(어느나라의 어디의 누가 어떤 브라우저로 접속할지는 모른다)에 있고,<br>서버는 모든 상황에, 최대한 많은 브라우저를 대응하려 노력한다. 심지어 익스 7,8까지도…<br>(한국에서는 익스 9이상은 지원해줘야한다)  </p>
+<p>브라우저와 서버는 통신을 해야 하는데, 이를 위해 서버사이드 프로그램과 브라우저가 약속을 한다.<br>“http:// 는 <strong>http</strong> 라는 통신규약(서버와 브라우저간의 약속)을 사용해 정보를 교환하겠다는 뜻이다.”<br>브라우저가 서버에게 이니셜 요청을 했을때 주소창의 주소가 <code>https://www.naver.com</code> 이라면,<br>“나는 통신을 <code>https</code> 로 할거고, <code>www.naver.com</code> 이라는 서버로 페이지를 요청할거야.” 라는 뜻.<br>도메인네임서버에서 도메인을 IP주소로 변환한 뒤, IP주소로 서버의 위치를 알고 연결해준다.<br>만약 페이지를 요청하는 구문이 아무것도 없으면 서버는 메인페이지(index.html)을 보내는 것으로 기본 설정이 되어 있기에,<br>브라우저는 네이버의 메인 페이지를 받게 된다.  </p>
+<pre><code>파일은 어떻게 받지? -&gt; 케이블을 타고 패킷으로!  
+컴퓨터가 갖고 있는 파일은 0과 1로 이루어진 이진수의 집합체.  
+패킷은 데이터를 일정한 크기로 자른 것이다.  
+그 패킷들이 순서대로 시냇물 흐르듯 전송된다고 해서 스트림(stream) 이라고 한다.  
+</code></pre><h2 id="HTML-CSS-파싱"><a href="#HTML-CSS-파싱" class="headerlink" title="HTML/CSS 파싱"></a>HTML/CSS 파싱</h2><p>클라이언트 사이드에서는 index.html 파일(순수한 텍스트파일)을 받아서 메모리에 올린 후 파싱(해석)한다.<br><strong>파싱</strong>은 사람이 보기 좋으라고 써둔 소스코드를 브라우저가 이해하고 실행할 수 있도록 해석하는 것이다.<br>파일을 로드한(다운로드 받은) 상태에서 코드를 한 줄씩 읽다가<br>의미가 있는 내용이면 메모리에 기억하는데, 그 유의미한 정보를 <strong>토큰</strong>이라고 한다.  </p>
+<pre><code>HTML은 부자관계로 이루어진다. nesting, 중첩.  
+네스팅된 자식태그는 자식노드가 된다.  
+</code></pre><p>만약 link태그를 만나 CSS를 로딩해야 할 때가 되면, HTML의 파싱을 중단하고 다시 http를 이용해 서버에게 요청한다.<br>“나 style.css 라는 것 좀 줘.”(모든 파일은 서버에 있으니까)<br>서버는 해당 파일을 가지고 있는 곳에 가서 파일을 찾아서 패킷으로 잘라서 보낸다.<br>클라이언트는 파일을 받아서 메모리에 올리고 <strong>CSS 파싱</strong>을 시작한다.<br>CSS에는 선택자(selector)가 있고, 선택자와 선언블럭으로 이루어진 것을 룰셋이라고 부른다.  </p>
+<pre><code>body{
+    font-size : 16px;
+}
+</code></pre><p>이 룰셋들을 파서가 읽고 메모리에 써둔다. “body는 font-size가 16픽셀이더라” 라고.  </p>
+<p>CSS 파싱을 다 마치면 <strong>CSSOM 트리</strong>가 완성되고, HTML 파싱을 중단한 시점부터 다시 시작한다.<br>HTML 파싱을 다 마치면 <strong>DOM 트리</strong>가 완성된다.  </p>
+<p>DOM 트리(HTML의 파싱결과)와 CSSOM 트리(CSS의 파싱결과)가<br>브라우저가 관리하고있는 메모리에 자료구조로 만들어지면<br>DOM 트리와 CSSOM 트리를 합쳐서(merge) 렌더트리(렌더링 하기위한 트리)를 만든다.<br>이 렌더트리를 가지고 드디어 화면에 그리기 시작한다.  </p>
+<p>이 모든 일은 브라우저안에있는 <strong>렌더링 엔진</strong>이라는 프로그램이 한다.  </p>
+<h2 id="자바스크립트-파싱"><a href="#자바스크립트-파싱" class="headerlink" title="자바스크립트 파싱"></a>자바스크립트 파싱</h2><p>자바스크립트의 처리는 <strong>자바스크립트엔진</strong>이라는 프로그램이 한다.<br>HTML 파싱을 하다가 스크립트 태그를 만나면 HTML파싱이 멈춘다.<br>이것을 <strong>블로킹</strong>이 걸렸다고 한다.<br>스크립트 태그가 src 속성을 안 가지고 있다면 스크립트가 내장되어 있는 것이고,<br>src 속성을 가지고 있다면 서버에서 파일을 가져온다.  </p>
+<p>자바스크립트 엔진은 소스코드를 분석하며 의미를 갖는 최소 단위인 토큰들로 분리한다.  </p>
+<p><code>var a = 0;</code> 일 때<br><code>var</code>, <code>a</code>, <code>=</code>, <code>0</code>, <code>;</code> 이 모두 토큰이다.</p>
+<p>그리고 토큰들의 집합을 파싱하면서 <strong>신택스 트리</strong>, AST(Abstract Syntax Tree)를 만든다.  </p>
+<p>(자바스크립트엔진이 자바스크립트문법으로 이해했다는 뜻.<br>이해할 수 있다면 실행할 수 있다는 뜻이고, 명령을 할 수 있다는 뜻이다.)  </p>
+<p>파싱한 상태에서 바이트코드로 한 번 더 바꾼 후 실행을 하는데,<br>이때 돔과 관련이 있다면 <strong>돔을 조작</strong>할 수 있게 된다.<br>만약 스크립트가 헤드에 있다면 돔트리가 완성이 안된 상태라서 돔 조작이 불가능하다.<br>자바스크립트는 돔트리와 씨솜트리가 완성된 상태에서 실행해야 의미가 있다.  </p>
+<pre><code>- 그럼에도 스크립트태그를 헤드에 써야 한다면...  
+async: 병렬처리. 비동기. HTML파싱이 안 끝나도 js파싱이 끝나면 바로 실행한다.  
+defer: 파싱은 빨리하고 실행은 HTML 파싱이 끝나고 나중에 한다.  
+(그러나 둘 다 IE9이하에서는 지원이 안 되거나 부분지원 된다고 하니 그냥 body태그 아래에 쓰도록 하자)  
+</code></pre>
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+    <a class="article-category-link" href="/categories/javascript/">Javascript</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">Web</a></li></ul>
 
       
     </footer>
@@ -316,8 +334,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/05/03/0503/">자바스크립트 TIL 0503</a></h6>
-              <span>May 3, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/05/08/0508/">원시 값과 객체, 함수, 스코프</a></h6>
+              <span>May 8, 2019</span>
             </div>
 
           </li>
@@ -328,7 +346,7 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/05/03/0417/">컴퓨터 공학 TIL 0417</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/05/03/0503/">변수, 값, 문과 표현식, 데이터타입</a></h6>
               <span>May 3, 2019</span>
             </div>
 
@@ -391,7 +409,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/잡담/">잡담</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -401,7 +419,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/qna/">QnA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/qna/">QnA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
