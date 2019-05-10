@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Rudy&#39;s Blog">
 <meta property="og:description" content="원시 값변경 불가능한 값. 변수와 헷갈리면 안 된다. 변수 자체가 값도 아닐 뿐더러, 변수는 당연히 변수값이 변한다. 그런데 변수가 가지고 있는 값 자체가 원시 값(숫자, 문자, 불리언, null, undefined, symbol)일 때 값은 바뀌지 않는다. 상수하고도 헷갈리면 안 된다. 상수도 값을 갖고 있을 수 있는 변수이다. 단지 재할당을 못할 뿐이지">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-08T10:08:57.909Z">
+<meta property="og:updated_time" content="2019-05-10T01:27:23.681Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="원시 값과 객체, 함수, 스코프">
 <meta name="twitter:description" content="원시 값변경 불가능한 값. 변수와 헷갈리면 안 된다. 변수 자체가 값도 아닐 뿐더러, 변수는 당연히 변수값이 변한다. 그런데 변수가 가지고 있는 값 자체가 원시 값(숫자, 문자, 불리언, null, undefined, symbol)일 때 값은 바뀌지 않는다. 상수하고도 헷갈리면 안 된다. 상수도 값을 갖고 있을 수 있는 변수이다. 단지 재할당을 못할 뿐이지">
@@ -170,7 +170,15 @@
 그러니까 스코프체인에서 변수를 검색하는것과 똑같이 동작함.
 스코프는 선언될 때에 결정됨.
 함수 안의 변수는 호출될지안될지모르기때문에 실행할때 함수가 호출되면 그때 선언.
-'7. 렉시컬 스코프' 의 예제는... bar 가 선언될때 전역에서 선언이되었기 때문에 전역스코프임.. 그래서 결과가 1이 나오는거임. -->
+-->
+<h3 id="렉시컬-스코프"><a href="#렉시컬-스코프" class="headerlink" title="렉시컬 스코프"></a>렉시컬 스코프</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">10</span>;</span><br><span class="line">  bar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); <span class="comment">// ?</span></span><br><span class="line">bar(); <span class="comment">// ?</span></span><br></pre></td></tr></table></figure>
+<p>스코프가 결정되는데에는 두 가지 방식이 있다.  </p>
+<ol>
+<li>함수를 어디서 호출했는지에 따라 상위 스코프가 결정되거나  </li>
+<li>함수를 어디서 정의했는지에 따라 상위 스코프가 결정된다.  </li>
+</ol>
+<p>자바스크립트는 <strong>함수를 어디서 정의했는지</strong>에 따라 상위 스코프가 결정된다. 즉 2번에 해당되고, 이를 <strong>정적 스코프</strong>, 또는 <strong>렉시컬 스코프</strong>라고 한다(1번은 동적 스코프라고 한다). 함수 bar 는 var x = 1; 과 같이 전역에서 정의되었기 때문에 bar 는 1를 출력한다. 만약 동적 스코프였다면 foo 함수 안에서 bar 가 호출되었기 때문에 foo 가 bar 의 상위 스코프가 되고, bar는 1이 아니라 10을 출력하게 될 것이다. </p>
+
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -207,7 +215,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#원시-값"><span class="nav-number">1.</span> <span class="nav-text">원시 값</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#객체"><span class="nav-number">2.</span> <span class="nav-text">객체</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#함수"><span class="nav-number">3.</span> <span class="nav-text">함수</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#함수-정의"><span class="nav-number">3.1.</span> <span class="nav-text">함수 정의</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#즉시실행함수"><span class="nav-number">3.2.</span> <span class="nav-text">즉시실행함수</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#중첩-함수"><span class="nav-number">3.3.</span> <span class="nav-text">중첩 함수</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#콜백함수"><span class="nav-number">3.4.</span> <span class="nav-text">콜백함수</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#스코프"><span class="nav-number">4.</span> <span class="nav-text">스코프</span></a></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#원시-값"><span class="nav-number">1.</span> <span class="nav-text">원시 값</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#객체"><span class="nav-number">2.</span> <span class="nav-text">객체</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#함수"><span class="nav-number">3.</span> <span class="nav-text">함수</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#함수-정의"><span class="nav-number">3.1.</span> <span class="nav-text">함수 정의</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#즉시실행함수"><span class="nav-number">3.2.</span> <span class="nav-text">즉시실행함수</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#중첩-함수"><span class="nav-number">3.3.</span> <span class="nav-text">중첩 함수</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#콜백함수"><span class="nav-number">3.4.</span> <span class="nav-text">콜백함수</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#스코프"><span class="nav-number">4.</span> <span class="nav-text">스코프</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#렉시컬-스코프"><span class="nav-number">4.1.</span> <span class="nav-text">렉시컬 스코프</span></a></li></ol></li></ol>
     
     </div>
   </aside>
