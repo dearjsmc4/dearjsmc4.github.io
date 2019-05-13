@@ -3,19 +3,26 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Page 2 | Rudy&#39;s Blog</title>
+  <title>전역변수 문제점, 모듈패턴, 프로퍼티 정의, 생성자 함수 | Rudy&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="TILJavascript">
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Rudy&#39;s Blog">
-<meta property="og:url" content="https://dearjsmc4.github.io/page/2/index.html">
+  
+  <meta name="description" content="전역 변수의 문제점 중복 선언이 가능하다. var 키워드의 경우 중복 선언이 가능한데, 이때 의도치않은 재할당이 일어날 수 있다.  생명 주기가 길다. 스코프에 식별자가 등록되면 태어나는 것이고, 스코프가 죽으면 그 스코프의 변수도 죽는다. 전역 변수는 스코프가 소멸되지 않는다. 전역 스코프가 소멸되면 다른 window 전역 객체들도 다 못 쓰게 되는 것이">
+<meta name="keywords" content="TIL,Javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="전역변수 문제점, 모듈패턴, 프로퍼티 정의, 생성자 함수">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/05/10/0510/index.html">
 <meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="전역 변수의 문제점 중복 선언이 가능하다. var 키워드의 경우 중복 선언이 가능한데, 이때 의도치않은 재할당이 일어날 수 있다.  생명 주기가 길다. 스코프에 식별자가 등록되면 태어나는 것이고, 스코프가 죽으면 그 스코프의 변수도 죽는다. 전역 변수는 스코프가 소멸되지 않는다. 전역 스코프가 소멸되면 다른 window 전역 객체들도 다 못 쓰게 되는 것이">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-13T11:40:18.388Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rudy&#39;s Blog">
+<meta name="twitter:title" content="전역변수 문제점, 모듈패턴, 프로퍼티 정의, 생성자 함수">
+<meta name="twitter:description" content="전역 변수의 문제점 중복 선언이 가능하다. var 키워드의 경우 중복 선언이 가능한데, 이때 의도치않은 재할당이 일어날 수 있다.  생명 주기가 길다. 스코프에 식별자가 등록되면 태어나는 것이고, 스코프가 죽으면 그 스코프의 변수도 죽는다. 전역 변수는 스코프가 소멸되지 않는다. 전역 스코프가 소멸되면 다른 window 전역 객체들도 다 못 쓰게 되는 것이">
   
     <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
   
@@ -48,7 +55,7 @@
 </html>
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   
@@ -95,9 +102,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main">
-  
-    <article id="post-0510" class="article article-type-post" itemscope itemprop="blogPost">
+          <section id="main" style="float:none;"><article id="post-0510" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +110,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/10/0510/">전역변수 문제점, 모듈패턴, 프로퍼티 정의, 생성자 함수</a>
+      전역변수 문제점, 모듈패턴, 프로퍼티 정의, 생성자 함수
     </h1>
   
 
@@ -121,7 +126,11 @@
 	<span class="ico-folder"></span>
     <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
  
-      <!--  -->
+      <!-- 
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+ -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
@@ -203,229 +212,40 @@ new가 붙으면 생성자함수니까... -->
     <hr class="entry-footer-hr">
   </div>
   
-</article>
-
-<!-- Table of Contents -->
-
+    
+<nav id="article-nav">
   
-    <article id="post-0503" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
+    <a href="/2019/05/13/0508/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          원시 값과 객체, 함수, 스코프
+        
+      </div>
+    </a>
   
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0503/">변수, 값, 문과 표현식, 데이터타입</a>
-    </h1>
   
+    <a href="/2019/05/03/0503/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">변수, 값, 문과 표현식, 데이터타입</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/05/03/0503/" class="article-date">
-	  <time datetime="2019-05-03T10:40:59.000Z" itemprop="datePublished">May 3, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="변수"><a href="#변수" class="headerlink" title="변수"></a>변수</h2><p>들어가기 전에.  </p>
-<ul>
-<li>자바스크립트는 왜 8바이트 숫자를 쓰는가  </li>
-</ul>
-<p>자바스크립트의 변수에는 숫자, 문자, 불리언 등을 자유롭게 넣을 수 있다. 즉, 변수에 뭐가 들어올지 모른다는 말이 된다. 그래서 메모리 공간을 좀 넉넉히 확보한다. 다른 언어같으면 ‘이 변수는 4바이트 정수 숫자를 저장할거야’ 라고 크기를 딱 정해줄텐데, (선언될 때 타입을 정하니까 <code>정적 타입 언어</code> 라고 한다.) 자바스크립트는 <strong>동적 타입 언어</strong>라서 크기를 정해주지 않는다. 변수의 타입은 할당될 때의 값의 타입에 따라 정해진다.  </p>
-<p>숫자의 경우, 내가 숫자를 얼마나 넣을 줄 알겠는가. 그러니까 일단 제일 많이 넣을 수 있을 정도로 메모리공간을 보유해놓는 것이다. 따라서 자바스크립트에서 숫자는 무조건 8바이트를 쓴다. 자바스크립트는 개발자가 타입을 덜 신경쓰도록 만들어진 언어다.  </p>
-<p>숫자의 크기가 8바이트면 8개의 셀을 쓸 것이고, 8개의 주소가 있을 것이다. 이때 변수는 선두 어드레스를 기억하고, 변수값을 불러올 때 몇 바이트를 가지고 와야할지 알아야 하는데, 그것은 데이터 타입으로 결정한다. 데이터 타입의 크기를 참고(메모리 공간을 얼마나 차지하고 있나)하여 그만큼의 데이터를 전부 불러온다. 만약 가져와야하는 바이트보다 조금 가져오면 데이터가 왜곡되기 때문이다.</p>
-<h3 id="변수의-재할당"><a href="#변수의-재할당" class="headerlink" title="변수의 재할당"></a>변수의 재할당</h3><p><code>var x;</code><br><code>x = 10;</code><br><code>=</code>: 우변의 값을 좌변으로 할당하는 할당연산자  </p>
-<p>변수가 선언되면, 선언과 초기화단계를 거쳐 변수명과 메모리공간이 매핑되었고 undefined 가 할당된 상태가 된다. 그리고 런타임에 자바스크립트엔진이 10 이라는 숫자(값)를 이진수로 바꿔서 메모리 공간에 값을 넣는다.  </p>
-<p><strong>!중요!</strong></p>
-<p>undefined를 싹 지우고 숫자를 그 자리에 넣는게 아니라, <strong>새로운 공간에 숫자를 넣고 변수 x가 그 공간을 가리키게</strong> 한다. 원시타입은 변경불가능한(immutable) 값이기 때문이다.  </p>
-<p>undefined는 데이터타입이면서 값이기도 하다. 그러니까 할당이 될 수 있다. undefined는 원시타입이고, 변경할 수 없다.<br>-&gt; 메모리공간에 할당된 undefined를 지우고 다른 값으로 바꿀 수 없다는 뜻이다.<br>undefined가 할당된 공간은 그냥 놔두고, 새로운 공간에 10이라고 이진수로 쓰고 x 가 10을 가리키게 한다. 그럼 undefined는 쓰레기값(어떤 식별자도 참조하지않는 값)이 된다. 쓰레기값이 되면 가비지컬렉터가 치운다. (언제 치울지는 모른다 그건 개발자가 신경 쓸 일은 아니다)<br>이것이 자바스크립트에서의 변수의 <strong>재할당.</strong>  </p>
-<h3 id="변수-호이스팅"><a href="#변수-호이스팅" class="headerlink" title="변수 호이스팅"></a>변수 호이스팅</h3><p>선언만 된 상태에서 참조했을 때 초기화된 상태인 undefined 가 나오는 현상.<br>(호이스팅을 배우는 이유는 쓰라고 배우는게 아니라 쓰지말라고 배우는 거라고 하셨다…)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a);</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">100</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>var 키워드를 사용했으므로 첫 번째 a는 undefined, 두 번째 a는 100이 나온다.<br>자바스크립트 엔진이 변수 선언문을 실행한 후에 코드를 한 줄씩 실행하면서 값을 할당하게 되는데,<br>함수 내에서 첫 a를 콘솔에 출력하려고 할 때에는 아직 100 이라는 값이 할당되지 않아 undefined 인 상태다.<br>두 번째 a를 출력할 때에는 a에 100이 할당 된 후이기 때문에 100이 정상적으로 출력된다.  </p>
-<ul>
-<li>var 키워드의 문제:  <ul>
-<li>중복선언이 된다.  </li>
-<li>호이스팅이 된다.  </li>
-<li>키워드 없이 선언되면서 심지어 전역변수가 된다.  </li>
-<li>블록레벨스코프를 지원 안하고 함수레벨스코프를 지원. </li>
-<li>상수 선언이 안 된다. (상수는 재할당을 못하는 변수. 상수도 변수다!)<br>(변수명을 대문자로만 지으면 상수란 뜻으로 통한다고 한다)  </li>
-</ul>
-</li>
-</ul>
-<p>그래서 ES6에서 const 와 let 키워드가 도입되었다.<br>const: 할당 한번만 가능<br>let: 재할당가능, 재선언 불가능<br>둘 다 변수호이스팅을 안하는 것처럼 동작한다.</p>
-<h2 id="값"><a href="#값" class="headerlink" title="값"></a>값</h2><p>더 이상 평가될 수 없는 표현식.<br>10+20 이 왜 표현식일까? 평가라는 단계를 거쳐 30이라는 하나의 값을 만들기 때문이다.<br>그럼 30은 왜 표현식이냐. 30도 30으로 평가되니까.<br>정확히는, 30도 메모리에 들어갈때 컴퓨터를 위해 이진수 값으로 평가되어 들어가기 때문이다.</p>
-<h3 id="리터럴"><a href="#리터럴" class="headerlink" title="리터럴"></a>리터럴</h3><p>리터럴이라는 상태는, 내가 그냥 30이라고 쓴 상태다. 리터럴 표기법이 별 게 아니고 그냥 내가 10이라고 쓰면 그게 리터럴 표기법으로 만든 리터럴이다. 30은 숫자 리터럴이고, 자바스크립트엔진이 30을 읽고 “아 숫자 30을 만들라는 거구나,” 하고<br>숫자 30에 대응하는 값(이진수)을 만든다. 30이라는 리터럴이 이진수값으로 평가되었다. 결국 <strong>리터럴은 값을 만드는 방법중에 가장 심플한 표현식</strong> 이다.  </p>
-<p>정확히는 리터럴은 값이 아니라 값을 만드는 표현식이다. 근데 어차피 리터럴은 값이 될 예정이니까 그냥 값이라고 퉁칠 수도 있다. 리터럴은 값이 될 순 있지만 값이 리터럴이 될 수 없다는건 리터럴이 평가되서 값이 될 수는 있지만 값이 평가되어 리터럴이 될 수는 없다는 말이다. </p>
-<h2 id="표현식"><a href="#표현식" class="headerlink" title="표현식"></a>표현식</h2><p>변수에 할당되는 것은 값으로 평가될 수 있는 모든 표현식이다.<br><code>var a = 10;</code><br>이 때 콘솔창에서 a 를 입력하면 10이 나온다. a 도 평가되어 10이 나왔다는 뜻이다.<br>이때 a 를 <strong>식별자 표현식</strong>이라고 한다.<br><code>a + 10</code> 은 a 라는 식별자 표현식과 10 이라는 리터럴 표현식이 합쳐진 표현식이다.<br>그래서 표현식은 표현식의 일부가 될 수 있다는 것을 알 수 있다.  </p>
-<h2 id="문"><a href="#문" class="headerlink" title="문"></a>문</h2><p>문은 하나의 키워드와 식별자로 이루어진 명령이다.<br><code>var foo;</code> 는 선언’문’이다. 왜? var 와 foo 로 이루어진 변수 선언명령이기 때문이다.  </p>
-<h2 id="표현식-vs-문"><a href="#표현식-vs-문" class="headerlink" title="표현식 vs 문"></a>표현식 vs 문</h2><p>표현식은 값을 만드는게 주 업무이며, 문은 무언가를 실행하거나 명령하는 것이 주 업무다.<br>문의 개념이 좀 더 포괄적이다. 따라서 표현식은 문이다. 평가하여 값을 만들라는 일종의 명령이기 때문이다. 하지만 우리는 보통 표현식은 ‘평가’를 한다고 하지, ‘명령’한다고는 하지 않는다. 표현식은 ‘평가’가 주 업무다.  </p>
-<p>문은, 표현식인 문과 표현식이 아닌 문이 있다.  </p>
-<ul>
-<li>표현식인 문 : 값을 만드는 일을 하는 문  </li>
-<li>표현식이 아닌 문 : 값을 만드는 일이 아닌 다른 일을 하는 문  </li>
-</ul>
-<p>둘을 구별하는 가장 쉬운 방법은 변수에 할당해보는 것이다.<br>할당이 잘 되면 표현식인 문이고, 안 되면 표현식이 아닌 문이다.<br>가장 쉬운 예로는, if문은 표현식이 아닌 문이다. if문을 변수에 넣지는 않는다.  </p>
-<p>(+)<br>자바스크립트의 할당문은 식이다.<br><code>sum = 10;</code> 을 콘솔창에서 출력해보면 10으로 평가되어 나온다. 값으로 평가되는 표현식이라는 뜻이다.  </p>
-<h2 id="데이터-타입"><a href="#데이터-타입" class="headerlink" title="데이터 타입"></a>데이터 타입</h2><h3 id="문자열-타입"><a href="#문자열-타입" class="headerlink" title="문자열 타입"></a>문자열 타입</h3><p>자바스크립트엔진은 문자열의 크기를 보고 크기에 맞는 메모리공간을 확보한다.<br>문자열을 따옴표로 묶는 것은 식별자로 오해하지 않게 하기 위해서고, 문자열의 시작과 끝을 알리기 위해서이기도 하다. 마치 열고 닫는 태그같은 것이다.<br>ES6부터는 템플릿 리터럴이 도입되었는데, 1+1 같은 산술연산이 들어가도 평가 후에 문자열로 변환된다. </p>
-<h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><p>변수가 선언되었을 때, 개발자가 보기에는 선언만 되고 할당이 되지 않은 상태이지만 사실 자바스크립트엔진에 의해서 선언과 동시에 undefined가 할당된 상태다(값이 할당되었으니 정의도 되었다). undefined는 개발자가 직접 할당하는 것이 아니다. 할당은 자바스크립트엔진이 해주고, 나는 그게 “할당이 안된 상태구나,” 하고 인식하면 된다. 내가 일부러 undefined를 할당할 일이 얼마나 있을까.  </p>
-<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><p>변수에 null 을 할당하면 변수가 참조하고 있던 값 말고 null 을 가리키게 한다. null은 값이 없다는 뜻이니까, 변수가 가리키는 값은 ‘없다’. 참조가 끊어지게 된다.<br>null 을 할당하게 되면 자연스레 변수가 원래 참조하고 있던 메모리 공간이 해제되지만, null은 값이지 메모리 공간을 해제하라는 명령어가 아니다. null 을 할당하는 것은 그다지 효율적이지 못하기도 하다.<br>a가 null 을 바라보게되면 a가 바라보던 값이 혼자 남게 되어 쓰레기값이 된다? 그럴거면 null을 쓰나 다른 값을 쓰나 똑같고, 그럴거면 스코프를 줄여서 변수를 소멸시키는 게 낫다.<br>(함수는 null 에서 자주 쓰인다고 한다. 리턴값이 없을때 에러를 내보내면 멈추니까 그냥 null 을 리턴해버린다고…)  </p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
   
 </article>
 
 <!-- Table of Contents -->
 
-  
-
-
-  <nav id="page-nav">
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
     
-    <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/">Next</a>
-  </nav>
-
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#전역-변수의-문제점"><span class="nav-number">1.</span> <span class="nav-text">전역 변수의 문제점</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#모듈패턴"><span class="nav-number">2.</span> <span class="nav-text">모듈패턴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#프로퍼티-정의"><span class="nav-number">3.</span> <span class="nav-text">프로퍼티 정의</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#내부슬롯-내부메소드"><span class="nav-number">3.1.</span> <span class="nav-text">내부슬롯/내부메소드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#데이터-프로퍼티와-접근자-프로퍼티"><span class="nav-number">3.2.</span> <span class="nav-text">데이터 프로퍼티와 접근자 프로퍼티</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#생성자-함수에-의한-객체-생성"><span class="nav-number">4.</span> <span class="nav-text">생성자 함수에 의한 객체 생성</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#생성자-함수가-객체를-만드는-방법"><span class="nav-number">4.1.</span> <span class="nav-text">생성자 함수가 객체를 만드는 방법</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
 </section>
-          <aside id="sidebar">
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>Recent Posts</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/13/0512/">함수, 프로토타입</a></h6>
-              <span>May 13, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/13/0508/">원시 값과 객체, 함수, 스코프</a></h6>
-              <span>May 13, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/10/0510/">전역변수 문제점, 모듈패턴, 프로퍼티 정의, 생성자 함수</a></h6>
-              <span>May 10, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/03/0503/">변수, 값, 문과 표현식, 데이터타입</a></h6>
-              <span>May 3, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/03/0422/">컴퓨터 공학 TIL 0422</a></h6>
-              <span>May 3, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/03/0424/">컴퓨터 공학 TIL 0424</a></h6>
-              <span>May 3, 2019</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/qna/">QnA</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
 
