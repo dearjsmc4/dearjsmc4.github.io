@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Rudy&#39;s Blog">
 <meta property="og:description" content="함수와 일급객체일급객체: 값처럼 쓸 수 있는 객체객체는 변수에 담을 수도 있고 프로퍼티의 값으로 할당할 수도 있고 함수 인수로 전달하거나 리턴으로 반환할 수 있다. 함수도 위의 조건을 만족시키므로 일급객체이다.   함수 객체의(함수 객체만이 가지고있는) 프로퍼티함수는 객체이므로 프로퍼티를 가질 수 있다.함수를 console.dir 로 찍었을 때 나오는 함">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-13T11:42:20.635Z">
+<meta property="og:updated_time" content="2019-05-14T02:12:41.195Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="함수, 프로토타입">
 <meta name="twitter:description" content="함수와 일급객체일급객체: 값처럼 쓸 수 있는 객체객체는 변수에 담을 수도 있고 프로퍼티의 값으로 할당할 수도 있고 함수 인수로 전달하거나 리턴으로 반환할 수 있다. 함수도 위의 조건을 만족시키므로 일급객체이다.   함수 객체의(함수 객체만이 가지고있는) 프로퍼티함수는 객체이므로 프로퍼티를 가질 수 있다.함수를 console.dir 로 찍었을 때 나오는 함">
@@ -154,16 +154,7 @@
 <p>그리고 모든 프로토타입 객체는 constructor 라는 프로퍼티를 가지고 있고, 이것은 생성자함수를 가리킨다. 그래서 Object 생성자함수와 <code>Object.prototype</code>은 서로를 가리키고 있다.  </p>
 <p><code>Object.prototype</code>은 프로토타입체인의 종점이다. 모든 객체는 <code>Object.prototype</code> 의 자식이고, 모든 객체는 <code>Object.prototype</code> 의 자산을 상속받는다. <code>Array.prototype</code> 이나 <code>Function.prototype</code>도 <code>Object.prototype</code>의 아래에 연결되어있다.  </p>
 <!-- `me.hasOwnProperty('name')` 일 때, me를 스코프체인에서 먼저 찾고, 성공하면, 프로퍼티를 프로토타입체인에서 찾아서 호출.
-스코프는 상속되는게 아니지. 스코프는 그냥 보이느냐 아니냐 문제지. 하위스코프에서 상위스코프를 볼 수 있을뿐 상속받는건 아님.
-
-Array.length 하면 매개변수의 갯수고
-arr.length 하면 배열의 길이가 나오지 배열객체가 만들어지는순간 암묵적으로 만들어지는 메소드?
-length는 다른 프로퍼티인가봐
-arr.constructor.length 이게 Array.length랑 같은건데 결과가 다르게 나오네.
-Array(3) 이거라서..
-
-Array.prototype.reduce() 이런게 있으면
-arr 객체 하나 만들어서 arr.reduce() 이렇게 호출하라는거. -->
+스코프는 상속되는게 아니지. 스코프는 그냥 보이느냐 아니냐 문제지. 하위스코프에서 상위스코프를 볼 수 있을뿐 상속받는건 아님.-->
 <h3 id="proto-접근자-프로퍼티"><a href="#proto-접근자-프로퍼티" class="headerlink" title="__proto__ 접근자 프로퍼티"></a><code>__proto__</code> 접근자 프로퍼티</h3><p>프로퍼티에는 데이터프로퍼티와 접근자프로퍼티 두 가지 종류가 있다. 데이터 프로퍼티와 달리 접근자 프로퍼티는 value가 없다. 접근자 프로퍼티는 다른 데이터프로퍼티의 값을 가져오거나 변경/갱신할때 쓰는 것. 어떤 데이터프로퍼티 값을 보호하고 싶을 때, 혹은 조건에 부합할 때만 바꾸고 싶을 때 쓴다. <code>__proto__</code> 접근자 프로퍼티는 <code>Object.prototype</code> 에 있기 때문에 모든 객체와 함수가 사용할 수 있다. (모든 객체가 <code>__proto__</code> 를 ‘가지고 있는’ 것이 아니다!)</p>
 <p>그럼 <code>__proto__</code> 접근자 프로퍼티는 어디서 데이터를 가져올까?<br><code>[[Prototype]]</code> 내부슬롯에서 가져온다. 모든 객체는 자기가 생성될때 <code>[[prototype]]</code> 이라는 내부슬롯을 가지고, 이 안에 자신의 프로토타입 객체를 넣는다. 원래 직접적인 접근은 할 수 없지만, 간접적인 방법으로 접근을 허용한다.<br>따라서 <code>me.__proto__ === Object.prototype</code> 은 true 가 된다. <code>__proto__</code> 접근자 프로퍼티를 이용하여 프로토타입을 교체하거나 프로토타입에 프로퍼티를 추가할 수도 있지만, 그보다는 <code>Object.getPrototypeOf</code> 메소드나 <code>Object.setPrototypeOf</code> 를 이용하는 것이 좋다. <code>__proto__</code> 접근자 프로퍼티는 객체의 프로토타입을 찾기 위한 것이고 원래는 직접 접근해서는 안 되는 프로퍼티이기 때문이다.  </p>
 <!-- 
@@ -192,6 +183,15 @@ arr 객체 하나 만들어서 arr.reduce() 이렇게 호출하라는거. -->
   
     
 <nav id="article-nav">
+  
+    <a href="/2019/05/15/0515/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          전역객체, this
+        
+      </div>
+    </a>
   
   
     <a href="/2019/05/10/0510/" id="article-nav-older" class="article-nav-link-wrap">

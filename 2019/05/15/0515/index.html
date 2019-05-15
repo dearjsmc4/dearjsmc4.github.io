@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>전역객체, this | Rudy&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="TILJavascript">
+  
+  
+  
+  
+  <meta name="description" content="전역객체우리가 만드는 게 아니라 브라우저 열자마자 전역객체가 만들어진다. 그 안에는 전역객체가 가지고있는 프로퍼티와 메소드, var 로 만든 전역 변수, 암묵적 전역변수, WEB API가 들어있다. window의 프로퍼티는 window.을 생략해도 된다.   eval 함수안 배워도 되고 가르치지도 않으려고 하는 함수…얘를 왜 안 쓰냐면, 자기자신만의 스코프">
+<meta name="keywords" content="TIL,Javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="전역객체, this">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/05/15/0515/index.html">
+<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="전역객체우리가 만드는 게 아니라 브라우저 열자마자 전역객체가 만들어진다. 그 안에는 전역객체가 가지고있는 프로퍼티와 메소드, var 로 만든 전역 변수, 암묵적 전역변수, WEB API가 들어있다. window의 프로퍼티는 window.을 생략해도 된다.   eval 함수안 배워도 되고 가르치지도 않으려고 하는 함수…얘를 왜 안 쓰냐면, 자기자신만의 스코프">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-15T11:08:43.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="전역객체, this">
+<meta name="twitter:description" content="전역객체우리가 만드는 게 아니라 브라우저 열자마자 전역객체가 만들어진다. 그 안에는 전역객체가 가지고있는 프로퍼티와 메소드, var 로 만든 전역 변수, 암묵적 전역변수, WEB API가 들어있다. window의 프로퍼티는 window.을 생략해도 된다.   eval 함수안 배워도 되고 가르치지도 않으려고 하는 함수…얘를 왜 안 쓰냐면, 자기자신만의 스코프">
+  
+    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/fashion.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-0515" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      전역객체, this
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/05/15/0515/" class="article-date">
+	  <time datetime="2019-05-14T15:00:00.000Z" itemprop="datePublished">May 15, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+ 
+      <!-- 
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+ -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="전역객체"><a href="#전역객체" class="headerlink" title="전역객체"></a>전역객체</h2><p>우리가 만드는 게 아니라 브라우저 열자마자 전역객체가 만들어진다. 그 안에는 전역객체가 가지고있는 프로퍼티와 메소드, var 로 만든 전역 변수, 암묵적 전역변수, WEB API가 들어있다. window의 프로퍼티는 window.을 생략해도 된다.  </p>
+<h3 id="eval-함수"><a href="#eval-함수" class="headerlink" title="eval 함수"></a>eval 함수</h3><p>안 배워도 되고 가르치지도 않으려고 하는 함수…<br>얘를 왜 안 쓰냐면, 자기자신만의 스코프를 만들고 상위 스코프도 변형시키기 때문이다. 비용이 많이 드는 일들이다. 비용이 많이 드는 일은 대체로 최적화가 되는데 eval 은 그 최적화를 깨뜨린다. 보안문제도 있다. 사용자가 입력한 데이터는 untrusted data 라고 하는데, 이것은 한번 검사를 해야한다고 한다. eval이 받은 문자열을 바로 실행시켜버리니까 문제인듯하다. 그 안에 무슨 코드가 있을지 모르니까.  </p>
+<p>(함수이름 짓는 팁: 빌트인메소드들 이름 따라하기)  </p>
+<h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>객체에는 상태 데이터와 동작(메소드)이 있다고 했고, 동작인 메소드는 상태 데이터를 참조하고 변경할 수 있어야 한다. 메소드가 자신이 속한 객체의 프로퍼티를 참조하려면 자신이 속한 객체를 가리키는 식별자를 참조할 수 있어야 한다.<br><strong>this</strong>는 객체 자신의 프로퍼티나 메소드를 참조하기 위한 <strong>자기참조변수</strong>이다. <strong>this가 가리키는 값은 함수 호출 방식에 의해 동적으로 결정된다.</strong> 아무것도 신경쓰지말고 함수가 어떻게 호출되었느냐만 보면됨. 함수가 호출되어야 this 가 결정된다.<br><!-- (렉시컬 스코프는 함수정의가 평가될때 결정된다)  --></p>
+<h3 id="다양한-함수호출방식"><a href="#다양한-함수호출방식" class="headerlink" title="다양한 함수호출방식"></a>다양한 함수호출방식</h3><ol>
+<li>일반함수 호출 -&gt; this 는 기본적으로 window 를 가리키도록 세팅된 채로 시작한다.  </li>
+<li>메소드 호출 -&gt; this 는 메소드를 호출한 객체를 가리킨다.  </li>
+<li>생성자함수 호출 -&gt; this 는 생성될 인스턴스를 가리킨다.  </li>
+<li>Function.prototype.apply/call/bind 메소드에 의한 간접 호출 -&gt; this를 명시적으로 바인딩  </li>
+</ol>
+<p>this는 객체의 참조를 얻기 위해 필요한 것이니까 전역이나 일반함수에서 this를 쓸 일은 없다. 그래서 엄격모드에서는 undefined를 내보낸다.  </p>
+<p>메소드로 호출된 함수는 메소드를 <strong>호출한</strong> 객체를 가리킨다고 했다. 메소드를 <strong>가지고 있는</strong> 객체가 아니다! this 가 무엇인지 확인할 때에는 무조건 함수가 <strong>어떻게</strong> 호출되었는지만 확인하면 된다. 즉시실행함수도 this 가 window 이다. 메소드 안의 중첩함수도 일반함수로 호출되었다면 this 는 window 이다.<br>그런데 중첩함수는 외부함수를 도와주는 함수이다. 외부함수 안에서만 딱 쓰겠다는 의지가 나타났다는 말이다. 그럼 외부함수가 메소드로 호출돼서 this 가 객체를 가리키는 상태라면, 중첩함수에서 this가 window로 바뀌는 것은 기대에 어긋난다. 그래서 필요하다면 this를 갈아끼워줄 수 있다. 외부함수에서의 this를 변수에 회피시켜놓고 쓸 수도 있지만, bind/apply/call 빌트인 메소드를 사용할 수도 있다. 위 목록 중 4번 항목을 말하는 것이다. </p>
+<!-- 호출이라는 것은 외부의 인수를 함수내부로 밀어넣는 행위이기도 하다. bind(this) 는 바깥의 this를 bind에 넣어주는거고 그럼 this 가 foo 안에 있는거고, foo는 obj가 호출했으니까... this가 obj 가 된다. -->
+<h3 id="apply-와-call"><a href="#apply-와-call" class="headerlink" title="apply 와 call"></a>apply 와 call</h3><p>함수를 호출하는 것이 주 역할인 것은 똑같고 인수를 전달하는 방식만 다른 메소드들이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">뫄뫄.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure></p>
+<p>뫄뫄.apply(thisArg) 일 때, 뫄뫄함수를 호출하면서 인자로 준 thisArg를 this로 바인딩해준다(간접호출도 해준다). 인수가 있을 때 인수도 전달할 수 있다. <code>[argsArray]</code> 는 함수에 전달할 인수 리스트 배열이다. 옵션이므로 생략 가능하다.  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">뫄뫄.call(thisArg, arg1, arg2, ...)</span><br></pre></td></tr></table></figure>
+<p>call 메소드도 첫 번째 인자를 this 로 바인딩해주고 간접호출까지 해주는 것은 같다. 하지만 인자를 전달하는 방식이 apply 와는 다르다. 배열의 형태가 아니라 하나씩 전달해야 한다.  </p>
+<ul>
+<li><em>apply 를 쓰는 팁</em><br>내가 자주 접하는 가변인자함수중에는 Math.max() 가 있다. 인수를 한 개, 두 개, 세 개 내 맘대로 전달할 수 있다.<br>Math.max() 의 문법은 <code>Math.max([값1[, 값2[, ...]]])</code> 이고 예제는 다음과 같다.  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max(<span class="number">10</span>, <span class="number">20</span>);   <span class="comment">//  20</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>그런데 만약 내 숫자들이 배열 안에 들어있다면<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="built_in">Math</span>.max(arr); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure></p>
+<p>배열을 통째로 넣어버리면 NaN이 나온다.  </p>
+<p>Math는 this가 필요없는 정적메소드이다. 따라서<br><code>Math.max.apply(null, arr)</code> 이렇게 하면 arr라는 배열이 그대로 Math.max에 들어갈 수 있다.<br><code>Math.max(...arr)</code> ES6에서는 이 문법도 가능하다.  </p>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p>호출을 자동으로 해주진 않고, 사용할 객체를 this로 전달하는 것까지만 해준다.<br>코드 이해가 잘 안되니까 내일 다시 알아보고 업데이트 해야겠다.  </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/13/0513/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">함수, 프로토타입</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#전역객체"><span class="nav-number">1.</span> <span class="nav-text">전역객체</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#eval-함수"><span class="nav-number">1.1.</span> <span class="nav-text">eval 함수</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this"><span class="nav-number">2.</span> <span class="nav-text">this</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#다양한-함수호출방식"><span class="nav-number">2.1.</span> <span class="nav-text">다양한 함수호출방식</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apply-와-call"><span class="nav-number">2.2.</span> <span class="nav-text">apply 와 call</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind"><span class="nav-number">2.3.</span> <span class="nav-text">bind</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+        <!-- 
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+           -->
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
