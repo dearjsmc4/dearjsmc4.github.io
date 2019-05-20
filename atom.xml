@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dearjsmc4.github.io/"/>
-  <updated>2019-05-15T11:08:43.023Z</updated>
+  <updated>2019-05-20T10:47:21.700Z</updated>
   <id>https://dearjsmc4.github.io/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>정규표현식, 배열고차함수, 화살표함수, Rest/Spread</title>
+    <link href="https://dearjsmc4.github.io/2019/05/20/0520/"/>
+    <id>https://dearjsmc4.github.io/2019/05/20/0520/</id>
+    <published>2019-05-19T15:00:00.000Z</published>
+    <updated>2019-05-20T10:47:21.700Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="정규표현식"><a href="#정규표현식" class="headerlink" title="정규표현식"></a>정규표현식</h2><p>Regular Expression, 줄여서 RegExp 라고 한다. 문자열에서 특정 내용을 찾거나 대체, 또는 발췌하는데에 사용한다. 반복문이나 조건문 대신 정규표현식을 쓰면 더 간단할 수 있지만 가독성이 좋지 않다.  </p><h3 id="플래그"><a href="#플래그" class="headerlink" title="플래그"></a>플래그</h3><p>플래그는 옵션이다.  </p><ul><li>i (Ignore Case) : 대소문자를 구별하지 않고 검색  </li><li>g (Global) : 문자열 내에서 모든 패턴 검색  </li><li>m (Multi Line) : 문자열의 행이 바뀌어도 계속 검색  </li></ul><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'Friday I am in love.'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 대소문자를 구별하여 한 번만 검색 </span></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/i/</span>; </span><br><span class="line"><span class="built_in">console</span>.log(str.match(reg)); </span><br><span class="line"><span class="comment">// ["i", index: 2, input: "Friday I am in love.", groups: undefined]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 대소문자를 구별하지 않고 전체 검색  </span></span><br><span class="line">reg = <span class="regexp">/we/ig</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.match(reg)); </span><br><span class="line"><span class="comment">// (3) ["i", "I", "i"]</span></span><br></pre></td></tr></table></figure><h3 id="패턴"><a href="#패턴" class="headerlink" title="패턴"></a>패턴</h3><p>패턴에는 검색하고 싶은 문자열을 지정하며, 따옴표는 생략한다. 특별한 의미를 가지는 메타문자 또는 기호로 표현할 수도 있다.  </p><ul><li><code>.</code> : 문자 한 개를 검색  </li></ul><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'Friday I am in love.'</span>;</span><br><span class="line"><span class="comment">// . 은 문자 한 개를 의미한다.  </span></span><br><span class="line"><span class="keyword">let</span> reg = <span class="regexp">/.../</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.match(reg));</span><br><span class="line"><span class="comment">// ... 패턴이므로 3자리 문자가 추출된다.  </span></span><br><span class="line"><span class="comment">// ["Fri", index: 0, input: "Friday I am in love.", groups: undefined]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3자리 문자를 반복 검색  </span></span><br><span class="line">reg = <span class="regexp">/.../g</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.match(reg));</span><br><span class="line">(<span class="number">6</span>) [<span class="string">"Fri"</span>, <span class="string">"day"</span>, <span class="string">" I "</span>, <span class="string">"am "</span>, <span class="string">"in "</span>, <span class="string">"lov"</span>]</span><br></pre></td></tr></table></figure><ul><li><code>+</code> : 지정 문자가 한 번 이상 반복되는 문자열을 검색  </li><li><code>|</code> : or 과 같은 기능을 한다.  </li><li><code>[]</code> : <code>[]</code> 내의 문자는 or 로 동작한다. 범위를 지정하려면 <code>-</code> 를 사용한다.  </li></ul><p>자주 쓰는 정규표현식은 스크랩해두는 것이 좋다.  </p><ul><li>match 메소드를 썼을 때 일치하는 결과가 없으면 결과가 null 이다.  </li></ul><h2 id="배열-고차-함수"><a href="#배열-고차-함수" class="headerlink" title="배열 고차 함수"></a>배열 고차 함수</h2><p>함수는 객체이며, 함수를 값처럼 쓸 수 있다고 했다. 그래서 함수는 일급객체이다. 함수형 프로그래밍에서는 클로저가 매우 중요하다. 클로저 적극사용!  </p><p>콜백함수는 그 함수를 인수로받은 함수가 자기가 원할때 호출한다.<br>함수는 자기가 정의될 때 상위스코프가 결정된다. 호출될 때가 아니다! 그리고 함수는 자기의 상위스코프를 언제나 기억하고 들고 다닌다. 상위스코프를 계속 참조하고 있으므로 가비지컬렉터가 지우지 않는다.  </p><p>고차함수는 1. 함수를 인수로 전달받거나, 2. 함수를 리턴하거나, 3. 둘 다 하는 함수를 말한다.<br>함수를 밖에서 만들어서 안으로 던져주는 건 함수를 합성하는 일이다. 전달된 함수의 도움을 받아 본 함수의 내용을 바꾼다. 즉, 바깥에서 주는 함수에 따라 함수의 동작이 달라진다. 본 함수는 그대로 있고 밖에서 일부함수만 던져주면 바뀌는 부분도 줄고 유지보수 하기 좋아진다.<br>고차함수는 가변 데이터를 피하고 불변성을 지향. 외부상태가 안 바뀌었으면 좋겠다는 것이다. 외부상태에 의존하지않고 외부상태를 변경하지않는 순수함수를 추구하는 것이 함수형 프로그래밍이고, 그런 매커니즘이 녹아있는 것이 고차함수.  </p><h3 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h3><p>정렬할 때 배열의 요소들을 내부적으로 문자열로 바꿔서 비교하기 때문에 숫자 정렬 시에 원하는대로 나오지 않을 수 있음. 유니코드 순서에 따라 정렬하기 때문에. 그래서 숫자정렬할때는 함수를 준다.  </p><p><code>function (a, b) { return a - b; }</code> 이 함수를 인수로 주면 오름차순이 되는데,<br>어떻게 이렇게 되는지 까볼 필요까지는 없고 그냥 받아들이라고(…)<br><code>function (a, b) { return b - a; }</code> 는 내림차순.  </p><p><code>a[key] &gt; b[key] ? 1 : (a[key] &lt; b[key] ? -1 : 0</code><br>-&gt; 숫자일때 문자일때 모두 적용할 수 있는 삼항연산  </p><h3 id="forEach"><a href="#forEach" class="headerlink" title="forEach"></a>forEach</h3><p>for문 대신 쓸 것.  </p><!-- 앞으로 forEach map reduce some find filter 등을 쓰고, for문은 금지.(근데 만번돌아야된다 그러면 성능상 for문 쓰겟지...)`map`, `filter`, `reduce` 를 잘 이해해야 한다.  --><p>forEach에 함수를 주고, forEach가 함수를 호출할 때 forEach는 자기가 호출한 함수에 인수를 줄 수 있다. <strong>배열 요소의 값, 그 요소값의 인덱스, this.</strong> </p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">numbers.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">item</span>) </span>&#123;</span><br><span class="line">  pows.push(item ** <span class="number">2</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>각 요소(item) 에 대해 함수를 실행. 내부적으로 for문은 돌고있다. 함수는 요소(this)의 갯수만큼 실행되고, 함수를 호출한 객체가 인수를 넣어주는 것이다. 이때 this는 함수를 호출한 배열 자체이다. forEach는 반환값이 undefined. 즉, 리턴문이 없다. 리턴을 쓰면 무시한다. forEach는 모든 요소를 순회하면서 함수를 실행한다. for문처럼 거꾸로 돌리거나 한 칸 건너뛰고 돌거나 break 거는 것은 할 수 없다.<br>for문에서도 증감식에 i++ 나 i–는 되지만 2를 더하거나 곱하거나 하는 건 좋은 코딩이 아니다. 만약 1씩 증가한다고 생각하고 코드를 짜면 에러가 날 수도 있으니까. for문은 사람이 인식하기에 좋지 않은 문법이고 가독성이 안 좋다.<br>forEach안에서 브레이크를 쓰면 에러다. 브레이크는 어떤 조건에 충족 시에 순회를 중단하겠다는건데 그건 filter 로 해결이 가능하다.<br>this를 고칠 수 있는 능력은 forEach에게는 없고 콜백에게는 있다. 왜냐면 콜백은 세번째 인자로 this를 받을 수 있으니까.<br>forEach는 for문처럼 변수선언이나 조건식 증감식이 따로 필요가 없다.<br>forEach는 콜백함수를 일반함수로 호출한다. 그 때 콜백안에서의 this는 윈도우. forEach는 첫번째 인수로 함수를 주고, 두번째 인수로 this를 전달할 수 있다. 그럼 forEach를 호출한 객체가 this가 되어서 전달된다.  </p><h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>this와 똑같은 갯수의 리턴을 만들어내고 싶을 때 쓴다. 어떤 배열이 있고, 그것을 map 한다고 하면 반환한 배열의 요소들은 원본 배열과 매핑된다. 원본배열의 갯수를 초과하거나 적어지지 않는다. 매 요소마다 콜백함수를 실행하여, 그 결과값으로 이루어진 새로운 배열을 반환한다. 결과값을 새로운 배열에 담아서 리턴하는 것이다. 리턴은 새로운 배열에다가 결과값을 푸쉬하는 것과 같은 동작을 한다. 그 요소의 수는 원본과 반드시 일치한다. map의 활용도는 무지하게 높다! 얘는 반드시 함수를 실행한 뒤 리턴을 해줘야 한다. 만약 리턴하지않으면 빈 배열이 나온다. 그리고 새로운 배열을 반환하기 때문에 변수로 받아주어야 한다. 원본 배열을 수정하지 않는다. forEach처럼 순회하며 콜백을 실행하는 것은 똑같다. 인수로 받는 것들도 똑같다.  </p><h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>this배열에서 어떤 조건에 부합하는 요소들만으로 구성된 배열을 리턴한다. 따라서 이론상 this배열보다 리턴되는 배열의 요소의 수는 같거나 적을 수 있다. 원본배열을 수정하지 않는다. forEach가 for문을 대체할 수 있듯, filter는 if문을 대체할 수 있다. 리턴문에는 불리언으로 평가되는 표현식을 넣는다. if문이라고 생각하면 된다. 그 조건에 부합하는 요소들이 리턴된다.  </p><h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><p>값을 두 개를 가지고 함수를 실행하며, 이전 콜백에서 실행한 결과를 다음 콜백의 첫 인수로 넘겨준다.  </p><h3 id="그-외"><a href="#그-외" class="headerlink" title="그 외"></a>그 외</h3><ul><li>some : 배열 내의 일부 요소가 조건에 맞는지 확인하여 불리언 반환  </li><li>every : 배열 내의 모든 요소가 조건에 맞는지 확인  </li><li>find : 조건에 맞는 첫 요소를 반환<br>여기서 콜백의 매개변수로는 객체가 들어온다. 배열이 아니라 요소를 반환함  </li><li>findIndex : 조건에 맞는 첫 요소의 인덱스를 반환. 만약 find를 못 쓰면 filter를 쓰면 된다.  </li><li>Object.assign : 뒤에서 앞으로 머지.</li></ul><h2 id="화살표-함수"><a href="#화살표-함수" class="headerlink" title="화살표 함수"></a>화살표 함수</h2><p>인수를 함수 몸체 안으로 넘겨준다고 이해하면 된다. 호출할 때에는 함수 표현식을 사용한다. 화살표함수는 this가 없고, 함수가 <strong>정의될 때</strong> 자신이 정의된 상위스코프의 this를 승계받는다. 자기가 this를 가지고 있는 것이 아니다. 왜냐면 얘는 콜백함수로 쓰려고 만들었기 때문에. 그러면 콜백을 쓸 때 따로 this를 바인딩해주지 않아도 되니까.  </p><ul><li>this를 바인딩하는 방법 4가지.<br>that에 담거나<br>map의 두번째 인자에 주거나<br>bind를 주거나<br>화살표 함수를 쓴다.  </li></ul><p>화살표함수는 <code>[[constructor]]</code> 가 없다. 생성자함수로 만들 수 없다.<br>this도 없고 arguments도 없다.  </p><h2 id="Rest-파라미터-Spread-연산자"><a href="#Rest-파라미터-Spread-연산자" class="headerlink" title="Rest 파라미터, Spread 연산자"></a>Rest 파라미터, Spread 연산자</h2><ul><li><p>Rest 파라미터(…rest)<br>이걸 쓰면 arguments를 안 써도 된다. arguments는 유사배열객체이기 때문에 배열화 해서 써야했지만 rest를 쓰면 그럴 필요가 없다. rest파라미터는 단독으로 쓰이거나 맨뒤에 쓰여야한다.</p></li><li><p>spread 연산자<br>rest파라미터하고 헷갈리면 안 된다! -&gt; 얘는 풀린 걸 배열로 묶는다.<br>배열 앞에 … 를 찍으면 spread 연산자로서 동작하고 배열을 다 풀어버린다. 피연산자는 문자, 배열, map, set 등의 순회가능한 자료구조여야한다.<br>sperad연산자를 사용한 배열을 인수로 전달할 수 있다. apply대신 썼던 것을 기억하자.<br>배열을 배열 안에서 풀어서 concat처럼 쓸 수 있다.<br>[…array, 4,5,6] 처럼.</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;정규표현식&quot;&gt;&lt;a href=&quot;#정규표현식&quot; class=&quot;headerlink&quot; title=&quot;정규표현식&quot;&gt;&lt;/a&gt;정규표현식&lt;/h2&gt;&lt;p&gt;Regular Expression, 줄여서 RegExp 라고 한다. 문자열에서 특정 내용을 찾거나 대체,
+      
+    
+    </summary>
+    
+      <category term="Javascript TIL" scheme="https://dearjsmc4.github.io/categories/javascript-til/"/>
+    
+    
+      <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
+    
+      <category term="Javascript" scheme="https://dearjsmc4.github.io/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Object.prototype 접근, 배열</title>
+    <link href="https://dearjsmc4.github.io/2019/05/17/0517/"/>
+    <id>https://dearjsmc4.github.io/2019/05/17/0517/</id>
+    <published>2019-05-16T15:00:00.000Z</published>
+    <updated>2019-05-20T10:45:40.268Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Disallow-use-of-Object-prototypes-builtins-directly-no-prototype-builtins"><a href="#Disallow-use-of-Object-prototypes-builtins-directly-no-prototype-builtins" class="headerlink" title="Disallow use of Object.prototypes builtins directly (no-prototype-builtins)"></a>Disallow use of Object.prototypes builtins directly (no-prototype-builtins)</h2><p><a href="https://eslint.org/docs/rules/no-prototype-builtins" target="_blank" rel="noopener">수업시간에 본 ESLint 원문</a>  </p><p>왜 직접 접근을 불허하는가?<br>Object 의 정체는 함수다. 타입오브 찍어보면 함수라고 나온다. 이 함수는 일반적으로 new 와 함께 호출하여 빈 객체를 만드는 역할을 한다. 그런데 <code>Object.</code> 해서 메소드를 쓸 수도 있다. 함수 자체가 가지고 있는 메소드가 있다는 것이다.<br>만약 인스턴스로 메소드를 호출하려고 했다면 Object.prototype 에 있는 메소드라고 생각했으니까 그렇게 했을텐데 나오지 않았다. 그럼 Object 함수에 있는 메소드라는 뜻이고, 이건 내가 Object 에 직접 접근해서 써야 한다. 인스턴스로 호출할 수 있느냐, 직접 접근해야 하느냐에 따라 프로토타입메소드, 정적메소드로 갈린다. 프로토타입메소드는 인스턴스가 반드시 있어야(인스턴스를 생성한 후) 호출이 가능하다. 정적메소드는 인스턴스가 없어도 호출이 가능하다.<br>인스턴스로 호출한 메소드는 this가 그 인스턴스이고, 프로토타입메소드는 코드내부에 this를 반드시 쓰게 되어있다.<br><!-- 아 만약 this를 안 써도 되는 메소드면 정적메소드로 쓰기를 추천한다는 말인가? --></p><ul><li><strong>Object.create() 정적메소드</strong> </li></ul><p>인수로 객체 또는 null 을 쓰게 되어있는, 객체를 만드는 방법 중 하나. 프로토타입을 지정하면서 객체를 만들 수 있다는 것이 특징이다. 인수로 넘겨준 객체를 인스턴스의 프로토타입으로 설정해준다.<br><strong>Object.create(null)</strong> 을 하면 아무것도 상속받지 못하는 객체가 되고 스스로가 프로토타입의 종점이 된다. 이 객체는 Object.prototype 으로부터 상속받았어야 하는 메소드를 사용할 수 없다. 그래서  </p><p><code>var hasBarProperty = Object.prototype.hasOwnProperty.call(foo, &quot;bar&quot;);</code>  </p><ol><li>hasOwnProperty 를 호출하고  </li><li>this를 foo 로 갈아끼우자   </li></ol><!-- foo를 object.prototype 으로 바꾸도록 하는것임! 그럼 결국 foo.hasOwnProperty 랑 똑같아짐.왜냐면 object.prototype은 항상있고, foo가 Object.prototype 의 메소드를 상속받지못했을 가능성때문에 이렇게 쓴다고?만약 그런 가능성이라면... foo.hasOwnProperty('bar') 를 했을 때 에러가 날테니까. 아예 메소드가 없으니까. 메소드자체를 불러올수가없는것이지. --><p>Object.prototype으로 호출하면 일단 call메소드가 그 앞에까진 실행을 해줄 것이고, foo를 this로 갈아끼워주면 hasOwnProperty 함수 내부에서 쓰는 this 가 foo로 바뀐다. 호출하는 주체가 foo 로 바뀐게 아니라, 호출은 Object.prototype이 하고, 메소드가 사용하는 this가 foo로 바뀐다.  </p><p>정적메소드에서 this가 필요없으니 null 을 주는건 그냥 의미없다는 뜻으로 준 것이다… 뭘 넣어도 되지만 그렇다고 100을 넣으면 뭔가 의미가 있어보이니까.  </p><h2 id="배열"><a href="#배열" class="headerlink" title="배열"></a>배열</h2><p>배열은 0개 이상의 요소를 콤마(,)로 구분한 자료구조. 배열 객체에는 length 프로퍼티가 있고, 즉 순회가능하다는 뜻이다. length는 요소의 개수를 반환해준다. 유일한 Array 프로퍼티이며 마지막 요소를 기준으로 반환한다. 배열은 타입오브를 찍으면 객체라고 나온다.<br>빈 배열의 0번째 요소는 undefined 를 가지고 있는 게 아니라 그냥 비어있는 empty이며 메모리도 안 잡는다.<br>객체의 프로퍼티는 굳이 삭제하지 않고 안 쓰고 놔두면 된다(지우는게 오히려 일이다).<br>배열은 지워야 할 때가 있을 수 있다. 그런데 delete 로 지우면 길이는 변함없고 그 자리를 empty로 비워둔다. 그래서 splice를 써야 한다. 그 자리까지 잘라낼 수 있도록.<br>순회할 때에는 for문이 가장 빠르지만, 모던프로그래밍은 빠른것 보단 가독성이 먼저이다.  </p><!-- for...in문은 객체의 프로퍼티를 순회할때 쓰는거라고함. 지금은 활용도 별로라고함그런데 단점이있어서 for...of 를 쓴다고.자바스크립트의 배열은 진짜 배열이 아니라 배열을 흉내낸 객체. --><ul><li><p>indexOf<br>인수로 준 요소의 인덱스값을 반환. 없으면 -1<br>같은 것이 두 개 있으면 처음 찾은 인덱스를 반환  </p></li><li><p>concat<br>원본을 바꾸지 않고 요소를 추가한 새로운 배열을 반환.<br>(push 대신 쓰면 되겠다)  </p></li><li><p>join<br>배열의 요소를 합쳐서 문자로 반환. 인수를 주면 인수를 사이사이에 넣어준다.  </p></li><li><p>slice<br>인수를 아무것도 안 주면 복사본을 생성한다.<br>유사배열객체인 arguments를 call을 통해서 slice 함수에 this로 할당하면<br>arguments가 유사배열일지라도 배열메소드인 slice를 사용할 수 있게 된다.<br>arguments를 slice로 복사하여 배열이 되어서 반환된 걸 변수에 넣어서 쓰면 된다.  </p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Disallow-use-of-Object-prototypes-builtins-directly-no-prototype-builtins&quot;&gt;&lt;a href=&quot;#Disallow-use-of-Object-prototypes-builtins-dire
+      
+    
+    </summary>
+    
+      <category term="Javascript TIL" scheme="https://dearjsmc4.github.io/categories/javascript-til/"/>
+    
+    
+      <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
+    
+      <category term="Javascript" scheme="https://dearjsmc4.github.io/tags/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>전역객체, this</title>
@@ -159,33 +213,6 @@
   </entry>
   
   <entry>
-    <title>컴퓨터 공학 TIL 0423-2</title>
-    <link href="https://dearjsmc4.github.io/2019/05/03/0423-2/"/>
-    <id>https://dearjsmc4.github.io/2019/05/03/0423-2/</id>
-    <published>2019-05-03T02:45:18.000Z</published>
-    <updated>2019-05-03T10:42:58.256Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="process-와-thread"><a href="#process-와-thread" class="headerlink" title="process 와 thread"></a>process 와 thread</h2><p>process : 인스트럭션의 나열.<br>OS 가 프로세스에게 할당해주는 메모리는 실제 메모리가 아닌 <strong>가상 주소 공간(VAS)</strong><br>각 프로세스에 할당된 메모리는 가상메모리.  </p><h3 id="IPC-InterProcess-Communication-프로세스간-커뮤니케이션"><a href="#IPC-InterProcess-Communication-프로세스간-커뮤니케이션" class="headerlink" title="IPC: InterProcess Communication, 프로세스간 커뮤니케이션"></a>IPC: InterProcess Communication, 프로세스간 커뮤니케이션</h3><p>프로세스간 공간은 완전히 분리되어 있으므로,<br>기본적으로 프로세스끼리 서로의 데이터에 직접적으로 접근하거나 데이터를 바꿀 수는 없다.<br>그럼에도 불구하고 별도로 커뮤니케이션을 해야 할 때가 있다.<br>성능을 높이기 위해 여러 프로세스를 동시에 실행할 때<br>( ex) 웹 서버가 사용자 요청이 올 때마다 새로운 프로세스를 만들어 즉시 대응 )<br><em>프로세스간 상태 확인 및 데이터 송수신</em> 이 필요하기 때문이다. 이때 쓰는 것이 IPC기법이다.<br>대부분의 IPC기법은 각 프로세스가 공유하는 커널공간을 이용한다.  </p><ul><li><p>Shared resource</p></li><li><p>Multi Threading<br>여러 개의 실행흐름이 필요하다 -&gt; concurrency programming<br>동시에 도는 것 같은 실행흐름.  </p></li></ul><p>스레드는 프로세스에 포함된 개념.<br>우리가 만든 프로그램은 스레드가 하나.<br>스레드가 하나면 <code>싱글스레드</code>.<br>자바스크립트는 흐름이 하나밖에 없는 것.  </p><h3 id="멀티스레딩"><a href="#멀티스레딩" class="headerlink" title="멀티스레딩"></a>멀티스레딩</h3><p><code>멀티스레드</code>는 흐름이 여러 개인 것.<br>스레드가 각자의 스택을 따로 가지고 있다.<br>실행흐름이란게 인스트럭션인데 인스트럭션은 함수 실행. 함수가 실행되려면 스택프레임이 필요하고<br>이 스택프레임은 스택에 쌓인다.<br>코드와 데이터와 힙은 공유를 하고 스택만 따로 따로 가지고 있다.<br>여러 개의 스레드가 공유자원을 공유.  </p><p>Shared Resource(각 스레드가 접근하는 하나의 자원) 가 있을 때<br>race condition, 경쟁조건이 발생한다.<br>-&gt; 상호배제 를 통해 예방<br>-&gt; <strong>GIL : Global Interpreter Lock</strong><br>공유자원을 먼저 점유한 스레드가 작업을 마치고 릴리즈를 할 때까지 다른 스레드들이 기다리게 한다.  </p><p>모든 스레드가 접근해서 사용하는 리스트: shared list<br>각 스레드가 접근하는 리스트가 같을 때, 그 안에서 접근하는 데이터는 다른 것이 좋다.  </p><h3 id="동시성-프로그래밍과-병렬-프로그래밍"><a href="#동시성-프로그래밍과-병렬-프로그래밍" class="headerlink" title="동시성 프로그래밍과 병렬 프로그래밍"></a>동시성 프로그래밍과 병렬 프로그래밍</h3><p><strong>동시성 프로그래밍</strong>은 cpu(프로세스)가 하나여도 동시성 프로그래밍을 구현할 수 있다.<br>멀티스레딩을 하게되면 라운드로빈으로 돌아갈 수 있으니까.<br>하지만 여러 개를 하나씩 순서대로 돌리는거지, 엄밀한 의미의 병렬은 아니다.<br><strong>병렬 프로그래밍</strong>은 아예 하드웨어가 최소 두 개 이상 있어서<br>어떤 태스크가 있을 때 각 하드웨어가 일을 같이 처리하는 것이다.<br>2초 걸릴 일을 1초만에 할 수 있는 것이다.  </p><p>싱글코어 멀티스레딩: 단순하게 동시성프로그래밍. 스레드를 여러 개 만들어서 실행.<br>멀티코어 멀티스레딩: 병렬 + 동시성. 동시에 두 개 이상 돌 수 있는 것.  </p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;process-와-thread&quot;&gt;&lt;a href=&quot;#process-와-thread&quot; class=&quot;headerlink&quot; title=&quot;process 와 thread&quot;&gt;&lt;/a&gt;process 와 thread&lt;/h2&gt;&lt;p&gt;process : 인스트럭
-      
-    
-    </summary>
-    
-      <category term="CS TIL" scheme="https://dearjsmc4.github.io/categories/cs-til/"/>
-    
-    
-      <category term="CS" scheme="https://dearjsmc4.github.io/tags/cs/"/>
-    
-      <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
-    
-  </entry>
-  
-  <entry>
     <title>컴퓨터 공학 TIL 0424</title>
     <link href="https://dearjsmc4.github.io/2019/05/03/0424/"/>
     <id>https://dearjsmc4.github.io/2019/05/03/0424/</id>
@@ -208,33 +235,6 @@
     
     
       <category term="CS" scheme="https://dearjsmc4.github.io/tags/cs/"/>
-    
-      <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>파이썬 기초 문법</title>
-    <link href="https://dearjsmc4.github.io/2019/05/03/0419-python/"/>
-    <id>https://dearjsmc4.github.io/2019/05/03/0419-python/</id>
-    <published>2019-05-03T02:45:18.000Z</published>
-    <updated>2019-05-03T10:42:44.876Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="파이썬-자료형-기초"><a href="#파이썬-자료형-기초" class="headerlink" title="파이썬 자료형 기초"></a>파이썬 자료형 기초</h1><ul><li>string = “abcde”  <ul><li>string<code>[2]</code> = ‘c’  </li><li>string<code>[2:]</code> = ‘cde’ (2번 자리 이상)  </li><li>string<code>[:2]</code> = ‘ab’ (0번 이상, 2번 미만)  </li><li>string<code>[0:1]</code> = ‘a’ (0번 째 이상, 1번 미만)  </li><li>string<code>[0:2]+&quot;z&quot;+string[3:]</code> = ‘abzde’ ( ab + z + de )  </li><li>string<code>.replace(&#39;c&#39;,&#39;z&#39;)</code> = ‘abzde’ (c 를 z 로 바꾸어서 보여줌. 원본이 바뀌지는 않는다.)  </li></ul></li></ul><h3 id="문자열-포매팅"><a href="#문자열-포매팅" class="headerlink" title="문자열 포매팅"></a>문자열 포매팅</h3><p>문자열 내의 어떤 값을 삽입하는 방법.  </p><p>a = 10<br>b = ‘abcde’  </p><ul><li><code>print(&quot;%d, %s&quot; %(a,b))</code> = 10, abcde  </li><li><code>print(&#39;숫자는 {0} 문자열은 {1}&#39;.format(a,b))</code><br>  = 숫자는 10 문자열은 abcde  </li><li><code>print(f&#39;숫자는 {} 문자열은 {}&#39;)</code><br>  = 숫자는 10 문자열은 abcde  </li></ul><p>a = 0.1234512345  </p><ul><li><code>print(f&#39;{a:.3}&#39;)</code> = 0.123 (소수점 뒤의 3자리까지만 자르기)  </li></ul><h3 id="Dictionary"><a href="#Dictionary" class="headerlink" title="Dictionary"></a>Dictionary</h3><ul><li>dic = {‘a’:1, 2:’two’, ‘func’:lambda a,b: a+b}<ul><li>dic<code>[&#39;a&#39;]</code> = 1 (a라는 키의 value를 가져오기)  </li><li>dic<code>[func](1,2)</code> = 3 (func 라는 키의 value 인 함수를 실행)<br>  lambda: 함수가 위치한 메모리 주소값  </li><li>dic.<code>keys()</code> = dict_keys([‘a’, 2, ‘func’]) (dic 의 모든 키값을 가져오기)  </li><li>dic.<code>items()</code> = dict_items<code>([(&#39;a&#39;, 1), (2, &#39;two&#39;), (&#39;func&#39;, &lt;function &lt;lambda&gt; at 0x05B738E8&gt;)])</code><br>  (key와 value값이 튜플로 묶여서 나옴) -&gt; 튜플인 이유가 있나?  </li><li>key_list = <code>list(dic.keys())</code> = [‘a’, 2, ‘func’] (key만 모아서 리스트로 만들기)  </li></ul></li></ul><p><strong>list 와 view 객체와의 차이</strong><br>key_view = dic.keys() = dict_keys([‘a’, 2, ‘func’])<br>key_list = [‘a’, 2, ‘func’]<br>일 때,<br><code>dic[5]=&#39;five&#39;</code> 딕셔너리에 쌍을 추가하면<br>key_view = dict_keys([‘a’, 2, ‘func’, <code>5</code>]) -&gt; 추가되었음<br>key_list = [‘a’, 2, ‘func’] -&gt; 추가 되지 않았음  </p><h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>집합 자료형인 세트에서는 중복이 허용되지 않는다.  </p><p>s1 = set([1,2,3,4])<br>s2 = set([3,4,5,6])  </p><ul><li><code>s1|s2</code> or <code>s1.union(s2)</code>= {1,2,3,4,5,6} (합집합)  </li><li><code>s1&amp;s2</code> or <code>s1.intersection(s2)</code>= {3,4} (교집합)  </li><li><code>s1-s2</code> or <code>s1.difference(s2)</code> = {1,2} (차집합)  </li><li><code>s2-s1</code> or <code>s2.difference(s1)</code> = {5,6} (차집합)  </li><li><code>s1^s2</code> or <code>s1.symmetric_difference(s2)</code>= {1,2,5,6} (대칭 차집합)  </li></ul><h3 id="True-False"><a href="#True-False" class="headerlink" title="True / False"></a>True / False</h3><ul><li><strong>거짓</strong>으로 취급하는 데이터  <ul><li>“” 빈 문자열  </li><li>[] 빈 리스트  </li><li>() 빈 튜플  </li><li>{} 빈 딕셔너리  </li><li>false  </li><li>none (JS의 undefined)  </li><li>0  </li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;파이썬-자료형-기초&quot;&gt;&lt;a href=&quot;#파이썬-자료형-기초&quot; class=&quot;headerlink&quot; title=&quot;파이썬 자료형 기초&quot;&gt;&lt;/a&gt;파이썬 자료형 기초&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;string = “abcde”  &lt;ul&gt;
-&lt;li&gt;strin
-      
-    
-    </summary>
-    
-      <category term="CS TIL" scheme="https://dearjsmc4.github.io/categories/cs-til/"/>
-    
     
       <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
     
@@ -295,6 +295,33 @@
   </entry>
   
   <entry>
+    <title>컴퓨터 공학 TIL 0417</title>
+    <link href="https://dearjsmc4.github.io/2019/05/03/0417/"/>
+    <id>https://dearjsmc4.github.io/2019/05/03/0417/</id>
+    <published>2019-05-03T02:45:18.000Z</published>
+    <updated>2019-05-03T10:42:33.709Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="파이썬-기초와-알고리즘-1일차"><a href="#파이썬-기초와-알고리즘-1일차" class="headerlink" title="파이썬 기초와 알고리즘 1일차"></a>파이썬 기초와 알고리즘 1일차</h1><p><a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ" target="_blank" rel="noopener">What the heck is the event loop anyway?</a><br>목표 : 수업이 끝나고 이 영상의 내용을 100% 이해할 수 있는 것  </p><p>자바스크립트는 웹을 위한 언어로서 발전해왔기 때문에<br>자바스크립트가 가지는 단점과 한계를 숙지하고 있어야 한다.  </p><p>Foundation knowledge quiz  </p><ul><li>Recursion, index, sort, binary search -&gt; 자료구조. 알고리즘  </li><li>Stack / heap -&gt; 메모리 레이아웃. 메모리 계층. 세그먼트.  </li><li>Process, thread -&gt; OS  </li><li>Call by value / call by reference -&gt; 함수관련  </li><li>Native code  </li><li>MVC Architecture  </li><li>Write simple text-based games  </li></ul><p>오늘 배울 내용  </p><ol><li>메모리.  32bit와 64bit 의 차이는 무엇인가?  </li><li>Number. 컴퓨터가 실제로 아는 것은 0과 1뿐인데 어떻게 정수와 실수, 문자를 인식하고 표현하는가.<br>( 픽셀 역시 4바이트짜리 숫자에 불과하다는 것. )  </li></ol><h2 id="메모리"><a href="#메모리" class="headerlink" title="메모리"></a>메모리</h2><ul><li>32bit 컴퓨터와 64bit 컴퓨터의 차이  </li></ul><ol><li><p>컴퓨터는 0과 1을 전압으로 읽는다. 0v는 0이고, 5v는 1이다.<br>CPU와 RAM 사이를 연결하는 와이어가 있다.<br>전압은 와이어로 흐르는데, 와이어가 8개라면 8bit 의 데이터를 보낼 수 있다.<br>16bit 는 16개, 32bit 는 32개, 64bit 는 64개의 와이어가 깔려 있는 것이다.<br>32bit 프로그램, 32bit 운영체제, 32bit 컴퓨터는 다 다른 것이다.</p></li><li><p>메모리 주소값.<br>2진수로 32개의 자릿수를 메모리주소로 쓴다. -&gt; 32bit<br>2진수로 64개의 자릿수를 메모리주소로 쓴다. -&gt; 64bit<br>메모리에서는 1byte 당 메모리주소 자릿수 하나를 할당해준다. (1byte = 8bit)<br>32bit 컴퓨터는 0 ~ 2^32-1 까지 메모리를 할당할 수 있는데, 4GB 짜리 램에 이미 메모리주소가 모두 할당되기 때문에<br>램을 하나 더 꽂더라도 메모리 주소가 할당될 수 없고 접근할 수 없기 때문에 사용할 수 없게 된다.  </p></li></ol><h2 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h2><ul><li>기수법  </li></ul><ol><li>2진수  </li><li>10진수  </li><li>16진수  </li><li>~8진수~  </li></ol><ul><li>10진수 : 0,1,2,3,4,5,6,7,8,9 - 한 자릿수에 표현할 수 있는 숫자가 10개. -&gt; 밑수, radix  </li><li>2진수 : 0,1 - 한 자릿수에 표현할 수 있는 숫자가 2개.  </li><li>16진수 : 0,1,2,3 … 9, a,b,c,d,e,f -&gt; radix 가 16개.  </li></ul><p>16진수 하나는 2진수 4개로 표현된다.<br>32bit 메모리 주소는 16진수 8개로 표현된다.  </p><ul><li>2진수(BIN)  </li><li>10진수(DEC)  </li><li>16진수(HEX)  </li></ul><h3 id="10진수-gt-2진수"><a href="#10진수-gt-2진수" class="headerlink" title="10진수 -&gt; 2진수"></a>10진수 -&gt; 2진수</h3><p>37을 2진수로 바꾼다면,<br>32(2^<code>5</code>) + 4(2^<code>2</code>) + 1(2^<code>0</code>)<br><code>5</code>,4,3,<code>2</code>,1,<code>0</code><br>-&gt; 100101(2)</p><ul><li>연습문제</li></ul><ol><li>27</li><li>289</li><li>1125</li></ol><h3 id="2진수-gt-10진수"><a href="#2진수-gt-10진수" class="headerlink" title="2진수 -&gt; 10진수"></a>2진수 -&gt; 10진수</h3><p>ex) 110010(2) = 2^5 + 2^4 + 2^1 = 32 + 16 + 2 = 50<br>거꾸로 543210 적어서 더하기  </p><ul><li>연습문제</li></ul><ol><li>1101(2)</li><li>1010(2)</li><li>1111(2)</li></ol><h3 id="2진수-gt-16진수"><a href="#2진수-gt-16진수" class="headerlink" title="2진수 -&gt; 16진수"></a>2진수 -&gt; 16진수</h3><p>111 1011 -&gt; 뒤에서부터 4자리씩 자르고 앞에 빈자리는 0을 채워넣는다.<br>0111 1011 -&gt; 0x7b<br>16진수의 0 ~ 9는 2진수의 0 ~ 9와 똑같다.<br>9 이상의 10~16 이 나오면 a부터 f까지 할당.<br>a부터 f까지의 2진수는 외우면 된다.<br>a : 1010<br>b : 1011<br>c : 1100<br>d : 1101<br>e : 1110<br>f : 1111  </p><ul><li>연습문제  </li></ul><ol><li>1111 1010(2)  </li><li>11 0101(2)  </li><li>101 1111 0110(2)  </li><li>111 0011 0011(2)  </li><li>101 0011 1001(2)  </li><li>1111 0000 0101 1100(2)  </li><li>0101 1100 1111(2)  </li><li>1111 1010 1100 1101(2)  </li></ol><h3 id="16진수-gt-2진수"><a href="#16진수-gt-2진수" class="headerlink" title="16진수 -&gt; 2진수"></a>16진수 -&gt; 2진수</h3><p>거꾸로 세어나간 후에 맨 앞의 0들은 지워버리기.<br>ex) 0xf137 = 1111 0001 0011 0111<br>    0x1fac = 0001 1111 1010 1100  </p><ul><li>연습문제  </li></ul><ol><li>0x1234  </li><li>0xf1ac  </li><li>0x7523  </li><li>0xfacd  </li></ol><h2 id="숫자"><a href="#숫자" class="headerlink" title="숫자"></a>숫자</h2><p>자바스크립트는 모든 숫자가 double.<br>실수형 double 은 8byte. 더블을 헨들하려면 fpu. 무척 헤비한데<br>자바스크립트에서는 cpu 작업을 할일이 별로 없어서 그렇다.<br>자바스크립트는 웹을 위한 언어.<br>네트워크 통신을 할 때 일어나는 I/O bound(인풋아웃풋 작업) 가 많이 일어난다.<br>자바스크립트는 이러한 IO 작업을 헤비하게 처리할 수 있도록 만들어진 언어이다.<br>그래서 숫자가 double 이어도 큰 상관이 없는 것이다.  </p><p>var a = 10<br>var b = 2.34<br>typeof(a)==typeof(b)<br>true<br>다른 언어에선 이와같은 결과가 불가능하다.<br>자바스크립트는 모든 숫자를 더블로 보기에 가능한 결과.</p><h3 id="정수-integer"><a href="#정수-integer" class="headerlink" title="정수(integer)"></a>정수(integer)</h3><ul><li><p>인티져 오버플로우<br>1바이트짜리 변수(-128부터 127까지 담을 수 있음)에 128이 들어가면 결과가 -128이 나오고<br>129 -&gt; -127<br>130 -&gt; -126<br>왜냐면 8비트를 사용한다고는 하지만 양수음수를 표현하려면 맨 앞의 첫 비트는 양수 / 음수를 구별할 sign 으로 쓰여야 하기 때문에<br>사실상 7비트만으로, 즉 양수 음수 각각 2^7 까지의 숫자를 표현한다고 볼 수 있다.  </p></li><li><p>1바이트(= 8비트) : 2^8, 256개의 숫자 가능<br>양수: 0~255. (0 ~ 2^8-1)<br>양수, 음수:  - 2^7 ~ 2^7-1 (-128 ~ 127) </p></li><li><p>2바이트(= 16비트) : 2^16, 65,536개의 숫자 가능<br>양수: 0 ~ 65535. (0 ~ 2^16-1)<br>양수, 음수:  - 2^15 ~ 2^15-1</p></li><li><p>4바이트(= 32비트) : 2^32, 4,294,967,296개의 숫자 가능<br>양수: 0 ~ 65535. (0 ~ 2^32-1)<br>양수, 음수:  - 2^31 ~ 2^31-1</p></li></ul><h4 id="양수의-표현"><a href="#양수의-표현" class="headerlink" title="양수의 표현"></a>양수의 표현</h4><p>1바이트(8비트)로 양수를 표현할 때<br>ex) 34 = 2^5 + 2^1 -&gt; 100010(2)<br>총 여덟자리를 할당하고 첫 비트는 sign 으로 쓴다.<br>뒤에서부터 채운 뒤 남는 자리는 0으로 채운다.<br>-&gt; <code>0</code>0100010</p><h4 id="음수의-표현"><a href="#음수의-표현" class="headerlink" title="음수의 표현"></a>음수의 표현</h4><ul><li><p>9의 보수<br>자릿수가 바뀌지 않으면서 가장 큰 수가 되는 것.<br>6은 3의 9의 보수.<br>74는 25의 9의 보수.  </p></li><li><p>10의 보수 (모든 9의 보수에 1을 더하면 10의 보수가 됨)<br>어떤 숫자에 수를 더하면 자릿수가 바뀌는 것.<br>3의 10의 보수는 7.<br>25의 10의 보수는 75.  </p></li></ul><p>음수는 2의 보수로 표현함.<br>ex)-43<br>43을 2진수로 바꾼 뒤 1바이트 정수형으로 표현하고 1의 보수에 1을 더해 2의 보수를 만든다.  </p><p>43 = 2^5 + 2^3 + 2^1 + 2^0 = 101011(2)<br>00101011 의 1의 보수 = 11010100<br>+1 -&gt; 11010101<br>1101 = d<br>0101 = 5<br>-43 = 0xd5  </p><p>(+)<br><a href="https://blueshirudy.tistory.com/12" target="_blank" rel="noopener">연습문제 풀이</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;파이썬-기초와-알고리즘-1일차&quot;&gt;&lt;a href=&quot;#파이썬-기초와-알고리즘-1일차&quot; class=&quot;headerlink&quot; title=&quot;파이썬 기초와 알고리즘 1일차&quot;&gt;&lt;/a&gt;파이썬 기초와 알고리즘 1일차&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https
+      
+    
+    </summary>
+    
+      <category term="CS TIL" scheme="https://dearjsmc4.github.io/categories/cs-til/"/>
+    
+    
+      <category term="CS" scheme="https://dearjsmc4.github.io/tags/cs/"/>
+    
+      <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
+    
+  </entry>
+  
+  <entry>
     <title>컴퓨터 공학 TIL 0418</title>
     <link href="https://dearjsmc4.github.io/2019/05/03/0418/"/>
     <id>https://dearjsmc4.github.io/2019/05/03/0418/</id>
@@ -322,19 +349,22 @@
   </entry>
   
   <entry>
-    <title>컴퓨터 공학 TIL 0417</title>
-    <link href="https://dearjsmc4.github.io/2019/05/03/0417/"/>
-    <id>https://dearjsmc4.github.io/2019/05/03/0417/</id>
+    <title>컴퓨터 공학 TIL 0422</title>
+    <link href="https://dearjsmc4.github.io/2019/05/03/0422/"/>
+    <id>https://dearjsmc4.github.io/2019/05/03/0422/</id>
     <published>2019-05-03T02:45:18.000Z</published>
-    <updated>2019-05-03T10:42:33.709Z</updated>
+    <updated>2019-05-03T10:42:50.771Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="파이썬-기초와-알고리즘-1일차"><a href="#파이썬-기초와-알고리즘-1일차" class="headerlink" title="파이썬 기초와 알고리즘 1일차"></a>파이썬 기초와 알고리즘 1일차</h1><p><a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ" target="_blank" rel="noopener">What the heck is the event loop anyway?</a><br>목표 : 수업이 끝나고 이 영상의 내용을 100% 이해할 수 있는 것  </p><p>자바스크립트는 웹을 위한 언어로서 발전해왔기 때문에<br>자바스크립트가 가지는 단점과 한계를 숙지하고 있어야 한다.  </p><p>Foundation knowledge quiz  </p><ul><li>Recursion, index, sort, binary search -&gt; 자료구조. 알고리즘  </li><li>Stack / heap -&gt; 메모리 레이아웃. 메모리 계층. 세그먼트.  </li><li>Process, thread -&gt; OS  </li><li>Call by value / call by reference -&gt; 함수관련  </li><li>Native code  </li><li>MVC Architecture  </li><li>Write simple text-based games  </li></ul><p>오늘 배울 내용  </p><ol><li>메모리.  32bit와 64bit 의 차이는 무엇인가?  </li><li>Number. 컴퓨터가 실제로 아는 것은 0과 1뿐인데 어떻게 정수와 실수, 문자를 인식하고 표현하는가.<br>( 픽셀 역시 4바이트짜리 숫자에 불과하다는 것. )  </li></ol><h2 id="메모리"><a href="#메모리" class="headerlink" title="메모리"></a>메모리</h2><ul><li>32bit 컴퓨터와 64bit 컴퓨터의 차이  </li></ul><ol><li><p>컴퓨터는 0과 1을 전압으로 읽는다. 0v는 0이고, 5v는 1이다.<br>CPU와 RAM 사이를 연결하는 와이어가 있다.<br>전압은 와이어로 흐르는데, 와이어가 8개라면 8bit 의 데이터를 보낼 수 있다.<br>16bit 는 16개, 32bit 는 32개, 64bit 는 64개의 와이어가 깔려 있는 것이다.<br>32bit 프로그램, 32bit 운영체제, 32bit 컴퓨터는 다 다른 것이다.</p></li><li><p>메모리 주소값.<br>2진수로 32개의 자릿수를 메모리주소로 쓴다. -&gt; 32bit<br>2진수로 64개의 자릿수를 메모리주소로 쓴다. -&gt; 64bit<br>메모리에서는 1byte 당 메모리주소 자릿수 하나를 할당해준다. (1byte = 8bit)<br>32bit 컴퓨터는 0 ~ 2^32-1 까지 메모리를 할당할 수 있는데, 4GB 짜리 램에 이미 메모리주소가 모두 할당되기 때문에<br>램을 하나 더 꽂더라도 메모리 주소가 할당될 수 없고 접근할 수 없기 때문에 사용할 수 없게 된다.  </p></li></ol><h2 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h2><ul><li>기수법  </li></ul><ol><li>2진수  </li><li>10진수  </li><li>16진수  </li><li>~8진수~  </li></ol><ul><li>10진수 : 0,1,2,3,4,5,6,7,8,9 - 한 자릿수에 표현할 수 있는 숫자가 10개. -&gt; 밑수, radix  </li><li>2진수 : 0,1 - 한 자릿수에 표현할 수 있는 숫자가 2개.  </li><li>16진수 : 0,1,2,3 … 9, a,b,c,d,e,f -&gt; radix 가 16개.  </li></ul><p>16진수 하나는 2진수 4개로 표현된다.<br>32bit 메모리 주소는 16진수 8개로 표현된다.  </p><ul><li>2진수(BIN)  </li><li>10진수(DEC)  </li><li>16진수(HEX)  </li></ul><h3 id="10진수-gt-2진수"><a href="#10진수-gt-2진수" class="headerlink" title="10진수 -&gt; 2진수"></a>10진수 -&gt; 2진수</h3><p>37을 2진수로 바꾼다면,<br>32(2^<code>5</code>) + 4(2^<code>2</code>) + 1(2^<code>0</code>)<br><code>5</code>,4,3,<code>2</code>,1,<code>0</code><br>-&gt; 100101(2)</p><ul><li>연습문제</li></ul><ol><li>27</li><li>289</li><li>1125</li></ol><h3 id="2진수-gt-10진수"><a href="#2진수-gt-10진수" class="headerlink" title="2진수 -&gt; 10진수"></a>2진수 -&gt; 10진수</h3><p>ex) 110010(2) = 2^5 + 2^4 + 2^1 = 32 + 16 + 2 = 50<br>거꾸로 543210 적어서 더하기  </p><ul><li>연습문제</li></ul><ol><li>1101(2)</li><li>1010(2)</li><li>1111(2)</li></ol><h3 id="2진수-gt-16진수"><a href="#2진수-gt-16진수" class="headerlink" title="2진수 -&gt; 16진수"></a>2진수 -&gt; 16진수</h3><p>111 1011 -&gt; 뒤에서부터 4자리씩 자르고 앞에 빈자리는 0을 채워넣는다.<br>0111 1011 -&gt; 0x7b<br>16진수의 0 ~ 9는 2진수의 0 ~ 9와 똑같다.<br>9 이상의 10~16 이 나오면 a부터 f까지 할당.<br>a부터 f까지의 2진수는 외우면 된다.<br>a : 1010<br>b : 1011<br>c : 1100<br>d : 1101<br>e : 1110<br>f : 1111  </p><ul><li>연습문제  </li></ul><ol><li>1111 1010(2)  </li><li>11 0101(2)  </li><li>101 1111 0110(2)  </li><li>111 0011 0011(2)  </li><li>101 0011 1001(2)  </li><li>1111 0000 0101 1100(2)  </li><li>0101 1100 1111(2)  </li><li>1111 1010 1100 1101(2)  </li></ol><h3 id="16진수-gt-2진수"><a href="#16진수-gt-2진수" class="headerlink" title="16진수 -&gt; 2진수"></a>16진수 -&gt; 2진수</h3><p>거꾸로 세어나간 후에 맨 앞의 0들은 지워버리기.<br>ex) 0xf137 = 1111 0001 0011 0111<br>    0x1fac = 0001 1111 1010 1100  </p><ul><li>연습문제  </li></ul><ol><li>0x1234  </li><li>0xf1ac  </li><li>0x7523  </li><li>0xfacd  </li></ol><h2 id="숫자"><a href="#숫자" class="headerlink" title="숫자"></a>숫자</h2><p>자바스크립트는 모든 숫자가 double.<br>실수형 double 은 8byte. 더블을 헨들하려면 fpu. 무척 헤비한데<br>자바스크립트에서는 cpu 작업을 할일이 별로 없어서 그렇다.<br>자바스크립트는 웹을 위한 언어.<br>네트워크 통신을 할 때 일어나는 I/O bound(인풋아웃풋 작업) 가 많이 일어난다.<br>자바스크립트는 이러한 IO 작업을 헤비하게 처리할 수 있도록 만들어진 언어이다.<br>그래서 숫자가 double 이어도 큰 상관이 없는 것이다.  </p><p>var a = 10<br>var b = 2.34<br>typeof(a)==typeof(b)<br>true<br>다른 언어에선 이와같은 결과가 불가능하다.<br>자바스크립트는 모든 숫자를 더블로 보기에 가능한 결과.</p><h3 id="정수-integer"><a href="#정수-integer" class="headerlink" title="정수(integer)"></a>정수(integer)</h3><ul><li><p>인티져 오버플로우<br>1바이트짜리 변수(-128부터 127까지 담을 수 있음)에 128이 들어가면 결과가 -128이 나오고<br>129 -&gt; -127<br>130 -&gt; -126<br>왜냐면 8비트를 사용한다고는 하지만 양수음수를 표현하려면 맨 앞의 첫 비트는 양수 / 음수를 구별할 sign 으로 쓰여야 하기 때문에<br>사실상 7비트만으로, 즉 양수 음수 각각 2^7 까지의 숫자를 표현한다고 볼 수 있다.  </p></li><li><p>1바이트(= 8비트) : 2^8, 256개의 숫자 가능<br>양수: 0~255. (0 ~ 2^8-1)<br>양수, 음수:  - 2^7 ~ 2^7-1 (-128 ~ 127) </p></li><li><p>2바이트(= 16비트) : 2^16, 65,536개의 숫자 가능<br>양수: 0 ~ 65535. (0 ~ 2^16-1)<br>양수, 음수:  - 2^15 ~ 2^15-1</p></li><li><p>4바이트(= 32비트) : 2^32, 4,294,967,296개의 숫자 가능<br>양수: 0 ~ 65535. (0 ~ 2^32-1)<br>양수, 음수:  - 2^31 ~ 2^31-1</p></li></ul><h4 id="양수의-표현"><a href="#양수의-표현" class="headerlink" title="양수의 표현"></a>양수의 표현</h4><p>1바이트(8비트)로 양수를 표현할 때<br>ex) 34 = 2^5 + 2^1 -&gt; 100010(2)<br>총 여덟자리를 할당하고 첫 비트는 sign 으로 쓴다.<br>뒤에서부터 채운 뒤 남는 자리는 0으로 채운다.<br>-&gt; <code>0</code>0100010</p><h4 id="음수의-표현"><a href="#음수의-표현" class="headerlink" title="음수의 표현"></a>음수의 표현</h4><ul><li><p>9의 보수<br>자릿수가 바뀌지 않으면서 가장 큰 수가 되는 것.<br>6은 3의 9의 보수.<br>74는 25의 9의 보수.  </p></li><li><p>10의 보수 (모든 9의 보수에 1을 더하면 10의 보수가 됨)<br>어떤 숫자에 수를 더하면 자릿수가 바뀌는 것.<br>3의 10의 보수는 7.<br>25의 10의 보수는 75.  </p></li></ul><p>음수는 2의 보수로 표현함.<br>ex)-43<br>43을 2진수로 바꾼 뒤 1바이트 정수형으로 표현하고 1의 보수에 1을 더해 2의 보수를 만든다.  </p><p>43 = 2^5 + 2^3 + 2^1 + 2^0 = 101011(2)<br>00101011 의 1의 보수 = 11010100<br>+1 -&gt; 11010101<br>1101 = d<br>0101 = 5<br>-43 = 0xd5  </p><p>(+)<br><a href="https://blueshirudy.tistory.com/12" target="_blank" rel="noopener">연습문제 풀이</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="함수"><a href="#함수" class="headerlink" title="함수"></a>함수</h1><ol><li>namespace  </li><li>stack frame  </li><li>call by value<br>call by reference<br>call by object reference  </li></ol><p><em>“왜 call by value 와 call by reference 를 나누는가?”</em>  </p><h2 id="전역변수-vs-지역변수"><a href="#전역변수-vs-지역변수" class="headerlink" title="전역변수 vs 지역변수"></a>전역변수 vs 지역변수</h2><ul><li>지역변수가 생기는 시점은?<br><code>def func(): b=20</code><br>라고 함수를 선언해둘 때가 아니라, 함수를 실행할 때.  </li></ul><p>namespace = 변수가 저장되어 있는 공간. 함수가 가지는 자기만의 공간.  </p><h2 id="stack-frame"><a href="#stack-frame" class="headerlink" title="stack frame"></a>stack frame</h2><p>함수가 실행될 때 함수 내부적으로 연산에 필요한 지역변수들이 쌓이는 공간.<br>블로킹이 걸리면 새로운 함수에게 다시 주도권이 넘어감.<br>함수 실행(연산)이 끝나면 연산에 필요한 변수들은 사라지고 스택프레임도 사라짐.<br>그리고 블로킹 걸렸던 시점에서부터 다시 실행이 되고 원래 함수에게 주도권 넘어감.<br>함수 실행이 종료되면 연산에 필요없는 변수가 다 사라지고,<br>실행 주도권은 다시 글로벌 프레임으로 넘어온다.<br>(파이썬 튜터로 스택프레임을 비주얼적으로 보면 좋다.)  </p><ul><li>call by value :<br>  변수의 값 10을 복사해서 단순히 <strong>값</strong>을 스택프레임에 넘겨주는 것.  </li><li>call by reference :<br>  변수의 값이 아니라 <strong>주소값</strong>을 전달함. = 참조값을 전달하는 것과 같다.<br>  주소값을 알고 잇으면 주소값을 통해 접근할 수 있다.<br>  원래 블로킹 상태라면, 실행 중인 함수의 프레임을 벗어나서 참조할 수 없는데,<br>  주소값으로 전달하면 주소값을 참조하여 <strong>현재 실행중인 프레임의 바깥 스택프레임의 변수에 접근할 수 있다.</strong><br>  <code>*a = 30</code> -&gt; a의 메모리 자체에 접근하여, 그 메모리에 값 30을 넣겠다.  </li></ul><p><strong>call by value와 call by reference의 차이</strong><br>-&gt; 새로운 스택프레임이 쌓였을 때  </p><ul><li>call by value : 그 어떤 변수를 이용하더라도 바깥으로 접근할 수 없다.<br>실행하고 있는 프레임 바깥의 데이터에 접근하는게 완벽히 불가능하다.  </li><li>call by reference : 스택프레임이 갈라지고, 새로운 프레임이 실행하는 상황에서 특정 변수를 이용해<br>바깥 프레임의 데이터에 접근하여 값을 수정하는 것이 가능하다.  </li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;파이썬-기초와-알고리즘-1일차&quot;&gt;&lt;a href=&quot;#파이썬-기초와-알고리즘-1일차&quot; class=&quot;headerlink&quot; title=&quot;파이썬 기초와 알고리즘 1일차&quot;&gt;&lt;/a&gt;파이썬 기초와 알고리즘 1일차&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https
+        &lt;h1 id=&quot;함수&quot;&gt;&lt;a href=&quot;#함수&quot; class=&quot;headerlink&quot; title=&quot;함수&quot;&gt;&lt;/a&gt;함수&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;namespace  &lt;/li&gt;
+&lt;li&gt;stack frame  &lt;/li&gt;
+&lt;li&gt;call by value&lt;br&gt;cal
       
     
     </summary>
@@ -403,22 +433,46 @@
   </entry>
   
   <entry>
-    <title>컴퓨터 공학 TIL 0422</title>
-    <link href="https://dearjsmc4.github.io/2019/05/03/0422/"/>
-    <id>https://dearjsmc4.github.io/2019/05/03/0422/</id>
+    <title>파이썬 기초 문법</title>
+    <link href="https://dearjsmc4.github.io/2019/05/03/0419-python/"/>
+    <id>https://dearjsmc4.github.io/2019/05/03/0419-python/</id>
     <published>2019-05-03T02:45:18.000Z</published>
-    <updated>2019-05-03T10:42:50.771Z</updated>
+    <updated>2019-05-03T10:42:44.876Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="함수"><a href="#함수" class="headerlink" title="함수"></a>함수</h1><ol><li>namespace  </li><li>stack frame  </li><li>call by value<br>call by reference<br>call by object reference  </li></ol><p><em>“왜 call by value 와 call by reference 를 나누는가?”</em>  </p><h2 id="전역변수-vs-지역변수"><a href="#전역변수-vs-지역변수" class="headerlink" title="전역변수 vs 지역변수"></a>전역변수 vs 지역변수</h2><ul><li>지역변수가 생기는 시점은?<br><code>def func(): b=20</code><br>라고 함수를 선언해둘 때가 아니라, 함수를 실행할 때.  </li></ul><p>namespace = 변수가 저장되어 있는 공간. 함수가 가지는 자기만의 공간.  </p><h2 id="stack-frame"><a href="#stack-frame" class="headerlink" title="stack frame"></a>stack frame</h2><p>함수가 실행될 때 함수 내부적으로 연산에 필요한 지역변수들이 쌓이는 공간.<br>블로킹이 걸리면 새로운 함수에게 다시 주도권이 넘어감.<br>함수 실행(연산)이 끝나면 연산에 필요한 변수들은 사라지고 스택프레임도 사라짐.<br>그리고 블로킹 걸렸던 시점에서부터 다시 실행이 되고 원래 함수에게 주도권 넘어감.<br>함수 실행이 종료되면 연산에 필요없는 변수가 다 사라지고,<br>실행 주도권은 다시 글로벌 프레임으로 넘어온다.<br>(파이썬 튜터로 스택프레임을 비주얼적으로 보면 좋다.)  </p><ul><li>call by value :<br>  변수의 값 10을 복사해서 단순히 <strong>값</strong>을 스택프레임에 넘겨주는 것.  </li><li>call by reference :<br>  변수의 값이 아니라 <strong>주소값</strong>을 전달함. = 참조값을 전달하는 것과 같다.<br>  주소값을 알고 잇으면 주소값을 통해 접근할 수 있다.<br>  원래 블로킹 상태라면, 실행 중인 함수의 프레임을 벗어나서 참조할 수 없는데,<br>  주소값으로 전달하면 주소값을 참조하여 <strong>현재 실행중인 프레임의 바깥 스택프레임의 변수에 접근할 수 있다.</strong><br>  <code>*a = 30</code> -&gt; a의 메모리 자체에 접근하여, 그 메모리에 값 30을 넣겠다.  </li></ul><p><strong>call by value와 call by reference의 차이</strong><br>-&gt; 새로운 스택프레임이 쌓였을 때  </p><ul><li>call by value : 그 어떤 변수를 이용하더라도 바깥으로 접근할 수 없다.<br>실행하고 있는 프레임 바깥의 데이터에 접근하는게 완벽히 불가능하다.  </li><li>call by reference : 스택프레임이 갈라지고, 새로운 프레임이 실행하는 상황에서 특정 변수를 이용해<br>바깥 프레임의 데이터에 접근하여 값을 수정하는 것이 가능하다.  </li></ul>]]></content>
+    <content type="html"><![CDATA[<h1 id="파이썬-자료형-기초"><a href="#파이썬-자료형-기초" class="headerlink" title="파이썬 자료형 기초"></a>파이썬 자료형 기초</h1><ul><li>string = “abcde”  <ul><li>string<code>[2]</code> = ‘c’  </li><li>string<code>[2:]</code> = ‘cde’ (2번 자리 이상)  </li><li>string<code>[:2]</code> = ‘ab’ (0번 이상, 2번 미만)  </li><li>string<code>[0:1]</code> = ‘a’ (0번 째 이상, 1번 미만)  </li><li>string<code>[0:2]+&quot;z&quot;+string[3:]</code> = ‘abzde’ ( ab + z + de )  </li><li>string<code>.replace(&#39;c&#39;,&#39;z&#39;)</code> = ‘abzde’ (c 를 z 로 바꾸어서 보여줌. 원본이 바뀌지는 않는다.)  </li></ul></li></ul><h3 id="문자열-포매팅"><a href="#문자열-포매팅" class="headerlink" title="문자열 포매팅"></a>문자열 포매팅</h3><p>문자열 내의 어떤 값을 삽입하는 방법.  </p><p>a = 10<br>b = ‘abcde’  </p><ul><li><code>print(&quot;%d, %s&quot; %(a,b))</code> = 10, abcde  </li><li><code>print(&#39;숫자는 {0} 문자열은 {1}&#39;.format(a,b))</code><br>  = 숫자는 10 문자열은 abcde  </li><li><code>print(f&#39;숫자는 {} 문자열은 {}&#39;)</code><br>  = 숫자는 10 문자열은 abcde  </li></ul><p>a = 0.1234512345  </p><ul><li><code>print(f&#39;{a:.3}&#39;)</code> = 0.123 (소수점 뒤의 3자리까지만 자르기)  </li></ul><h3 id="Dictionary"><a href="#Dictionary" class="headerlink" title="Dictionary"></a>Dictionary</h3><ul><li>dic = {‘a’:1, 2:’two’, ‘func’:lambda a,b: a+b}<ul><li>dic<code>[&#39;a&#39;]</code> = 1 (a라는 키의 value를 가져오기)  </li><li>dic<code>[func](1,2)</code> = 3 (func 라는 키의 value 인 함수를 실행)<br>  lambda: 함수가 위치한 메모리 주소값  </li><li>dic.<code>keys()</code> = dict_keys([‘a’, 2, ‘func’]) (dic 의 모든 키값을 가져오기)  </li><li>dic.<code>items()</code> = dict_items<code>([(&#39;a&#39;, 1), (2, &#39;two&#39;), (&#39;func&#39;, &lt;function &lt;lambda&gt; at 0x05B738E8&gt;)])</code><br>  (key와 value값이 튜플로 묶여서 나옴) -&gt; 튜플인 이유가 있나?  </li><li>key_list = <code>list(dic.keys())</code> = [‘a’, 2, ‘func’] (key만 모아서 리스트로 만들기)  </li></ul></li></ul><p><strong>list 와 view 객체와의 차이</strong><br>key_view = dic.keys() = dict_keys([‘a’, 2, ‘func’])<br>key_list = [‘a’, 2, ‘func’]<br>일 때,<br><code>dic[5]=&#39;five&#39;</code> 딕셔너리에 쌍을 추가하면<br>key_view = dict_keys([‘a’, 2, ‘func’, <code>5</code>]) -&gt; 추가되었음<br>key_list = [‘a’, 2, ‘func’] -&gt; 추가 되지 않았음  </p><h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>집합 자료형인 세트에서는 중복이 허용되지 않는다.  </p><p>s1 = set([1,2,3,4])<br>s2 = set([3,4,5,6])  </p><ul><li><code>s1|s2</code> or <code>s1.union(s2)</code>= {1,2,3,4,5,6} (합집합)  </li><li><code>s1&amp;s2</code> or <code>s1.intersection(s2)</code>= {3,4} (교집합)  </li><li><code>s1-s2</code> or <code>s1.difference(s2)</code> = {1,2} (차집합)  </li><li><code>s2-s1</code> or <code>s2.difference(s1)</code> = {5,6} (차집합)  </li><li><code>s1^s2</code> or <code>s1.symmetric_difference(s2)</code>= {1,2,5,6} (대칭 차집합)  </li></ul><h3 id="True-False"><a href="#True-False" class="headerlink" title="True / False"></a>True / False</h3><ul><li><strong>거짓</strong>으로 취급하는 데이터  <ul><li>“” 빈 문자열  </li><li>[] 빈 리스트  </li><li>() 빈 튜플  </li><li>{} 빈 딕셔너리  </li><li>false  </li><li>none (JS의 undefined)  </li><li>0  </li></ul></li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;함수&quot;&gt;&lt;a href=&quot;#함수&quot; class=&quot;headerlink&quot; title=&quot;함수&quot;&gt;&lt;/a&gt;함수&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;namespace  &lt;/li&gt;
-&lt;li&gt;stack frame  &lt;/li&gt;
-&lt;li&gt;call by value&lt;br&gt;cal
+        &lt;h1 id=&quot;파이썬-자료형-기초&quot;&gt;&lt;a href=&quot;#파이썬-자료형-기초&quot; class=&quot;headerlink&quot; title=&quot;파이썬 자료형 기초&quot;&gt;&lt;/a&gt;파이썬 자료형 기초&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;string = “abcde”  &lt;ul&gt;
+&lt;li&gt;strin
+      
+    
+    </summary>
+    
+      <category term="CS TIL" scheme="https://dearjsmc4.github.io/categories/cs-til/"/>
+    
+    
+      <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>컴퓨터 공학 TIL 0423-2</title>
+    <link href="https://dearjsmc4.github.io/2019/05/03/0423-2/"/>
+    <id>https://dearjsmc4.github.io/2019/05/03/0423-2/</id>
+    <published>2019-05-03T02:45:18.000Z</published>
+    <updated>2019-05-03T10:42:58.256Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="process-와-thread"><a href="#process-와-thread" class="headerlink" title="process 와 thread"></a>process 와 thread</h2><p>process : 인스트럭션의 나열.<br>OS 가 프로세스에게 할당해주는 메모리는 실제 메모리가 아닌 <strong>가상 주소 공간(VAS)</strong><br>각 프로세스에 할당된 메모리는 가상메모리.  </p><h3 id="IPC-InterProcess-Communication-프로세스간-커뮤니케이션"><a href="#IPC-InterProcess-Communication-프로세스간-커뮤니케이션" class="headerlink" title="IPC: InterProcess Communication, 프로세스간 커뮤니케이션"></a>IPC: InterProcess Communication, 프로세스간 커뮤니케이션</h3><p>프로세스간 공간은 완전히 분리되어 있으므로,<br>기본적으로 프로세스끼리 서로의 데이터에 직접적으로 접근하거나 데이터를 바꿀 수는 없다.<br>그럼에도 불구하고 별도로 커뮤니케이션을 해야 할 때가 있다.<br>성능을 높이기 위해 여러 프로세스를 동시에 실행할 때<br>( ex) 웹 서버가 사용자 요청이 올 때마다 새로운 프로세스를 만들어 즉시 대응 )<br><em>프로세스간 상태 확인 및 데이터 송수신</em> 이 필요하기 때문이다. 이때 쓰는 것이 IPC기법이다.<br>대부분의 IPC기법은 각 프로세스가 공유하는 커널공간을 이용한다.  </p><ul><li><p>Shared resource</p></li><li><p>Multi Threading<br>여러 개의 실행흐름이 필요하다 -&gt; concurrency programming<br>동시에 도는 것 같은 실행흐름.  </p></li></ul><p>스레드는 프로세스에 포함된 개념.<br>우리가 만든 프로그램은 스레드가 하나.<br>스레드가 하나면 <code>싱글스레드</code>.<br>자바스크립트는 흐름이 하나밖에 없는 것.  </p><h3 id="멀티스레딩"><a href="#멀티스레딩" class="headerlink" title="멀티스레딩"></a>멀티스레딩</h3><p><code>멀티스레드</code>는 흐름이 여러 개인 것.<br>스레드가 각자의 스택을 따로 가지고 있다.<br>실행흐름이란게 인스트럭션인데 인스트럭션은 함수 실행. 함수가 실행되려면 스택프레임이 필요하고<br>이 스택프레임은 스택에 쌓인다.<br>코드와 데이터와 힙은 공유를 하고 스택만 따로 따로 가지고 있다.<br>여러 개의 스레드가 공유자원을 공유.  </p><p>Shared Resource(각 스레드가 접근하는 하나의 자원) 가 있을 때<br>race condition, 경쟁조건이 발생한다.<br>-&gt; 상호배제 를 통해 예방<br>-&gt; <strong>GIL : Global Interpreter Lock</strong><br>공유자원을 먼저 점유한 스레드가 작업을 마치고 릴리즈를 할 때까지 다른 스레드들이 기다리게 한다.  </p><p>모든 스레드가 접근해서 사용하는 리스트: shared list<br>각 스레드가 접근하는 리스트가 같을 때, 그 안에서 접근하는 데이터는 다른 것이 좋다.  </p><h3 id="동시성-프로그래밍과-병렬-프로그래밍"><a href="#동시성-프로그래밍과-병렬-프로그래밍" class="headerlink" title="동시성 프로그래밍과 병렬 프로그래밍"></a>동시성 프로그래밍과 병렬 프로그래밍</h3><p><strong>동시성 프로그래밍</strong>은 cpu(프로세스)가 하나여도 동시성 프로그래밍을 구현할 수 있다.<br>멀티스레딩을 하게되면 라운드로빈으로 돌아갈 수 있으니까.<br>하지만 여러 개를 하나씩 순서대로 돌리는거지, 엄밀한 의미의 병렬은 아니다.<br><strong>병렬 프로그래밍</strong>은 아예 하드웨어가 최소 두 개 이상 있어서<br>어떤 태스크가 있을 때 각 하드웨어가 일을 같이 처리하는 것이다.<br>2초 걸릴 일을 1초만에 할 수 있는 것이다.  </p><p>싱글코어 멀티스레딩: 단순하게 동시성프로그래밍. 스레드를 여러 개 만들어서 실행.<br>멀티코어 멀티스레딩: 병렬 + 동시성. 동시에 두 개 이상 돌 수 있는 것.  </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;process-와-thread&quot;&gt;&lt;a href=&quot;#process-와-thread&quot; class=&quot;headerlink&quot; title=&quot;process 와 thread&quot;&gt;&lt;/a&gt;process 와 thread&lt;/h2&gt;&lt;p&gt;process : 인스트럭
       
     
     </summary>
@@ -460,33 +514,6 @@
   </entry>
   
   <entry>
-    <title>Javascript Basic</title>
-    <link href="https://dearjsmc4.github.io/2019/05/02/js-basic/"/>
-    <id>https://dearjsmc4.github.io/2019/05/02/js-basic/</id>
-    <published>2019-05-01T15:00:00.000Z</published>
-    <updated>2019-05-06T09:12:37.005Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h1><p><strong>프로그래밍 입력, 저장, 처리, 출력에 관한 문법을 배워야 한다.</strong>  </p><ul><li>입력: ex) prompt.<br>보통 웹상에서의 입력은 form 으로 받는다.  </li><li>저장: 변수를 이용한 저장. 쿠키 or 웹 스토리지  </li><li>처리: 연산. 분기. 반복.  </li><li>출력: 화면에 DOM을 추가.  </li></ul><h2 id="변수란"><a href="#변수란" class="headerlink" title="변수란?"></a>변수란?</h2><p>컴퓨터 프로그래밍에서 어떤 값을 담는 그릇. 이 그릇에도 종류라는 것이 있는데,  </p><ul><li>일반/원시타입: <strong>숫자, 문자, 불대수</strong>  </li><li>여러종류를 담는 그릇: <strong>배열. (리스트. 딕트. 튜플. 셋)</strong><br>변수는 만들고, 값을 읽고, 값을 바꾸고, 값을 사용(연산의 피연산자, 함수의 매개변수)하게 된다.  </li></ul><p><code>a = “hi”</code> -&gt; a라는 이름을 가진 저장공간을 만들고, 그 안에 “hi”라는 값을 저장(할당)한다는 뜻.<br><code>alert(a);</code> -&gt; 알림창에 hi<br>a : a라는 저장공간의 이름(이름으로 부를때) / a라는 이름을 가진 저장공간(사용할 때)<br>= : 할당연산자. 저장하는 연산자. hi 를 a에 저장하라는 의미.<br>보통 = 은 같다는 의미인데. 프로그래밍에서는 저장한다는 의미가 되고, 같다는 == 로 표현.  </p><p>변수명을 사용하게 되면 해당 내용의 용도가 명확해진다.<br>그러므로 무엇이 담겼는지 명확히 알려줘야한다.  </p><p>숫자, 불리언값 등은 값을 그대로 쓰지만,<br>문자열은 홑따옴표/쌍따옴표로 감싸서 표기한다. 왜? -&gt; 그냥 쓰면 변수 혹은 예약어등과 헷갈릴 수 있기 때문이다.<br><code>Name = jake;</code> -&gt; jake 가 다른 변수인가?</p><p><strong>이스케이프 문자</strong><br>쌍따옴표안에 쌍따옴표를 쓰고 싶을 때 백슬래시를 넣으면 되는데 이를 이스케이프문자라고 한다.<br>어떤 특별한 목적과 기능이 있는 문자라는 것. ex) <code>\n</code> 은 줄바꿈. New line 이라는 것.  </p><h3 id="변수명을-만들-때-주의할-것"><a href="#변수명을-만들-때-주의할-것" class="headerlink" title="변수명을 만들 때 주의할 것"></a>변수명을 만들 때 주의할 것</h3><ol><li>숫자는 변수이름 맨 앞에 사용하지 않을 것.  </li><li>특수문자는 언더바만 사용할 것.  </li><li>대소문자를 구분할 것.  </li><li>명사, 동사로만 작성할 것.  </li><li>예약어는 사용 금지.  </li></ol><h3 id="변수명을-작성하는-방법"><a href="#변수명을-작성하는-방법" class="headerlink" title="변수명을 작성하는 방법"></a>변수명을 작성하는 방법</h3><ol><li>카멜 케이스 : yourName  </li><li>파스칼 케이스 : YourName  </li><li>스네이크 케이스 : your_name  </li><li>+헝가리안 표기법 : strName/ intNumber (변수명 앞에 어떤 데이터타입인지 적어주는 방법)  </li></ol><p>demo 라는 아이디를 찾지 못한다고 오류가 떴던 이유 :<br>자바스크립트는 dom객체를 제어해서 글씨를 띄우려고 했는데,<br>위에서부터 읽다보니 demo 를 찾기도 전에 자바스크립트를 만나버린 것. 순차문제인것이다.<br>그래서 스크립트블록을 바디 맨 아래로 바꾸면 해결된다.  </p><h2 id="프로그래밍-진행방식-세-가지"><a href="#프로그래밍-진행방식-세-가지" class="headerlink" title="프로그래밍 진행방식 세 가지"></a>프로그래밍 진행방식 세 가지</h2><ul><li>순차: 위에서부터 아래로 한줄씩 실행해나가는 것.  </li><li>분기: a를 실행할지 b를 실행할지 선택하는 것. (조건에 따라서)  </li><li>반복: 컴퓨터는 반복적으로 빠르게 일을 잘한다. a,b중에 실행할 코드를 여러 번 반복하는 것.  </li></ul><p>document는 페이지문서 자체를 말한다.<br>document 에서 요소를 아이디로 찾을 때 -&gt; <code>document.getElementById</code></p><p>Prompt 로 받은 값은 모두 문자열이 된다. 그래서 1+2 = 12    </p><ul><li>산술연산자: +, -, *, /, %(나머지 구하기.), **(거듭제곱)  </li><li>문자연산자: + (문자를 이어붙임)  </li></ul><p>문자로 받았지만 산술연산을 해야 할 때 -&gt; type casting 형변환이 필요하다.<br><code>number(“값”)</code> -&gt; 값이 숫자가 된다. (꼭 대문자로 시작하게 써줘야함!)  </p><h2 id="자바스크립트의-5가지-데이터-타입"><a href="#자바스크립트의-5가지-데이터-타입" class="headerlink" title="자바스크립트의 5가지 데이터 타입"></a>자바스크립트의 5가지 데이터 타입</h2><ul><li>number  </li><li>string  </li><li>boolean<br>(숫자, 문자, 불린은 형변환 가능)  </li><li>null(아무값도없음)  </li><li>undefined(정의되지않음)  </li></ul><h2 id="if-조건문"><a href="#if-조건문" class="headerlink" title="if 조건문"></a>if 조건문</h2><p>if문에서는 if 가 필수고, else if 나 else 는 필수가 아니다.  </p><p>if : 만약 조건식이 참이라면, 해당 부분의 실행구문을 실행하겠다.(하나의 if문에는 하나의 if만 들어갈수있다.)<br>else if : 그게 아니라 다음 조건식이 참이라면, 해당 부분의 실행구문을 실행하겠다.(0번부터 여러 번)<br>else : 이도저도 아니면, 해당 부분의 실행구문을 실행하겠다. (여긴 조건식이 없다. 이도저도 아닐때니까.)<br>실행구문은, 우리가 쓰고싶은 어떤 코드든 가능하다.  </p><p><strong>조건식은 명제</strong><br>참과 거짓을 판별할 수 있는 문장. 결과값이 참과 거짓으로만 나오는 문장.<br>True/false,  1/0 로 표기. -&gt; boolean 값. Bool.<br>비교구문이 제일 많다. &gt;, &lt;, &gt;=, &lt;=, ==, != …  </p><p>===, !== 는 종류까지 같은지 판별한다.  </p><ul><li>1 == true<br>true. 1은 곧 true 이다.  </li><li>1 === true<br>false. 데이터타입이 다르다. 1은 숫자이고 true 는 불린 값이다.</li></ul><h2 id="반복문"><a href="#반복문" class="headerlink" title="반복문"></a>반복문</h2><ul><li><p>몇 번을 반복할 것인가<br>for([초기화] ; [조건문] ; [증감식]){<br>  [실행할 코드]<br>}  </p></li><li><p>조건에 맞는 동안 반복<br>  While ([조건식]) { [실행할 코드] }<br>  While(true) = 무한반복  </p><ul><li>break : 만나는 순간 가장 가까운 반복문을 탈출한다.  </li><li>continue : 만나는 순간 반복문이 다음 회차로 이동하여 넘어간다.  </li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Javascript&quot;&gt;&lt;a href=&quot;#Javascript&quot; class=&quot;headerlink&quot; title=&quot;Javascript&quot;&gt;&lt;/a&gt;Javascript&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;프로그래밍 입력, 저장, 처리, 출력에 관한 문법을 배
-      
-    
-    </summary>
-    
-      <category term="Javascript TIL" scheme="https://dearjsmc4.github.io/categories/javascript-til/"/>
-    
-    
-      <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
-    
-      <category term="Javascript" scheme="https://dearjsmc4.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
     <title>변수, 데이터타입, 연산자</title>
     <link href="https://dearjsmc4.github.io/2019/05/02/0430/"/>
     <id>https://dearjsmc4.github.io/2019/05/02/0430/</id>
@@ -514,57 +541,24 @@
   </entry>
   
   <entry>
-    <title>Browser Rendering</title>
-    <link href="https://dearjsmc4.github.io/2019/05/02/0501/"/>
-    <id>https://dearjsmc4.github.io/2019/05/02/0501/</id>
+    <title>Javascript Basic</title>
+    <link href="https://dearjsmc4.github.io/2019/05/02/js-basic/"/>
+    <id>https://dearjsmc4.github.io/2019/05/02/js-basic/</id>
     <published>2019-05-01T15:00:00.000Z</published>
-    <updated>2019-05-08T09:16:23.287Z</updated>
+    <updated>2019-05-06T09:12:37.005Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>브라우저와 서버는 대부분 다른 컴퓨터에 있다.<br>브라우저는 사용자 컴퓨터(어느나라의 어디의 누가 어떤 브라우저로 접속할지는 모른다)에 있고,<br>서버는 모든 상황에, 최대한 많은 브라우저를 대응하려 노력한다. 심지어 익스 7,8까지도…<br>(한국에서는 익스 9이상은 지원해줘야한다)  </p><p>브라우저와 서버는 통신을 해야 하는데, 이를 위해 서버사이드 프로그램과 브라우저가 약속을 한다.<br>“http:// 는 <strong>http</strong> 라는 통신규약(서버와 브라우저간의 약속)을 사용해 정보를 교환하겠다는 뜻이다.”<br>브라우저가 서버에게 이니셜 요청을 했을때 주소창의 주소가 <code>https://www.naver.com</code> 이라면,<br>“나는 통신을 <code>https</code> 로 할거고, <code>www.naver.com</code> 이라는 서버로 페이지를 요청할거야.” 라는 뜻.<br>도메인네임서버에서 도메인을 IP주소로 변환한 뒤, IP주소로 서버의 위치를 알고 연결해준다.<br>만약 페이지를 요청하는 구문이 아무것도 없으면 서버는 메인페이지(index.html)을 보내는 것으로 기본 설정이 되어 있기에,<br>브라우저는 네이버의 메인 페이지를 받게 된다.  </p><pre><code>파일은 어떻게 받지? -&gt; 케이블을 타고 패킷으로!  컴퓨터가 갖고 있는 파일은 0과 1로 이루어진 이진수의 집합체.  패킷은 데이터를 일정한 크기로 자른 것이다.  그 패킷들이 순서대로 시냇물 흐르듯 전송된다고 해서 스트림(stream) 이라고 한다.  </code></pre><h2 id="HTML-CSS-파싱"><a href="#HTML-CSS-파싱" class="headerlink" title="HTML/CSS 파싱"></a>HTML/CSS 파싱</h2><p>클라이언트 사이드에서는 index.html 파일(순수한 텍스트파일)을 받아서 메모리에 올린 후 파싱(해석)한다.<br><strong>파싱</strong>은 사람이 보기 좋으라고 써둔 소스코드를 브라우저가 이해하고 실행할 수 있도록 해석하는 것이다.<br>파일을 로드한(다운로드 받은) 상태에서 코드를 한 줄씩 읽다가<br>의미가 있는 내용이면 메모리에 기억하는데, 그 유의미한 정보를 <strong>토큰</strong>이라고 한다.  </p><pre><code>HTML은 부자관계로 이루어진다. nesting, 중첩.  네스팅된 자식태그는 자식노드가 된다.  </code></pre><p>만약 link태그를 만나 CSS를 로딩해야 할 때가 되면, HTML의 파싱을 중단하고 다시 http를 이용해 서버에게 요청한다.<br>“나 style.css 라는 것 좀 줘.”(모든 파일은 서버에 있으니까)<br>서버는 해당 파일을 가지고 있는 곳에 가서 파일을 찾아서 패킷으로 잘라서 보낸다.<br>클라이언트는 파일을 받아서 메모리에 올리고 <strong>CSS 파싱</strong>을 시작한다.<br>CSS에는 선택자(selector)가 있고, 선택자와 선언블럭으로 이루어진 것을 룰셋이라고 부른다.  </p><pre><code>body{    font-size : 16px;}</code></pre><p>이 룰셋들을 파서가 읽고 메모리에 써둔다. “body는 font-size가 16픽셀이더라” 라고.  </p><p>CSS 파싱을 다 마치면 <strong>CSSOM 트리</strong>가 완성되고, HTML 파싱을 중단한 시점부터 다시 시작한다.<br>HTML 파싱을 다 마치면 <strong>DOM 트리</strong>가 완성된다.  </p><p>DOM 트리(HTML의 파싱결과)와 CSSOM 트리(CSS의 파싱결과)가<br>브라우저가 관리하고있는 메모리에 자료구조로 만들어지면<br>DOM 트리와 CSSOM 트리를 합쳐서(merge) 렌더트리(렌더링 하기위한 트리)를 만든다.<br>이 렌더트리를 가지고 드디어 화면에 그리기 시작한다.  </p><p>이 모든 일은 브라우저안에있는 <strong>렌더링 엔진</strong>이라는 프로그램이 한다.  </p><h2 id="자바스크립트-파싱"><a href="#자바스크립트-파싱" class="headerlink" title="자바스크립트 파싱"></a>자바스크립트 파싱</h2><p>자바스크립트의 처리는 <strong>자바스크립트엔진</strong>이라는 프로그램이 한다.<br>HTML 파싱을 하다가 스크립트 태그를 만나면 HTML파싱이 멈춘다.<br>이것을 <strong>블로킹</strong>이 걸렸다고 한다.<br>스크립트 태그가 src 속성을 안 가지고 있다면 스크립트가 내장되어 있는 것이고,<br>src 속성을 가지고 있다면 서버에서 파일을 가져온다.  </p><p>자바스크립트 엔진은 소스코드를 분석하며 의미를 갖는 최소 단위인 토큰들로 분리한다.  </p><p><code>var a = 0;</code> 일 때<br><code>var</code>, <code>a</code>, <code>=</code>, <code>0</code>, <code>;</code> 이 모두 토큰이다.</p><p>그리고 토큰들의 집합을 파싱하면서 <strong>신택스 트리</strong>, AST(Abstract Syntax Tree)를 만든다.  </p><p>(자바스크립트엔진이 자바스크립트문법으로 이해했다는 뜻.<br>이해할 수 있다면 실행할 수 있다는 뜻이고, 명령을 할 수 있다는 뜻이다.)  </p><p>파싱한 상태에서 바이트코드로 한 번 더 바꾼 후 실행을 하는데,<br>이때 돔과 관련이 있다면 <strong>돔을 조작</strong>할 수 있게 된다.<br>만약 스크립트가 헤드에 있다면 돔트리가 완성이 안된 상태라서 돔 조작이 불가능하다.<br>자바스크립트는 돔트리와 씨솜트리가 완성된 상태에서 실행해야 의미가 있다.  </p><pre><code>- 그럼에도 스크립트태그를 헤드에 써야 한다면...  async: 병렬처리. 비동기. HTML파싱이 안 끝나도 js파싱이 끝나면 바로 실행한다.  defer: 파싱은 빨리하고 실행은 HTML 파싱이 끝나고 나중에 한다.  (그러나 둘 다 IE9이하에서는 지원이 안 되거나 부분지원 된다고 하니 그냥 body태그 아래에 쓰도록 하자)  </code></pre>]]></content>
+    <content type="html"><![CDATA[<h1 id="Javascript"><a href="#Javascript" class="headerlink" title="Javascript"></a>Javascript</h1><p><strong>프로그래밍 입력, 저장, 처리, 출력에 관한 문법을 배워야 한다.</strong>  </p><ul><li>입력: ex) prompt.<br>보통 웹상에서의 입력은 form 으로 받는다.  </li><li>저장: 변수를 이용한 저장. 쿠키 or 웹 스토리지  </li><li>처리: 연산. 분기. 반복.  </li><li>출력: 화면에 DOM을 추가.  </li></ul><h2 id="변수란"><a href="#변수란" class="headerlink" title="변수란?"></a>변수란?</h2><p>컴퓨터 프로그래밍에서 어떤 값을 담는 그릇. 이 그릇에도 종류라는 것이 있는데,  </p><ul><li>일반/원시타입: <strong>숫자, 문자, 불대수</strong>  </li><li>여러종류를 담는 그릇: <strong>배열. (리스트. 딕트. 튜플. 셋)</strong><br>변수는 만들고, 값을 읽고, 값을 바꾸고, 값을 사용(연산의 피연산자, 함수의 매개변수)하게 된다.  </li></ul><p><code>a = “hi”</code> -&gt; a라는 이름을 가진 저장공간을 만들고, 그 안에 “hi”라는 값을 저장(할당)한다는 뜻.<br><code>alert(a);</code> -&gt; 알림창에 hi<br>a : a라는 저장공간의 이름(이름으로 부를때) / a라는 이름을 가진 저장공간(사용할 때)<br>= : 할당연산자. 저장하는 연산자. hi 를 a에 저장하라는 의미.<br>보통 = 은 같다는 의미인데. 프로그래밍에서는 저장한다는 의미가 되고, 같다는 == 로 표현.  </p><p>변수명을 사용하게 되면 해당 내용의 용도가 명확해진다.<br>그러므로 무엇이 담겼는지 명확히 알려줘야한다.  </p><p>숫자, 불리언값 등은 값을 그대로 쓰지만,<br>문자열은 홑따옴표/쌍따옴표로 감싸서 표기한다. 왜? -&gt; 그냥 쓰면 변수 혹은 예약어등과 헷갈릴 수 있기 때문이다.<br><code>Name = jake;</code> -&gt; jake 가 다른 변수인가?</p><p><strong>이스케이프 문자</strong><br>쌍따옴표안에 쌍따옴표를 쓰고 싶을 때 백슬래시를 넣으면 되는데 이를 이스케이프문자라고 한다.<br>어떤 특별한 목적과 기능이 있는 문자라는 것. ex) <code>\n</code> 은 줄바꿈. New line 이라는 것.  </p><h3 id="변수명을-만들-때-주의할-것"><a href="#변수명을-만들-때-주의할-것" class="headerlink" title="변수명을 만들 때 주의할 것"></a>변수명을 만들 때 주의할 것</h3><ol><li>숫자는 변수이름 맨 앞에 사용하지 않을 것.  </li><li>특수문자는 언더바만 사용할 것.  </li><li>대소문자를 구분할 것.  </li><li>명사, 동사로만 작성할 것.  </li><li>예약어는 사용 금지.  </li></ol><h3 id="변수명을-작성하는-방법"><a href="#변수명을-작성하는-방법" class="headerlink" title="변수명을 작성하는 방법"></a>변수명을 작성하는 방법</h3><ol><li>카멜 케이스 : yourName  </li><li>파스칼 케이스 : YourName  </li><li>스네이크 케이스 : your_name  </li><li>+헝가리안 표기법 : strName/ intNumber (변수명 앞에 어떤 데이터타입인지 적어주는 방법)  </li></ol><p>demo 라는 아이디를 찾지 못한다고 오류가 떴던 이유 :<br>자바스크립트는 dom객체를 제어해서 글씨를 띄우려고 했는데,<br>위에서부터 읽다보니 demo 를 찾기도 전에 자바스크립트를 만나버린 것. 순차문제인것이다.<br>그래서 스크립트블록을 바디 맨 아래로 바꾸면 해결된다.  </p><h2 id="프로그래밍-진행방식-세-가지"><a href="#프로그래밍-진행방식-세-가지" class="headerlink" title="프로그래밍 진행방식 세 가지"></a>프로그래밍 진행방식 세 가지</h2><ul><li>순차: 위에서부터 아래로 한줄씩 실행해나가는 것.  </li><li>분기: a를 실행할지 b를 실행할지 선택하는 것. (조건에 따라서)  </li><li>반복: 컴퓨터는 반복적으로 빠르게 일을 잘한다. a,b중에 실행할 코드를 여러 번 반복하는 것.  </li></ul><p>document는 페이지문서 자체를 말한다.<br>document 에서 요소를 아이디로 찾을 때 -&gt; <code>document.getElementById</code></p><p>Prompt 로 받은 값은 모두 문자열이 된다. 그래서 1+2 = 12    </p><ul><li>산술연산자: +, -, *, /, %(나머지 구하기.), **(거듭제곱)  </li><li>문자연산자: + (문자를 이어붙임)  </li></ul><p>문자로 받았지만 산술연산을 해야 할 때 -&gt; type casting 형변환이 필요하다.<br><code>number(“값”)</code> -&gt; 값이 숫자가 된다. (꼭 대문자로 시작하게 써줘야함!)  </p><h2 id="자바스크립트의-5가지-데이터-타입"><a href="#자바스크립트의-5가지-데이터-타입" class="headerlink" title="자바스크립트의 5가지 데이터 타입"></a>자바스크립트의 5가지 데이터 타입</h2><ul><li>number  </li><li>string  </li><li>boolean<br>(숫자, 문자, 불린은 형변환 가능)  </li><li>null(아무값도없음)  </li><li>undefined(정의되지않음)  </li></ul><h2 id="if-조건문"><a href="#if-조건문" class="headerlink" title="if 조건문"></a>if 조건문</h2><p>if문에서는 if 가 필수고, else if 나 else 는 필수가 아니다.  </p><p>if : 만약 조건식이 참이라면, 해당 부분의 실행구문을 실행하겠다.(하나의 if문에는 하나의 if만 들어갈수있다.)<br>else if : 그게 아니라 다음 조건식이 참이라면, 해당 부분의 실행구문을 실행하겠다.(0번부터 여러 번)<br>else : 이도저도 아니면, 해당 부분의 실행구문을 실행하겠다. (여긴 조건식이 없다. 이도저도 아닐때니까.)<br>실행구문은, 우리가 쓰고싶은 어떤 코드든 가능하다.  </p><p><strong>조건식은 명제</strong><br>참과 거짓을 판별할 수 있는 문장. 결과값이 참과 거짓으로만 나오는 문장.<br>True/false,  1/0 로 표기. -&gt; boolean 값. Bool.<br>비교구문이 제일 많다. &gt;, &lt;, &gt;=, &lt;=, ==, != …  </p><p>===, !== 는 종류까지 같은지 판별한다.  </p><ul><li>1 == true<br>true. 1은 곧 true 이다.  </li><li>1 === true<br>false. 데이터타입이 다르다. 1은 숫자이고 true 는 불린 값이다.</li></ul><h2 id="반복문"><a href="#반복문" class="headerlink" title="반복문"></a>반복문</h2><ul><li><p>몇 번을 반복할 것인가<br>for([초기화] ; [조건문] ; [증감식]){<br>  [실행할 코드]<br>}  </p></li><li><p>조건에 맞는 동안 반복<br>  While ([조건식]) { [실행할 코드] }<br>  While(true) = 무한반복  </p><ul><li>break : 만나는 순간 가장 가까운 반복문을 탈출한다.  </li><li>continue : 만나는 순간 반복문이 다음 회차로 이동하여 넘어간다.  </li></ul></li></ul>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;HTTP&quot;&gt;&lt;a href=&quot;#HTTP&quot; class=&quot;headerlink&quot; title=&quot;HTTP&quot;&gt;&lt;/a&gt;HTTP&lt;/h2&gt;&lt;p&gt;브라우저와 서버는 대부분 다른 컴퓨터에 있다.&lt;br&gt;브라우저는 사용자 컴퓨터(어느나라의 어디의 누가 어떤 브라우
+        &lt;h1 id=&quot;Javascript&quot;&gt;&lt;a href=&quot;#Javascript&quot; class=&quot;headerlink&quot; title=&quot;Javascript&quot;&gt;&lt;/a&gt;Javascript&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;프로그래밍 입력, 저장, 처리, 출력에 관한 문법을 배
       
     
     </summary>
     
-      <category term="Javascript" scheme="https://dearjsmc4.github.io/categories/javascript/"/>
-    
-    
-      <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
-    
-      <category term="Javascript" scheme="https://dearjsmc4.github.io/tags/javascript/"/>
-    
-      <category term="Web" scheme="https://dearjsmc4.github.io/tags/web/"/>
-    
-      <category term="HTML" scheme="https://dearjsmc4.github.io/tags/html/"/>
-    
-      <category term="CSS" scheme="https://dearjsmc4.github.io/tags/css/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ECMAScript &amp; Javascript</title>
-    <link href="https://dearjsmc4.github.io/2019/05/02/0429/"/>
-    <id>https://dearjsmc4.github.io/2019/05/02/0429/</id>
-    <published>2019-05-01T15:00:00.000Z</published>
-    <updated>2019-05-08T09:16:05.472Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="자바스크립트와-ECMA스크립트"><a href="#자바스크립트와-ECMA스크립트" class="headerlink" title="자바스크립트와 ECMA스크립트"></a>자바스크립트와 ECMA스크립트</h2><p>참고: <a href="https://medium.freecodecamp.org/whats-the-difference-between-javascript-and-ECMAscript-cba48c73a2b5" target="_blank" rel="noopener">What’s the difference between JavaScript and ECMAScript?</a></p><p><strong>ECMA International</strong>:<br>표준을 만드는 단체.<br>대부분의 키보드들이 같은 순서의 자음모음 순서를 가지고 있고 같은 위치의 스페이스 엔터 등등이 있다.<br>그건 바로 대부분의 키보드 회사들이 쿼티레이아웃이라는 표준을 가지고 키보드를 만들기 때문이다.<br>그런 표준을 만들어내는 곳이다.  </p><p><strong>ECMA-262</strong>:<br>ECMA international 에서 발표하는 표준.<br>스크립트 언어에서 통용되는 구체적 사양, 설명을 포함하고 있다.<br>ECMAScript의 명세번호라고 이해하자.  </p><p><strong>Scripting Language</strong>:<br>요소나 시스템 위에서의 <strong>동작</strong>을 위해 만들어진 프로그래밍 언어.<br>걷다, 달리다, 점프하다 와 같은 명령들을 생각해보자.<br>이런 동작들은 사람이나 개나 게임캐릭터들처럼 그것을 수행해줄 무언가가 필요하다.<br>이 명령을 수행할 대상이 없이는 걷고 뛰고 점프하는 행동 자체가 불가능하다.<br>이러한 행동들이 스크립트언어가 겉으로 보이는 요소들을 조작하고 제어하는것과 비슷하다.<br>(그러니까 내가 요소이고 나를 걷고 뛰고 점프하도록 조작하고 제어하는 역할을 하는 것이 스크립트언어 라고 보면 될 듯?<br>그래서 웹상에서 동작을 제어하는 자바스크립트가 스크립트언어라고 불리는 것이겠지.)  </p><p><strong>ECMAScript</strong>:<br>ECMA-262 기술규격에 정의된, 표준화된 스크립트 프로그래밍 언어.<br>스크립트 언어가 ECMAscript를 준수한다고 여겨지려면 반드시 지켜야하는 규칙과 세부사항, 가이드라인을 제공함.<br>스크립트언어의 기본 뼈대(코어)를 이룬다. 모든 스크립트 언어들이 기본적으로 갖춰야 하는 내용이니까.  </p><p><strong>Javascript</strong>:<br>ECMAscript 표준을 준수하는 스크립트 언어. ECMAscript 와 브라우저가 별도로 지원하는 WEB API 를 포함하는 개념.  </p><p><strong>Javascript Engine</strong>:<br>자바스크립트 코드를 이해하고 실행시킬 수 있는 통역기.<br>크롬의 v8, 파이어폭스의 스파이더몽키 등 웹 브라우저에서 사용된다.<br>브라우저의 자바스크립트 엔진은 사람이 언어를 이해하는 능력과 비슷하다.<br>자바스크립트 엔진은 걷다, 뛰다, 점프하다 와 같은 행동들이 어떤 뜻인지 <strong>이해</strong>한다.<br>사람이 걸으랄 때 걷고 점프하랄때 점프하고 뛰랄 때 뛸 수 있는 것도<br>그 행동들이 어떤 의미인지 알아듣기때문에 가능한 것.<br>그러니까 사람에게도 이런 자바스크립트 엔진이 들어있어서 그것들을 이해할 수 있다고 생각하면 될 듯.<br>해석해줄 엔진이 없다면 스크립트언어가 아무리 명령해도 알아들을 수 없겠지.<br>브라우저마다 엔진의 차이는 있다. 왜냐면 ECMAScript가 업데이트될 때 모든 브라우저들이 한꺼번에<br>업데이트 하는 것이 아니기 때문이며 각 브라우저의 엔진마다 어떻게 해석하고 구현할 것인지가 다르기 때문이다.  </p><h2 id="WEB-API"><a href="#WEB-API" class="headerlink" title="WEB API?"></a>WEB API?</h2><p>그 전에 API가 무엇인지부터 생각해보자.<br><strong>API</strong>는 어플리케이션 프로그래밍 인터페이스.<br>모든 언어는 API를 지원하고, 그 API를 사용해서 코딩을 하는 것이다.<br>우리가 애플리케이션을 구현하기 위해 시간의 순서대로 배치해야할 부품들.<br>우리가 쓰는 함수들. 우리가 만들지는 않았지만 간편히 사용 가능한, 그 언어가 가지고 있는 조작장치.  </p><p><strong>WEB API</strong>는 웹에서 여러 유용한 작업을 할 수 있도록 제공되는 API.<br>예를 들어 웹 오디오 API는 브라우저의 오디오를 조작하기 위한 메서드를 제공.<br>근데 그 뒷편에서 브라우저는 사실 더 복잡한 로우레벨코드를 실행 중.<br>내가 직접 그런 복잡한 일을 하지 않아도 되게 해주는 것이 브라우저 API.<br><code>setTimeout()</code>, <code>alert()</code> 같은 것들이 그 예시.<br>W3C에서 표준을 관리.<br>( 내가 직접 하려면 정말 복잡한 코드를 이해하고 쓸 줄 알아야 하지만<br>WEB API가 있음으로써 브라우저에서 내가 쉽게 할 수 있는 일들이 더 많아지는 것이라고 이해하면 되겠다. )  </p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;자바스크립트와-ECMA스크립트&quot;&gt;&lt;a href=&quot;#자바스크립트와-ECMA스크립트&quot; class=&quot;headerlink&quot; title=&quot;자바스크립트와 ECMA스크립트&quot;&gt;&lt;/a&gt;자바스크립트와 ECMA스크립트&lt;/h2&gt;&lt;p&gt;참고: &lt;a href=&quot;h
-      
-    
-    </summary>
-    
-      <category term="Javascript" scheme="https://dearjsmc4.github.io/categories/javascript/"/>
+      <category term="Javascript TIL" scheme="https://dearjsmc4.github.io/categories/javascript-til/"/>
     
     
       <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Object.prototype 접근, 배열 | Rudy&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="TILJavascript">
+  
+  
+  
+  
+  <meta name="description" content="Disallow use of Object.prototypes builtins directly (no-prototype-builtins)수업시간에 본 ESLint 원문   왜 직접 접근을 불허하는가?Object 의 정체는 함수다. 타입오브 찍어보면 함수라고 나온다. 이 함수는 일반적으로 new 와 함께 호출하여 빈 객체를 만드는 역할을 한다. 그런데 Obje">
+<meta name="keywords" content="TIL,Javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Object.prototype 접근, 배열">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/05/17/0517/index.html">
+<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="Disallow use of Object.prototypes builtins directly (no-prototype-builtins)수업시간에 본 ESLint 원문   왜 직접 접근을 불허하는가?Object 의 정체는 함수다. 타입오브 찍어보면 함수라고 나온다. 이 함수는 일반적으로 new 와 함께 호출하여 빈 객체를 만드는 역할을 한다. 그런데 Obje">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-20T10:45:40.268Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Object.prototype 접근, 배열">
+<meta name="twitter:description" content="Disallow use of Object.prototypes builtins directly (no-prototype-builtins)수업시간에 본 ESLint 원문   왜 직접 접근을 불허하는가?Object 의 정체는 함수다. 타입오브 찍어보면 함수라고 나온다. 이 함수는 일반적으로 new 와 함께 호출하여 빈 객체를 만드는 역할을 한다. 그런데 Obje">
+  
+    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/fashion.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-0517" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Object.prototype 접근, 배열
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/05/17/0517/" class="article-date">
+	  <time datetime="2019-05-16T15:00:00.000Z" itemprop="datePublished">May 17, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+ 
+      <!-- 
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+ -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Disallow-use-of-Object-prototypes-builtins-directly-no-prototype-builtins"><a href="#Disallow-use-of-Object-prototypes-builtins-directly-no-prototype-builtins" class="headerlink" title="Disallow use of Object.prototypes builtins directly (no-prototype-builtins)"></a>Disallow use of Object.prototypes builtins directly (no-prototype-builtins)</h2><p><a href="https://eslint.org/docs/rules/no-prototype-builtins" target="_blank" rel="noopener">수업시간에 본 ESLint 원문</a>  </p>
+<p>왜 직접 접근을 불허하는가?<br>Object 의 정체는 함수다. 타입오브 찍어보면 함수라고 나온다. 이 함수는 일반적으로 new 와 함께 호출하여 빈 객체를 만드는 역할을 한다. 그런데 <code>Object.</code> 해서 메소드를 쓸 수도 있다. 함수 자체가 가지고 있는 메소드가 있다는 것이다.<br>만약 인스턴스로 메소드를 호출하려고 했다면 Object.prototype 에 있는 메소드라고 생각했으니까 그렇게 했을텐데 나오지 않았다. 그럼 Object 함수에 있는 메소드라는 뜻이고, 이건 내가 Object 에 직접 접근해서 써야 한다. 인스턴스로 호출할 수 있느냐, 직접 접근해야 하느냐에 따라 프로토타입메소드, 정적메소드로 갈린다. 프로토타입메소드는 인스턴스가 반드시 있어야(인스턴스를 생성한 후) 호출이 가능하다. 정적메소드는 인스턴스가 없어도 호출이 가능하다.<br>인스턴스로 호출한 메소드는 this가 그 인스턴스이고, 프로토타입메소드는 코드내부에 this를 반드시 쓰게 되어있다.<br><!-- 아 만약 this를 안 써도 되는 메소드면 정적메소드로 쓰기를 추천한다는 말인가? --></p>
+<ul>
+<li><strong>Object.create() 정적메소드</strong> </li>
+</ul>
+<p>인수로 객체 또는 null 을 쓰게 되어있는, 객체를 만드는 방법 중 하나. 프로토타입을 지정하면서 객체를 만들 수 있다는 것이 특징이다. 인수로 넘겨준 객체를 인스턴스의 프로토타입으로 설정해준다.<br><strong>Object.create(null)</strong> 을 하면 아무것도 상속받지 못하는 객체가 되고 스스로가 프로토타입의 종점이 된다. 이 객체는 Object.prototype 으로부터 상속받았어야 하는 메소드를 사용할 수 없다. 그래서  </p>
+<p><code>var hasBarProperty = Object.prototype.hasOwnProperty.call(foo, &quot;bar&quot;);</code>  </p>
+<ol>
+<li>hasOwnProperty 를 호출하고  </li>
+<li>this를 foo 로 갈아끼우자   </li>
+</ol>
+<!-- foo를 object.prototype 으로 바꾸도록 하는것임! 그럼 결국 foo.hasOwnProperty 랑 똑같아짐.
+왜냐면 object.prototype은 항상있고, 
+foo가 Object.prototype 의 메소드를 상속받지못했을 가능성때문에 이렇게 쓴다고?
+만약 그런 가능성이라면... foo.hasOwnProperty('bar') 를 했을 때 에러가 날테니까. 아예 메소드가 없으니까. 메소드자체를 불러올수가없는것이지. -->
+<p>Object.prototype으로 호출하면 일단 call메소드가 그 앞에까진 실행을 해줄 것이고, foo를 this로 갈아끼워주면 hasOwnProperty 함수 내부에서 쓰는 this 가 foo로 바뀐다. 호출하는 주체가 foo 로 바뀐게 아니라, 호출은 Object.prototype이 하고, 메소드가 사용하는 this가 foo로 바뀐다.  </p>
+<p>정적메소드에서 this가 필요없으니 null 을 주는건 그냥 의미없다는 뜻으로 준 것이다… 뭘 넣어도 되지만 그렇다고 100을 넣으면 뭔가 의미가 있어보이니까.  </p>
+<h2 id="배열"><a href="#배열" class="headerlink" title="배열"></a>배열</h2><p>배열은 0개 이상의 요소를 콤마(,)로 구분한 자료구조. 배열 객체에는 length 프로퍼티가 있고, 즉 순회가능하다는 뜻이다. length는 요소의 개수를 반환해준다. 유일한 Array 프로퍼티이며 마지막 요소를 기준으로 반환한다. 배열은 타입오브를 찍으면 객체라고 나온다.<br>빈 배열의 0번째 요소는 undefined 를 가지고 있는 게 아니라 그냥 비어있는 empty이며 메모리도 안 잡는다.<br>객체의 프로퍼티는 굳이 삭제하지 않고 안 쓰고 놔두면 된다(지우는게 오히려 일이다).<br>배열은 지워야 할 때가 있을 수 있다. 그런데 delete 로 지우면 길이는 변함없고 그 자리를 empty로 비워둔다. 그래서 splice를 써야 한다. 그 자리까지 잘라낼 수 있도록.<br>순회할 때에는 for문이 가장 빠르지만, 모던프로그래밍은 빠른것 보단 가독성이 먼저이다.  </p>
+<!-- for...in문은 객체의 프로퍼티를 순회할때 쓰는거라고함. 지금은 활용도 별로라고함
+그런데 단점이있어서 for...of 를 쓴다고.
+
+자바스크립트의 배열은 진짜 배열이 아니라 배열을 흉내낸 객체. -->
+<ul>
+<li><p>indexOf<br>인수로 준 요소의 인덱스값을 반환. 없으면 -1<br>같은 것이 두 개 있으면 처음 찾은 인덱스를 반환  </p>
+</li>
+<li><p>concat<br>원본을 바꾸지 않고 요소를 추가한 새로운 배열을 반환.<br>(push 대신 쓰면 되겠다)  </p>
+</li>
+<li><p>join<br>배열의 요소를 합쳐서 문자로 반환. 인수를 주면 인수를 사이사이에 넣어준다.  </p>
+</li>
+<li><p>slice<br>인수를 아무것도 안 주면 복사본을 생성한다.<br>유사배열객체인 arguments를 call을 통해서 slice 함수에 this로 할당하면<br>arguments가 유사배열일지라도 배열메소드인 slice를 사용할 수 있게 된다.<br>arguments를 slice로 복사하여 배열이 되어서 반환된 걸 변수에 넣어서 쓰면 된다.  </p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/20/0520/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          정규표현식, 배열고차함수, 화살표함수, Rest/Spread
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/15/0515/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">전역객체, this</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Disallow-use-of-Object-prototypes-builtins-directly-no-prototype-builtins"><span class="nav-number">1.</span> <span class="nav-text">Disallow use of Object.prototypes builtins directly (no-prototype-builtins)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#배열"><span class="nav-number">2.</span> <span class="nav-text">배열</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+        <!-- 
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+           -->
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

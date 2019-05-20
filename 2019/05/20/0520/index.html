@@ -3,19 +3,26 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Page 1 | Rudy&#39;s Blog</title>
+  <title>정규표현식, 배열고차함수, 화살표함수, Rest/Spread | Rudy&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="TILJavascript">
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Rudy&#39;s Blog">
-<meta property="og:url" content="https://dearjsmc4.github.io/index.html">
+  
+  <meta name="description" content="정규표현식Regular Expression, 줄여서 RegExp 라고 한다. 문자열에서 특정 내용을 찾거나 대체, 또는 발췌하는데에 사용한다. 반복문이나 조건문 대신 정규표현식을 쓰면 더 간단할 수 있지만 가독성이 좋지 않다.   플래그플래그는 옵션이다.    i (Ignore Case) : 대소문자를 구별하지 않고 검색   g (Global) : 문자열">
+<meta name="keywords" content="TIL,Javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="정규표현식, 배열고차함수, 화살표함수, Rest&#x2F;Spread">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/05/20/0520/index.html">
 <meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="정규표현식Regular Expression, 줄여서 RegExp 라고 한다. 문자열에서 특정 내용을 찾거나 대체, 또는 발췌하는데에 사용한다. 반복문이나 조건문 대신 정규표현식을 쓰면 더 간단할 수 있지만 가독성이 좋지 않다.   플래그플래그는 옵션이다.    i (Ignore Case) : 대소문자를 구별하지 않고 검색   g (Global) : 문자열">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-20T10:47:21.700Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rudy&#39;s Blog">
+<meta name="twitter:title" content="정규표현식, 배열고차함수, 화살표함수, Rest&#x2F;Spread">
+<meta name="twitter:description" content="정규표현식Regular Expression, 줄여서 RegExp 라고 한다. 문자열에서 특정 내용을 찾거나 대체, 또는 발췌하는데에 사용한다. 반복문이나 조건문 대신 정규표현식을 쓰면 더 간단할 수 있지만 가독성이 좋지 않다.   플래그플래그는 옵션이다.    i (Ignore Case) : 대소문자를 구별하지 않고 검색   g (Global) : 문자열">
   
     <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
   
@@ -48,7 +55,7 @@
 </html>
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   
@@ -95,9 +102,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main">
-  
-    <article id="post-0520" class="article article-type-post" itemscope itemprop="blogPost">
+          <section id="main" style="float:none;"><article id="post-0520" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +110,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/20/0520/">정규표현식, 배열고차함수, 화살표함수, Rest/Spread</a>
+      정규표현식, 배열고차함수, 화살표함수, Rest/Spread
     </h1>
   
 
@@ -121,7 +126,11 @@
 	<span class="ico-folder"></span>
     <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
  
-      <!--  -->
+      <!-- 
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+ -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
@@ -198,220 +207,31 @@
     <hr class="entry-footer-hr">
   </div>
   
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-0517" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/17/0517/">Object.prototype 접근, 배열</a>
-    </h1>
   
+    <a href="/2019/05/17/0517/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Object.prototype 접근, 배열</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/05/17/0517/" class="article-date">
-	  <time datetime="2019-05-16T15:00:00.000Z" itemprop="datePublished">May 17, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Disallow-use-of-Object-prototypes-builtins-directly-no-prototype-builtins"><a href="#Disallow-use-of-Object-prototypes-builtins-directly-no-prototype-builtins" class="headerlink" title="Disallow use of Object.prototypes builtins directly (no-prototype-builtins)"></a>Disallow use of Object.prototypes builtins directly (no-prototype-builtins)</h2><p><a href="https://eslint.org/docs/rules/no-prototype-builtins" target="_blank" rel="noopener">수업시간에 본 ESLint 원문</a>  </p>
-<p>왜 직접 접근을 불허하는가?<br>Object 의 정체는 함수다. 타입오브 찍어보면 함수라고 나온다. 이 함수는 일반적으로 new 와 함께 호출하여 빈 객체를 만드는 역할을 한다. 그런데 <code>Object.</code> 해서 메소드를 쓸 수도 있다. 함수 자체가 가지고 있는 메소드가 있다는 것이다.<br>만약 인스턴스로 메소드를 호출하려고 했다면 Object.prototype 에 있는 메소드라고 생각했으니까 그렇게 했을텐데 나오지 않았다. 그럼 Object 함수에 있는 메소드라는 뜻이고, 이건 내가 Object 에 직접 접근해서 써야 한다. 인스턴스로 호출할 수 있느냐, 직접 접근해야 하느냐에 따라 프로토타입메소드, 정적메소드로 갈린다. 프로토타입메소드는 인스턴스가 반드시 있어야(인스턴스를 생성한 후) 호출이 가능하다. 정적메소드는 인스턴스가 없어도 호출이 가능하다.<br>인스턴스로 호출한 메소드는 this가 그 인스턴스이고, 프로토타입메소드는 코드내부에 this를 반드시 쓰게 되어있다.<br><!-- 아 만약 this를 안 써도 되는 메소드면 정적메소드로 쓰기를 추천한다는 말인가? --></p>
-<ul>
-<li><strong>Object.create() 정적메소드</strong> </li>
-</ul>
-<p>인수로 객체 또는 null 을 쓰게 되어있는, 객체를 만드는 방법 중 하나. 프로토타입을 지정하면서 객체를 만들 수 있다는 것이 특징이다. 인수로 넘겨준 객체를 인스턴스의 프로토타입으로 설정해준다.<br><strong>Object.create(null)</strong> 을 하면 아무것도 상속받지 못하는 객체가 되고 스스로가 프로토타입의 종점이 된다. 이 객체는 Object.prototype 으로부터 상속받았어야 하는 메소드를 사용할 수 없다. 그래서  </p>
-<p><code>var hasBarProperty = Object.prototype.hasOwnProperty.call(foo, &quot;bar&quot;);</code>  </p>
-<ol>
-<li>hasOwnProperty 를 호출하고  </li>
-<li>this를 foo 로 갈아끼우자   </li>
-</ol>
-<!-- foo를 object.prototype 으로 바꾸도록 하는것임! 그럼 결국 foo.hasOwnProperty 랑 똑같아짐.
-왜냐면 object.prototype은 항상있고, 
-foo가 Object.prototype 의 메소드를 상속받지못했을 가능성때문에 이렇게 쓴다고?
-만약 그런 가능성이라면... foo.hasOwnProperty('bar') 를 했을 때 에러가 날테니까. 아예 메소드가 없으니까. 메소드자체를 불러올수가없는것이지. -->
-<p>Object.prototype으로 호출하면 일단 call메소드가 그 앞에까진 실행을 해줄 것이고, foo를 this로 갈아끼워주면 hasOwnProperty 함수 내부에서 쓰는 this 가 foo로 바뀐다. 호출하는 주체가 foo 로 바뀐게 아니라, 호출은 Object.prototype이 하고, 메소드가 사용하는 this가 foo로 바뀐다.  </p>
-<p>정적메소드에서 this가 필요없으니 null 을 주는건 그냥 의미없다는 뜻으로 준 것이다… 뭘 넣어도 되지만 그렇다고 100을 넣으면 뭔가 의미가 있어보이니까.  </p>
-<h2 id="배열"><a href="#배열" class="headerlink" title="배열"></a>배열</h2><p>배열은 0개 이상의 요소를 콤마(,)로 구분한 자료구조. 배열 객체에는 length 프로퍼티가 있고, 즉 순회가능하다는 뜻이다. length는 요소의 개수를 반환해준다. 유일한 Array 프로퍼티이며 마지막 요소를 기준으로 반환한다. 배열은 타입오브를 찍으면 객체라고 나온다.<br>빈 배열의 0번째 요소는 undefined 를 가지고 있는 게 아니라 그냥 비어있는 empty이며 메모리도 안 잡는다.<br>객체의 프로퍼티는 굳이 삭제하지 않고 안 쓰고 놔두면 된다(지우는게 오히려 일이다).<br>배열은 지워야 할 때가 있을 수 있다. 그런데 delete 로 지우면 길이는 변함없고 그 자리를 empty로 비워둔다. 그래서 splice를 써야 한다. 그 자리까지 잘라낼 수 있도록.<br>순회할 때에는 for문이 가장 빠르지만, 모던프로그래밍은 빠른것 보단 가독성이 먼저이다.  </p>
-<!-- for...in문은 객체의 프로퍼티를 순회할때 쓰는거라고함. 지금은 활용도 별로라고함
-그런데 단점이있어서 for...of 를 쓴다고.
-
-자바스크립트의 배열은 진짜 배열이 아니라 배열을 흉내낸 객체. -->
-<ul>
-<li><p>indexOf<br>인수로 준 요소의 인덱스값을 반환. 없으면 -1<br>같은 것이 두 개 있으면 처음 찾은 인덱스를 반환  </p>
-</li>
-<li><p>concat<br>원본을 바꾸지 않고 요소를 추가한 새로운 배열을 반환.<br>(push 대신 쓰면 되겠다)  </p>
-</li>
-<li><p>join<br>배열의 요소를 합쳐서 문자로 반환. 인수를 주면 인수를 사이사이에 넣어준다.  </p>
-</li>
-<li><p>slice<br>인수를 아무것도 안 주면 복사본을 생성한다.<br>유사배열객체인 arguments를 call을 통해서 slice 함수에 this로 할당하면<br>arguments가 유사배열일지라도 배열메소드인 slice를 사용할 수 있게 된다.<br>arguments를 slice로 복사하여 배열이 되어서 반환된 걸 변수에 넣어서 쓰면 된다.  </p>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
   
 </article>
 
 <!-- Table of Contents -->
 
-  
-
-
-  <nav id="page-nav">
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/">Next</a>
-  </nav>
-
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#정규표현식"><span class="nav-number">1.</span> <span class="nav-text">정규표현식</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#플래그"><span class="nav-number">1.1.</span> <span class="nav-text">플래그</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#패턴"><span class="nav-number">1.2.</span> <span class="nav-text">패턴</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#배열-고차-함수"><span class="nav-number">2.</span> <span class="nav-text">배열 고차 함수</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sort"><span class="nav-number">2.1.</span> <span class="nav-text">sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#forEach"><span class="nav-number">2.2.</span> <span class="nav-text">forEach</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-number">2.3.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter"><span class="nav-number">2.4.</span> <span class="nav-text">filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce"><span class="nav-number">2.5.</span> <span class="nav-text">reduce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#그-외"><span class="nav-number">2.6.</span> <span class="nav-text">그 외</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#화살표-함수"><span class="nav-number">3.</span> <span class="nav-text">화살표 함수</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rest-파라미터-Spread-연산자"><span class="nav-number">4.</span> <span class="nav-text">Rest 파라미터, Spread 연산자</span></a></li></ol>
+    
+    </div>
+  </aside>
 </section>
-          <aside id="sidebar">
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>Recent Posts</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/20/0520/">정규표현식, 배열고차함수, 화살표함수, Rest/Spread</a></h6>
-              <span>May 20, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/17/0517/">Object.prototype 접근, 배열</a></h6>
-              <span>May 17, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/15/0515/">전역객체, this</a></h6>
-              <span>May 15, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/13/0513/">함수, 프로토타입</a></h6>
-              <span>May 13, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/10/0510/">전역변수 문제점, 모듈패턴, 프로퍼티 정의, 생성자 함수</a></h6>
-              <span>May 10, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/08/0508/">원시 값과 객체, 함수, 스코프</a></h6>
-              <span>May 8, 2019</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
 
