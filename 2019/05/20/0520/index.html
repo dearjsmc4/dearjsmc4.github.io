@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Rudy&#39;s Blog">
 <meta property="og:description" content="정규표현식Regular Expression, 줄여서 RegExp 라고 한다. 문자열에서 특정 내용을 찾거나 대체, 또는 발췌하는데에 사용한다. 반복문이나 조건문 대신 정규표현식을 쓰면 더 간단할 수 있지만 가독성이 좋지 않다.   플래그플래그는 옵션이다.    i (Ignore Case) : 대소문자를 구별하지 않고 검색   g (Global) : 문자열">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-20T10:47:21.700Z">
+<meta property="og:updated_time" content="2019-05-22T10:37:59.630Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="정규표현식, 배열고차함수, 화살표함수, Rest&#x2F;Spread">
 <meta name="twitter:description" content="정규표현식Regular Expression, 줄여서 RegExp 라고 한다. 문자열에서 특정 내용을 찾거나 대체, 또는 발췌하는데에 사용한다. 반복문이나 조건문 대신 정규표현식을 쓰면 더 간단할 수 있지만 가독성이 좋지 않다.   플래그플래그는 옵션이다.    i (Ignore Case) : 대소문자를 구별하지 않고 검색   g (Global) : 문자열">
@@ -189,7 +189,11 @@
 </li>
 <li><p>spread 연산자<br>rest파라미터하고 헷갈리면 안 된다! -&gt; 얘는 풀린 걸 배열로 묶는다.<br>배열 앞에 … 를 찍으면 spread 연산자로서 동작하고 배열을 다 풀어버린다. 피연산자는 문자, 배열, map, set 등의 순회가능한 자료구조여야한다.<br>sperad연산자를 사용한 배열을 인수로 전달할 수 있다. apply대신 썼던 것을 기억하자.<br>배열을 배열 안에서 풀어서 concat처럼 쓸 수 있다.<br>[…array, 4,5,6] 처럼.</p>
 </li>
+<li><p>Rest/Spread 프로퍼티  </p>
+</li>
 </ul>
+<p>Object.assign 을 대체할 수 있는 문법.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> n = &#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span>, ...&#123; <span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">4</span> &#125; &#125;;</span><br><span class="line"><span class="built_in">console</span>.log(n); <span class="comment">// &#123; x: 1, y: 2, a: 3, b: 4 &#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>객체 리터럴 안에서 푸는 건 가능하다. 풀려 나와서 머지가 될 것이다.<br>객체를 병합하거나 특정 프로퍼티를 변경할 때 쓴다.<br>정식 표현이 아니므로 구형 브라우저에서 돌지 않는다.  </p>
 
       
     </div>
@@ -209,6 +213,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2019/05/22/0522/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          클래스, 디스트럭처링, 모듈
+        
+      </div>
+    </a>
   
   
     <a href="/2019/05/17/0517/" id="article-nav-older" class="article-nav-link-wrap">
