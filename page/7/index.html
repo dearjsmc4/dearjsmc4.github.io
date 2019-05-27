@@ -196,7 +196,7 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-0423-2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0419" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -204,7 +204,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0423-2/">컴퓨터 공학 TIL 0423-2</a>
+      <a class="article-title" href="/2019/05/03/0419/">컴퓨터 공학 TIL 0419</a>
     </h1>
   
 
@@ -212,7 +212,7 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/03/0423-2/" class="article-date">
+	<a href="/2019/05/03/0419/" class="article-date">
 	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
 	</a>
 
@@ -224,20 +224,56 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="process-와-thread"><a href="#process-와-thread" class="headerlink" title="process 와 thread"></a>process 와 thread</h2><p>process : 인스트럭션의 나열.<br>OS 가 프로세스에게 할당해주는 메모리는 실제 메모리가 아닌 <strong>가상 주소 공간(VAS)</strong><br>각 프로세스에 할당된 메모리는 가상메모리.  </p>
-<h3 id="IPC-InterProcess-Communication-프로세스간-커뮤니케이션"><a href="#IPC-InterProcess-Communication-프로세스간-커뮤니케이션" class="headerlink" title="IPC: InterProcess Communication, 프로세스간 커뮤니케이션"></a>IPC: InterProcess Communication, 프로세스간 커뮤니케이션</h3><p>프로세스간 공간은 완전히 분리되어 있으므로,<br>기본적으로 프로세스끼리 서로의 데이터에 직접적으로 접근하거나 데이터를 바꿀 수는 없다.<br>그럼에도 불구하고 별도로 커뮤니케이션을 해야 할 때가 있다.<br>성능을 높이기 위해 여러 프로세스를 동시에 실행할 때<br>( ex) 웹 서버가 사용자 요청이 올 때마다 새로운 프로세스를 만들어 즉시 대응 )<br><em>프로세스간 상태 확인 및 데이터 송수신</em> 이 필요하기 때문이다. 이때 쓰는 것이 IPC기법이다.<br>대부분의 IPC기법은 각 프로세스가 공유하는 커널공간을 이용한다.  </p>
+        <h1 id="파이썬-기초와-알고리즘-3일차"><a href="#파이썬-기초와-알고리즘-3일차" class="headerlink" title="파이썬 기초와 알고리즘 3일차"></a>파이썬 기초와 알고리즘 3일차</h1><p><code>.replace()</code> - 원본의 데이터를 바꾸지 않음.  </p>
 <ul>
-<li><p>Shared resource</p>
+<li><p>튜플은 <strong>성능 최적화</strong>를 위해 존재.<br>데이터를 바꿀 수 없기 때문에 데이터를 가져와서 읽는 용도로만 사용한다.<br>리스트보다 빠르다. 튜플을 쓸 수 있다면 튜플을 쓸 것.  </p>
 </li>
-<li><p>Multi Threading<br>여러 개의 실행흐름이 필요하다 -&gt; concurrency programming<br>동시에 도는 것 같은 실행흐름.  </p>
+<li><p>딕셔너리 = “Collection of Pairs”<br>pair = <code>key : item</code><br>키와 밸류가 한 쌍으로 모여있다.  </p>
+</li>
+<li><p>뷰객체와 리스트객체의 차이<br>원본에 데이터를 추가했을 때 뷰 객체에서는 변경사항이 저장되지만 리스트는 안됨.  </p>
 </li>
 </ul>
-<p>스레드는 프로세스에 포함된 개념.<br>우리가 만든 프로그램은 스레드가 하나.<br>스레드가 하나면 <code>싱글스레드</code>.<br>자바스크립트는 흐름이 하나밖에 없는 것.  </p>
-<h3 id="멀티스레딩"><a href="#멀티스레딩" class="headerlink" title="멀티스레딩"></a>멀티스레딩</h3><p><code>멀티스레드</code>는 흐름이 여러 개인 것.<br>스레드가 각자의 스택을 따로 가지고 있다.<br>실행흐름이란게 인스트럭션인데 인스트럭션은 함수 실행. 함수가 실행되려면 스택프레임이 필요하고<br>이 스택프레임은 스택에 쌓인다.<br>코드와 데이터와 힙은 공유를 하고 스택만 따로 따로 가지고 있다.<br>여러 개의 스레드가 공유자원을 공유.  </p>
-<p>Shared Resource(각 스레드가 접근하는 하나의 자원) 가 있을 때<br>race condition, 경쟁조건이 발생한다.<br>-&gt; 상호배제 를 통해 예방<br>-&gt; <strong>GIL : Global Interpreter Lock</strong><br>공유자원을 먼저 점유한 스레드가 작업을 마치고 릴리즈를 할 때까지 다른 스레드들이 기다리게 한다.  </p>
-<p>모든 스레드가 접근해서 사용하는 리스트: shared list<br>각 스레드가 접근하는 리스트가 같을 때, 그 안에서 접근하는 데이터는 다른 것이 좋다.  </p>
-<h3 id="동시성-프로그래밍과-병렬-프로그래밍"><a href="#동시성-프로그래밍과-병렬-프로그래밍" class="headerlink" title="동시성 프로그래밍과 병렬 프로그래밍"></a>동시성 프로그래밍과 병렬 프로그래밍</h3><p><strong>동시성 프로그래밍</strong>은 cpu(프로세스)가 하나여도 동시성 프로그래밍을 구현할 수 있다.<br>멀티스레딩을 하게되면 라운드로빈으로 돌아갈 수 있으니까.<br>하지만 여러 개를 하나씩 순서대로 돌리는거지, 엄밀한 의미의 병렬은 아니다.<br><strong>병렬 프로그래밍</strong>은 아예 하드웨어가 최소 두 개 이상 있어서<br>어떤 태스크가 있을 때 각 하드웨어가 일을 같이 처리하는 것이다.<br>2초 걸릴 일을 1초만에 할 수 있는 것이다.  </p>
-<p>싱글코어 멀티스레딩: 단순하게 동시성프로그래밍. 스레드를 여러 개 만들어서 실행.<br>멀티코어 멀티스레딩: 병렬 + 동시성. 동시에 두 개 이상 돌 수 있는 것.  </p>
+<p>파이썬은 단순성이 존재목적.  </p>
+<ul>
+<li>expression: 식.<br>무언가를 반환할 수 있다면 그것은 식이다.<br>단항식 역시 참과 거짓, 혹은 값 자체를 반환할 수 있으므로 식이다.  </li>
+</ul>
+<p>a+b : <code>이항식. binary expression</code><br>“abc” : <code>단항식 unary expression</code>  </p>
+<p>파이썬에서는 함수도 식이다.<br>식이라면 반드시 무언가를 반환해야 한다.<br>print() 도 함수고, 반환이 없어보이지만 실제로는 none 을 반환함.  </p>
+<p><code>stdin</code> : standard input (키보드), 0<br><code>stdout</code> : standard output (모니터), 1<br><code>stderr</code> : standard error (모니터), 2  </p>
+<h2 id="문자열"><a href="#문자열" class="headerlink" title="문자열"></a>문자열</h2><ul>
+<li>ASCII  </li>
+<li><p>UNICODE  </p>
+<ul>
+<li>UTF-8  </li>
+<li>UTF-16  </li>
+<li>UTF-32  </li>
+<li>~CP949~  </li>
+</ul>
+</li>
+<li><p>문자집합 :<br>영어, 불어, 독일어는 언어체계는 다르지만 같은 문자집합을 공유한다.  </p>
+</li>
+<li><p>문자 인코딩 : 모스부호처럼 문자를 부호화하는 것.<br>  반대로 모스부호를 문자로 만드는 것은 복호화.  </p>
+</li>
+<li><p>코트 포인트 : 내 맘대로 a를 13으로 바꿀 수 없다. 전세계 사람들이 약속을 해야 한다.<br>  a = 97 일때, a는 chracter 고, 97은 코드포인트. 어떠한 문자에 매핑되어있는 숫자.<br>  이렇게 매핑된 문자와 숫자를 테이블로 정리를 해놓은 것이 ASCII.  </p>
+</li>
+</ul>
+<p>ASCII의 치명적 약점 : </p>
+<ol>
+<li>7비트만 사용할 수 있고 127개까지만 문자가 매핑되어있다.  </li>
+<li>영어밖에 없다.  </li>
+</ol>
+<p>-&gt; <strong>UNICODE</strong><br>16비트짜리 평면을 17개 만들었다.<br>ASCII 코드가 임베디드 되어 있다.  </p>
+<ul>
+<li>UTF-8<ul>
+<li>8비트 기반</li>
+<li>아스키에 소속된 영어는 여전히 1바이트, 한글은 3바이트로 저장됨  </li>
+</ul>
+</li>
+</ul>
+<p>big endian &amp; little endian &amp; endian less(빅, 리틀 상관없이 그 자체가 저장됨)  </p>
+<ul>
+<li>단순 정렬 알고리즘(bubble sort)<br><a href="https://blueshirudy.tistory.com/13" target="_blank" rel="noopener">과정 정리해본 노트</a></li>
+</ul>
 
       
     </div>
@@ -264,7 +300,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/6/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/6/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/8/">Next</a>
   </nav>
 
 </section>
@@ -277,6 +313,18 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/05/23/0523/">DOM, 동기식 &amp; 비동기식, 이벤트</a></h6>
+              <span>May 23, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -338,18 +386,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/10/0510/">전역변수 문제점, 모듈패턴, 프로퍼티 정의, 생성자 함수</a></h6>
-              <span>May 10, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -359,7 +395,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -369,7 +405,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">23</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">24</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -380,7 +416,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

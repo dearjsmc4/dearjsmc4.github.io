@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>DOM, 동기식 &amp; 비동기식, 이벤트 | Rudy&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="TILJavascript">
+  
+  
+  
+  
+  <meta name="description" content="DOM트리를 만든다 -&amp;gt; 부자관계가 있다.DOM 트리 : html 텍스트문서를 파싱한 결과로, 메모리에 들어가있는 트리모양의 자료구조.우리가 작성한 구조 안에 돔트리를 컨트롤 할 수있는 DOM API가 있다면 자바스크립트파일을 실행할 때 그것들을 조작할 수 있다. 직접 메모리에 접근하여 돔트리구조 자체를 바꿔버린다 -&amp;gt; 화면을 다시 그려야함 -&amp;">
+<meta name="keywords" content="TIL,Javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM, 동기식 &amp; 비동기식, 이벤트">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/05/23/0523/index.html">
+<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="DOM트리를 만든다 -&amp;gt; 부자관계가 있다.DOM 트리 : html 텍스트문서를 파싱한 결과로, 메모리에 들어가있는 트리모양의 자료구조.우리가 작성한 구조 안에 돔트리를 컨트롤 할 수있는 DOM API가 있다면 자바스크립트파일을 실행할 때 그것들을 조작할 수 있다. 직접 메모리에 접근하여 돔트리구조 자체를 바꿔버린다 -&amp;gt; 화면을 다시 그려야함 -&amp;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-27T10:38:55.010Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DOM, 동기식 &amp; 비동기식, 이벤트">
+<meta name="twitter:description" content="DOM트리를 만든다 -&amp;gt; 부자관계가 있다.DOM 트리 : html 텍스트문서를 파싱한 결과로, 메모리에 들어가있는 트리모양의 자료구조.우리가 작성한 구조 안에 돔트리를 컨트롤 할 수있는 DOM API가 있다면 자바스크립트파일을 실행할 때 그것들을 조작할 수 있다. 직접 메모리에 접근하여 돔트리구조 자체를 바꿔버린다 -&amp;gt; 화면을 다시 그려야함 -&amp;">
+  
+    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/fashion.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-0523" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      DOM, 동기식 &amp; 비동기식, 이벤트
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/05/23/0523/" class="article-date">
+	  <time datetime="2019-05-22T15:00:00.000Z" itemprop="datePublished">May 23, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+ 
+      <!-- 
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+ -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><p>트리를 만든다 -&gt; 부자관계가 있다.<br><strong>DOM 트리</strong> : html 텍스트문서를 파싱한 결과로, 메모리에 들어가있는 트리모양의 자료구조.<br>우리가 작성한 구조 안에 돔트리를 컨트롤 할 수있는 DOM API가 있다면 자바스크립트파일을 실행할 때 그것들을 조작할 수 있다. 직접 메모리에 접근하여 돔트리구조 자체를 바꿔버린다 -&gt; 화면을 다시 그려야함 -&gt; 비용이 든다!<br>우리는 SPA(single page application) 로 개발을 할 것이다. html을 딱 하나만 만든다는 것. html 코드의 조각들은 자바스크립트 내부에 들어가있다. -&gt; 앵귤러 리액트 (뷰) 가 이런 일들을 위한 것. 페이지를 리페인팅하는 비용은 적게 들고 퍼포먼스 올리고…<br>모던웹개발에서는 SPA를 만들때 프레임워크를 쓰는 것이 좋다.  </p>
+<ul>
+<li><p>html 태그안에 들어있는 <strong>어트리뷰트</strong>는 왜 어트리뷰트인가?<br>어트리뷰트는 초기값. 변하지 않는다. -&gt; 인풋의 타입이나 밸류는 태그 안에서 지정한 그대로다.<br>프로퍼티는 변한다 -&gt; 브라우저에서 인풋에 내용을 넣으면 프로퍼티 밸류가 바뀐다 -&gt; 상태<br>이 상태는 돔요소가 가지고 있다.  </p>
+</li>
+<li><p><strong>노드</strong>: 돔트리상의 하나하나의 가지 -&gt; 엘리먼트라고도 한다.<br>문서노드(진입점), 요소 노드, 텍스트노드, 어트리뷰트 노드 등이 있다.  </p>
+</li>
+<li><p>HTMLCollection &amp; NodeList<br><code>document.querySelector()</code>로 불러올 때는 NodeList라는 자료구조에 담아서 가져온다 -&gt; Non live<br>get 종류의 메소드로 불러오면 <code>HTMLCollection</code> 에 담겨서 온다 -&gt; live (실시간으로 바뀐다)<br>HTMLCollection은 유사배열객체이다. NodeList도 유사배열객체.<br>가져온 유사배열 객체를 elem 이라는 변수에 담았다고 했을 때,  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[...elems].forEach(<span class="function"><span class="params">elem</span> =&gt;</span> elem.className = <span class="string">'blue'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>유사배열객체를 배열로 반환하면 배열고차함수를 사용할 수 있다.  </p>
+<!-- id는 전역에 변수로 남아버린다. id를 많이 줄수록 변수도 많아지는것! -->
+<h2 id="동기식-amp-비동기식"><a href="#동기식-amp-비동기식" class="headerlink" title="동기식 &amp; 비동기식"></a>동기식 &amp; 비동기식</h2><p>동기라는건 순서가 보장된다는 뜻이다.<br>반대로 비동기는 실행 순서가 보장되지 않는다.<br><!-- 비동기함수인 셋타임함수를 누가 호출하는가? 0초 경과 후에 콜백함수를 누가 호출? --></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'func1'</span>);</span><br><span class="line">  func2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'func2'</span>);</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  func3();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'func3'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func1();</span><br></pre></td></tr></table></figure>
+<p>함수가 종료된다는 건 콜스택에서 빠진다는 말이다.<br>setTimeout 함수는 0초가 경과했는지를 검사해야하고, 0초가 경과하면 tick 이라는 이벤트가 발생하는데<br>그때 셋타임은 이벤트큐로 들어간다(큐는 선입선출이고 콜스택은 후입선출이다). 그리고 콜스택이 비었는지를 이벤트루프가 돌면서 체크하다가 콜스택이 비면 이벤트큐에서 이벤트를 갖다가 콜스택에 넣는다. 즉 동기함수들이 모두 끝난 후에 가장 마지막에 실행된다.</p>
+<p>자바스크립트는 콜스택이 1개이고, 단일스레드이고, 병렬처리가 안 된다.<br>그러나 워낙 고속이다보니 한번에 여러 일을 하는것처럼 보일뿐이다.<br>함수를 잘게잘게 나누라는것도 이런 이유때문이다. 빨리 실행하고 버리게.  </p>
+<h2 id="이벤트"><a href="#이벤트" class="headerlink" title="이벤트"></a>이벤트</h2><ul>
+<li>이벤트를 등록하는 세 가지 방법  </li>
+</ul>
+<ol>
+<li>html 태그 안에 직접 함수를 호출 -&gt; html과 js는 분리하도록 하자…  </li>
+<li><strong>on 프로퍼티</strong>를 이용한다. 원래 값이 null 인 상태인데 여기다 이벤트를 우리가 달아주면 된다.<br><code>btn.onclick = function foo() {}</code> -&gt; 이벤트 핸들러 프로퍼티 방식<br>여기서 foo 는 메소드이다. 프로퍼티의 값이 함수면 메소드니까.<br>이벤트 핸들러를 하나밖에 달 수 없다. 두 개를 달면 덮어쓴다. html요소에만 쓸 수 있다.  </li>
+<li><strong>addEventListener 메소드</strong> 방식. 요소 선택 후에 <code>btn.addEventListener(&#39;click&#39;, function () {})</code> 이런 식으로 호출. 이때 인수로 함수를 주는거니까 콜백으로 주는 것이다. 클릭 이벤트가 발생하면 함수호출해달라는 뜻. html요소뿐 아니라 모든 돔요소에서 동작한다. 돔요소를 지정해주지 않으면 전역 어디에서든 이벤트가 동작한다.  </li>
+</ol>
+<p>이벤트가 시작되면 window에서부터 시작해서 지정된 요소까지 타고 내려간다 -&gt; 캡처링<br>요소를 찍고 다시 window로 거슬러 올라간다 -&gt; 기본값은 버블링  </p>
+<p>이벤트객체: (e)  </p>
+<p><strong>이벤트타겟!!!</strong><br>실제로 이벤트를 발생시킨 요소에 대한 참조.<br>버튼이 여러개일때 내가 누른 ‘그’ 버튼을 참조한다.<br><!-- e.target 는 애드이벤트리스너 안에서 this와 같다. 애드이벤트리스너 앞에 있는 요소. --></p>
+<p><strong>이벤트 위임</strong><br>div에 이벤트를 걸고, div 안에서 어떤 버튼이 이벤트를 발생시켰는지를 e.target과 버블링을 이용하여 잡아낸다.  </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/05/22/0522/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">클래스, 디스트럭처링, 모듈</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM"><span class="nav-number">1.</span> <span class="nav-text">DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#동기식-amp-비동기식"><span class="nav-number">2.</span> <span class="nav-text">동기식 &amp; 비동기식</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#이벤트"><span class="nav-number">3.</span> <span class="nav-text">이벤트</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+        <!-- 
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+           -->
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
