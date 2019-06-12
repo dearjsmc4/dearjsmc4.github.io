@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>SPA, Routing | Rudy&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="TILJavascript">
+  
+  
+  
+  
+  <meta name="description" content="SPA(Single Page Application)앵귤러, 뷰, 리액트 등을 배우려면 SPA부터 잘 알아야 한다.   SPA는 페이지가 여러 개일지라도 HTML파일은 단 하나다. 자바스크립트는 하나일수도, 여러개일수도(웹팩으로 쪼갤 수 있다). 게다가 HTML파일에는 빈 태그가 있고, 그것을 루트태그라고 하는데 JS가 돌면서 루트태그 안에 view를 집어넣">
+<meta name="keywords" content="TIL,Javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SPA, Routing">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/06/11/0611/index.html">
+<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="SPA(Single Page Application)앵귤러, 뷰, 리액트 등을 배우려면 SPA부터 잘 알아야 한다.   SPA는 페이지가 여러 개일지라도 HTML파일은 단 하나다. 자바스크립트는 하나일수도, 여러개일수도(웹팩으로 쪼갤 수 있다). 게다가 HTML파일에는 빈 태그가 있고, 그것을 루트태그라고 하는데 JS가 돌면서 루트태그 안에 view를 집어넣">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-12T10:12:53.542Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SPA, Routing">
+<meta name="twitter:description" content="SPA(Single Page Application)앵귤러, 뷰, 리액트 등을 배우려면 SPA부터 잘 알아야 한다.   SPA는 페이지가 여러 개일지라도 HTML파일은 단 하나다. 자바스크립트는 하나일수도, 여러개일수도(웹팩으로 쪼갤 수 있다). 게다가 HTML파일에는 빈 태그가 있고, 그것을 루트태그라고 하는데 JS가 돌면서 루트태그 안에 view를 집어넣">
+  
+    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/fashion.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-0611" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      SPA, Routing
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/06/11/0611/" class="article-date">
+	  <time datetime="2019-06-10T15:00:00.000Z" itemprop="datePublished">June 11, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+ 
+      <!-- 
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+ -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SPA-Single-Page-Application"><a href="#SPA-Single-Page-Application" class="headerlink" title="SPA(Single Page Application)"></a>SPA(Single Page Application)</h2><p>앵귤러, 뷰, 리액트 등을 배우려면 SPA부터 잘 알아야 한다.  </p>
+<p>SPA는 페이지가 여러 개일지라도 <strong>HTML파일은 단 하나</strong>다. 자바스크립트는 하나일수도, 여러개일수도(웹팩으로 쪼갤 수 있다). 게다가 HTML파일에는 빈 태그가 있고, 그것을 루트태그라고 하는데 JS가 돌면서 루트태그 안에 view를 집어넣는다.<br><!-- Ajax를 쓸 때 생기는 여러 제약사항을 커버하기 위한 모던 웹 패러다임이다.??   --><br>HTML을 처음 부르면 리소스를 가져올텐데, 첫 페이지를 로딩하는 순간 모든 리소스를 한번에 다운로드하는 것이 기본이다. 그래서 <strong>첫 페이지 로딩이 느리다</strong>는 단점이 있다. 하지만 뒷 페이지부터는 화면을 갈아끼기만 하면 되므로 퍼포먼스가 좋다. SPA를 사용하는 가장 큰 이유는, <strong>사용자 경험</strong>이 일반 네이티브 앱과 비교할 때 손색이 없기 때문이다. <strong>부드러운 화면전환</strong>이 가능하다. 화면전환이라는 건 HTML을 완전히 새로 그린다는건데 쓸데없는 통신, 쓸데없는 렌더링이 발생한다. 화면이 깜빡하면 네이티브 앱처럼 동작하는 게 아니다.(엑셀이 화면깜빡거리지 않잖아) AJAX에서의 화면전환은 전부 다 그리는 게 아니라 필요한 부분만 그린다.<br><!-- 웹은 원래 문서 공유/문서 간 이동을 위해 만들어졌다. --></p>
+<p>a태그는 기본적으로 화면전환을 일으키는데, 이때 <code>e.preventDefault</code>를 써서 화면전환을 막고 Ajax 요청을 한다.<br>Ajax방식으로 하면 URL이 하나이기때문에 검색로봇이 검색할 수 없다 -&gt; 구글에서 아무리 찾아도 첫 페이지밖에 안 나온다.<br>이것이 <strong>SEO 이슈</strong>이다. 일반 웹 페이지에서 SEO이슈가 터지는 건 치명적이다. 검색이 안 되면 곤란하다. 근데 내부에서만 쓰는 웹 애플리케이션은 반대로 검색이 되면 곤란하다.<br>그리고 주소창이 안 바뀌면 SEO이슈뿐만 아니라 앞으로가기/뒤로가기가 안 되는 문제가 생긴다. 그래서 히스토리를 관리할 수 있는 HTML5 메소드가 나왔는데, HTML5니까 되는 브라우저도 있고 안 되는 브라우저도 있다.<br>웹 앱도 검색이 됐으면 좋겠다면 서버사이드 렌더링을 해야한다.<br>모든 것을 만족시키는 혁신적인 방법, 은탄환은 지금까지도 앞으로도 없다.  </p>
+<!-- 우선 결론적으로, 우리가 바닐라스크립트로 라우팅을 구현하기는 바람직하지 않고 매우 힘들다. 앵귤러 뷰 리액트 같은 것들로 하는 게 현명하다. 우리가 이보다 잘 만들 수는 없어... -->
+<ul>
+<li>웹 애플리케이션 vs 웹 페이지<br>일반적인 정보를 제공하는 단순한 페이지 = 웹 페이지<br>내가 페이지에서 어떤 일을 한다 = 웹 어플리케이션  </li>
+</ul>
+<h2 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h2><p>출발지와 목적지까지의 경로가 여러 개 있을 때, 경로를 결정하는 방식.<br>웹에서는 라우팅을 화면이동으로 이해한다.  </p>
+<ol>
+<li>주소창에 URL을 입력하거나  </li>
+<li>a태그를 클릭하거나  </li>
+<li>뒤로가기/앞으로가기를 클릭할 때  </li>
+</ol>
+<h2 id="SPA와-Routing"><a href="#SPA와-Routing" class="headerlink" title="SPA와 Routing"></a>SPA와 Routing</h2><ul>
+<li><p>전통적 링크방식  </p>
+<!-- ```javascript
+<li><a href="/">Home</a></li> // 루트. 현재 페이지가 온 곳
+<li><a href="service.html">Service</a></li> // 새로운 파일 요청.
+<li><a href="about.html">About</a></li>
+``` -->
+<p>주소창을 바꾼다. 바뀐 주소를 서버에 요청하고, 그 요청에 대한 응답이 오면 화면을 새롭게 그린다.<br>검색엔진에 의해 검색당하려면 페이지들이 고유의 URL을 가지고 있어야 한다.<br>SEO이슈 없고 히스토리 관리 문제없고 구현도 쉽지만, 불필요한 퍼포먼스가 너무 많다.  </p>
+</li>
+<li><p>Ajax 방식<br>href 속성이 필요없다. 주소창이 바뀌지 않는다(동작을 막았으니까).<br>화면깜빡임이나 불필요한 리소스 요청, 렌더링이 없지만 자바스크립트 코딩을 해야 한다.<br>히스토리 관리가 안 되고, SEO이슈 발생. 게다가 리로딩하면 초기의 index 페이지로 돌아간다.<br>리로딩은 URL을 다시 보내는 것이기 때문이다.  </p>
+</li>
+<li><p>hash 방식<br>요청은 새로 보내지 않으면서 주소는 다르게 관리하는 방법.<br>기존 URL에서 해쉬가 바뀌어도 요청이 새로 발생하지 않는 것을 이용한 방법.<br>히스토리관리가 되지만, 주소창에 해쉬(#)가 들어가야하기때문에 보기에 좋지 않다.<br><code>#!</code>을 사용하기도 하는데 이를 해시뱅(Hash-bang)이라고 부른다.<br>load 이벤트 : 모든 리소스가 다 준비됐을 때<br>contentloaded 이벤트 : 돔이 완성됐을 때 -&gt; 로드 이벤트보다 먼저 발생  </p>
+</li>
+<li><p>Pjax 방식<br>hash 방식의 가장 큰 단점은 SEO 이슈이다. 이를 보완한 방법이 HTML5의 Histroy API인 pushState와 popstate 이벤트를 사용한 PJAX 방식이다. 리로드하면 서버에 REST API처럼 다시 요청이 간다. 서버에서 대응해줘야 할 필요가 있다. 백엔드의 협력이 필요하다.  </p>
+</li>
+</ul>
+<!-- 수퍼
+extend관계일때 super를 불러줘야한다. 부모가 this를 만들어서 자식에게 주면 그것을 자식이 이어서쓴다
+부모가 빈 객체를 this에 바인딩하고 name을 세팅한 뒤 this를 리턴하면 
+super가 this를 리턴하는데 그것이 자식의 this로 들어간다
+this는 name을 가지고있는 인스턴스이고, 거기에다가 grade를 추가.
+이때 human과 student가 프로토타입체인이 구성되어서 메소드도 상속받는다
+Student 는 클래스지만 클래스도 함수니까 프로토타입도 생김.
+
+```javascript
+class Human {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log('집에가고싶다');
+  }
+}
+
+class Student extends Human {
+  constructor(name, grade) {
+    super(name);
+    this.grade = grade;
+  }
+}
+``` -->
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/06/07/0607/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">클로저</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SPA-Single-Page-Application"><span class="nav-number">1.</span> <span class="nav-text">SPA(Single Page Application)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Routing"><span class="nav-number">2.</span> <span class="nav-text">Routing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SPA와-Routing"><span class="nav-number">3.</span> <span class="nav-text">SPA와 Routing</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+        <!-- 
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+           -->
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

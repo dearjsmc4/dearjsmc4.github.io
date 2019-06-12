@@ -97,7 +97,7 @@
         
           <section id="main">
   
-    <article id="post-0423-2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0424" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +105,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0423-2/">컴퓨터 공학 TIL 0423-2</a>
+      <a class="article-title" href="/2019/05/03/0424/">컴퓨터 공학 TIL 0424</a>
     </h1>
   
 
@@ -113,7 +113,7 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/03/0423-2/" class="article-date">
+	<a href="/2019/05/03/0424/" class="article-date">
 	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
 	</a>
 
@@ -125,20 +125,38 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="process-와-thread"><a href="#process-와-thread" class="headerlink" title="process 와 thread"></a>process 와 thread</h2><p>process : 인스트럭션의 나열.<br>OS 가 프로세스에게 할당해주는 메모리는 실제 메모리가 아닌 <strong>가상 주소 공간(VAS)</strong><br>각 프로세스에 할당된 메모리는 가상메모리.  </p>
-<h3 id="IPC-InterProcess-Communication-프로세스간-커뮤니케이션"><a href="#IPC-InterProcess-Communication-프로세스간-커뮤니케이션" class="headerlink" title="IPC: InterProcess Communication, 프로세스간 커뮤니케이션"></a>IPC: InterProcess Communication, 프로세스간 커뮤니케이션</h3><p>프로세스간 공간은 완전히 분리되어 있으므로,<br>기본적으로 프로세스끼리 서로의 데이터에 직접적으로 접근하거나 데이터를 바꿀 수는 없다.<br>그럼에도 불구하고 별도로 커뮤니케이션을 해야 할 때가 있다.<br>성능을 높이기 위해 여러 프로세스를 동시에 실행할 때<br>( ex) 웹 서버가 사용자 요청이 올 때마다 새로운 프로세스를 만들어 즉시 대응 )<br><em>프로세스간 상태 확인 및 데이터 송수신</em> 이 필요하기 때문이다. 이때 쓰는 것이 IPC기법이다.<br>대부분의 IPC기법은 각 프로세스가 공유하는 커널공간을 이용한다.  </p>
-<ul>
-<li><p>Shared resource</p>
+        <h1 id="OOP-꼭-공부해야-함"><a href="#OOP-꼭-공부해야-함" class="headerlink" title="OOP (꼭 공부해야 함)"></a>OOP (꼭 공부해야 함)</h1><ol>
+<li>캡슐화(encapsulation) : 정보 은닉을 포함  </li>
+<li>정보 은닉(information hiding)  </li>
+<li>다형성 (polymophism) : 상속(inheritance)<br> -&gt; 메소드 오버라이딩(method overriding)<br> -&gt; 함수 오버로딩과 헷갈리면 안됨.  </li>
+<li>디자인 패턴(SOLID)  <ul>
+<li>Single responsibility principle(단일 책임 원칙)  </li>
+<li>Open-closed principle(확장-폐쇄 원칙)  </li>
+<li>Liskov substitution principle(리스코브 치환 원칙)  </li>
+<li>Interface segregation principle(인터페이스 분리 원칙)  </li>
+<li>Dependancy inversion principle (의존 역전 원칙)  </li>
+</ul>
 </li>
-<li><p>Multi Threading<br>여러 개의 실행흐름이 필요하다 -&gt; concurrency programming<br>동시에 도는 것 같은 실행흐름.  </p>
+</ol>
+<p><strong>객체 지향</strong><br>객체지향 : 관련 있는 변수와 함수를 묶어둠.<br>    변수 : 상태정보(<code>데이터</code>)<br>    함수(여기선 함수가 아니라 메서드) : <code>기능</code>   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Account:</span><br><span class="line">    #생성자(constructor): 객체를 생성할 때 반드시 한번호출한다 --&gt; Account() 형태로 쓴다</span><br><span class="line">    def __init__(self, cust_name, init_balance):</span><br><span class="line">        # 인스턴스 멤버(속성, 데이터, 변수)를 설정</span><br><span class="line">        self.name=cust_name</span><br><span class="line">        self.balance=init_balance</span><br><span class="line">    #소멸자(destructor): 객체가 소멸될 때 반드시 한번 호출</span><br><span class="line">    def __del__(self):</span><br><span class="line">        pass</span><br><span class="line">    #인스턴스 메서드(기능, 행동)</span><br><span class="line">    def deposit(self, money):</span><br><span class="line">        if money &lt; 0:</span><br><span class="line">            return False</span><br><span class="line">        #관련 있는 변수 : 인스턴스멤버</span><br><span class="line">        self.balance+=money</span><br><span class="line">        return True</span><br><span class="line">        </span><br><span class="line">    def withdraw(self, money):</span><br><span class="line">        if money &gt; self.balance:</span><br><span class="line">            return 0</span><br><span class="line">        self.balance -= money</span><br><span class="line">        return money</span><br><span class="line">    </span><br><span class="line">    def transter(self, other, money):</span><br><span class="line">        self.balance -= money</span><br><span class="line">        #다른 객체의 멤버에 바로 접근하지 않는다는 것이 원칙이다</span><br><span class="line">        #다른 객체의 멤버값(데이터)을 변경할때는 반드시 상대 객체가 가진 메서드에 위임해야한다.</span><br><span class="line">        # = 메시지 패싱 </span><br><span class="line">        other.deposit(money)</span><br></pre></td></tr></table></figure>
+<p>-&gt; <strong>입력값은 같지만 상태정보에 따라 결과값은 다르게 나온다</strong></p>
+<h1 id="네트워크"><a href="#네트워크" class="headerlink" title="네트워크"></a>네트워크</h1><h2 id="Network-Interface-물리계층-데이터-링크-계층-mac-address-담당"><a href="#Network-Interface-물리계층-데이터-링크-계층-mac-address-담당" class="headerlink" title="Network Interface(물리계층, 데이터 링크 계층): mac address 담당"></a>Network Interface(물리계층, 데이터 링크 계층): mac address 담당</h2><h3 id="LAN-amp-WAN"><a href="#LAN-amp-WAN" class="headerlink" title="LAN &amp; WAN"></a>LAN &amp; WAN</h3><ul>
+<li><p>LAN : <code>Local Area Network</code><br>같은 지역 내에서 라우터를 통해 서로 연결.<br>아이피주소가 필요없이 물리주소만 알고있으면 라우터를 거치지 않고도 연결이 가능.<br>맥주소를 통해 LAN 안에서만 데이터를 주고받는 프로토콜 = <code>이더넷 프로토콜</code><br>패킷 : 패킷의 맨 윗 부분에 이더넷 헤더가 들어감.<br>이더넷 헤더에는 패킷을 받을 상대방의 맥주소와 송신자의 맥주소가 들어감.<br>받는 사람과 보내는 사람은 같은 LAN 안에 존재해야함.<br><code>MTU(maximum transfer unit)</code> : 한번에 보낼 수 있는 데이터의 크기.<br>패킷은 한번에 1500바이트를 넘지 않는다.  </p>
+</li>
+<li><p>WAN : <code>Wide Area Network</code>  </p>
 </li>
 </ul>
-<p>스레드는 프로세스에 포함된 개념.<br>우리가 만든 프로그램은 스레드가 하나.<br>스레드가 하나면 <code>싱글스레드</code>.<br>자바스크립트는 흐름이 하나밖에 없는 것.  </p>
-<h3 id="멀티스레딩"><a href="#멀티스레딩" class="headerlink" title="멀티스레딩"></a>멀티스레딩</h3><p><code>멀티스레드</code>는 흐름이 여러 개인 것.<br>스레드가 각자의 스택을 따로 가지고 있다.<br>실행흐름이란게 인스트럭션인데 인스트럭션은 함수 실행. 함수가 실행되려면 스택프레임이 필요하고<br>이 스택프레임은 스택에 쌓인다.<br>코드와 데이터와 힙은 공유를 하고 스택만 따로 따로 가지고 있다.<br>여러 개의 스레드가 공유자원을 공유.  </p>
-<p>Shared Resource(각 스레드가 접근하는 하나의 자원) 가 있을 때<br>race condition, 경쟁조건이 발생한다.<br>-&gt; 상호배제 를 통해 예방<br>-&gt; <strong>GIL : Global Interpreter Lock</strong><br>공유자원을 먼저 점유한 스레드가 작업을 마치고 릴리즈를 할 때까지 다른 스레드들이 기다리게 한다.  </p>
-<p>모든 스레드가 접근해서 사용하는 리스트: shared list<br>각 스레드가 접근하는 리스트가 같을 때, 그 안에서 접근하는 데이터는 다른 것이 좋다.  </p>
-<h3 id="동시성-프로그래밍과-병렬-프로그래밍"><a href="#동시성-프로그래밍과-병렬-프로그래밍" class="headerlink" title="동시성 프로그래밍과 병렬 프로그래밍"></a>동시성 프로그래밍과 병렬 프로그래밍</h3><p><strong>동시성 프로그래밍</strong>은 cpu(프로세스)가 하나여도 동시성 프로그래밍을 구현할 수 있다.<br>멀티스레딩을 하게되면 라운드로빈으로 돌아갈 수 있으니까.<br>하지만 여러 개를 하나씩 순서대로 돌리는거지, 엄밀한 의미의 병렬은 아니다.<br><strong>병렬 프로그래밍</strong>은 아예 하드웨어가 최소 두 개 이상 있어서<br>어떤 태스크가 있을 때 각 하드웨어가 일을 같이 처리하는 것이다.<br>2초 걸릴 일을 1초만에 할 수 있는 것이다.  </p>
-<p>싱글코어 멀티스레딩: 단순하게 동시성프로그래밍. 스레드를 여러 개 만들어서 실행.<br>멀티코어 멀티스레딩: 병렬 + 동시성. 동시에 두 개 이상 돌 수 있는 것.  </p>
+<h2 id="Internet-네트워크-계층-IP담당"><a href="#Internet-네트워크-계층-IP담당" class="headerlink" title="Internet(네트워크 계층): IP담당"></a>Internet(네트워크 계층): IP담당</h2><p><code>ARP(Address Resolution Protocol)</code>: 브로드캐스트로 어떤 IP 를 사용하는 호스트의 맥 주소를 알아낸다.   </p>
+<p><strong>How? :</strong><br>서로 맥 주소를 모르는 상태에서 호스트1과 호스트2가<br>이더넷 프로토콜을 이용해 데이터를 주고 받고 싶을 때.<br>이때 호스트1이 특별한 <code>패킷</code>을 만들어서 송신자부분에 자신의 아이피와 맥 주소를 쓴다.<br>그리고 수신자 부분엔 호스트2의 아이피를 써놓음. 맥주소는 00:00:00… 과 같이 쓴다.<br>라우터에게 패킷을 던진다.<br>“이거 <code>브로드캐스트</code>로 좀 쏴줄래?” -&gt; 마치 방송하듯이 모든 호스트에게 패킷을 다 보낸다.<br>다른 호스트들이 패킷을 받았을 때, 아이피주소를 보고 자신의 것과 같은지 확인한 후에 무시하거나 리스폰스 한다.<br>호스트2는 <code>리스폰스 패킷</code>을 보낸다.<br>보내는 호스트에다가 자신의 아이피주소와 맥주소를 쓰고<br>받는 호스트에는 처음에 보냈던 호스트1의 주소를 그대로 써서 보낸다.<br>-&gt; 이제 서로의 맥주소를 알게 되었으므로 <code>라우터를 거치지 않고 직접</code> 통신한다.<br>호스트1: “나 이제 호스트2 주소 알아! 직접 통신하자.”<br>한번 ARP를 하고 나면 <code>ARP 테이블</code>(모든 컴퓨터에 다 있음)에다가 맥주소를 저장해둔다.  </p>
+<h3 id="IP프로토콜"><a href="#IP프로토콜" class="headerlink" title="IP프로토콜:"></a>IP프로토콜:</h3><p>IPv4 : 내 아이피주소, 서브넷마스크, 게이트웨이  </p>
+<ul>
+<li><code>아이피</code>는 주소. 4바이트로 구성이 되어있다. 한 자리당 1바이트, 0~255까지.<br>  첫번째 자리에서 클라스 단위를 구분한다.  </li>
+<li><code>서브넷마스크</code>: 어디까지가 네트워크 주소인가?<br>호스트아이디에 할당된 비트를 서브넷으로 쪼갤 수 있다.<br>호스트아이디중에 앞의 두 개 비트를 서브넷아이디로.<br>네트워크가 여러 개일때 연결할 수 있는 호스트의 수는 적어진다.  </li>
+</ul>
+<p>전세계적으로 유니크한, 세상에 하나 뿐인 <code>공인 아이피(public IP)</code>.<br><code>사설 네트워크(privite network)</code>가 구성되어 공인 아이피를 공유하고,<br>그들이 쓰는 아이피가 <code>사설 아이피(privite IP)</code>.<br>사설아이피는 동적으로 할당되기때문에<br>컴퓨터를 껐다 키면 바뀌어있다.<br>(커피숍에서 해킹을 해도 날 잡으러 오기는 힘든 이유.)  </p>
+<h2 id="정렬-알고리즘"><a href="#정렬-알고리즘" class="headerlink" title="정렬 알고리즘"></a>정렬 알고리즘</h2><p>단순 알고리즘(비교정렬) : <a href="https://blueshirudy.tistory.com/13" target="_blank" rel="noopener">버블 정렬</a>,<br><a href="https://blueshirudy.tistory.com/19" target="_blank" rel="noopener">삽입 정렬</a>, <a href="https://blueshirudy.tistory.com/20" target="_blank" rel="noopener">선택 정렬</a><br>분할 정복: <a href="https://blueshirudy.tistory.com/18" target="_blank" rel="noopener">퀵 정렬</a>, 병합 정렬, 힙 정렬  </p>
+<p><strong>분할 정복 기법(divide &amp; conquer)</strong><br>어떤 어려운 문제를 잘개 <em>쪼개서</em>,  작게 쪼개진 문제를 하나씩 <em>해결</em> 해나감으로써<br>작은 솔루션들이 모여 전체 문제에 대한 솔루션을 구하는 기법.  </p>
 
       
     </div>
@@ -161,7 +179,7 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-0426" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0425" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -169,7 +187,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0426/">컴퓨터 공학 TIL 0426</a>
+      <a class="article-title" href="/2019/05/03/0425/">컴퓨터 공학 TIL 0425</a>
     </h1>
   
 
@@ -177,7 +195,7 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/03/0426/" class="article-date">
+	<a href="/2019/05/03/0425/" class="article-date">
 	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
 	</a>
 
@@ -189,91 +207,49 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="ADT-abstract-data-type-추상-자료형"><a href="#ADT-abstract-data-type-추상-자료형" class="headerlink" title="ADT(abstract data type), 추상 자료형"></a>ADT(abstract data type), 추상 자료형</h2><p>자료구조의 인터페이스(함수 시그니쳐를, 함수 사용법을) 명시해 놓은 것. 기능 명세.<br>구체적인 구현설명이 들어가면 안 된다.<br>-&gt; 인터페이스와 내부구현의 분리, 추상화.  </p>
-<p>이미 존재하는 자료구조를 이용해서 새로운 자료구조를 구현.<br>스택 구현 방법:  </p>
+        <h2 id="Internet-네트워크-계층-IP담당"><a href="#Internet-네트워크-계층-IP담당" class="headerlink" title="Internet(네트워크 계층): IP담당"></a>Internet(네트워크 계층): IP담당</h2><p>IP는 IP라우팅을 한다.<br>인터넷 계층 : 아이피.(아이피주소는 내가 데이터를 보내고자 하는 상대 호스트 컴퓨터)<br>최종적으로 도달하는 <strong>호스트를 특정</strong>하기 위해 아이피주소가 필요함.<br>상대방의 호스트를 특정하기 위한 <strong>아이피주소를 관리</strong>하는 계층이 네트워크 계층.<br>강사님 추천 책: “TCP/IP 완벽 가이드”  </p>
+<p><strong>NAT</strong> : 호스트1이 유투브에게 데이터를 요구하면 유투브는 공인아이피인 라우터까지는 보낼 수 있는데 정확히<br>어느 호스트가 보낸 건지 사설아이피까지는 알 수 없다. 그렇다고 늘 브로드캐스트로 보낼 수는 없다.<br>그래서 라우터는 랜카드 중 하나를 임대하여 사설 아이피를 공인 아이피와 매핑한다.<br>그리고 소스 아이피를 자신의 공인아이피로 바꿔서 보낸다.<br>서버가 영상을 공인아이피로 보내면, 변환테이블에서 공인아이피와 연결된 사설아이피를 찾는다.<br>그리고 사설아이피를 다시 목적지로 설정하여 보내준다. 랜카드가 많이 필요하다는 단점이 있다.  </p>
+<p><strong>NAPT</strong> : 호스트가 서버와 통신하고자 할때, 모든 호스트들이 같은 랜카드를 빌려오되,<br>구분을 해야하므로 포트번호까지 이용하여 구분한다. 같은 123.108.157.1 이라는 랜카드를 써도<br>포트번호를 달리해서 쓰면 구분지을 수 있는 것이다.  </p>
+<h2 id="Transport-전송계층-포트담당"><a href="#Transport-전송계층-포트담당" class="headerlink" title="Transport(전송계층): 포트담당"></a>Transport(전송계층): 포트담당</h2><p>특정 컴퓨터에게 데이터가 잘 도착했을 때 해당 <strong>프로세스</strong>에게 데이터를 전달하기위해 <code>포트번호</code>가 필요.<br>이 포트는 패킷이 필요한 프로세스를 특정하기 위해 사용된다.<br>이 <strong>포트를 관리</strong>하는 계층이 전송계층. 포트번호는 2^16-1 까지 할당가능하다.<br>패킷에는 아이피주소 말고도 포트번호가 쓰여있어서,<br>해당 포트번호가 특정하는 프로세스에게 데이터를 전송된다.<br>ex) 데이터를 보내긴 보내는데, 유투브 프로세스가 3개 돌아가고 있다면 그 중 어느 프로세스에 데이터를<br>    보낼 것인가?</p>
+<p>서버에는 소켓이 많다. 서버는 특정 컴퓨터의 특정 프로세스일 뿐이다.<br>포트가 특정 프로세스를 특정한다고 했는데, 포트는 소켓에 부여된 숫자이다.<br>이 숫자가 0부터 2^16-1 까지. 2바이트짜리 정수.<br>소켓에는 두 가지 종류가 있다.  </p>
 <ol>
-<li>배열  </li>
-<li>연결 리스트  </li>
-<li>파이썬의 리스트  </li>
+<li><p>데이터를 전송하고 있는 <code>데이터 소켓</code><br>실제로 클라이언트와 일대일로 매핑되어 데이터를 주고 받는다.  </p>
+</li>
+<li><p>서버를 대표하는 <code>리스닝 소켓</code><br>클라이언트가 리퀘스트를 날릴 때 서버에서 데이터를 받는 소켓<br>리스닝 소켓은 클라이언트로부터 최초의 접속 요청을 받는 소켓<br>접속 후에 실제로 데이터를 주고받는 것은 데이터 소켓  </p>
+</li>
 </ol>
-<h3 id="스택"><a href="#스택" class="headerlink" title="스택"></a>스택</h3><p>접시쌓기를 생각해보자.<br>접시를 하나씩 위로 쌓는다면 보통은 위에서부터 하나씩 가져간다.<br>이처럼, 데이터1, 데이터2, 데이터3, 데이터4 가 쌓였을 때 데이터4 부터 먼저 사라지는 것.<br>제일 나중에 들어오면 제일 먼저 나간다. : <code>Last In First Out</code> = 후입선출  </p>
-<p>pop: 삭제하면서 반환<br>peek: 다음으로 나올 데이터를 반환만 하고 삭제하지 않음  </p>
-<p>일반적으로 스택의 맨 위 데이터는 top 으로 가리킨다.  </p>
-<p><em>나중에 꼭 풀어볼 것</em>  </p>
-<ol>
-<li>후위 표기법 계산기  </li>
-<li>미로찾기  </li>
+<p><code>well-known port</code>: 자주 쓰이는 유명한 포트번호.<br>0~1023 번까지 있는데 서버가 특정 서비스에 따라 특정 포트를 쓴다.  </p>
+<p>전송계층에는 두 가지 프로토콜이 있다.  </p>
+<h2 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP / UDP"></a>TCP / UDP</h2><ul>
+<li><p><strong>TCP</strong><br>신뢰도가 높다. 패킷이 유실되면 <strong>재전송</strong>을 해준다. HTTP는 일반적으로 TCP 위에서 돈다.<br>패킷을 보낸 다음에 상대방이 패킷을 잘 받았는지 인증을 받아서 확인한다.<br>-&gt; 패킷이 유실되었는지 계속 관리해야하기 때문에 네트워크에 부담이 된다.<br>파일 전송이나 메일 전송은 TCP를 이용한다.<br>연결 지향성: 서버와 호스트가 데이터를 주고받을 때 소켓을 가지고 접속과 연결이 되어야 한다.  </p>
+</li>
+<li><p><strong>UDP</strong><br>신뢰도가 낮다. 패킷이 유실되더라도 재전송을 해주지 않는다. 보내면 끝.<br>-&gt; 한번 보내면 끝이기 때문에 가볍고 빠르다.<br>동영상이나 빠른 속도가 필요한 게임 등은 UDP를 이용한다.<br>비연결 지향성: 접속이나 연결이 없이 그냥 보내기만 한다.  </p>
+</li>
+</ul>
+<h2 id="Application-응용-표현-세션-계층"><a href="#Application-응용-표현-세션-계층" class="headerlink" title="Application (응용, 표현, 세션 계층)"></a>Application (응용, 표현, 세션 계층)</h2><p><code>Secure Socket Layer(SSL)</code>(Transport Layer Security)를 어플리케이션과 트랜스포트 사이에 끼워넣는다.<br>이 레이어는 <strong>암호화</strong>를 한다. 내가 html 과 js를 만들어서 보내면<br>다른 해커가 스푸핑을 통해서 파일들을 뺏더라도 암호화가 되어있어서 볼 수 없다.<br>받는 상대방은 <strong>복호화</strong>를 해서 볼 수 있다.  </p>
+<ul>
+<li>http: 메세지 기반의 프로토콜. 단순한 문자열을 주고 받고 해석함.<br>(html 파일이나 js 파일도 결국 문자열일 뿐이다)  </li>
+<li>dns: 도메인 네임 시스템. 사람이 읽고 기억하기 쉬운 이름.<br>원래 어떤 사이트에 가려면 아이피주소를 써야하는데,<br>우리는 그 누구도 페이스북에 접속하려고 아이피를 적지 않는다. 대신 도메인 위치를 적는다.<br>그리고 DNS SERVER 에서 도메인 네임에 대한 아이피를 알려준다.<br>받아온 아이피는 캐시로 저장된다.  </li>
+</ul>
+<p><code>HTTP</code> : 하이퍼 텍스트 트랜스퍼 프로토콜<br>“나 이번에 새로 쓴 논문이 있어 인터넷에 링크 걸어둘게!”<br>원래는 진짜 정적파일 텍스트만 보는 용도였다.<br>http 1.0 이하에서는 연결이 일시적이다. 한번 데이터 주고받으면 끝.<br>그런데 점점 컴퓨터 성능이 좋아지니까 이미지나 동영상, 스크립트 파일도 받게 되었다.<br>그래서 한번 리퀘스트를 받은 다음에 한번의 리스폰스로 끝나는 게 아니게 되었다.<br>그래서 http 1.1부터는 연결을 유지한다. 한번 연결하면 끊지 않고 계속 연결.<br>만약 일시적 연결을 원한다면 헤더에 <code>connection:close</code> 를 포함하면 된다.  </p>
+<p><strong>메서드</strong>: 클라이언트 요청의 종류  </p>
+<ul>
+<li><code>GET</code> : URL 이 지원하는 자원을 찾아 클라이언트에 전송</li>
+<li><code>POST</code> : 클라이언트가 임의의 데이터를 서버로 보낸다.<br>주로 form 형식을 사용하며 서버의 프로그램에 전달</li>
+<li>HEAD: GET과 같지만 메세지 본문이 없다. 테스트 용도</li>
+<li>PUT: 지정한 URL에 요청의 본문내용을 저장</li>
+<li>DELETE: 지정한 자원을 지움</li>
+<li>TRACE: 클라이언트가 서버에 보낸 요청의 복사본을 돌려받는다.</li>
+</ul>
+<h3 id="상태코드"><a href="#상태코드" class="headerlink" title="상태코드"></a>상태코드</h3><p>200번대 : 성공<br>300번대 : 서버가 옮겨간것같은데 저쪽으로 다시 시도해볼래?<br>400번대 : 클라이언트가 잘못했다<br>500번대 : 서버가 잘못했다  </p>
+<h3 id="컨텐트-협상"><a href="#컨텐트-협상" class="headerlink" title="컨텐트 협상:"></a>컨텐트 협상:</h3><ol>
+<li><p>서버 주도 협상:<br> -&gt; 최선 추측<br>클라이언트가 원하는 것이 없을 때, 요청과 가장 비슷한 것을 가져감.  </p>
+</li>
+<li><p>에이전트 주도 협상:<br> 클라이언트가 자원을 고를 수 있음<br>-&gt; 클라이언트: 글 좀 보내봐<br>서버: 한국어도 있고 영어도 있고 프랑스어도 있는데… 뭐 보내지?<br>클라이언트: Accept - Language: kr;q=0.7, fr;q=0, en;q=0.4<br> “한국어가 최우선이고 한국어 없으면 영어 보내줘. 프랑스어는 있어도 보내지마”  </p>
+</li>
 </ol>
-<h3 id="큐"><a href="#큐" class="headerlink" title="큐"></a>큐</h3><p>줄서기와 같다.<br>맨 처음에 데이터1이 들어오고 그 다음에 데이터2, 데이터3가 들어온다면<br>제일 먼저 온 데이터1이 먼저 나간다. : <code>First In First Out</code> = 선입선출  </p>
-<h2 id="연결-리스트-linked-list"><a href="#연결-리스트-linked-list" class="headerlink" title="연결 리스트(linked list)"></a>연결 리스트(linked list)</h2><ol>
-<li><code>싱글 링크드 리스트</code><br>노드가 데이터 + 링크<br>싱글 링크드 리스트의 노드는 데이터에 대한 링크가 하나이다.<br>링크가 하나만 있으면 양방향이 아니게 된다.<br>1 -&gt; 2 -&gt; 1 이 안 됨.  </li>
-<li><code>더미 더블 링크드 리스트</code> -&gt; 이중 연결 리스트<br>노드가 링크 + 데이터 + 링크<br>링크가 두 개이기 때문에 양방향이다.<br>1 -&gt; 2 -&gt; 1 이 가능함. </li>
-</ol>
-<p><code>더미 노드</code>:  </p>
 <ul>
-<li>데이터가 없다  </li>
-<li><p>구현 편의성이 높아지면서 에러 가능성이 낮다<br>  구현이 좋아진다 = 프로그래머의 실수를 줄일 수 있다<br><code>dummy</code>(head)~<code>1</code>~<code>2</code>~<code>3</code>~<code>dummy</code>(tail)</p>
-</li>
-<li><p>delete<br>reference count 가 0 이 되면<br>(어떤 값을 참조하는 것들이 모두 사라지면)<br>garbage collection 에 의해 사라진다.  </p>
-</li>
-</ul>
-<p>delete 도 이와 비슷하게<br>지우려는 노드를 참조하는 다른 노드의 연결을 끊어버리면 된다.  </p>
-<h2 id="배열과-링크드리스트의-차이"><a href="#배열과-링크드리스트의-차이" class="headerlink" title="배열과 링크드리스트의 차이"></a>배열과 링크드리스트의 차이</h2><p><strong>배열 :</strong><br>실제 메모리에도 데이터가 일렬로 들어간다.<br>인덱싱이 가능하므로 검색도 빠르다. O(1)<br>단, 데이터 삽입이나 삭제를 할 때 최악의 경우 O(n)<br>검색을 자주 할 때 배열을 쓴다.  </p>
-<p><strong>연결리스트 :</strong><br>실제 메모리에서 데이터가 일렬로 들어가지 않고 흩어져있으며 서로 연결되어 있다.<br>인덱싱을 하려면 모든 데이터를 순회해야 하므로 검색이 느리다. O(n)<br>데이터 삽입을 할 때 싱글 링크드 리스트의 경우 O(1),<br>더블 링크드 리스트의 경우도 O(1).<br>삽입과 삭제를 자주 할 때 연결리스트를 쓴다.  </p>
-<h1 id="앞으로-공부하라고-하신-내용"><a href="#앞으로-공부하라고-하신-내용" class="headerlink" title="앞으로 공부하라고 하신 내용"></a>앞으로 공부하라고 하신 내용</h1><p>linked list, stack, queue 는 선형 자료구조.<br>앞으로는 비선형 자료구조도 공부해야 할 것.  </p>
-<ul>
-<li>tree(이진트리)  <ul>
-<li>순회(travorsal)  <ul>
-<li>전위(preorder)  </li>
-<li>중위(inorder)  </li>
-<li>후위(postorder)<br>-&gt; 전위, 중위, 후위는 스택의 일종이고, 스택은 DFS의 일종.<br>  반복문과 재귀로 구현  </li>
-<li>레벨 순서(level order)  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>BST(Binary Search Tree)<br>  O(n^2)  </li>
-<li><p>균형이진트리 (Balanced, self balancing)  </p>
-<ul>
-<li>AVL 트리  </li>
-<li>RED-BLACK 트리  </li>
-</ul>
-</li>
-<li><p>B-Tree (데이터베이스의 인덱스에 쓰임)<br>  : 균형이진트리 + 하드웨어 아키텍쳐  </p>
-</li>
-<li><p>Heap (완전이진트리, 배열로 구현한다)  </p>
-</li>
-<li><p>Hash Table(map)  </p>
-<ul>
-<li>hash function  </li>
-<li>collision(충돌)  <ul>
-<li>chaining(체이닝)  </li>
-<li>open-addressing 기법  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Graph(그래프)  </p>
-<ul>
-<li>순회  <ul>
-<li>DFS (깊이 우선 탐색) -&gt; 스택 기반  </li>
-<li>BFS (너비 우선 탐색) -&gt; 큐 기반  </li>
-</ul>
-</li>
-<li>MST(Minimum Spanning Tree) 최소 신장 트리  <ul>
-<li>그리디 알고리즘 기반  </li>
-<li>kruskal algorithm  </li>
-<li>prim algorithm  </li>
-</ul>
-</li>
-<li>최단 경로 문제(shortest path)  <ul>
-<li>dijkstra algorithm -&gt; 그리디 알고리즘  </li>
-<li>Balman-ford algorithm  </li>
-<li>flord-warshall -&gt; 다이나믹 프로그래밍  </li>
-</ul>
-</li>
-</ul>
-</li>
+<li>random pivot<br>리스트의 첫번째, 중간, 마지막 값을 가져와서 중간값을 찾아서 pivot 으로 설정.<br>-&gt; 거의 average case 에 가깝게 구현이 되더라는 것이 정설.  </li>
 </ul>
 
       
@@ -314,6 +290,18 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/06/11/0611/">SPA, Routing</a></h6>
+              <span>June 11, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -375,18 +363,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/17/0517/">Object.prototype 접근, 배열</a></h6>
-              <span>May 17, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -396,7 +372,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -406,7 +382,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -417,7 +393,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

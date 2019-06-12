@@ -97,6 +97,100 @@
         
           <section id="main">
   
+    <article id="post-0508" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/08/0508/">원시 값과 객체, 함수, 스코프</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/05/08/0508/" class="article-date">
+	  <time datetime="2019-05-07T15:00:00.000Z" itemprop="datePublished">May 8, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+ 
+      <!--  -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="원시-값"><a href="#원시-값" class="headerlink" title="원시 값"></a>원시 값</h2><p><strong>변경 불가능한 값.</strong> 변수와 헷갈리면 안 된다. 변수 자체가 값도 아닐 뿐더러, 변수는 당연히 변수값이 변한다. 그런데 변수가 가지고 있는 값 자체가 원시 값(숫자, 문자, 불리언, null, undefined, symbol)일 때 값은 바뀌지 않는다. 상수하고도 헷갈리면 안 된다. <strong>상수도 값을 갖고 있을 수 있는 변수</strong>이다. 단지 재할당을 못할 뿐이지. 그래서 변하지 않는 수라고 하면 상수하고 헷갈리기 쉽다.<br><code>const a = {};</code> 일 때는 빈 객체를 변경할 수 있다. 객체는 객체타입이며 변경가능한 값이기 때문이다. <strong>변경 불가능하다는 것은 재할당 불가능하다는 것이 아니다.</strong><br><!-- 변수가 나쁜 건 아니지만 남발하면 안 좋다. 왜냐면 대부분의 에러가 변수때문에 나기 때문에. 따라서 변수는 스코프를 좁혀서 얼른 쓰고 얼른 버리는 게 좋다. 다른 곳에서 변경되지않도록.   --><br>대부분의 언어에서 문자열은 객체로 취급받는데 자바스크립트는 원시 값으로 취급받는다. <strong>재할당 이외의 방법으로는 절대 변할 수 없기 때문에 신뢰성이 보장</strong>된다. 요즘은 객체도 ‘얼려서’ 변경을 못하도록 하기도 한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;그럼 객체도 처음부터 원시 값으로 만들지 그랬냐&quot; </span><br><span class="line">-&gt; 객체를 하나 만든다는 게 생각보다 비용이 많이 드는 일이다. </span><br><span class="line">프로퍼티도 하나의 객체이고. 그러면 객체를 통째로 썼다 지웠다 하는 것보단 차라리 </span><br><span class="line">변경 가능하게 만드는 게 더 나은 일일 것이다. 신뢰성과 맞바꾸더라도... </span><br><span class="line">게다가 원시 값은 Pass by Value, 값을 복사해서 넘겨주는 전달인데, </span><br><span class="line">만약 객체를 통째로 복사해서 전달한다면 큰 낭비이기도 하다.</span><br></pre></td></tr></table></figure></p>
+<p>(+)<br><strong>가비지컬렉터</strong>: 메모리공간의 값을 지우고 다니는 애가 아니라, 메모리공간의 할당을 해제하고 다니는 애다. 메모리공간 확보라는 건 ‘여기 쓸 거니까 건들지마’ 라는거고, 메모리공간 해제라는 건 ‘여기 쓰는 사람 없으니까 써도 돼’ 라는 것.  </p>
+<h2 id="객체"><a href="#객체" class="headerlink" title="객체"></a>객체</h2><p>객체를 할당한 변수가 확보한 메모리공간에는 객체가 실제로 저장된 메모리공간의 주소가 저장되어있고, 이를 <strong>참조값</strong>이라고 한다. 식별자가 객체를 가리키고 있는(point) 상태이다. 참조값(메모리주소) 자체는 원시값이라서 바꿀 수 없지만 메모리공간에 저장된 실제 객체는 변경 가능하다. 객체 리터럴이 평가되어 값이 된다는 건 메모리에 이진수로 저장된다는 말이다. 두 개의 식별자가 한 객체를 공유한다는 건 한 쪽이 데이터를 변경하면 다른 한 쪽도 영향을 받으므로 부작용이 된다.  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">  name: <span class="string">'Lee'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> person2 = &#123;</span><br><span class="line">  name: <span class="string">'Lee'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(person1 === person2); <span class="comment">// ①</span></span><br><span class="line"><span class="built_in">console</span>.log(person1.name === person2.name); <span class="comment">// ②</span></span><br></pre></td></tr></table></figure>
+<p>1번은 false, 2번은 true 가 나온다.<br>객체 비교는 참조값이 달라서 false고, 2번은 원시값 비교(‘Lee’)가 되기 때문에 true이다.</p>
+<h2 id="함수"><a href="#함수" class="headerlink" title="함수"></a>함수</h2><p>함수 안으로 필요한 정보를 밀어넣고(input) 값을 만들면 그 값을 내보낸다(output).<br><code>function</code> 키워드는 함수 선언이라기보다는 <strong>함수 정의</strong>라고 하자.<br>함수 정의만으로 함수가 실행되는 것은 아니고, <strong>함수 호출</strong>이라는 트리거가 있어야 한다. <code>return</code>은 옵션이고, return 을 안 쓰면 암묵적으로 undefined 가 반환된다(완료 값). 매개변수도 변수라서 인수가 할당된다. 매개변수는 함수 몸체 안에서만 유효하다.<br>함수는 <strong>재사용</strong>을 위해 쓴다. 코드의 중복을 줄이고, 유지보수를 편리하게 한다. 실수가 줄어들고 품질도 좋아지고 돈도 적게 든다. 같은 코드가 여기저기 흩어져있으면 무언가를 고쳐야 할 때 여기저기 흩어진 코드에 다 찾아가서 고쳐줘야 한다.<br>함수명도 함수 몸체 내에서만 유효한 식별자이다. (보통 재귀함수에서 쓴다) 함수를 호출 할 때 보통 <code>foo();</code> 라고 하는데, 이때 foo 는 함수명이 아니라 자바스크립트 엔진이 함수명으로 암묵적으로 생성한 식별자이다.<br>인수 = argument<br>인자 (매개변수) = parameter  </p>
+<h3 id="함수-정의"><a href="#함수-정의" class="headerlink" title="함수 정의"></a>함수 정의</h3><ol>
+<li>함수 선언문  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hello'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>함수 선언문은 함수명이 필수다.<br>함수명 안 쓰고 변수에 할당하면 그게 함수 표현식이 된다.  </p>
+<ol start="2">
+<li>함수 표현식  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hello'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>변수 선언문 + 할당문.  </p>
+<p>함수 선언문을 썼을 때, 자바스크립트 엔진이 암묵적으로 함수명과 같은 식별자를 등록하여 식별자가 함수 객체를 가리키게 하고, 그 식별자를 이용해 함수를 호출하게 된다. 함수 표현식도 var 키워드로 인해 foo 라는 식별자가 등록이 되고 함수 객체를 가리키게 된다. 똑같이 동작하는 것 같지만 사실 조금 다르다. 만약 코드 상으로 함수를 정의하기 전에 호출을 먼저 하게 되면 함수 선언문의 경우 함수 호이스팅에 의해 hello 가 콘솔에 출력된다. 함수 선언문은 foo 라는 식별자를 만듦과 동시에 함수 객체까지 메모리공간에 할당해버리기 때문이다. 하지만 var 키워드를 이용한 함수 표현식은 foo 라는 식별자가 등록만 되어있는 상태이기 때문에 호출하게 되면 foo 는 함수가 아니라는 에러가 뜬다.  </p>
+<p>(+)<br>일반 객체와 함수 객체의 차이?<br>일반 객체와 달리 함수 객체는 호출할 수 있다. </p>
+<p>인수와 매개변수의 개수가 일치하지 않아도 에러가 나지는 않는다.<br>매개변수의 갯수는 정해져 있지는 않지만 적을 수록 좋고, 3개까지 쓰는 게 제일 좋다. (왜인지 잘 기억이 안 나므로 알아보고 업데이트 하겠음)<br>3개가 넘어가면 그것들을 객체로 만들어서 넘기면 좋다.<br><!-- 강사님 추천 책: 클린 코드   --></p>
+<ul>
+<li>반환문 <code>return</code>  <ol>
+<li>리턴 키워드 뒤에 지정한 값을 반환.  </li>
+<li>함수의 실행을 중단하고 함수몸체를 빠져나간다. 값을 리턴했는데 뭘 더 할 게 없으니까.<br>리턴 뒤에 어떤 값을 적지 않아도 된다. 그냥 함수를 빠져나갈 뿐.  </li>
+</ol>
+</li>
+</ul>
+<h3 id="즉시실행함수"><a href="#즉시실행함수" class="headerlink" title="즉시실행함수"></a>즉시실행함수</h3><p>정의와 동시에 호출되는 함수. 함수 정의하면 함수 객체가 만들어지고, 그 객체는 호출할 수 있으니까 끝에 () 로 호출. 단 한 번 호출할 수 있다. 그래서 뭐 함수명을 식별자로 만들고 어쩌구 저쩌구도 안한다. 그냥 메모리를 단 한 번 쓰고 사라진다. 이름을 붙여줄 수도 있지만 재귀를 하지 않는 이상 이름이 의미가 없다. 즉시실행함수는 반드시 그룹연산자 (…) 로 묶어주거나 function 키워드 앞에 <code>!</code> 이나 <code>+</code> 를 붙여주어야 한다. 보통 그룹연산자로 묶은 뒤 그 안에서 호출까지 한다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  [실행 코드]</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></p>
+<h3 id="중첩-함수"><a href="#중첩-함수" class="headerlink" title="중첩 함수"></a>중첩 함수</h3><p>함수가 함수 안에서 정의되었다. 외부함수를 도와주는 헬퍼함수의 역할을 한다. 스코프와 연관이 있다. 외부함수도 스코프를 만들고 내부함수도 스코프를 만드니까 스코프도 중첩이 된다. </p>
+<h3 id="콜백함수"><a href="#콜백함수" class="headerlink" title="콜백함수"></a>콜백함수</h3><p>외부에서 밀어넣어주는 헬퍼함수. 두 함수를 합친다. 중첩함수는 태생적으로 함수 안에 있는거고 콜백은 밖에서 밀어넣어진다. 내가 넘기는 콜백함수에 따라 함수가 하는 일이 달라질 수 있다.</p>
+<h2 id="스코프"><a href="#스코프" class="headerlink" title="스코프"></a>스코프</h2><p>식별자는 값과 바인딩이 되어있다. 왜냐면 값 없이는 식별자는 의미가 없기 때문이다. 스코프는 상하관계가 있다. 이 상하관계는 중첩관계에 의해서 만들어진다. 중첩된 함수 내부에서 선언된 변수는 하위스코프에, 외부함수에서 선언된 변수는 상위스코프에. 전역변수는 전역스코프에 있다. 자바스크립트는 함수가 스코프를 만들고, 이것을 함수레벨스코프라고 한다(var 키워드가 지원하는…). let이나 const는 블록레벨스코프를 지원한다.<br>똑같은 코드도 어디있느냐에 따라(문맥에 따라) 다르게 동작한다. 똑같은 말이라도 어떤 상황에서 하냐에 따라 다른 것처럼. 그 문맥이 스코프다.<br>자식객체는 부모객체의 자산을 쓸 수 있지만 그 반대는 안 된다. 하위스코프의 변수를 상위스코프에서 참조할 수 없다. 내 스코프에서 참조할 변수의 선언을 찾지 못하면 상위로 찾아 올라간다. 상위스코프와 하위스코프가 연결된 것을 <strong>스코프체인</strong>이라고 하는 것이다.  </p>
+<!-- 렉시컬?
+사전으로는 어휘의, 단어의.. 라는 뜻인데. 렉싱은 어휘를 뜻하고. 음... 식별자들이 렉시컬환경에 등록된다고 생각하면 그냥 식별자라는 어휘들을 모아두는 환경이라고 보면 안 되나? -->
+<!-- 함수 선언문, 하면 선언이니까 식별자가 만들어지고 식별자는 함수객체를 가리킨다. 
+그러니까 스코프체인에서 변수를 검색하는것과 똑같이 동작함.
+스코프는 선언될 때에 결정됨.
+함수 안의 변수는 호출될지안될지모르기때문에 실행할때 함수가 호출되면 그때 선언.
+-->
+<h3 id="렉시컬-스코프"><a href="#렉시컬-스코프" class="headerlink" title="렉시컬 스코프"></a>렉시컬 스코프</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">10</span>;</span><br><span class="line">  bar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); <span class="comment">// ?</span></span><br><span class="line">bar(); <span class="comment">// ?</span></span><br></pre></td></tr></table></figure>
+<p>스코프가 결정되는데에는 두 가지 방식이 있다.  </p>
+<ol>
+<li>함수를 어디서 호출했는지에 따라 상위 스코프가 결정되거나  </li>
+<li>함수를 어디서 정의했는지에 따라 상위 스코프가 결정된다.  </li>
+</ol>
+<p>자바스크립트는 <strong>함수를 어디서 정의했는지</strong>에 따라 상위 스코프가 결정된다. 즉 2번에 해당되고, 이를 <strong>정적 스코프</strong>, 또는 <strong>렉시컬 스코프</strong>라고 한다(1번은 동적 스코프라고 한다). 함수 bar 는 var x = 1; 과 같이 전역에서 정의되었기 때문에 bar 는 1를 출력한다. 만약 동적 스코프였다면 foo 함수 안에서 bar 가 호출되었기 때문에 foo 가 bar 의 상위 스코프가 되고, bar는 1이 아니라 10을 출력하게 될 것이다. </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-0503" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -188,100 +282,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-0425" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0425/">컴퓨터 공학 TIL 0425</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/05/03/0425/" class="article-date">
-	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Internet-네트워크-계층-IP담당"><a href="#Internet-네트워크-계층-IP담당" class="headerlink" title="Internet(네트워크 계층): IP담당"></a>Internet(네트워크 계층): IP담당</h2><p>IP는 IP라우팅을 한다.<br>인터넷 계층 : 아이피.(아이피주소는 내가 데이터를 보내고자 하는 상대 호스트 컴퓨터)<br>최종적으로 도달하는 <strong>호스트를 특정</strong>하기 위해 아이피주소가 필요함.<br>상대방의 호스트를 특정하기 위한 <strong>아이피주소를 관리</strong>하는 계층이 네트워크 계층.<br>강사님 추천 책: “TCP/IP 완벽 가이드”  </p>
-<p><strong>NAT</strong> : 호스트1이 유투브에게 데이터를 요구하면 유투브는 공인아이피인 라우터까지는 보낼 수 있는데 정확히<br>어느 호스트가 보낸 건지 사설아이피까지는 알 수 없다. 그렇다고 늘 브로드캐스트로 보낼 수는 없다.<br>그래서 라우터는 랜카드 중 하나를 임대하여 사설 아이피를 공인 아이피와 매핑한다.<br>그리고 소스 아이피를 자신의 공인아이피로 바꿔서 보낸다.<br>서버가 영상을 공인아이피로 보내면, 변환테이블에서 공인아이피와 연결된 사설아이피를 찾는다.<br>그리고 사설아이피를 다시 목적지로 설정하여 보내준다. 랜카드가 많이 필요하다는 단점이 있다.  </p>
-<p><strong>NAPT</strong> : 호스트가 서버와 통신하고자 할때, 모든 호스트들이 같은 랜카드를 빌려오되,<br>구분을 해야하므로 포트번호까지 이용하여 구분한다. 같은 123.108.157.1 이라는 랜카드를 써도<br>포트번호를 달리해서 쓰면 구분지을 수 있는 것이다.  </p>
-<h2 id="Transport-전송계층-포트담당"><a href="#Transport-전송계층-포트담당" class="headerlink" title="Transport(전송계층): 포트담당"></a>Transport(전송계층): 포트담당</h2><p>특정 컴퓨터에게 데이터가 잘 도착했을 때 해당 <strong>프로세스</strong>에게 데이터를 전달하기위해 <code>포트번호</code>가 필요.<br>이 포트는 패킷이 필요한 프로세스를 특정하기 위해 사용된다.<br>이 <strong>포트를 관리</strong>하는 계층이 전송계층. 포트번호는 2^16-1 까지 할당가능하다.<br>패킷에는 아이피주소 말고도 포트번호가 쓰여있어서,<br>해당 포트번호가 특정하는 프로세스에게 데이터를 전송된다.<br>ex) 데이터를 보내긴 보내는데, 유투브 프로세스가 3개 돌아가고 있다면 그 중 어느 프로세스에 데이터를<br>    보낼 것인가?</p>
-<p>서버에는 소켓이 많다. 서버는 특정 컴퓨터의 특정 프로세스일 뿐이다.<br>포트가 특정 프로세스를 특정한다고 했는데, 포트는 소켓에 부여된 숫자이다.<br>이 숫자가 0부터 2^16-1 까지. 2바이트짜리 정수.<br>소켓에는 두 가지 종류가 있다.  </p>
-<ol>
-<li><p>데이터를 전송하고 있는 <code>데이터 소켓</code><br>실제로 클라이언트와 일대일로 매핑되어 데이터를 주고 받는다.  </p>
-</li>
-<li><p>서버를 대표하는 <code>리스닝 소켓</code><br>클라이언트가 리퀘스트를 날릴 때 서버에서 데이터를 받는 소켓<br>리스닝 소켓은 클라이언트로부터 최초의 접속 요청을 받는 소켓<br>접속 후에 실제로 데이터를 주고받는 것은 데이터 소켓  </p>
-</li>
-</ol>
-<p><code>well-known port</code>: 자주 쓰이는 유명한 포트번호.<br>0~1023 번까지 있는데 서버가 특정 서비스에 따라 특정 포트를 쓴다.  </p>
-<p>전송계층에는 두 가지 프로토콜이 있다.  </p>
-<h2 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP / UDP"></a>TCP / UDP</h2><ul>
-<li><p><strong>TCP</strong><br>신뢰도가 높다. 패킷이 유실되면 <strong>재전송</strong>을 해준다. HTTP는 일반적으로 TCP 위에서 돈다.<br>패킷을 보낸 다음에 상대방이 패킷을 잘 받았는지 인증을 받아서 확인한다.<br>-&gt; 패킷이 유실되었는지 계속 관리해야하기 때문에 네트워크에 부담이 된다.<br>파일 전송이나 메일 전송은 TCP를 이용한다.<br>연결 지향성: 서버와 호스트가 데이터를 주고받을 때 소켓을 가지고 접속과 연결이 되어야 한다.  </p>
-</li>
-<li><p><strong>UDP</strong><br>신뢰도가 낮다. 패킷이 유실되더라도 재전송을 해주지 않는다. 보내면 끝.<br>-&gt; 한번 보내면 끝이기 때문에 가볍고 빠르다.<br>동영상이나 빠른 속도가 필요한 게임 등은 UDP를 이용한다.<br>비연결 지향성: 접속이나 연결이 없이 그냥 보내기만 한다.  </p>
-</li>
-</ul>
-<h2 id="Application-응용-표현-세션-계층"><a href="#Application-응용-표현-세션-계층" class="headerlink" title="Application (응용, 표현, 세션 계층)"></a>Application (응용, 표현, 세션 계층)</h2><p><code>Secure Socket Layer(SSL)</code>(Transport Layer Security)를 어플리케이션과 트랜스포트 사이에 끼워넣는다.<br>이 레이어는 <strong>암호화</strong>를 한다. 내가 html 과 js를 만들어서 보내면<br>다른 해커가 스푸핑을 통해서 파일들을 뺏더라도 암호화가 되어있어서 볼 수 없다.<br>받는 상대방은 <strong>복호화</strong>를 해서 볼 수 있다.  </p>
-<ul>
-<li>http: 메세지 기반의 프로토콜. 단순한 문자열을 주고 받고 해석함.<br>(html 파일이나 js 파일도 결국 문자열일 뿐이다)  </li>
-<li>dns: 도메인 네임 시스템. 사람이 읽고 기억하기 쉬운 이름.<br>원래 어떤 사이트에 가려면 아이피주소를 써야하는데,<br>우리는 그 누구도 페이스북에 접속하려고 아이피를 적지 않는다. 대신 도메인 위치를 적는다.<br>그리고 DNS SERVER 에서 도메인 네임에 대한 아이피를 알려준다.<br>받아온 아이피는 캐시로 저장된다.  </li>
-</ul>
-<p><code>HTTP</code> : 하이퍼 텍스트 트랜스퍼 프로토콜<br>“나 이번에 새로 쓴 논문이 있어 인터넷에 링크 걸어둘게!”<br>원래는 진짜 정적파일 텍스트만 보는 용도였다.<br>http 1.0 이하에서는 연결이 일시적이다. 한번 데이터 주고받으면 끝.<br>그런데 점점 컴퓨터 성능이 좋아지니까 이미지나 동영상, 스크립트 파일도 받게 되었다.<br>그래서 한번 리퀘스트를 받은 다음에 한번의 리스폰스로 끝나는 게 아니게 되었다.<br>그래서 http 1.1부터는 연결을 유지한다. 한번 연결하면 끊지 않고 계속 연결.<br>만약 일시적 연결을 원한다면 헤더에 <code>connection:close</code> 를 포함하면 된다.  </p>
-<p><strong>메서드</strong>: 클라이언트 요청의 종류  </p>
-<ul>
-<li><code>GET</code> : URL 이 지원하는 자원을 찾아 클라이언트에 전송</li>
-<li><code>POST</code> : 클라이언트가 임의의 데이터를 서버로 보낸다.<br>주로 form 형식을 사용하며 서버의 프로그램에 전달</li>
-<li>HEAD: GET과 같지만 메세지 본문이 없다. 테스트 용도</li>
-<li>PUT: 지정한 URL에 요청의 본문내용을 저장</li>
-<li>DELETE: 지정한 자원을 지움</li>
-<li>TRACE: 클라이언트가 서버에 보낸 요청의 복사본을 돌려받는다.</li>
-</ul>
-<h3 id="상태코드"><a href="#상태코드" class="headerlink" title="상태코드"></a>상태코드</h3><p>200번대 : 성공<br>300번대 : 서버가 옮겨간것같은데 저쪽으로 다시 시도해볼래?<br>400번대 : 클라이언트가 잘못했다<br>500번대 : 서버가 잘못했다  </p>
-<h3 id="컨텐트-협상"><a href="#컨텐트-협상" class="headerlink" title="컨텐트 협상:"></a>컨텐트 협상:</h3><ol>
-<li><p>서버 주도 협상:<br> -&gt; 최선 추측<br>클라이언트가 원하는 것이 없을 때, 요청과 가장 비슷한 것을 가져감.  </p>
-</li>
-<li><p>에이전트 주도 협상:<br> 클라이언트가 자원을 고를 수 있음<br>-&gt; 클라이언트: 글 좀 보내봐<br>서버: 한국어도 있고 영어도 있고 프랑스어도 있는데… 뭐 보내지?<br>클라이언트: Accept - Language: kr;q=0.7, fr;q=0, en;q=0.4<br> “한국어가 최우선이고 한국어 없으면 영어 보내줘. 프랑스어는 있어도 보내지마”  </p>
-</li>
-</ol>
-<ul>
-<li>random pivot<br>리스트의 첫번째, 중간, 마지막 값을 가져와서 중간값을 찾아서 pivot 으로 설정.<br>-&gt; 거의 average case 에 가깝게 구현이 되더라는 것이 정설.  </li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cs/">CS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -299,6 +299,18 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/06/11/0611/">SPA, Routing</a></h6>
+              <span>June 11, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -360,18 +372,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/17/0517/">Object.prototype 접근, 배열</a></h6>
-              <span>May 17, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -381,7 +381,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -391,7 +391,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">16</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">26</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -402,7 +402,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
