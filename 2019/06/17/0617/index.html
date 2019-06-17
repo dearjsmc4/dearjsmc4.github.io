@@ -3,19 +3,26 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Page 1 | Rudy&#39;s Blog</title>
+  <title>Generic, Angular | Rudy&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="TILJavascript">
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Rudy&#39;s Blog">
-<meta property="og:url" content="https://dearjsmc4.github.io/index.html">
+  
+  <meta name="description" content="제네릭shift, unshift, pop, push 등은 원본 배열을 변형시키기 때문에 잘 쓰지 않는다.pop과 push 의 대체문법은 concat, […todos, {…}] -&amp;gt; 순서만 바꾸면 shift, unshift를 대체가능하다.위의 네 가지는 쓸 필요도 없고 안 쓰는 것이 좋다.    제네릭은 함수에도 쓸 수 있다.   1234// 어떤 타입">
+<meta name="keywords" content="TIL,Javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Generic, Angular">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/06/17/0617/index.html">
 <meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="제네릭shift, unshift, pop, push 등은 원본 배열을 변형시키기 때문에 잘 쓰지 않는다.pop과 push 의 대체문법은 concat, […todos, {…}] -&amp;gt; 순서만 바꾸면 shift, unshift를 대체가능하다.위의 네 가지는 쓸 필요도 없고 안 쓰는 것이 좋다.    제네릭은 함수에도 쓸 수 있다.   1234// 어떤 타입">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-17T11:58:46.233Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rudy&#39;s Blog">
+<meta name="twitter:title" content="Generic, Angular">
+<meta name="twitter:description" content="제네릭shift, unshift, pop, push 등은 원본 배열을 변형시키기 때문에 잘 쓰지 않는다.pop과 push 의 대체문법은 concat, […todos, {…}] -&amp;gt; 순서만 바꾸면 shift, unshift를 대체가능하다.위의 네 가지는 쓸 필요도 없고 안 쓰는 것이 좋다.    제네릭은 함수에도 쓸 수 있다.   1234// 어떤 타입">
   
     <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
   
@@ -48,7 +55,7 @@
 </html>
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   
@@ -95,9 +102,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main">
-  
-    <article id="post-0617" class="article article-type-post" itemscope itemprop="blogPost">
+          <section id="main" style="float:none;"><article id="post-0617" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +110,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/06/17/0617/">Generic, Angular</a>
+      Generic, Angular
     </h1>
   
 
@@ -121,7 +126,11 @@
 	<span class="ico-folder"></span>
     <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
  
-      <!--  -->
+      <!-- 
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+ -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
@@ -163,260 +172,31 @@ timer함수나 ajax통신도 마찬가지. 데이터가 바뀔 가능성이 높�
     <hr class="entry-footer-hr">
   </div>
   
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-0614" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/06/14/0614/">Angular</a>
-    </h1>
   
+    <a href="/2019/06/14/0614/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Angular</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/06/14/0614/" class="article-date">
-	  <time datetime="2019-06-13T15:00:00.000Z" itemprop="datePublished">June 14, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Augular"><a href="#Augular" class="headerlink" title="Augular"></a>Augular</h2><h3 id="프레임워크-라이브러리"><a href="#프레임워크-라이브러리" class="headerlink" title="프레임워크 / 라이브러리"></a>프레임워크 / 라이브러리</h3><p>라이브러리는 본래 빌트인 함수가 아닌, 업무에 필요한 함수를 만들어서 파일로 만들어 둔 것이었으나 현대에는 특정 기능을 서폿해주는 것으로 받아들여진다. 프레임워크과 라이브러리의 기본적인 차이는 구조다.<br>프레임워크는 강제성이 크고 규모가 큰 개발에 적합하며, 라이브러리는 자유도가 높아 규모가 작은 개발에 적합하다. 그리고 특정 기능에만 관심이 있기 때문에 크기도 작다.<br>사실 강제성이 높을수록 쓰기 편하다. 자바스크립트의 관대한 문법이 언제 편한 적 있었던가.<br>이런 관점에서 보면 앵귤러는 프레임워크고 리액트는 라이브러리다.<br>앵귤러는 프레임워크고, 강제성이 높고, 크기가 크다.  </p>
-<h3 id="왜-앵귤러를-쓰나"><a href="#왜-앵귤러를-쓰나" class="headerlink" title="왜 앵귤러를 쓰나?"></a>왜 앵귤러를 쓰나?</h3><p>원래 HTML/CSS는 정적이다. 이제까지는 JS가 주도권을 가지고 HTML/CSS 를 마음대로 가져오고, 추가하고, 삭제했다. HTML/CSS 를 파악한 후에 JS에서 일할 수 있었다는 것은 JS가 HTML/CSS에 의존하고 있었다는 뜻이다. 의존하고 있으면 영향을 받게 되어있다. HTML/CSS 구조가 틀어지는 순간 JS가 심각하게 흔들린다.   </p>
-<p>따라서 HTML/CSS 와 JS 간의 의존을 끊는 새로운 개발방법론이 나타났다. 그래야 서로 영향을 주지않으니까. 하지만 관계는 끊으면 안 되므로, 영향을 덜 받는 방식으로 의존도를 갖도록 하였다. 즉, 반대로 HTML/CSS 가 JS를 의존하게 하자는 것이다.  </p>
-<p>어떻게?<br>문자열상태로 넣는 것이다(템플릿). 이건 결국 HTML/CSS가 아니라 그냥 자바스크립트라고 보면 된다. index.html 만 유일한 HTML이다. 옛날엔 화면을 그려줄 함수를 코드 내에서 직접 불렀고, 우리가 신경 써야할 요소들이 많았다(이벤트를 달아준다든지, 타이밍에 맞게 렌더함수를 그려준다든지). 그런 전형적인 일들은 이제 프레임워크가 해줄 것이고, 우리는 로직개발에 집중하면 된다. 이제 HTML/CSS 가 JS의 상태데이터를 보고 있다. <code></code>은 데이터바인딩이라고 하는데, HTML/CSS 가 바라볼 상태데이터와 연결해준다. </p>
-<p>컴포넌트는 크게 3가지 구조로 나뉘어져있다. </p>
-<ol>
-<li>import - 필요한 컴포넌트와 api를 import</li>
-<li>template  - html, CSS</li>
-<li>component - class</li>
-</ol>
-<h3 id="앵귤러"><a href="#앵귤러" class="headerlink" title="앵귤러"></a>앵귤러</h3><p>내용이 방대하기 때문에 한번에 다 배울 수 없고, 당장 필요한 기능을 찾아서 쓰면서 배운다.  </p>
-<ul>
-<li><p>높은 개발생산성: 내가 공부한 것보다 더 많은 효율과 결과를 낼 수 있다.  </p>
-</li>
-<li><p>컴포넌트: 레고 조각과 같다. 화면을 그리는데 필요한 부품과 같으며, 분리하고 조립하여 사용한다.   </p>
-</li>
-<li><p>웹에서 왜 컴포넌트 기반 개발이 어려운가 -&gt; CSS 때문에<br>컴포넌트는 HTML/CSS/JS 가 한몸으로 view를 그려야하는데, 컴포넌트가 조립되었을 때 CSS가 서로 영향을 주면 곤란하다. 어떻게 CSS 를 컴포넌트화하느냐의 문제.  </p>
-</li>
-<li><p>타입스크립트: 반드시 타입스크립트를 써야하는건 아니지만, 일반적으로는 타입스크립트를 쓴다.  </p>
-</li>
-<li><p>게으른 로딩: 현재 사용하는데에 무리가 없는 부분만큼의 리소스만 받자.<br>-&gt; SPA의 단점인 초기로딩속도를 생각해보면, 그보다 훨씬 빠를 것이다.  </p>
-</li>
-<li><p>코드최적화: <code>build</code> - 서버에 올릴 최종 산출물을 만들라는 명령. 이 최종 결과의 용량은 작아야 한다. 따라서 빌드하면 만들어질 코드의 용량을 줄이는데에 노력을 많이 하고 있다.  </p>
-</li>
-</ul>
-<h3 id="실습하며-배운-내용"><a href="#실습하며-배운-내용" class="headerlink" title="실습하며 배운 내용"></a>실습하며 배운 내용</h3><ul>
-<li>루트 컴포넌트: 기본 컴포넌트중에 app.module.ts 를 제외한 app 폴더의 모든 것  </li>
-<li><p>루트 모듈: 컴포넌트를 관리한다. 모듈을 만질 줄 알아야 한다.  </p>
-<ul>
-<li>선언부: 컴포넌트 등록 -&gt; 새로 만들어진 컴포넌트는 이 곳에 넣어줘야한다. </li>
-<li>임포트: 모듈을 넣어주는 곳</li>
-<li>프로바이더스: 서비스<!-- 컴포넌트 html은 순수한 html이다. 
-html과 CSS 컴포넌트를 분리할 수 있으면 다른 사람에게 따로 줄수도 있고... 좋다.  -->
-</li>
-</ul>
-</li>
-<li><p><code>ng serve</code> : 아직 개발 중. 개발용 서버.  </p>
-</li>
-<li><code>ng build</code> : 개발 다했다! 최적화!  <!-- 
-.map : 서버에 올릴 때 map은 다 지우고 올라간다. 
-JS파일과 ts파일을 묶어주는데에 필요한게 map 파일. 디버깅용이니까 배포할땐 필요없다.  -->
-</li>
-</ul>
-<!-- 
-컴포넌트는 태그로 불려졌을때 태어난다. -> 태어나면 view를 그림
-커스텀 태그를 만든것과 같다! -->
-<ul>
-<li><code>-t</code> : 인라인 템플릿  </li>
-<li><code>-s</code> : 인라인 스타일  </li>
-<li><code>-S</code> : 스킵 테스트 (spec.ts을 안 만든다)(컴포넌트에서는 축약형이 먹히지 않는다)  </li>
-<li><code>--flat</code> : 폴더를 만들지 않는 컴포넌트  </li>
-</ul>
-<!-- app-home은 app-root의 자식.
-html은 중첩관계에 의해 부자관계를 맺으니까. 
-root컴포넌트는 필수적이다. 조상중의 조상이다. 아무거나 갖다두면 안된다.  -->
-<!-- path: url의 path. 도메인 이후 슬래시 다음부터 오는 것. 여기에 내가 활성화시킬 컴포넌트를 적어줌.  -->
-<!-- 컴포넌트는 ui를 만드는것이 주목적. -->
-<ul>
-<li><p>서비스: 서버에서 데이터를 가져오거나, 상태가 바뀌면 서버에 데이터를 보내거나, 로딩하거나 하는, 프로젝트 전체적으로 쓰여야하는 필요한 기능들. 화면을 그리는데에 직접적인 연관은 없는 기능을 컴포넌트로부터 분리.  </p>
-</li>
-<li><p><code>main.ts</code> : 앵귤러가 가동되면 가장 먼저 시작 될 파일.  </p>
-<!-- 루트모듈에 부트스트랩에 루트컴포넌트를 적어준다고 했는데, 그 루트컴포넌트를 띄운다.  -->
-</li>
-</ul>
-<!-- 컴포넌트는 하늘에서 뚝 떨진게 아니라 웹컴포넌트라는 기반이 있었다.
-컴포넌트를 만드는건 태그를 만드는 것과 같다. 
-shadowDom: 나중에 컴포넌트가 합쳐졌을때 다른 컴포넌트의 간섭을 받으면 안된다. 
-
-컴포넌트의 연결은, 데이터를 주고받을 수 있어야 한다는 뜻.어 -->
-<ul>
-<li>데코레이터: 메타데이터 객체라고 한다. 함수이므로 사용할 때 호출이 필요하다.   </li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
   
 </article>
 
 <!-- Table of Contents -->
 
-  
-
-
-  <nav id="page-nav">
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/">Next</a>
-  </nav>
-
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#제네릭"><span class="nav-number">1.</span> <span class="nav-text">제네릭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-template"><span class="nav-number">2.</span> <span class="nav-text">Angular - template</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#템플릿"><span class="nav-number">2.1.</span> <span class="nav-text">템플릿</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Binding"><span class="nav-number">3.</span> <span class="nav-text">Data Binding</span></a></li></ol>
+    
+    </div>
+  </aside>
 </section>
-          <aside id="sidebar">
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>Recent Posts</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/17/0617/">Generic, Angular</a></h6>
-              <span>June 17, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/14/0614/">Angular</a></h6>
-              <span>June 14, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/11/0611/">SPA, Routing</a></h6>
-              <span>June 11, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/07/0607/">클로저</a></h6>
-              <span>June 7, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/05/0605/">실행컨텍스트</a></h6>
-              <span>June 5, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/23/0523/">DOM, 동기식 &amp; 비동기식, 이벤트</a></h6>
-              <span>May 23, 2019</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
 
