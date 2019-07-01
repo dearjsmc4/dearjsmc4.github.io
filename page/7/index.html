@@ -97,7 +97,7 @@
         
           <section id="main">
   
-    <article id="post-0508" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0515" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +105,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/08/0508/">원시 값과 객체, 함수, 스코프</a>
+      <a class="article-title" href="/2019/05/15/0515/">전역객체, this</a>
     </h1>
   
 
@@ -113,8 +113,8 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/08/0508/" class="article-date">
-	  <time datetime="2019-05-07T15:00:00.000Z" itemprop="datePublished">May 8, 2019</time>
+	<a href="/2019/05/15/0515/" class="article-date">
+	  <time datetime="2019-05-14T15:00:00.000Z" itemprop="datePublished">May 15, 2019</time>
 	</a>
 
       
@@ -125,50 +125,31 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="원시-값"><a href="#원시-값" class="headerlink" title="원시 값"></a>원시 값</h2><p><strong>변경 불가능한 값.</strong> 변수와 헷갈리면 안 된다. 변수 자체가 값도 아닐 뿐더러, 변수는 당연히 변수값이 변한다. 그런데 변수가 가지고 있는 값 자체가 원시 값(숫자, 문자, 불리언, null, undefined, symbol)일 때 값은 바뀌지 않는다. 상수하고도 헷갈리면 안 된다. <strong>상수도 값을 갖고 있을 수 있는 변수</strong>이다. 단지 재할당을 못할 뿐이지. 그래서 변하지 않는 수라고 하면 상수하고 헷갈리기 쉽다.<br><code>const a = {};</code> 일 때는 빈 객체를 변경할 수 있다. 객체는 객체타입이며 변경가능한 값이기 때문이다. <strong>변경 불가능하다는 것은 재할당 불가능하다는 것이 아니다.</strong><br><!-- 변수가 나쁜 건 아니지만 남발하면 안 좋다. 왜냐면 대부분의 에러가 변수때문에 나기 때문에. 따라서 변수는 스코프를 좁혀서 얼른 쓰고 얼른 버리는 게 좋다. 다른 곳에서 변경되지않도록.   --><br>대부분의 언어에서 문자열은 객체로 취급받는데 자바스크립트는 원시 값으로 취급받는다. <strong>재할당 이외의 방법으로는 절대 변할 수 없기 때문에 신뢰성이 보장</strong>된다. 요즘은 객체도 ‘얼려서’ 변경을 못하도록 하기도 한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;그럼 객체도 처음부터 원시 값으로 만들지 그랬냐&quot; </span><br><span class="line">-&gt; 객체를 하나 만든다는 게 생각보다 비용이 많이 드는 일이다. </span><br><span class="line">프로퍼티도 하나의 객체이고. 그러면 객체를 통째로 썼다 지웠다 하는 것보단 차라리 </span><br><span class="line">변경 가능하게 만드는 게 더 나은 일일 것이다. 신뢰성과 맞바꾸더라도... </span><br><span class="line">게다가 원시 값은 Pass by Value, 값을 복사해서 넘겨주는 전달인데, </span><br><span class="line">만약 객체를 통째로 복사해서 전달한다면 큰 낭비이기도 하다.</span><br></pre></td></tr></table></figure></p>
-<p>(+)<br><strong>가비지컬렉터</strong>: 메모리공간의 값을 지우고 다니는 애가 아니라, 메모리공간의 할당을 해제하고 다니는 애다. 메모리공간 확보라는 건 ‘여기 쓸 거니까 건들지마’ 라는거고, 메모리공간 해제라는 건 ‘여기 쓰는 사람 없으니까 써도 돼’ 라는 것.  </p>
-<h2 id="객체"><a href="#객체" class="headerlink" title="객체"></a>객체</h2><p>객체를 할당한 변수가 확보한 메모리공간에는 객체가 실제로 저장된 메모리공간의 주소가 저장되어있고, 이를 <strong>참조값</strong>이라고 한다. 식별자가 객체를 가리키고 있는(point) 상태이다. 참조값(메모리주소) 자체는 원시값이라서 바꿀 수 없지만 메모리공간에 저장된 실제 객체는 변경 가능하다. 객체 리터럴이 평가되어 값이 된다는 건 메모리에 이진수로 저장된다는 말이다. 두 개의 식별자가 한 객체를 공유한다는 건 한 쪽이 데이터를 변경하면 다른 한 쪽도 영향을 받으므로 부작용이 된다.  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">  name: <span class="string">'Lee'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> person2 = &#123;</span><br><span class="line">  name: <span class="string">'Lee'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(person1 === person2); <span class="comment">// ①</span></span><br><span class="line"><span class="built_in">console</span>.log(person1.name === person2.name); <span class="comment">// ②</span></span><br></pre></td></tr></table></figure>
-<p>1번은 false, 2번은 true 가 나온다.<br>객체 비교는 참조값이 달라서 false고, 2번은 원시값 비교(‘Lee’)가 되기 때문에 true이다.</p>
-<h2 id="함수"><a href="#함수" class="headerlink" title="함수"></a>함수</h2><p>함수 안으로 필요한 정보를 밀어넣고(input) 값을 만들면 그 값을 내보낸다(output).<br><code>function</code> 키워드는 함수 선언이라기보다는 <strong>함수 정의</strong>라고 하자.<br>함수 정의만으로 함수가 실행되는 것은 아니고, <strong>함수 호출</strong>이라는 트리거가 있어야 한다. <code>return</code>은 옵션이고, return 을 안 쓰면 암묵적으로 undefined 가 반환된다(완료 값). 매개변수도 변수라서 인수가 할당된다. 매개변수는 함수 몸체 안에서만 유효하다.<br>함수는 <strong>재사용</strong>을 위해 쓴다. 코드의 중복을 줄이고, 유지보수를 편리하게 한다. 실수가 줄어들고 품질도 좋아지고 돈도 적게 든다. 같은 코드가 여기저기 흩어져있으면 무언가를 고쳐야 할 때 여기저기 흩어진 코드에 다 찾아가서 고쳐줘야 한다.<br>함수명도 함수 몸체 내에서만 유효한 식별자이다. (보통 재귀함수에서 쓴다) 함수를 호출 할 때 보통 <code>foo();</code> 라고 하는데, 이때 foo 는 함수명이 아니라 자바스크립트 엔진이 함수명으로 암묵적으로 생성한 식별자이다.<br>인수 = argument<br>인자 (매개변수) = parameter  </p>
-<h3 id="함수-정의"><a href="#함수-정의" class="headerlink" title="함수 정의"></a>함수 정의</h3><ol>
-<li>함수 선언문  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hello'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+        <h2 id="전역객체"><a href="#전역객체" class="headerlink" title="전역객체"></a>전역객체</h2><p>우리가 만드는 게 아니라 브라우저 열자마자 전역객체가 만들어진다. 그 안에는 전역객체가 가지고있는 프로퍼티와 메소드, var 로 만든 전역 변수, 암묵적 전역변수, WEB API가 들어있다. window의 프로퍼티는 window.을 생략해도 된다.  </p>
+<h3 id="eval-함수"><a href="#eval-함수" class="headerlink" title="eval 함수"></a>eval 함수</h3><p>안 배워도 되고 가르치지도 않으려고 하는 함수…<br>얘를 왜 안 쓰냐면, 자기자신만의 스코프를 만들고 상위 스코프도 변형시키기 때문이다. 비용이 많이 드는 일들이다. 비용이 많이 드는 일은 대체로 최적화가 되는데 eval 은 그 최적화를 깨뜨린다. 보안문제도 있다. 사용자가 입력한 데이터는 untrusted data 라고 하는데, 이것은 한번 검사를 해야한다고 한다. eval이 받은 문자열을 바로 실행시켜버리니까 문제인듯하다. 그 안에 무슨 코드가 있을지 모르니까.  </p>
+<p>(함수이름 짓는 팁: 빌트인메소드들 이름 따라하기)  </p>
+<h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>객체에는 상태 데이터와 동작(메소드)이 있다고 했고, 동작인 메소드는 상태 데이터를 참조하고 변경할 수 있어야 한다. 메소드가 자신이 속한 객체의 프로퍼티를 참조하려면 자신이 속한 객체를 가리키는 식별자를 참조할 수 있어야 한다.<br><strong>this</strong>는 객체 자신의 프로퍼티나 메소드를 참조하기 위한 <strong>자기참조변수</strong>이다. <strong>this가 가리키는 값은 함수 호출 방식에 의해 동적으로 결정된다.</strong> 아무것도 신경쓰지말고 함수가 어떻게 호출되었느냐만 보면됨. 함수가 호출되어야 this 가 결정된다.<br><!-- (렉시컬 스코프는 함수정의가 평가될때 결정된다)  --></p>
+<h3 id="다양한-함수호출방식"><a href="#다양한-함수호출방식" class="headerlink" title="다양한 함수호출방식"></a>다양한 함수호출방식</h3><ol>
+<li>일반함수 호출 -&gt; this 는 기본적으로 window 를 가리키도록 세팅된 채로 시작한다.  </li>
+<li>메소드 호출 -&gt; this 는 메소드를 호출한 객체를 가리킨다.  </li>
+<li>생성자함수 호출 -&gt; this 는 생성될 인스턴스를 가리킨다.  </li>
+<li>Function.prototype.apply/call/bind 메소드에 의한 간접 호출 -&gt; this를 명시적으로 바인딩  </li>
 </ol>
-<p>함수 선언문은 함수명이 필수다.<br>함수명 안 쓰고 변수에 할당하면 그게 함수 표현식이 된다.  </p>
-<ol start="2">
-<li>함수 표현식  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hello'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>변수 선언문 + 할당문.  </p>
-<p>함수 선언문을 썼을 때, 자바스크립트 엔진이 암묵적으로 함수명과 같은 식별자를 등록하여 식별자가 함수 객체를 가리키게 하고, 그 식별자를 이용해 함수를 호출하게 된다. 함수 표현식도 var 키워드로 인해 foo 라는 식별자가 등록이 되고 함수 객체를 가리키게 된다. 똑같이 동작하는 것 같지만 사실 조금 다르다. 만약 코드 상으로 함수를 정의하기 전에 호출을 먼저 하게 되면 함수 선언문의 경우 함수 호이스팅에 의해 hello 가 콘솔에 출력된다. 함수 선언문은 foo 라는 식별자를 만듦과 동시에 함수 객체까지 메모리공간에 할당해버리기 때문이다. 하지만 var 키워드를 이용한 함수 표현식은 foo 라는 식별자가 등록만 되어있는 상태이기 때문에 호출하게 되면 foo 는 함수가 아니라는 에러가 뜬다.  </p>
-<p>(+)<br>일반 객체와 함수 객체의 차이?<br>일반 객체와 달리 함수 객체는 호출할 수 있다. </p>
-<p>인수와 매개변수의 개수가 일치하지 않아도 에러가 나지는 않는다.<br>매개변수의 갯수는 정해져 있지는 않지만 적을 수록 좋고, 3개까지 쓰는 게 제일 좋다. (왜인지 잘 기억이 안 나므로 알아보고 업데이트 하겠음)<br>3개가 넘어가면 그것들을 객체로 만들어서 넘기면 좋다.<br><!-- 강사님 추천 책: 클린 코드   --></p>
+<p>this는 객체의 참조를 얻기 위해 필요한 것이니까 전역이나 일반함수에서 this를 쓸 일은 없다. 그래서 엄격모드에서는 undefined를 내보낸다.  </p>
+<p>메소드로 호출된 함수는 메소드를 <strong>호출한</strong> 객체를 가리킨다고 했다. 메소드를 <strong>가지고 있는</strong> 객체가 아니다! this 가 무엇인지 확인할 때에는 무조건 함수가 <strong>어떻게</strong> 호출되었는지만 확인하면 된다. 즉시실행함수도 this 가 window 이다. 메소드 안의 중첩함수도 일반함수로 호출되었다면 this 는 window 이다.<br>그런데 중첩함수는 외부함수를 도와주는 함수이다. 외부함수 안에서만 딱 쓰겠다는 의지가 나타났다는 말이다. 그럼 외부함수가 메소드로 호출돼서 this 가 객체를 가리키는 상태라면, 중첩함수에서 this가 window로 바뀌는 것은 기대에 어긋난다. 그래서 필요하다면 this를 갈아끼워줄 수 있다. 외부함수에서의 this를 변수에 회피시켜놓고 쓸 수도 있지만, bind/apply/call 빌트인 메소드를 사용할 수도 있다. 위 목록 중 4번 항목을 말하는 것이다. </p>
+<!-- 호출이라는 것은 외부의 인수를 함수내부로 밀어넣는 행위이기도 하다. bind(this) 는 바깥의 this를 bind에 넣어주는거고 그럼 this 가 foo 안에 있는거고, foo는 obj가 호출했으니까... this가 obj 가 된다. -->
+<h3 id="apply-와-call"><a href="#apply-와-call" class="headerlink" title="apply 와 call"></a>apply 와 call</h3><p>함수를 호출하는 것이 주 역할인 것은 똑같고 인수를 전달하는 방식만 다른 메소드들이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">뫄뫄.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure></p>
+<p>뫄뫄.apply(thisArg) 일 때, 뫄뫄함수를 호출하면서 인자로 준 thisArg를 this로 바인딩해준다(간접호출도 해준다). 인수가 있을 때 인수도 전달할 수 있다. <code>[argsArray]</code> 는 함수에 전달할 인수 리스트 배열이다. 옵션이므로 생략 가능하다.  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">뫄뫄.call(thisArg, arg1, arg2, ...)</span><br></pre></td></tr></table></figure>
+<p>call 메소드도 첫 번째 인자를 this 로 바인딩해주고 간접호출까지 해주는 것은 같다. 하지만 인자를 전달하는 방식이 apply 와는 다르다. 배열의 형태가 아니라 하나씩 전달해야 한다.  </p>
 <ul>
-<li>반환문 <code>return</code>  <ol>
-<li>리턴 키워드 뒤에 지정한 값을 반환.  </li>
-<li>함수의 실행을 중단하고 함수몸체를 빠져나간다. 값을 리턴했는데 뭘 더 할 게 없으니까.<br>리턴 뒤에 어떤 값을 적지 않아도 된다. 그냥 함수를 빠져나갈 뿐.  </li>
-</ol>
+<li><em>apply 를 쓰는 팁</em><br>내가 자주 접하는 가변인자함수중에는 Math.max() 가 있다. 인수를 한 개, 두 개, 세 개 내 맘대로 전달할 수 있다.<br>Math.max() 의 문법은 <code>Math.max([값1[, 값2[, ...]]])</code> 이고 예제는 다음과 같다.  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max(<span class="number">10</span>, <span class="number">20</span>);   <span class="comment">//  20</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="즉시실행함수"><a href="#즉시실행함수" class="headerlink" title="즉시실행함수"></a>즉시실행함수</h3><p>정의와 동시에 호출되는 함수. 함수 정의하면 함수 객체가 만들어지고, 그 객체는 호출할 수 있으니까 끝에 () 로 호출. 단 한 번 호출할 수 있다. 그래서 뭐 함수명을 식별자로 만들고 어쩌구 저쩌구도 안한다. 그냥 메모리를 단 한 번 쓰고 사라진다. 이름을 붙여줄 수도 있지만 재귀를 하지 않는 이상 이름이 의미가 없다. 즉시실행함수는 반드시 그룹연산자 (…) 로 묶어주거나 function 키워드 앞에 <code>!</code> 이나 <code>+</code> 를 붙여주어야 한다. 보통 그룹연산자로 묶은 뒤 그 안에서 호출까지 한다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  [실행 코드]</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></p>
-<h3 id="중첩-함수"><a href="#중첩-함수" class="headerlink" title="중첩 함수"></a>중첩 함수</h3><p>함수가 함수 안에서 정의되었다. 외부함수를 도와주는 헬퍼함수의 역할을 한다. 스코프와 연관이 있다. 외부함수도 스코프를 만들고 내부함수도 스코프를 만드니까 스코프도 중첩이 된다. </p>
-<h3 id="콜백함수"><a href="#콜백함수" class="headerlink" title="콜백함수"></a>콜백함수</h3><p>외부에서 밀어넣어주는 헬퍼함수. 두 함수를 합친다. 중첩함수는 태생적으로 함수 안에 있는거고 콜백은 밖에서 밀어넣어진다. 내가 넘기는 콜백함수에 따라 함수가 하는 일이 달라질 수 있다.</p>
-<h2 id="스코프"><a href="#스코프" class="headerlink" title="스코프"></a>스코프</h2><p>식별자는 값과 바인딩이 되어있다. 왜냐면 값 없이는 식별자는 의미가 없기 때문이다. 스코프는 상하관계가 있다. 이 상하관계는 중첩관계에 의해서 만들어진다. 중첩된 함수 내부에서 선언된 변수는 하위스코프에, 외부함수에서 선언된 변수는 상위스코프에. 전역변수는 전역스코프에 있다. 자바스크립트는 함수가 스코프를 만들고, 이것을 함수레벨스코프라고 한다(var 키워드가 지원하는…). let이나 const는 블록레벨스코프를 지원한다.<br>똑같은 코드도 어디있느냐에 따라(문맥에 따라) 다르게 동작한다. 똑같은 말이라도 어떤 상황에서 하냐에 따라 다른 것처럼. 그 문맥이 스코프다.<br>자식객체는 부모객체의 자산을 쓸 수 있지만 그 반대는 안 된다. 하위스코프의 변수를 상위스코프에서 참조할 수 없다. 내 스코프에서 참조할 변수의 선언을 찾지 못하면 상위로 찾아 올라간다. 상위스코프와 하위스코프가 연결된 것을 <strong>스코프체인</strong>이라고 하는 것이다.  </p>
-<!-- 렉시컬?
-사전으로는 어휘의, 단어의.. 라는 뜻인데. 렉싱은 어휘를 뜻하고. 음... 식별자들이 렉시컬환경에 등록된다고 생각하면 그냥 식별자라는 어휘들을 모아두는 환경이라고 보면 안 되나? -->
-<!-- 함수 선언문, 하면 선언이니까 식별자가 만들어지고 식별자는 함수객체를 가리킨다. 
-그러니까 스코프체인에서 변수를 검색하는것과 똑같이 동작함.
-스코프는 선언될 때에 결정됨.
-함수 안의 변수는 호출될지안될지모르기때문에 실행할때 함수가 호출되면 그때 선언.
--->
-<h3 id="렉시컬-스코프"><a href="#렉시컬-스코프" class="headerlink" title="렉시컬 스코프"></a>렉시컬 스코프</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">10</span>;</span><br><span class="line">  bar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); <span class="comment">// ?</span></span><br><span class="line">bar(); <span class="comment">// ?</span></span><br></pre></td></tr></table></figure>
-<p>스코프가 결정되는데에는 두 가지 방식이 있다.  </p>
-<ol>
-<li>함수를 어디서 호출했는지에 따라 상위 스코프가 결정되거나  </li>
-<li>함수를 어디서 정의했는지에 따라 상위 스코프가 결정된다.  </li>
-</ol>
-<p>자바스크립트는 <strong>함수를 어디서 정의했는지</strong>에 따라 상위 스코프가 결정된다. 즉 2번에 해당되고, 이를 <strong>정적 스코프</strong>, 또는 <strong>렉시컬 스코프</strong>라고 한다(1번은 동적 스코프라고 한다). 함수 bar 는 var x = 1; 과 같이 전역에서 정의되었기 때문에 bar 는 1를 출력한다. 만약 동적 스코프였다면 foo 함수 안에서 bar 가 호출되었기 때문에 foo 가 bar 의 상위 스코프가 되고, bar는 1이 아니라 10을 출력하게 될 것이다. </p>
+<p>그런데 만약 내 숫자들이 배열 안에 들어있다면<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="built_in">Math</span>.max(arr); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure></p>
+<p>배열을 통째로 넣어버리면 NaN이 나온다.  </p>
+<p>Math는 this가 필요없는 정적메소드이다. 따라서<br><code>Math.max.apply(null, arr)</code> 이렇게 하면 arr라는 배열이 그대로 Math.max에 들어갈 수 있다.<br><code>Math.max(...arr)</code> ES6에서는 이 문법도 가능하다.  </p>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p>호출을 자동으로 해주진 않고, 사용할 객체를 this로 전달하는 것까지만 해준다.<br>코드 이해가 잘 안되니까 내일 다시 알아보고 업데이트 해야겠다.  </p>
 
       
     </div>
@@ -191,7 +172,7 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-0503" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0513" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -199,7 +180,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0503/">변수, 값, 문과 표현식, 데이터타입</a>
+      <a class="article-title" href="/2019/05/13/0513/">함수, 프로토타입</a>
     </h1>
   
 
@@ -207,8 +188,8 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/03/0503/" class="article-date">
-	  <time datetime="2019-05-03T10:40:59.000Z" itemprop="datePublished">May 3, 2019</time>
+	<a href="/2019/05/13/0513/" class="article-date">
+	  <time datetime="2019-05-12T15:00:00.000Z" itemprop="datePublished">May 13, 2019</time>
 	</a>
 
       
@@ -219,47 +200,36 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="변수"><a href="#변수" class="headerlink" title="변수"></a>변수</h2><p>들어가기 전에.  </p>
+        <!-- constructor 와 프로토타입은 전부 객체지향에 대한 이야기고.
+프로토타입에서 상속을 모르면 안 된다. 프로토타입은 면접질문으로 나올테니까 잘 알아두기. -->
+<h2 id="함수와-일급객체"><a href="#함수와-일급객체" class="headerlink" title="함수와 일급객체"></a>함수와 일급객체</h2><p>일급객체: 값처럼 쓸 수 있는 객체<br>객체는 변수에 담을 수도 있고 프로퍼티의 값으로 할당할 수도 있고 함수 인수로 전달하거나 리턴으로 반환할 수 있다. 함수도 위의 조건을 만족시키므로 일급객체이다.  </p>
+<h3 id="함수-객체의-함수-객체만이-가지고있는-프로퍼티"><a href="#함수-객체의-함수-객체만이-가지고있는-프로퍼티" class="headerlink" title="함수 객체의(함수 객체만이 가지고있는) 프로퍼티"></a>함수 객체의(함수 객체만이 가지고있는) 프로퍼티</h3><p>함수는 객체이므로 프로퍼티를 가질 수 있다.<br>함수를 console.dir 로 찍었을 때 나오는 함수객체 고유의 프로퍼티는<br>arguments, caller, length, name, prototype 이렇게 다섯 가지이다.  </p>
 <ul>
-<li>자바스크립트는 왜 8바이트 숫자를 쓰는가  </li>
-</ul>
-<p>자바스크립트의 변수에는 숫자, 문자, 불리언 등을 자유롭게 넣을 수 있다. 즉, 변수에 뭐가 들어올지 모른다는 말이 된다. 그래서 메모리 공간을 좀 넉넉히 확보한다. 다른 언어같으면 ‘이 변수는 4바이트 정수 숫자를 저장할거야’ 라고 크기를 딱 정해줄텐데, (선언될 때 타입을 정하니까 <code>정적 타입 언어</code> 라고 한다.) 자바스크립트는 <strong>동적 타입 언어</strong>라서 크기를 정해주지 않는다. 변수의 타입은 할당될 때의 값의 타입에 따라 정해진다.  </p>
-<p>숫자의 경우, 내가 숫자를 얼마나 넣을 줄 알겠는가. 그러니까 일단 제일 많이 넣을 수 있을 정도로 메모리공간을 보유해놓는 것이다. 따라서 자바스크립트에서 숫자는 무조건 8바이트를 쓴다. 자바스크립트는 개발자가 타입을 덜 신경쓰도록 만들어진 언어다.  </p>
-<p>숫자의 크기가 8바이트면 8개의 셀을 쓸 것이고, 8개의 주소가 있을 것이다. 이때 변수는 선두 어드레스를 기억하고, 변수값을 불러올 때 몇 바이트를 가지고 와야할지 알아야 하는데, 그것은 데이터 타입으로 결정한다. 데이터 타입의 크기를 참고(메모리 공간을 얼마나 차지하고 있나)하여 그만큼의 데이터를 전부 불러온다. 만약 가져와야하는 바이트보다 조금 가져오면 데이터가 왜곡되기 때문이다.</p>
-<h3 id="변수의-재할당"><a href="#변수의-재할당" class="headerlink" title="변수의 재할당"></a>변수의 재할당</h3><p><code>var x;</code><br><code>x = 10;</code><br><code>=</code>: 우변의 값을 좌변으로 할당하는 할당연산자  </p>
-<p>변수가 선언되면, 선언과 초기화단계를 거쳐 변수명과 메모리공간이 매핑되었고 undefined 가 할당된 상태가 된다. 그리고 런타임에 자바스크립트엔진이 10 이라는 숫자(값)를 이진수로 바꿔서 메모리 공간에 값을 넣는다.  </p>
-<p><strong>!중요!</strong></p>
-<p>undefined를 싹 지우고 숫자를 그 자리에 넣는게 아니라, <strong>새로운 공간에 숫자를 넣고 변수 x가 그 공간을 가리키게</strong> 한다. 원시타입은 변경불가능한(immutable) 값이기 때문이다.  </p>
-<p>undefined는 데이터타입이면서 값이기도 하다. 그러니까 할당이 될 수 있다. undefined는 원시타입이고, 변경할 수 없다.<br>-&gt; 메모리공간에 할당된 undefined를 지우고 다른 값으로 바꿀 수 없다는 뜻이다.<br>undefined가 할당된 공간은 그냥 놔두고, 새로운 공간에 10이라고 이진수로 쓰고 x 가 10을 가리키게 한다. 그럼 undefined는 쓰레기값(어떤 식별자도 참조하지않는 값)이 된다. 쓰레기값이 되면 가비지컬렉터가 치운다. (언제 치울지는 모른다 그건 개발자가 신경 쓸 일은 아니다)<br>이것이 자바스크립트에서의 변수의 <strong>재할당.</strong>  </p>
-<h3 id="변수-호이스팅"><a href="#변수-호이스팅" class="headerlink" title="변수 호이스팅"></a>변수 호이스팅</h3><p>선언만 된 상태에서 참조했을 때 초기화된 상태인 undefined 가 나오는 현상.<br>(호이스팅을 배우는 이유는 쓰라고 배우는게 아니라 쓰지말라고 배우는 거라고 하셨다…)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a);</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">100</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>var 키워드를 사용했으므로 첫 번째 a는 undefined, 두 번째 a는 100이 나온다.<br>자바스크립트 엔진이 변수 선언문을 실행한 후에 코드를 한 줄씩 실행하면서 값을 할당하게 되는데,<br>함수 내에서 첫 a를 콘솔에 출력하려고 할 때에는 아직 100 이라는 값이 할당되지 않아 undefined 인 상태다.<br>두 번째 a를 출력할 때에는 a에 100이 할당 된 후이기 때문에 100이 정상적으로 출력된다.  </p>
-<ul>
-<li>var 키워드의 문제:  <ul>
-<li>중복선언이 된다.  </li>
-<li>호이스팅이 된다.  </li>
-<li>키워드 없이 선언되면서 심지어 전역변수가 된다.  </li>
-<li>블록레벨스코프를 지원 안하고 함수레벨스코프를 지원. </li>
-<li>상수 선언이 안 된다. (상수는 재할당을 못하는 변수. 상수도 변수다!)<br>(변수명을 대문자로만 지으면 상수란 뜻으로 통한다고 한다)  </li>
-</ul>
+<li><p><code>arguments</code>: 함수 호출 시 전달된 <strong>인수들의 정보</strong>를 가지고 있다.(중요함!!!)<br>  유사배열객체이므로 for문 등으로 순회가 가능하다. 하지만 arguments는 프로퍼티처럼 쓰면 안 되고 함수의 암묵적인 지역변수처럼 써야 한다. arguments 객체는 매개변수 개수를 확정할 수 없는 <strong>가변인자함수</strong>에서 쓰면 좋다. 만약 for 문을 돌리면서 <code>arguments[i]</code> 이런 식으로 접근하는 것은 배열표현식이 아니라 프로퍼티접근이다. i 에 0, 1, 2, 3 이런 숫자들이 들어가더라도 숫자를 문자로 바꿔서 접근하기 때문에 사실은 <code>arguments.0</code> 이런식으로 접근하는 것과 같다.  </p>
 </li>
+<li><p><code>length</code>: <strong>매개변수</strong>의 개수를 가리킨다.  </p>
+</li>
+<li><code>name</code>: <strong>함수명</strong>을 나타낸다.  </li>
+<li><code>prototype</code>: 함수만 가지고 있는 객체. 생성자 함수의 경우 함수가 생성할 객체의 프로토타입을 가리킨다.  </li>
 </ul>
-<p>그래서 ES6에서 const 와 let 키워드가 도입되었다.<br>const: 할당 한번만 가능<br>let: 재할당가능, 재선언 불가능<br>둘 다 변수호이스팅을 안하는 것처럼 동작한다.</p>
-<h2 id="값"><a href="#값" class="headerlink" title="값"></a>값</h2><p>더 이상 평가될 수 없는 표현식.<br>10+20 이 왜 표현식일까? 평가라는 단계를 거쳐 30이라는 하나의 값을 만들기 때문이다.<br>그럼 30은 왜 표현식이냐. 30도 30으로 평가되니까.<br>정확히는, 30도 메모리에 들어갈때 컴퓨터를 위해 이진수 값으로 평가되어 들어가기 때문이다.</p>
-<h3 id="리터럴"><a href="#리터럴" class="headerlink" title="리터럴"></a>리터럴</h3><p>리터럴이라는 상태는, 내가 그냥 30이라고 쓴 상태다. 리터럴 표기법이 별 게 아니고 그냥 내가 10이라고 쓰면 그게 리터럴 표기법으로 만든 리터럴이다. 30은 숫자 리터럴이고, 자바스크립트엔진이 30을 읽고 “아 숫자 30을 만들라는 거구나,” 하고<br>숫자 30에 대응하는 값(이진수)을 만든다. 30이라는 리터럴이 이진수값으로 평가되었다. 결국 <strong>리터럴은 값을 만드는 방법중에 가장 심플한 표현식</strong> 이다.  </p>
-<p>정확히는 리터럴은 값이 아니라 값을 만드는 표현식이다. 근데 어차피 리터럴은 값이 될 예정이니까 그냥 값이라고 퉁칠 수도 있다. 리터럴은 값이 될 순 있지만 값이 리터럴이 될 수 없다는건 리터럴이 평가되서 값이 될 수는 있지만 값이 평가되어 리터럴이 될 수는 없다는 말이다. </p>
-<h2 id="표현식"><a href="#표현식" class="headerlink" title="표현식"></a>표현식</h2><p>변수에 할당되는 것은 값으로 평가될 수 있는 모든 표현식이다.<br><code>var a = 10;</code><br>이 때 콘솔창에서 a 를 입력하면 10이 나온다. a 도 평가되어 10이 나왔다는 뜻이다.<br>이때 a 를 <strong>식별자 표현식</strong>이라고 한다.<br><code>a + 10</code> 은 a 라는 식별자 표현식과 10 이라는 리터럴 표현식이 합쳐진 표현식이다.<br>그래서 표현식은 표현식의 일부가 될 수 있다는 것을 알 수 있다.  </p>
-<h2 id="문"><a href="#문" class="headerlink" title="문"></a>문</h2><p>문은 하나의 키워드와 식별자로 이루어진 명령이다.<br><code>var foo;</code> 는 선언’문’이다. 왜? var 와 foo 로 이루어진 변수 선언명령이기 때문이다.  </p>
-<h2 id="표현식-vs-문"><a href="#표현식-vs-문" class="headerlink" title="표현식 vs 문"></a>표현식 vs 문</h2><p>표현식은 값을 만드는게 주 업무이며, 문은 무언가를 실행하거나 명령하는 것이 주 업무다.<br>문의 개념이 좀 더 포괄적이다. 따라서 표현식은 문이다. 평가하여 값을 만들라는 일종의 명령이기 때문이다. 하지만 우리는 보통 표현식은 ‘평가’를 한다고 하지, ‘명령’한다고는 하지 않는다. 표현식은 ‘평가’가 주 업무다.  </p>
-<p>문은, 표현식인 문과 표현식이 아닌 문이 있다.  </p>
-<ul>
-<li>표현식인 문 : 값을 만드는 일을 하는 문  </li>
-<li>표현식이 아닌 문 : 값을 만드는 일이 아닌 다른 일을 하는 문  </li>
-</ul>
-<p>둘을 구별하는 가장 쉬운 방법은 변수에 할당해보는 것이다.<br>할당이 잘 되면 표현식인 문이고, 안 되면 표현식이 아닌 문이다.<br>가장 쉬운 예로는, if문은 표현식이 아닌 문이다. if문을 변수에 넣지는 않는다.  </p>
-<p>(+)<br>자바스크립트의 할당문은 식이다.<br><code>sum = 10;</code> 을 콘솔창에서 출력해보면 10으로 평가되어 나온다. 값으로 평가되는 표현식이라는 뜻이다.  </p>
-<h2 id="데이터-타입"><a href="#데이터-타입" class="headerlink" title="데이터 타입"></a>데이터 타입</h2><h3 id="문자열-타입"><a href="#문자열-타입" class="headerlink" title="문자열 타입"></a>문자열 타입</h3><p>자바스크립트엔진은 문자열의 크기를 보고 크기에 맞는 메모리공간을 확보한다.<br>문자열을 따옴표로 묶는 것은 식별자로 오해하지 않게 하기 위해서고, 문자열의 시작과 끝을 알리기 위해서이기도 하다. 마치 열고 닫는 태그같은 것이다.<br>ES6부터는 템플릿 리터럴이 도입되었는데, 1+1 같은 산술연산이 들어가도 평가 후에 문자열로 변환된다. </p>
-<h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><p>변수가 선언되었을 때, 개발자가 보기에는 선언만 되고 할당이 되지 않은 상태이지만 사실 자바스크립트엔진에 의해서 선언과 동시에 undefined가 할당된 상태다(값이 할당되었으니 정의도 되었다). undefined는 개발자가 직접 할당하는 것이 아니다. 할당은 자바스크립트엔진이 해주고, 나는 그게 “할당이 안된 상태구나,” 하고 인식하면 된다. 내가 일부러 undefined를 할당할 일이 얼마나 있을까.  </p>
-<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><p>변수에 null 을 할당하면 변수가 참조하고 있던 값 말고 null 을 가리키게 한다. null은 값이 없다는 뜻이니까, 변수가 가리키는 값은 ‘없다’. 참조가 끊어지게 된다.<br>null 을 할당하게 되면 자연스레 변수가 원래 참조하고 있던 메모리 공간이 해제되지만, null은 값이지 메모리 공간을 해제하라는 명령어가 아니다. null 을 할당하는 것은 그다지 효율적이지 못하기도 하다.<br>a가 null 을 바라보게되면 a가 바라보던 값이 혼자 남게 되어 쓰레기값이 된다? 그럴거면 null을 쓰나 다른 값을 쓰나 똑같고, 그럴거면 스코프를 줄여서 변수를 소멸시키는 게 낫다.<br>(함수는 null 에서 자주 쓰인다고 한다. 리턴값이 없을때 에러를 내보내면 멈추니까 그냥 null 을 리턴해버린다고…)  </p>
+<h2 id="프로토타입"><a href="#프로토타입" class="headerlink" title="프로토타입"></a>프로토타입</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> me = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">me.name = <span class="string">'Rudy'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(me);</span><br><span class="line"><span class="comment">// &#123;name: "Rudy"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(me.hasOwnProperty(<span class="string">'name'</span>));</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>Object 생성자 함수가 빈 객체를 만들고 내가 me 객체 안에 프로퍼티를 추가하였다. 그런데 me 객체는 내가 만들지 않은 여러 메소드들도 가지고 있다. 내가 선언하지 않았지만 쓸 수 있는 함수들이 있다는 말이다. <code>hasOwnProperty()</code> 역시 그 중 하나이다. 나는 이 메소드를 만든 적이 없지만 me 객체에서 사용할 수 있다. 왜냐면 모든 객체는 자신의 부모역할을 하는 프로토타입과 연결되어있다는 전제가 깔려있어서 그렇다.  </p>
+<p>결론부터 말하자면 프로토타입 체인의 종점에 해당하는 <code>Object.prototype</code> 이 가지고 있는 메소드들은 모든 객체가 상속받아서 사용할 수 있다. 자식객체가 부모객체의 자산을 자신의 것인냥 사용할 수 있다는 것이다. 하지만 부모객체는 자식객체의 자산을 사용할 수 없다.(프로토타입 체인은 단방향 링크드 리스트로 구현되어있다.) 프로토타입 체인은 상속을 구현하는 방식이다.  </p>
+<p>me 객체의 부모역할을 하는 프로토타입은 <code>Object.prototype</code> 이며, 따라서 me 객체는 <code>Object.prototype</code> 가 가지고 있는 모든 메소드들을 상속받아 사용할 수 있다.  </p>
+<h3 id="Object-생성자-함수와-Object-prototype"><a href="#Object-생성자-함수와-Object-prototype" class="headerlink" title="Object 생성자 함수와 Object.prototype"></a>Object 생성자 함수와 Object.prototype</h3><p>Object 생성자함수는 객체이면서 함수이며, prototype 이라는 프로퍼티를 가지고 있다. 이 prototype 프로퍼티는 함수 객체만이 가지고 있으며, <code>Object.prototype</code>을 가리키고 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">생성자 함수 객체의 prototype 프로퍼티는 생성자 함수가 생성할 객체의 </span><br><span class="line">프로토타입을 가리킨다고 했다. 일반함수도 가지고 prototype 프로퍼티를 가지고 있지만 </span><br><span class="line">이 때에는 의미가 없다. 화살표함수나 메소드축약표현으로 만든 함수는 아예 이 메소드가 없다.</span><br></pre></td></tr></table></figure></p>
+<p>그리고 모든 프로토타입 객체는 constructor 라는 프로퍼티를 가지고 있고, 이것은 생성자함수를 가리킨다. 그래서 Object 생성자함수와 <code>Object.prototype</code>은 서로를 가리키고 있다.  </p>
+<p><code>Object.prototype</code>은 프로토타입체인의 종점이다. 모든 객체는 <code>Object.prototype</code> 의 자식이고, 모든 객체는 <code>Object.prototype</code> 의 자산을 상속받는다. <code>Array.prototype</code> 이나 <code>Function.prototype</code>도 <code>Object.prototype</code>의 아래에 연결되어있다.  </p>
+<!-- `me.hasOwnProperty('name')` 일 때, me를 스코프체인에서 먼저 찾고, 성공하면, 프로퍼티를 프로토타입체인에서 찾아서 호출.
+스코프는 상속되는게 아니지. 스코프는 그냥 보이느냐 아니냐 문제지. 하위스코프에서 상위스코프를 볼 수 있을뿐 상속받는건 아님.-->
+<h3 id="proto-접근자-프로퍼티"><a href="#proto-접근자-프로퍼티" class="headerlink" title="__proto__ 접근자 프로퍼티"></a><code>__proto__</code> 접근자 프로퍼티</h3><p>프로퍼티에는 데이터프로퍼티와 접근자프로퍼티 두 가지 종류가 있다. 데이터 프로퍼티와 달리 접근자 프로퍼티는 value가 없다. 접근자 프로퍼티는 다른 데이터프로퍼티의 값을 가져오거나 변경/갱신할때 쓰는 것. 어떤 데이터프로퍼티 값을 보호하고 싶을 때, 혹은 조건에 부합할 때만 바꾸고 싶을 때 쓴다. <code>__proto__</code> 접근자 프로퍼티는 <code>Object.prototype</code> 에 있기 때문에 모든 객체와 함수가 사용할 수 있다. (모든 객체가 <code>__proto__</code> 를 ‘가지고 있는’ 것이 아니다!)</p>
+<p>그럼 <code>__proto__</code> 접근자 프로퍼티는 어디서 데이터를 가져올까?<br><code>[[Prototype]]</code> 내부슬롯에서 가져온다. 모든 객체는 자기가 생성될때 <code>[[prototype]]</code> 이라는 내부슬롯을 가지고, 이 안에 자신의 프로토타입 객체를 넣는다. 원래 직접적인 접근은 할 수 없지만, 간접적인 방법으로 접근을 허용한다.<br>따라서 <code>me.__proto__ === Object.prototype</code> 은 true 가 된다. <code>__proto__</code> 접근자 프로퍼티를 이용하여 프로토타입을 교체하거나 프로토타입에 프로퍼티를 추가할 수도 있지만, 그보다는 <code>Object.getPrototypeOf</code> 메소드나 <code>Object.setPrototypeOf</code> 를 이용하는 것이 좋다. <code>__proto__</code> 접근자 프로퍼티는 객체의 프로토타입을 찾기 위한 것이고 원래는 직접 접근해서는 안 되는 프로퍼티이기 때문이다.  </p>
+<!-- 
+### 객체지향 프로그래밍  
+
+객체는 데이터뿐만 아니라 메소드도 가지고있는데 내부데이터만 조작을 한다.
+그래서 프로퍼티를 상태데이터라고 함(바뀔값이라는 뜻. 메소드가 동작하는 순간 바뀔테니까)
+메소드는 동작이라고 함.
+객체는 상태와 동작을 그룹화한것. -->
 
       
     </div>
@@ -286,7 +256,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/6/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/8/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/6/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/8/">Next</a>
   </nav>
 
 </section>
@@ -299,6 +269,42 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/07/01/0701/">옵저버블, 에러핸들러, 인터셉터</a></h6>
+              <span>July 1, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/06/25/0625/">생명주기, 서비스, RxJS</a></h6>
+              <span>June 25, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/06/24/0624/">Directive</a></h6>
+              <span>June 24, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -336,42 +342,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/07/0607/">클로저</a></h6>
-              <span>June 7, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/05/0605/">실행컨텍스트</a></h6>
-              <span>June 5, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/23/0523/">DOM, 동기식 &amp; 비동기식, 이벤트</a></h6>
-              <span>May 23, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -381,7 +351,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -391,7 +361,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">32</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -402,7 +372,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

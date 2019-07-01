@@ -97,7 +97,7 @@
         
           <section id="main">
   
-    <article id="post-0617" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0701" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +105,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/06/17/0617/">Generic, Angular</a>
+      <a class="article-title" href="/2019/07/01/0701/">옵저버블, 에러핸들러, 인터셉터</a>
     </h1>
   
 
@@ -113,50 +113,60 @@
     
     <div class="article-meta">
       
-	<a href="/2019/06/17/0617/" class="article-date">
-	  <time datetime="2019-06-16T15:00:00.000Z" itemprop="datePublished">June 17, 2019</time>
+	<a href="/2019/07/01/0701/" class="article-date">
+	  <time datetime="2019-06-30T15:00:00.000Z" itemprop="datePublished">July 1, 2019</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
  
       <!--  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="제네릭"><a href="#제네릭" class="headerlink" title="제네릭"></a>제네릭</h2><p>shift, unshift, pop, push 등은 원본 배열을 변형시키기 때문에 잘 쓰지 않는다.<br>pop과 push 의 대체문법은 concat, […todos, {…}] -&gt; 순서만 바꾸면 shift, unshift를 대체가능하다.<br>위의 네 가지는 쓸 필요도 없고 안 쓰는 것이 좋다.  </p>
-<!-- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span> </span>&#123;</span><br><span class="line">  protected data = []; <span class="comment">// data: any[]</span></span><br><span class="line"></span><br><span class="line">  push(item) &#123;</span><br><span class="line">    <span class="keyword">this</span>.data.push(item); </span><br><span class="line">    <span class="comment">// 뭘 넣을지 모르기때문에 배열도 any타입.</span></span><br><span class="line">    <span class="comment">// 여기에서 타입을 지정해주는 순간 모든 프로퍼티가 영향받는다</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pop() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.data.shift();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> queue = <span class="keyword">new</span> Queue();</span><br><span class="line"></span><br><span class="line">queue.push(<span class="number">0</span>);</span><br><span class="line">queue.push(<span class="string">'1'</span>); <span class="comment">// 의도하지 않은 실수!</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(queue.pop().toFixed()); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(queue.pop().toFixed()); <span class="comment">// Runtime error</span></span><br></pre></td></tr></table></figure>
-<p>원래 배열은 똑같은 타입의 요소만을 나열하는 것이 정석이다. 배열을 쓴다는 것은 순회하겠다는 의미이다. 순회하면서 똑같은 처리를 연속적으로 하겠다는 의미. 그런데 타입이 다르면 문제가 생긴다. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NumberQueue</span> <span class="keyword">extends</span> <span class="title">Queue</span> </span>&#123;</span><br><span class="line">  <span class="comment">// number 타입의 요소만을 push한다.</span></span><br><span class="line">  push(item: number) &#123;</span><br><span class="line">    <span class="keyword">super</span>.push(item); <span class="comment">// 부모 클래스의 push 함수를 그대로 쓰겠다.</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pop(): number &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.pop();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>그래서 숫자만 넣을 수 있는 클래스를 따로 만들었다!<br>근데 이런일 있을때마다 클래스 몽땅 새로 만들 수는 없잖아, 그래서 제네릭이 나왔다.  –&gt;</p>
-<p><strong>제네릭</strong>은 <strong>타입 매개변수</strong>라고 한다. 타입을 외부에서 결정하게 한다. 정의할 때에 타입을 결정할 수 없다면 실행할 때에 타입을 결정할 수 있게.  </p>
-<!-- `const numberQueue = new Queue<number>();`
-number 는 T로 넘어간다.  
-~하나의 클래스로 여러가지 타입에 대응하는 큐를 만들 수 있게 되었다~ -->
-<p>제네릭은 함수에도 쓸 수 있다.  </p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 어떤 타입의 배열을 매개변수로 받아서 어떤 타입의 배열을 반환하겠다.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span>&lt;<span class="title">T</span>&gt;(<span class="params">items: T[]</span>): <span class="title">T</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> items.reverse();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// implements 가능 -&gt; 얘가 제일 낫다</span></span><br><span class="line"><span class="keyword">interface</span> User = &#123;</span><br><span class="line">  name: <span class="built_in">string</span>,</span><br><span class="line">  age?: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 순수하게 타입만 만든다</span></span><br><span class="line"><span class="keyword">type</span> User = &#123;</span><br><span class="line">  name: <span class="built_in">string</span>,</span><br><span class="line">  age?: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 인스턴스를 생성하지 않는 클래스는 이상하다! </span></span><br><span class="line"><span class="keyword">class</span> User &#123;</span><br><span class="line">  name: <span class="built_in">string</span>,</span><br><span class="line">  age?: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span>&lt;<span class="title">T</span>&gt;(<span class="params">items: T[]</span>): <span class="title">T</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> items.reverse();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arg = [&#123; name: <span class="string">'Lee'</span> &#125;, &#123; name: <span class="string">'Kim'</span> &#125;, &#123; name: <span class="string">'Park'</span>, age: <span class="number">20</span> &#125;];</span><br><span class="line"><span class="comment">// 인수에 의해 타입 매개변수가 결정된다.</span></span><br><span class="line"><span class="keyword">const</span> reversed = reverse(arg);</span><br><span class="line"><span class="built_in">console</span>.log(reversed); <span class="comment">// [ &#123; name: 'Kim' &#125;, &#123; name: 'Lee' &#125; ]</span></span><br></pre></td></tr></table></figure>
-<h2 id="Angular-template"><a href="#Angular-template" class="headerlink" title="Angular - template"></a>Angular - template</h2><h3 id="템플릿"><a href="#템플릿" class="headerlink" title="템플릿"></a>템플릿</h3><p>사실 HTML이 아니고 문자열이다. 그 안에 템플릿 문법이 포함되어 있다. 템플릿은 컴파일되어 뷰를 만든다.  </p>
-<p><strong>데이터바인딩</strong>:<br>템플릿과 컴포넌트 클래스를 연결시키겠다는 의미. 템플릿이 컴포넌트 클래스에서 필요한 데이터를 가져와서 바인딩한다. 프로퍼티는 표현식이므로 템플릿 문법에 포함될 수 있다. 이때 자동적으로 프로퍼티 표현식은 문자열로 변환된다. 데이터가 HTML과 합쳐져서 우리가 원하는 뷰가 만들어진다. 결국 뷰는 HTML 과 CSS 로 만들어져야한다. 컴포넌트는 뷰를 만들기 위한 데이터를 제공한다.  </p>
-<p>앵귤러는 <strong>MVW</strong> 이다. Model, View, Whatever(아무거나)(ㅋㅋㅋㅋ)<br><!-- DOM을 만들기 위해 모델을 가지고 있는데, 모델은 컴포넌트에 가지고 있을수도 있고 서비스나 디렉티브에 가지고 을수도 있다. --><br>템플릿과 연동하여 뷰(DOM)을 만든다. 템플릿이 일방적으로 데이터를 끌어간다. 왜냐면 컴포넌트 클래스는 템플릿을 모르기 때문이다.<br>그러나 이벤트 발생 시에는 다른데, 브라우저에서 이벤트가 발생하면 이벤트 핸들러를 통해 컴포넌트 클래스로 연결된다. 이벤트는 상태변화를 나타낸다. 상태변화는 DOM에서 발생하고, 모델은 할 일을 수행한다. 뷰를 다시 만들 때에는, 바뀐 부분만 다시 만들어야 한다.  </p>
-<h2 id="Data-Binding"><a href="#Data-Binding" class="headerlink" title="Data Binding"></a>Data Binding</h2><p>자바스크립트가 HTML에 의존하지 않는 방식이 필요하다!<br>데이터바인딩의 핵심은, 템플릿이 주도권을 갖는다는 것.<br>템플릿은 컴포넌트 클래스의 클래스 필드를 참조하며 필요한 데이터를 가져온다.<br>컴포넌트 클래스는 자기 일만 묵묵히 하면 된다.  </p>
+        <h2 id="subscribe-옵저버블-옵저버"><a href="#subscribe-옵저버블-옵저버" class="headerlink" title="subscribe, 옵저버블, 옵저버"></a>subscribe, 옵저버블, 옵저버</h2><p>http 메소드 get 을 날렸을 때, <strong>subscribe</strong>를 안 하면 요청을 받을 수 없다.<br>옵저버블은 관측 대상이므로, 그것을 지켜보고 있는 옵저버가 없으면 아무것도 하지 않는다.<br>옵저버블과 옵저버를 이어주어야 하는데(옵저버가 옵저버블을 바라보게), 그것이 바로 subscribe 이다.  </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.http.get&lt;Todo[]&gt;(<span class="keyword">this</span>.url)</span><br><span class="line">  .subscribe(<span class="function"><span class="params">todos</span> =&gt;</span> <span class="keyword">this</span>.todos = todos);</span><br></pre></td></tr></table></figure>
+<p>옵저버는 subscribe 라는 메소드를 통해서 옵저버블을 지켜보고 있다.<br>데이터를 가져온 결과물을 옵저버에게 notification 해준다.  </p>
 <ul>
-<li>왜 이벤트바인딩은 템플릿 -&gt; 컴포넌트클래스 방향인가?<br>DOM 이벤트는 view에서 발생하기 때문.  <!-- 뷰의 돔이벤트가 발생하면 데이터가 바뀌었겠거니 하고 생각한다.  
-timer함수나 ajax통신도 마찬가지. 데이터가 바뀔 가능성이 높다.   -->
+<li>옵저버블: 데이터 스트림을 방출할 수 있는 객체.<br>즉, 데이터 스트림을 가지고 있다. 옵저버가 있으면 옵저버에게 방출하고, 옵저버가 없으면 방출하지 않는다.  </li>
+<li>옵저버: 관측자. 옵저버블을 관측하며 데이터를 받는다.  </li>
+<li>subscribe: 옵저버블과 옵저버를 이어준다.  </li>
+</ul>
+<p>subscribe의 인수로 전달하는 것이 옵저버이다.<br>옵저버블이 객체고, 옵저버는 함수.<br><code>옵저버블.subscribe(옵저버)</code><br>=&gt; 인수로 전달한 옵저버가 옵저버블을 subscribe한다는 뜻이다.<br>뭔가 행위를 통해서 가져온 데이터를 옵저버의 인수로 넘겨준다.<br>따라서 인수의 네이밍을 제대로 하려면 우리가 무엇을 가져올 지를 알아야 한다.  </p>
+<p>위의 예제에서, 옵저버블은 todos를 옵저버에게 전달한다.<br>get 메소드는 자기가 무엇을 가져올 지를 모른다. 그래서 무조건 <strong>객체를 리턴</strong>하도록 되어있고, 타입을 맞춰서 할당해주어야 하므로 <code>&lt;Todo[]&gt;</code> 를 해주는 것이다. -&gt; 제네릭!<br>or,<br><code>todos as Todo[]</code> -&gt; todos는 Todo[]타입으로 보겠다. -&gt; 강제형변환. 타입캐스팅.  </p>
+<p>subscribe 안에는 데이터가 왔을 때 할 일을 적어주는 것이다.<br>-&gt; 옵저버블님, 데이터 가져오시면 todos에 주세요. 그럼 제가 어떠한 일을 하겠습니다.  </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.http.delete&lt;Todo&gt;(<span class="string">`<span class="subst">$&#123;this.url&#125;</span><span class="subst">$&#123;id&#125;</span>`</span>)</span><br><span class="line">  .subscribe(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.todos = <span class="keyword">this</span>.todos.filter(<span class="function"><span class="params">todo</span> =&gt;</span> todo.id !== id));</span><br><span class="line">  <span class="comment">// subscribe(_ =&gt; this.todos = this.todos.filter(todo =&gt; todo.id !== id));</span></span><br></pre></td></tr></table></figure>
+<p>위의 예제에서는 빈 객체가 넘어오는 상황이고, 빈 객체는 받아줄 필요가 없으므로 함수의 매개변수는 비워둔다.<br><code>()</code> 대신 <code>_</code> 를 쓰면, 인수가 넘어왔을 때 쓰지 않겠다는 명확한 의사표시이다.  </p>
+<p>subscribe도 then과 마찬가지로, 두 번째 함수를 주면 에러를 캐치하게 된다.  </p>
+<h2 id="에러핸들러"><a href="#에러핸들러" class="headerlink" title="에러핸들러"></a>에러핸들러</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.http.get&lt;Todo[]&gt;(<span class="keyword">this</span>.url)</span><br><span class="line">  .subscribe(</span><br><span class="line">    <span class="comment">// 요청 성공 처리 콜백 함수 (Observer의 next 메소드)</span></span><br><span class="line">    todos =&gt; <span class="keyword">this</span>.todos = todos,</span><br><span class="line">    <span class="comment">// 요청 실패 처리 콜백 함수 (Observer의 error 메소드)</span></span><br><span class="line">    (error: HttpErrorResponse) =&gt; <span class="built_in">console</span>.error(error)</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+<p>에러핸들러에 인수로 에러를 전달해서, 에러가 이벤트객체타입이다, 라고 판별되면 클라이언트 에러이고, 아니면 백엔드의 에러로 판별된다.  </p>
+<p><code>todos$</code> 처럼 달러가 뒤에 붙으면 옵저버블이라는 암묵적 표시이다.  </p>
+<p>파이프로 <code>shareReplay</code>를 걸어주면 옵저버블이 <strong>공유옵저버블</strong>이 된다.  </p>
+<h3 id="콜드-옵저버블-핫-옵저버블"><a href="#콜드-옵저버블-핫-옵저버블" class="headerlink" title="콜드 옵저버블, 핫 옵저버블"></a>콜드 옵저버블, 핫 옵저버블</h3><p><strong>콜드 옵저버블</strong>: 옵저버와 옵저버블이 일대일관계. 유니캐스트.<br><strong>핫 옵저버블</strong>: 여러 개의 옵저버가 하나의 옵저버블을 <strong>공유</strong>. 멀티캐스트.  </p>
+<p>shareReplay 라는 오퍼레이터는, 콜드 옵저버블을 핫 옵저버블로 만든다.<br>-&gt; 여러번 subscribe을 해도 동일한 데이터가 간다.  </p>
+<h2 id="인터셉터"><a href="#인터셉터" class="headerlink" title="인터셉터"></a>인터셉터</h2><!-- 좀 어려운데, 프로젝트에 쓰일 수도 있음.  -->
+<ul>
+<li><p>인터셉터가 왜 필요한가<br>만약 로그인을 하지 않은 상태에서 메인페이지로 바로 접근하려고 하면 튕겨낼 필요가 있다.<br>이때 로그인을 했는지 안 했는지 확인하고 튕겨내야 하는데, 보통 서버가 보안을 걸어놓는다.<br>그럼 우리는, 로그인에 성공하면 백엔드가 우리에게 넘겨주는 토큰을(지금은 일단 JWT(JSON Web Token)방법) 받는다. 로그인에 성공했으므로 토큰이라는 객체를 json으로 주고, 그것을 받아서 클라이언트가 가지고 있어야 한다(이 방법은 여러가지인데 심플하게는 로컬스토리지나 쿠키에 담는다. 보안 측면에서는 쿠키가 조금 더 낫지만 둘 다 장단점이 있다). 토큰은 암호화되어서 오기 때문에 우리가 열어봐도 뭔지 모른다. 로그인 페이지 이후에 보안이 필요한 다른 페이지로 갈때는 항상 토큰을 들고 간다. 그럼 토큰을 어떻게 서버에 줄것인가? 결론은 ‘<strong>헤더</strong>에 담는다’. 라우팅을 써서 이동할 때마다 헤더셋팅을 해야한다는 말인데, 귀찮다! 그래서 인터셉터라는 것을 만들어둬서 무조건 토큰을 담아가게 만든다. 인터셉터를 만들어두면, 우리가 요청할 때마다 헤더셋팅을 일일이 해줄 필요가 없어진다.  </p>
+</li>
+<li><p>파이프라인이란?<br>우리가 서버에 요청을 보내려고 코드로 적는 모든 과정들을 파이프라인이라고 한다.<br>인터셉터를 한 번 만들어두면 HTTP 요청을 검사하거나 변환할 수 있다.  </p>
 </li>
 </ul>
+<p>인터셉터를 작성하려면 HttpInterceptor 인터페이스를 implements 해야 한다.  </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AuthInterceptor <span class="keyword">implements</span> HttpInterceptor &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> auth: AuthService</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  intercept(req: HttpRequest&lt;<span class="built_in">any</span>&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;<span class="built_in">any</span>&gt;&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> authToken = <span class="keyword">this</span>.auth.getToken();</span><br><span class="line">    <span class="keyword">const</span> clonedRequest = req.clone(&#123;</span><br><span class="line">      headers: req.headers.set(<span class="string">'Authorization'</span>, authToken)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> next.handle(clonedRequest);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  ...</span><br><span class="line">  providers: [&#123;</span><br><span class="line">    provide: HTTP_INTERCEPTORS,</span><br><span class="line">    useClass: AuthInterceptor,</span><br><span class="line">    multi: <span class="literal">true</span></span><br><span class="line">  &#125;]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>리퀘스트 메세지에 있는 헤더에는 키가 있고 값이 있다. 요청할 때 우리가 authorization(백엔드와 합의된 키 이름)이라는 키를 넣고, 값으로는 토큰의 전체문자열을 넣고 서버에 날린다. 서버는 우리와 합의된 그 authorization이라는 키에 토큰이 담겨있겠거니 생각하고 그것을 꺼내서 서버에서 확인한다. 암호화된 토큰을 서버에서는 풀 수 있기 때문에, 확인해서 권한이 있는지 없는지를 확인한다. 따라서 JWT를 쓸 것이라면 서버와 클라이언트는 이 키를 합의해놓아야 한다. 그리고 그 키의 값으로 로컬스토리지에 담아놓은 토큰을 꺼내서 요청할 때 키와 값을 담아서 보내는 것이다.<br>인터셉트는 첫번째 인수로 우리가 날릴 리퀘스트 객체를 준다. (여기에서 백엔드와 합의한 키와 토큰값을 셋팅한다)<br>그리고 루트모듈에 providers 를 추가한다.  </p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
 
       
     </footer>
@@ -168,7 +178,7 @@ timer함수나 ajax통신도 마찬가지. 데이터가 바뀔 가능성이 높�
 <!-- Table of Contents -->
 
   
-    <article id="post-0614" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0625" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -176,7 +186,7 @@ timer함수나 ajax통신도 마찬가지. 데이터가 바뀔 가능성이 높�
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/06/14/0614/">Angular</a>
+      <a class="article-title" href="/2019/06/25/0625/">생명주기, 서비스, RxJS</a>
     </h1>
   
 
@@ -184,101 +194,75 @@ timer함수나 ajax통신도 마찬가지. 데이터가 바뀔 가능성이 높�
     
     <div class="article-meta">
       
-	<a href="/2019/06/14/0614/" class="article-date">
-	  <time datetime="2019-06-13T15:00:00.000Z" itemprop="datePublished">June 14, 2019</time>
+	<a href="/2019/06/25/0625/" class="article-date">
+	  <time datetime="2019-06-24T15:00:00.000Z" itemprop="datePublished">June 25, 2019</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
  
       <!--  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Augular"><a href="#Augular" class="headerlink" title="Augular"></a>Augular</h2><h3 id="프레임워크-라이브러리"><a href="#프레임워크-라이브러리" class="headerlink" title="프레임워크 / 라이브러리"></a>프레임워크 / 라이브러리</h3><p>라이브러리는 본래 빌트인 함수가 아닌, 업무에 필요한 함수를 만들어서 파일로 만들어 둔 것이었으나 현대에는 특정 기능을 서폿해주는 것으로 받아들여진다. 프레임워크과 라이브러리의 기본적인 차이는 구조다.<br>프레임워크는 강제성이 크고 규모가 큰 개발에 적합하며, 라이브러리는 자유도가 높아 규모가 작은 개발에 적합하다. 그리고 특정 기능에만 관심이 있기 때문에 크기도 작다.<br>사실 강제성이 높을수록 쓰기 편하다. 자바스크립트의 관대한 문법이 언제 편한 적 있었던가.<br>이런 관점에서 보면 앵귤러는 프레임워크고 리액트는 라이브러리다.<br>앵귤러는 프레임워크고, 강제성이 높고, 크기가 크다.  </p>
-<h3 id="왜-앵귤러를-쓰나"><a href="#왜-앵귤러를-쓰나" class="headerlink" title="왜 앵귤러를 쓰나?"></a>왜 앵귤러를 쓰나?</h3><p>원래 HTML/CSS는 정적이다. 이제까지는 JS가 주도권을 가지고 HTML/CSS 를 마음대로 가져오고, 추가하고, 삭제했다. HTML/CSS 를 파악한 후에 JS에서 일할 수 있었다는 것은 JS가 HTML/CSS에 의존하고 있었다는 뜻이다. 의존하고 있으면 영향을 받게 되어있다. HTML/CSS 구조가 틀어지는 순간 JS가 심각하게 흔들린다.   </p>
-<p>따라서 HTML/CSS 와 JS 간의 의존을 끊는 새로운 개발방법론이 나타났다. 그래야 서로 영향을 주지않으니까. 하지만 관계는 끊으면 안 되므로, 영향을 덜 받는 방식으로 의존도를 갖도록 하였다. 즉, 반대로 HTML/CSS 가 JS를 의존하게 하자는 것이다.  </p>
-<p>어떻게?<br>문자열상태로 넣는 것이다(템플릿). 이건 결국 HTML/CSS가 아니라 그냥 자바스크립트라고 보면 된다. index.html 만 유일한 HTML이다. 옛날엔 화면을 그려줄 함수를 코드 내에서 직접 불렀고, 우리가 신경 써야할 요소들이 많았다(이벤트를 달아준다든지, 타이밍에 맞게 렌더함수를 그려준다든지). 그런 전형적인 일들은 이제 프레임워크가 해줄 것이고, 우리는 로직개발에 집중하면 된다. 이제 HTML/CSS 가 JS의 상태데이터를 보고 있다. <code></code>은 데이터바인딩이라고 하는데, HTML/CSS 가 바라볼 상태데이터와 연결해준다. </p>
-<p>컴포넌트는 크게 3가지 구조로 나뉘어져있다. </p>
-<ol>
-<li>import - 필요한 컴포넌트와 api를 import</li>
-<li>template  - html, CSS</li>
-<li>component - class</li>
-</ol>
-<h3 id="앵귤러"><a href="#앵귤러" class="headerlink" title="앵귤러"></a>앵귤러</h3><p>내용이 방대하기 때문에 한번에 다 배울 수 없고, 당장 필요한 기능을 찾아서 쓰면서 배운다.  </p>
+        <h2 id="생명주기"><a href="#생명주기" class="headerlink" title="생명주기"></a>생명주기</h2><p>태어나서 죽을 때까지의 과정. 컴포넌트가 생성되어서 Input프로퍼티에 값이 들어오거나, 변경되거나, 모든 뷰의 초기화가 완료되었을 때(컴포넌트가 사망하면) 그때마다 우리가 무언가 작업을 해야한다면 앵귤러는 그때 필요한 훅 메소드를 제공한다. 어떤 일을 아무 때나 하는게 아니라 타이밍에 맞춰서 해야한다는 것이다. </p>
+<p>(constructor는 생명주기와 큰 상관이 없음.)  </p>
+<p>인터페이스는 하나 이상의 추상메소드를 가질 수 있다. 정의만 되고 실체가 없는데,<br>이것을 implement 했을 때에는 추상 메소드를 구현해야한다. 훅 메소드는 항상 <code>ng</code>가 붙고, 그 뒤의 이름은 인터페이스 이름과 일치한다. <strong>ngOnInit</strong>은 활용빈도가 높아 중요하다. 모든 초기화작업은 <code>ngOnInit</code>에서 하는 것이 좋다. 앵귤러는 자바스크립트와 달리 constructor에서는 많은 일을 하지 말 것을 요구하기 때문이다. (앞으로 웬만하면 constructor 에서는 아무것도 하지말고 대신 <code>ngOnInit</code>에서 하도록 한다)<br>앵귤러가 Input프로퍼티에 값을 넣어주는 것을 보장하는 때는 <code>ngOnInit</code>이 호출될 때이다.  </p>
 <ul>
-<li><p>높은 개발생산성: 내가 공부한 것보다 더 많은 효율과 결과를 낼 수 있다.  </p>
+<li><p><strong>ngOnChanges</strong><br>Input프로퍼티가 있을 때, 처음으로 값이 들어오거나 변경되었을 때 실행된다.  </p>
 </li>
-<li><p>컴포넌트: 레고 조각과 같다. 화면을 그리는데 필요한 부품과 같으며, 분리하고 조립하여 사용한다.   </p>
+<li><p><strong>ngOnInit</strong><br>무조건 한 번만 호출  </p>
 </li>
-<li><p>웹에서 왜 컴포넌트 기반 개발이 어려운가 -&gt; CSS 때문에<br>컴포넌트는 HTML/CSS/JS 가 한몸으로 view를 그려야하는데, 컴포넌트가 조립되었을 때 CSS가 서로 영향을 주면 곤란하다. 어떻게 CSS 를 컴포넌트화하느냐의 문제.  </p>
-</li>
-<li><p>타입스크립트: 반드시 타입스크립트를 써야하는건 아니지만, 일반적으로는 타입스크립트를 쓴다.  </p>
-</li>
-<li><p>게으른 로딩: 현재 사용하는데에 무리가 없는 부분만큼의 리소스만 받자.<br>-&gt; SPA의 단점인 초기로딩속도를 생각해보면, 그보다 훨씬 빠를 것이다.  </p>
-</li>
-<li><p>코드최적화: <code>build</code> - 서버에 올릴 최종 산출물을 만들라는 명령. 이 최종 결과의 용량은 작아야 한다. 따라서 빌드하면 만들어질 코드의 용량을 줄이는데에 노력을 많이 하고 있다.  </p>
+<li><p><strong>ngDoCheck</strong><br>혹여나 변화를 감지하지 못하는 경우에 쓴다. 그러나 퍼포먼스상 안 좋으니 쓰지말자.  </p>
 </li>
 </ul>
-<h3 id="실습하며-배운-내용"><a href="#실습하며-배운-내용" class="headerlink" title="실습하며 배운 내용"></a>실습하며 배운 내용</h3><ul>
-<li>루트 컴포넌트: 기본 컴포넌트중에 app.module.ts 를 제외한 app 폴더의 모든 것  </li>
-<li><p>루트 모듈: 컴포넌트를 관리한다. 모듈을 만질 줄 알아야 한다.  </p>
+<!-- 이제까지는 컴포넌트를 호출할때 컨텐트를 주지 않았지만, 원래 할 수 있다. 
+<app-root>content</app-root> 컨텐트 프로젝션이라고 한다. -->
 <ul>
-<li>선언부: 컴포넌트 등록 -&gt; 새로 만들어진 컴포넌트는 이 곳에 넣어줘야한다. </li>
-<li>임포트: 모듈을 넣어주는 곳</li>
-<li>프로바이더스: 서비스<!-- 컴포넌트 html은 순수한 html이다. 
-html과 CSS 컴포넌트를 분리할 수 있으면 다른 사람에게 따로 줄수도 있고... 좋다.  -->
+<li><p><strong>ngAfterViewInit</strong><br>화면에 DOM요소를 동적으로 추가할 때 이 훅 메소드를 써야 한다.<br>추가된 요소들은 DOM이 완성된 후에야 참조가 가능하니까, 이 메소드로 뷰가 모두 완성되면, 이라는 타이밍에 추가된 요소들을 이 메소드 안에서 참조하도록 한다. </p>
+</li>
+<li><p>ngOnDestroy<br>컴포넌트와 디렉티브가 사망(…)할 때  </p>
 </li>
 </ul>
-</li>
-<li><p><code>ng serve</code> : 아직 개발 중. 개발용 서버.  </p>
-</li>
-<li><code>ng build</code> : 개발 다했다! 최적화!  <!-- 
-.map : 서버에 올릴 때 map은 다 지우고 올라간다. 
-JS파일과 ts파일을 묶어주는데에 필요한게 map 파일. 디버깅용이니까 배포할땐 필요없다.  -->
-</li>
-</ul>
-<!-- 
-컴포넌트는 태그로 불려졌을때 태어난다. -> 태어나면 view를 그림
-커스텀 태그를 만든것과 같다! -->
+<h2 id="서비스"><a href="#서비스" class="headerlink" title="서비스"></a>서비스</h2><p>디자인패턴이 등장한다. 우리 선배들이 개발할 때 고민했던 부분들의 해결방법. 그래서 어렵다.  </p>
+<p>서비스는, 우리 어플에서 중복적으로 사용하는 기능을 따로 떼어내는것. 마치 함수처럼!<br>뷰를 담당하는 것이 아니기 때문에 템플릿이 없다.  </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 루트컴포넌트</span></span><br><span class="line"><span class="keyword">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.greetingService = <span class="keyword">new</span> GreetingService();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>루트컴포넌트가 인스턴스를 직접 생성한다면 서비스에 의존하고 있는 것이다. 인스턴스가 없으면 일을 못하기 때문이다. 이때 서비스를 <code>의존성</code>이라고 부른다.<br>컴포넌트는 의존성의 메소드를 사용하기 위해서는 인스턴스를 직접 생성해야하며, 생성방법도 알아야하며, 메소드의 사용법도 알아야한다. 컴포넌트가 알아야할것이 너무 많다! -&gt; 긴밀히 결합되어있다.  </p>
+<p>이로인해 문제가 생긴다. 만약 서비스가 메소드의 이름을 바꾸거나, 인수를 안 받았었는데 받기로 바꾸거나 하면 컴포넌트의 코드도 바뀌어야한다. 만약 클래스의 이름이 바뀐다면 new 코드도 바뀌어야한다. 결국 <strong>유지보수성이 나빠진다</strong>. 서비스가 바뀌더라도 컴포넌트는 바뀌지 말아야 한다! -&gt; 결합을 느슨하게 하자. 많은걸 알지않아도 되게.  </p>
+<p>외부환경에게 의존성의 생성을 의뢰한다. 그리고 그 생성된 의존성을 주입받는것을 <strong>의존성 주입</strong>이라고 한다.<br>외부환경에서 어떻게 생성해야하는지 정보가 필요한 건 변함없다. 그러나 컴포넌트는 생성방법을 몰라도 된다.  </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> greetingService: GreetingService</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>이때 GreetingService가 greetingService를 만드는 서비스인지는 알 수 없음. 반드시 만들어 줄 것이라는 보장이 없다. </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Injectable &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Injectable</span>(&#123;</span><br><span class="line">  providedIn: <span class="string">'root'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>서비스에 이 내용이 있어야 한다. 특히 <code>providedIn: &#39;root&#39;</code> 는, 애플리케이션 전역에서 사용할 수 있는 서비스가 된다는 뜻이다. 이걸 안 써주면 서비스가 아니며, 주입할 수 없다.  </p>
+<p>아니면 루트모듈이나 루트컴포넌트에 아래와 같이 추가한다.<br><code>providers: [GreetingService]</code><br>그러나 만약 루트컴포넌트에 등록하면, 루트컴포넌트와 루트컴포넌트의 자식들만 서비스를 참조할 수 있다. 스코프가 제한된다.<br>따라서 모든 서비스가 전역서비스라면 서비스에서 등록한다.(만약 서비스에 등록했다면 루트모듈에 providers에 추가하지 않는다)  </p>
+<h2 id="쉐도우-DOM-스타일-셀렉터"><a href="#쉐도우-DOM-스타일-셀렉터" class="headerlink" title="쉐도우 DOM 스타일 셀렉터"></a>쉐도우 DOM 스타일 셀렉터</h2><p>앵귤러가 제공하는 스타일 셀렉터. 웹 컴포넌트에 있는 내용이다. 이것은 앵귤러가 아니라 W3C가 관리한다. 우리가 커스텀한 컴포넌트는 아예 <code>display</code>(block/inline-block/inline 등)속성이 없다. 그러나 브라우저가 기본적인 CSS를 가지고는 있다. 그래서 브라우저마다 외양이 조금씩 다른 것이 문제가 되니까 리셋 CSS를 쓰는 것이다. 컴포넌트는 앵귤러가 제공하는 스타일 셀렉터를 이용할 필요가 있다.  </p>
+<h2 id="RxJS"><a href="#RxJS" class="headerlink" title="RxJS"></a>RxJS</h2><p>‘Rx’ = 리액티브 프로그래밍<br>이것은 자바스크립트에 한정된 기능이 아니고 새로운 패러다임이다. 객체지향 / 절차지향과 유사한 느낌.<br>앵귤러는 기본적으로 리액티브 프로그래밍을 지원한다. 앵귤러에서 템플릿에 쓰는 모든 요소는 리액티브하게 코딩할 수 있으며, 그 기능을 다 제공하고 있다. </p>
+<p>이제껏 내가 했던 모든 프로그래밍은 <em>입력 -&gt; 로직 -&gt; 출력</em> 의 반복이었는데,<br>문제는 입력의 형태가 다를 수 있다는거다. 문자, 숫자, 객체, 함수, 프로미스, 이벤트 등등.<br>입력값의 종류에 따라 코딩하는 방법이 제각각이었고 이런 방식이 혼란을 일으킨다(비동기입력의 경우 특히나).<br>입력이 동기데이터인지 비동기데이터인지 보고 코딩방식을 결정했었다.<br>그런데 RxJS는 <strong>이렇게 하지말고, 정적데이터든 동적데이터든 동기든 비동기든 전부 다 stream으로 만들자!!!</strong><br>데이터소비자는 가만히 있고, 데이터가 알아서 물길타고 흘러내려오는 것이다. 이벤트처리와 비슷하다. 우리가 가만있어도 이벤트는 주입되었었고, 우리는 할 일만 입력해줬었다.<br>입력데이터는 <strong>옵저버블</strong>이라는 하나의 타입으로 맞춰버리자.  </p>
+<p>리액티브 프로그래밍은 <strong>푸시 시나리오</strong>를 기본으로 한다. 데이터 프로바이더가 무조건 데이터를 송출하며, 데이터 소비자가 그걸 알아서 받는다. 우리는 밀려들어오는 데이터에 <strong>‘반응’</strong>을 한다고 해서 리액티브 프로그래밍이다.  </p>
+<p>외부 환경에서 애플리케이션 내부로 연속적으로 흐르는 데이터, 즉 데이터 스트림을 생성하고 방출하는 객체를 <strong>옵저버블</strong>  (Observable)이라 하고 -&gt; 방송국<br>옵저버블이 방출한(emit) <strong>노티피케이션</strong>(Notification: 옵저버블이 방출할 수 있는 푸시 기반 이벤트 또는 값) -&gt; 영상정보<br>… 을 획득하여 사용하는 객체를 <strong>옵저버</strong>(Observer)라 한다. -&gt; 내 티비<br>옵저버는 데이터 생산자(Data producer)인 옵저버블을 <strong>구독</strong>(subscription)한다. -&gt; 지켜보고있다, 관측하고있다<br>그러니까 옵저버블과 옵저버는 구독이라는 관계로 이루어진 것이다.  </p>
+<p>옵저버블과 옵저버가 일대다의 관계일 수 있다. 방송국은 하나지만 티비는 여러 개인 것처럼.<br>RxJS에서 제공하는 메소드들은 다 <strong>오퍼레이터</strong>라고 부른다.  </p>
+<h3 id="옵저버패턴"><a href="#옵저버패턴" class="headerlink" title="옵저버패턴"></a>옵저버패턴</h3><p><strong>Subject:</strong>  </p>
 <ul>
-<li><code>-t</code> : 인라인 템플릿  </li>
-<li><code>-s</code> : 인라인 스타일  </li>
-<li><code>-S</code> : 스킵 테스트 (spec.ts을 안 만든다)(컴포넌트에서는 축약형이 먹히지 않는다)  </li>
-<li><code>--flat</code> : 폴더를 만들지 않는 컴포넌트  </li>
+<li>데이터<br><code>ObserverCollection</code>- 옵저버들의 모음  </li>
+<li>메소드<br><code>register</code>: 옵저버 등록<br><code>unregister</code>: 옵저버 삭제<br><code>nofity</code>: 전달하려는 메세지를 옵저버에게 보내기  </li>
 </ul>
-<!-- app-home은 app-root의 자식.
-html은 중첩관계에 의해 부자관계를 맺으니까. 
-root컴포넌트는 필수적이다. 조상중의 조상이다. 아무거나 갖다두면 안된다.  -->
-<!-- path: url의 path. 도메인 이후 슬래시 다음부터 오는 것. 여기에 내가 활성화시킬 컴포넌트를 적어줌.  -->
-<!-- 컴포넌트는 ui를 만드는것이 주목적. -->
+<p><strong>Observer</strong>  </p>
 <ul>
-<li><p>서비스: 서버에서 데이터를 가져오거나, 상태가 바뀌면 서버에 데이터를 보내거나, 로딩하거나 하는, 프로젝트 전체적으로 쓰여야하는 필요한 기능들. 화면을 그리는데에 직접적인 연관은 없는 기능을 컴포넌트로부터 분리.  </p>
-</li>
-<li><p><code>main.ts</code> : 앵귤러가 가동되면 가장 먼저 시작 될 파일.  </p>
-<!-- 루트모듈에 부트스트랩에 루트컴포넌트를 적어준다고 했는데, 그 루트컴포넌트를 띄운다.  -->
-</li>
+<li>메소드<br><code>update</code>: 상태 변화에 대응  </li>
 </ul>
-<!-- 컴포넌트는 하늘에서 뚝 떨진게 아니라 웹컴포넌트라는 기반이 있었다.
-컴포넌트를 만드는건 태그를 만드는 것과 같다. 
-shadowDom: 나중에 컴포넌트가 합쳐졌을때 다른 컴포넌트의 간섭을 받으면 안된다. 
-
-컴포넌트의 연결은, 데이터를 주고받을 수 있어야 한다는 뜻.어 -->
-<ul>
-<li>데코레이터: 메타데이터 객체라고 한다. 함수이므로 사용할 때 호출이 필요하다.   </li>
-</ul>
+<p>서브젝트는 데이터가 바뀌면 자신을 구독하는 모든 옵저버들에게 새로운 데이터를 <code>notify</code> 하고, 옵저버들은 데이터가 바뀌면 최신데이터를 무조건 받는다(<code>update</code>).<br>옵저버패턴은 이해가안되면 외워야 한다.  </p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
 
       
     </footer>
@@ -294,7 +278,7 @@ shadowDom: 나중에 컴포넌트가 합쳐졌을때 다른 컴포넌트의 간�
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/2/">Next</a>
   </nav>
 
 </section>
@@ -307,6 +291,42 @@ shadowDom: 나중에 컴포넌트가 합쳐졌을때 다른 컴포넌트의 간�
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/07/01/0701/">옵저버블, 에러핸들러, 인터셉터</a></h6>
+              <span>July 1, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/06/25/0625/">생명주기, 서비스, RxJS</a></h6>
+              <span>June 25, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/06/24/0624/">Directive</a></h6>
+              <span>June 24, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -344,42 +364,6 @@ shadowDom: 나중에 컴포넌트가 합쳐졌을때 다른 컴포넌트의 간�
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/07/0607/">클로저</a></h6>
-              <span>June 7, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/05/0605/">실행컨텍스트</a></h6>
-              <span>June 5, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/23/0523/">DOM, 동기식 &amp; 비동기식, 이벤트</a></h6>
-              <span>May 23, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -389,7 +373,7 @@ shadowDom: 나중에 컴포넌트가 합쳐졌을때 다른 컴포넌트의 간�
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -399,7 +383,7 @@ shadowDom: 나중에 컴포넌트가 합쳐졌을때 다른 컴포넌트의 간�
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">32</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -410,7 +394,7 @@ shadowDom: 나중에 컴포넌트가 합쳐졌을때 다른 컴포넌트의 간�
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

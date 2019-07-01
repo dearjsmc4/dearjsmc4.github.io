@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Directive | Rudy&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="TILAngular">
+  
+  
+  
+  
+  <meta name="description" content="상태는 stateful 컴포넌트에서만 관리한다.다른 컴포넌트들은 상태를 직접적으로 고치지 않고, stateful(or smart) 컴포넌트에게 ‘의뢰’ 한다. stateful 컴포넌트는, 상태를 직접 고칠 자격을 부여한 컴포넌트이다. 마치 사령관처럼! 자격이 없는 컴포넌트는 stateless 컴포넌트, 혹은 dumb 컴포넌트라고 한다. todos-cont">
+<meta name="keywords" content="TIL,Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Directive">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/06/24/0624/index.html">
+<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="상태는 stateful 컴포넌트에서만 관리한다.다른 컴포넌트들은 상태를 직접적으로 고치지 않고, stateful(or smart) 컴포넌트에게 ‘의뢰’ 한다. stateful 컴포넌트는, 상태를 직접 고칠 자격을 부여한 컴포넌트이다. 마치 사령관처럼! 자격이 없는 컴포넌트는 stateless 컴포넌트, 혹은 dumb 컴포넌트라고 한다. todos-cont">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-01T10:31:46.316Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Directive">
+<meta name="twitter:description" content="상태는 stateful 컴포넌트에서만 관리한다.다른 컴포넌트들은 상태를 직접적으로 고치지 않고, stateful(or smart) 컴포넌트에게 ‘의뢰’ 한다. stateful 컴포넌트는, 상태를 직접 고칠 자격을 부여한 컴포넌트이다. 마치 사령관처럼! 자격이 없는 컴포넌트는 stateless 컴포넌트, 혹은 dumb 컴포넌트라고 한다. todos-cont">
+  
+    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/fashion.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-0624" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Directive
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/06/24/0624/" class="article-date">
+	  <time datetime="2019-06-23T15:00:00.000Z" itemprop="datePublished">June 24, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
+ 
+      <!-- 
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+ -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><p>상태는 stateful 컴포넌트에서만 관리한다.<br>다른 컴포넌트들은 상태를 직접적으로 고치지 않고, <code>stateful</code>(or <code>smart</code>) 컴포넌트에게 ‘의뢰’ 한다. stateful 컴포넌트는, 상태를 직접 고칠 자격을 부여한 컴포넌트이다. 마치 사령관처럼! 자격이 없는 컴포넌트는 stateless 컴포넌트, 혹은 dumb 컴포넌트라고 한다. todos-container 는 다른 컴포넌트들을 호출할 뿐, 자신만의 템플릿은 없다. 즉, 다른 컴포넌트들을 관장하는 것이다. stateless 의 주 역할은, view 만 생성하는 것이다. view를 생성하기 위한 상태데이터는 container 가 보내주어야 한다. 만약 stateless 에서 상태가 변하면(인풋에 데이터가 입력되었다거나 하는) 상태 변경에 필요한 데이터를 보내줄 뿐, 직접 변경하진 않는다.  </p>
+</li>
+<li><p>ngModel content<br>양방향 데이터 바인딩. 템플릿에서 변경된 값을 클래스 컴포넌트에 갱신하고, 클래스 컴포넌트에서 변경된 값은 템플릿에 갱신된다. 따라서 인풋에 글자가 한 자 한자 입력될때마다 클래스 컴포넌트의 content에 갱신되고, 인풋 폼의 값은 content와 항상 같다.  </p>
+</li>
+<li><p>앵귤러의 css style<br>컴포넌트의 스코프 단위로 적용된다.  </p>
+</li>
+<li><p>변화감지 매커니즘<br>이 매커니즘을 이해하는 것은 어려운 일이니, 일단 참조를 바꾸는 것에 중점을 두자. 그래서 변화감지를 하기 쉽게 만들어주자.  </p>
+</li>
+</ul>
+<h2 id="디렉티브"><a href="#디렉티브" class="headerlink" title="디렉티브"></a>디렉티브</h2><p>컴포넌트들의 <strong>공통된 기능</strong>이 있다면, 그 기능을 빼내서 디렉티브로 만든다.<br>디렉티브의 셀렉터는, 대괄호 안에 있는 텍스트가 어트리뷰트로써 사용될 것이라는 뜻이다. css의 셀렉터문법에서 어트리뷰트는 대괄호를 이용해 지정했었다.<br><code>input[type=text]</code> =&gt; input 태그이고, type 이라는 어트리뷰트 값이 text인 요소를 선택<br>디렉티브의 셀렉터를 클래스로써 사용하고 싶다면 대괄호대신 <code>.</code>을 붙여주면 된다. 그러나 가급적 어트리뷰트로 사용하기로 한다.<br>디렉티브는, 호스트요소를 서포트한다.  </p>
+<ul>
+<li><code>public el: ElementRef</code><br>‘앵귤러야, ElementRef 타입의 객체를 생성해서 내게 인수로 전달해줘.’ =&gt; 의존성주입<br>el이라는 참조를 디렉티브 전역에서 사용할 수 있게 된다. public 이기때문에.<br>el은 객체이며, 이 객체는 프로퍼티로 호스트요소를 가지고 있다.<br>그래서 <code>el.nativeElement.style.color = &quot;blue&quot;;</code> 으로 할 수 있지만 보안문제로 쓰지않는다.<br>-&gt; <strong>Renderer2</strong> 를 쓰자. DOM을 컨트롤할때 쓰는 API를 제공한다.<br><code>this.renderer.setStyle(this.el.nativeElement, &#39;color&#39;, &#39;blue&#39;);</code><br>-&gt; 위와 동일하게 동작한다.<br><code>@HostListener()</code> : 이벤트를 적용한다.<br><code>window.pageYOffset</code> : 스크롤이 얼마나 되었는지 잡아낸다.  </li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/25/0625/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          생명주기, 서비스, RxJS
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/17/0617/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Generic, Angular</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#디렉티브"><span class="nav-number">1.</span> <span class="nav-text">디렉티브</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+        <!-- 
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+           -->
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

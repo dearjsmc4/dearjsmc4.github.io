@@ -97,7 +97,7 @@
         
           <section id="main">
   
-    <article id="post-0611" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0624" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +105,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/06/11/0611/">SPA, Routing</a>
+      <a class="article-title" href="/2019/06/24/0624/">Directive</a>
     </h1>
   
 
@@ -113,78 +113,43 @@
     
     <div class="article-meta">
       
-	<a href="/2019/06/11/0611/" class="article-date">
-	  <time datetime="2019-06-10T15:00:00.000Z" itemprop="datePublished">June 11, 2019</time>
+	<a href="/2019/06/24/0624/" class="article-date">
+	  <time datetime="2019-06-23T15:00:00.000Z" itemprop="datePublished">June 24, 2019</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
  
       <!--  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="SPA-Single-Page-Application"><a href="#SPA-Single-Page-Application" class="headerlink" title="SPA(Single Page Application)"></a>SPA(Single Page Application)</h2><p>앵귤러, 뷰, 리액트 등을 배우려면 SPA부터 잘 알아야 한다.  </p>
-<p>SPA는 페이지가 여러 개일지라도 <strong>HTML파일은 단 하나</strong>다. 자바스크립트는 하나일수도, 여러개일수도(웹팩으로 쪼갤 수 있다). 게다가 HTML파일에는 빈 태그가 있고, 그것을 루트태그라고 하는데 JS가 돌면서 루트태그 안에 view를 집어넣는다.<br><!-- Ajax를 쓸 때 생기는 여러 제약사항을 커버하기 위한 모던 웹 패러다임이다.??   --><br>HTML을 처음 부르면 리소스를 가져올텐데, 첫 페이지를 로딩하는 순간 모든 리소스를 한번에 다운로드하는 것이 기본이다. 그래서 <strong>첫 페이지 로딩이 느리다</strong>는 단점이 있다. 하지만 뒷 페이지부터는 화면을 갈아끼기만 하면 되므로 퍼포먼스가 좋다. SPA를 사용하는 가장 큰 이유는, <strong>사용자 경험</strong>이 일반 네이티브 앱과 비교할 때 손색이 없기 때문이다. <strong>부드러운 화면전환</strong>이 가능하다. 화면전환이라는 건 HTML을 완전히 새로 그린다는건데 쓸데없는 통신, 쓸데없는 렌더링이 발생한다. 화면이 깜빡하면 네이티브 앱처럼 동작하는 게 아니다.(엑셀이 화면깜빡거리지 않잖아) AJAX에서의 화면전환은 전부 다 그리는 게 아니라 필요한 부분만 그린다.<br><!-- 웹은 원래 문서 공유/문서 간 이동을 위해 만들어졌다. --></p>
-<p>a태그는 기본적으로 화면전환을 일으키는데, 이때 <code>e.preventDefault</code>를 써서 화면전환을 막고 Ajax 요청을 한다.<br>Ajax방식으로 하면 URL이 하나이기때문에 검색로봇이 검색할 수 없다 -&gt; 구글에서 아무리 찾아도 첫 페이지밖에 안 나온다.<br>이것이 <strong>SEO 이슈</strong>이다. 일반 웹 페이지에서 SEO이슈가 터지는 건 치명적이다. 검색이 안 되면 곤란하다. 근데 내부에서만 쓰는 웹 애플리케이션은 반대로 검색이 되면 곤란하다.<br>그리고 주소창이 안 바뀌면 SEO이슈뿐만 아니라 앞으로가기/뒤로가기가 안 되는 문제가 생긴다. 그래서 히스토리를 관리할 수 있는 HTML5 메소드가 나왔는데, HTML5니까 되는 브라우저도 있고 안 되는 브라우저도 있다.<br>웹 앱도 검색이 됐으면 좋겠다면 서버사이드 렌더링을 해야한다.<br>모든 것을 만족시키는 혁신적인 방법, 은탄환은 지금까지도 앞으로도 없다.  </p>
-<!-- 우선 결론적으로, 우리가 바닐라스크립트로 라우팅을 구현하기는 바람직하지 않고 매우 힘들다. 앵귤러 뷰 리액트 같은 것들로 하는 게 현명하다. 우리가 이보다 잘 만들 수는 없어... -->
+        <ul>
+<li><p>상태는 stateful 컴포넌트에서만 관리한다.<br>다른 컴포넌트들은 상태를 직접적으로 고치지 않고, <code>stateful</code>(or <code>smart</code>) 컴포넌트에게 ‘의뢰’ 한다. stateful 컴포넌트는, 상태를 직접 고칠 자격을 부여한 컴포넌트이다. 마치 사령관처럼! 자격이 없는 컴포넌트는 stateless 컴포넌트, 혹은 dumb 컴포넌트라고 한다. todos-container 는 다른 컴포넌트들을 호출할 뿐, 자신만의 템플릿은 없다. 즉, 다른 컴포넌트들을 관장하는 것이다. stateless 의 주 역할은, view 만 생성하는 것이다. view를 생성하기 위한 상태데이터는 container 가 보내주어야 한다. 만약 stateless 에서 상태가 변하면(인풋에 데이터가 입력되었다거나 하는) 상태 변경에 필요한 데이터를 보내줄 뿐, 직접 변경하진 않는다.  </p>
+</li>
+<li><p>ngModel content<br>양방향 데이터 바인딩. 템플릿에서 변경된 값을 클래스 컴포넌트에 갱신하고, 클래스 컴포넌트에서 변경된 값은 템플릿에 갱신된다. 따라서 인풋에 글자가 한 자 한자 입력될때마다 클래스 컴포넌트의 content에 갱신되고, 인풋 폼의 값은 content와 항상 같다.  </p>
+</li>
+<li><p>앵귤러의 css style<br>컴포넌트의 스코프 단위로 적용된다.  </p>
+</li>
+<li><p>변화감지 매커니즘<br>이 매커니즘을 이해하는 것은 어려운 일이니, 일단 참조를 바꾸는 것에 중점을 두자. 그래서 변화감지를 하기 쉽게 만들어주자.  </p>
+</li>
+</ul>
+<h2 id="디렉티브"><a href="#디렉티브" class="headerlink" title="디렉티브"></a>디렉티브</h2><p>컴포넌트들의 <strong>공통된 기능</strong>이 있다면, 그 기능을 빼내서 디렉티브로 만든다.<br>디렉티브의 셀렉터는, 대괄호 안에 있는 텍스트가 어트리뷰트로써 사용될 것이라는 뜻이다. css의 셀렉터문법에서 어트리뷰트는 대괄호를 이용해 지정했었다.<br><code>input[type=text]</code> =&gt; input 태그이고, type 이라는 어트리뷰트 값이 text인 요소를 선택<br>디렉티브의 셀렉터를 클래스로써 사용하고 싶다면 대괄호대신 <code>.</code>을 붙여주면 된다. 그러나 가급적 어트리뷰트로 사용하기로 한다.<br>디렉티브는, 호스트요소를 서포트한다.  </p>
 <ul>
-<li>웹 애플리케이션 vs 웹 페이지<br>일반적인 정보를 제공하는 단순한 페이지 = 웹 페이지<br>내가 페이지에서 어떤 일을 한다 = 웹 어플리케이션  </li>
+<li><code>public el: ElementRef</code><br>‘앵귤러야, ElementRef 타입의 객체를 생성해서 내게 인수로 전달해줘.’ =&gt; 의존성주입<br>el이라는 참조를 디렉티브 전역에서 사용할 수 있게 된다. public 이기때문에.<br>el은 객체이며, 이 객체는 프로퍼티로 호스트요소를 가지고 있다.<br>그래서 <code>el.nativeElement.style.color = &quot;blue&quot;;</code> 으로 할 수 있지만 보안문제로 쓰지않는다.<br>-&gt; <strong>Renderer2</strong> 를 쓰자. DOM을 컨트롤할때 쓰는 API를 제공한다.<br><code>this.renderer.setStyle(this.el.nativeElement, &#39;color&#39;, &#39;blue&#39;);</code><br>-&gt; 위와 동일하게 동작한다.<br><code>@HostListener()</code> : 이벤트를 적용한다.<br><code>window.pageYOffset</code> : 스크롤이 얼마나 되었는지 잡아낸다.  </li>
 </ul>
-<h2 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h2><p>출발지와 목적지까지의 경로가 여러 개 있을 때, 경로를 결정하는 방식.<br>웹에서는 라우팅을 화면이동으로 이해한다.  </p>
-<ol>
-<li>주소창에 URL을 입력하거나  </li>
-<li>a태그를 클릭하거나  </li>
-<li>뒤로가기/앞으로가기를 클릭할 때  </li>
-</ol>
-<h2 id="SPA와-Routing"><a href="#SPA와-Routing" class="headerlink" title="SPA와 Routing"></a>SPA와 Routing</h2><ul>
-<li><p>전통적 링크방식<br>주소창을 바꾼다. 바뀐 주소를 서버에 요청하고, 그 요청에 대한 응답이 오면 화면을 새롭게 그린다.<br>검색엔진에 의해 검색당하려면 페이지들이 고유의 URL을 가지고 있어야 한다.<br>SEO이슈 없고 히스토리 관리 문제없고 구현도 쉽지만, 불필요한 퍼포먼스가 너무 많다.  </p>
-</li>
-<li><p>Ajax 방식<br>href 속성이 필요없다. 주소창이 바뀌지 않는다(동작을 막았으니까).<br>화면깜빡임이나 불필요한 리소스 요청, 렌더링이 없지만 자바스크립트 코딩을 해야 한다.<br>히스토리 관리가 안 되고, SEO이슈 발생. 게다가 리로딩하면 초기의 index 페이지로 돌아간다.<br>리로딩은 URL을 다시 보내는 것이기 때문이다.  </p>
-</li>
-<li><p>hash 방식<br>요청은 새로 보내지 않으면서 주소는 다르게 관리하는 방법.<br>기존 URL에서 해쉬가 바뀌어도 요청이 새로 발생하지 않는 것을 이용한 방법.<br>히스토리관리가 되지만, 주소창에 해쉬(#)가 들어가야하기때문에 보기에 좋지 않다.<br><code>#!</code>을 사용하기도 하는데 이를 해시뱅(Hash-bang)이라고 부른다.<br>load 이벤트 : 모든 리소스가 다 준비됐을 때<br>contentloaded 이벤트 : 돔이 완성됐을 때 -&gt; 로드 이벤트보다 먼저 발생  </p>
-</li>
-<li><p>Pjax 방식<br>hash 방식의 가장 큰 단점은 SEO 이슈이다. 이를 보완한 방법이 HTML5의 Histroy API인 pushState와 popstate 이벤트를 사용한 PJAX 방식이다. 리로드하면 서버에 REST API처럼 다시 요청이 간다. 서버에서 대응해줘야 할 필요가 있다. 백엔드의 협력이 필요하다.  </p>
-</li>
-</ul>
-<!-- 수퍼
-extend관계일때 super를 불러줘야한다. 부모가 this를 만들어서 자식에게 주면 그것을 자식이 이어서쓴다
-부모가 빈 객체를 this에 바인딩하고 name을 세팅한 뒤 this를 리턴하면 
-super가 this를 리턴하는데 그것이 자식의 this로 들어간다
-this는 name을 가지고있는 인스턴스이고, 거기에다가 grade를 추가.
-이때 human과 student가 프로토타입체인이 구성되어서 메소드도 상속받는다
-Student 는 클래스지만 클래스도 함수니까 프로토타입도 생김.
-
-```javascript
-class Human {
-  constructor(name) {
-    this.name = name;
-  }
-
-  speak() {
-    console.log('집에가고싶다');
-  }
-}
-
-class Student extends Human {
-  constructor(name, grade) {
-    super(name);
-    this.grade = grade;
-  }
-}
-``` -->
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
 
       
     </footer>
@@ -196,7 +161,7 @@ class Student extends Human {
 <!-- Table of Contents -->
 
   
-    <article id="post-0607" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0617" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -204,7 +169,7 @@ class Student extends Human {
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/06/07/0607/">클로저</a>
+      <a class="article-title" href="/2019/06/17/0617/">Generic, Angular</a>
     </h1>
   
 
@@ -212,63 +177,50 @@ class Student extends Human {
     
     <div class="article-meta">
       
-	<a href="/2019/06/07/0607/" class="article-date">
-	  <time datetime="2019-06-06T15:00:00.000Z" itemprop="datePublished">June 7, 2019</time>
+	<a href="/2019/06/17/0617/" class="article-date">
+	  <time datetime="2019-06-16T15:00:00.000Z" itemprop="datePublished">June 17, 2019</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
  
       <!--  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="시작-전-예제"><a href="#시작-전-예제" class="headerlink" title="시작 전 예제"></a>시작 전 예제</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.prototype.x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">foo() <span class="comment">// ?</span></span><br></pre></td></tr></table></figure>
-<p>-&gt; 스코프체인과 프로토타입체인은 따로따로 일하는게 아니라 식별자를 찾을 때 협력하는 관계이다.</p>
-<h2 id="예제-2"><a href="#예제-2" class="headerlink" title="예제 2"></a>예제 2</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    arr[i] += x;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(arr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); <span class="comment">// [ 2, 3, 4 ]</span></span><br></pre></td></tr></table></figure>
-<p>foo 함수에 대한 평가가 이루어져서 arr 이 함수의 환경레코드에 등록된다.<br>for문 안의 변수가 var로 초기화 되는 것이었다면 함수의 환경레코드에 들어가겠지만(블록레벨스코프를 지원하지않으니까) let은 for문 안에서만 유효하기때문에 스코프도 for문으로 제한된다. 함수내부를 평가할 때 for문은 일단 지나쳐버리고, 함수내부를 실행할 때 arr에 배열을 할당해준다. (객체가 되어 할당된다)<br>현재 실행중인 실행컨텍스트는 foo 이다. for문을 만나면 for문에 대한 새로운 렉시컬환경을 만든다. 실행컨텍스트를 새로 만드는 게 아니다! 실행컨텍스트를 만드는 건 실행 가능한 코드의 4가지 종류(전역, 함수, eval, 모듈)만 만드는거다.<br>for문은 실행컨텍스트를 만들지 않고 for의 렉시컬환경만 만든다. 그리고 기존의 렉시컬환경(foo)을 새로운 렉시컬환경(for)으로 갈아끼우면서(함수 실행 컨텍스트가 기존에 foo의 렉시컬환경과의 관계를 끊고 블록 렉시컬 환경을 가리키게된다) 부자관계를 맺고(for의 외부환경참조가 foo의 렉시컬환경을 가리킨다) for문을 실행한 후, foo 함수의 렉시컬환경으로 되돌린다. -&gt; tc39 ecma 262 - 13.2.13 참고  </p>
-<h2 id="클로저"><a href="#클로저" class="headerlink" title="클로저"></a>클로저</h2><p>클로저를 배워야하는 이유 : 정보은닉보다는 <strong>안전한 상태유지</strong>가 주 목적이다.<br>근데 왜 상태유지를 클로저로 해야할까?<br>-&gt; 전역변수로 상태유지를 할 수도 있지만 그건 안전하지가 않다. 왜냐면 아무나 고칠 수 있기 때문이다.<br><!-- 안전하다고 하려면 상태를 변경할 수 있는 자격이 필요하다.    --><br>안전하게, 라는 말을 빼고 상태유지를 하는 방법은 객체의 프로퍼티가 있음.<br>그러나 프로퍼티 역시 접근해서 상태를 바꿀 수도 있다. 객체의 모든 프로퍼티는 퍼블릭하다.<br>안전한 상태유지를 하고싶다면 클로저를 써야 한다.  </p>
-<!-- 실행컨텍스트의 관점에서 이해하고 설명할 수 있어야한다.
-요즘은 내부함수가 아니라 중첩함수(nested function) 이라고 하는 추세이다. -->
-<h3 id="예제"><a href="#예제" class="headerlink" title="예제"></a>예제</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outerFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> x = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">innerFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  innerFunc();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">outerFunc(); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
-<p>전역코드가 평가되어 x와 outerfunc이 등록된다.<br>outerfunc가 실행되면 실행컨텍스트에 함수 실행컨텍스트 스택이 쌓이고 렉시컬환경과 환경레코드가 생기고 x와 innerfunc가 등록된다. 함수 내부가 실행되면 x에 10이 할당되고, innerfunc가 호출된다. inner함수의 실행컨텍스트가 스택에 쌓이고, inner가 현재 실행중인 실행컨텍스트가 된다. x를 바라볼때, 현재 실행중인 실행컨텍스트의 렉시컬환경의 환경레코드에서 찾는다. inner에 없으니 외부환경참조를 타고 outer로 가서(이것이 스코프체인), outer의 렉시컬환경의 환경레코드에서 찾아서 출력한다. </p>
-<h3 id="외부환경참조"><a href="#외부환경참조" class="headerlink" title="외부환경참조"></a>외부환경참조</h3><p>함수가 호출되기전에 평가되고 함수객체가 만들어진다. 평가될 때, 실행 중인 전역실행컨텍스트의 <strong>렉시컬환경</strong>(상위스코프)을 <code>[[environment]]</code> 내부슬롯에 넣는다. -&gt; 자신이 정의된 위치에 의거해서 이미 결정되어진다. 모든 함수객체는 <code>[[environment]]</code>를 가지고 있다. 렉시컬환경도 객체니까 그 참조값을 가지고 있다. 함수 객체가 소멸되지 않는한 상위스코프 참조는 사라지지않는다. 그러니까 상위스코프도 절대 죽지않는다. 왜냐면 살아있는 중첩함수에 의해 상위스코프 참조가 끊어지지 않았기 때문에, 가비지컬렉터가 없애지않는다. 상위함수는 죽어도 그 상위함수의 렉시컬환경은 살아있다.  </p>
+        <h2 id="제네릭"><a href="#제네릭" class="headerlink" title="제네릭"></a>제네릭</h2><p>shift, unshift, pop, push 등은 원본 배열을 변형시키기 때문에 잘 쓰지 않는다.<br>pop과 push 의 대체문법은 concat, […todos, {…}] -&gt; 순서만 바꾸면 shift, unshift를 대체가능하다.<br>위의 네 가지는 쓸 필요도 없고 안 쓰는 것이 좋다.  </p>
+<!-- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span> </span>&#123;</span><br><span class="line">  protected data = []; <span class="comment">// data: any[]</span></span><br><span class="line"></span><br><span class="line">  push(item) &#123;</span><br><span class="line">    <span class="keyword">this</span>.data.push(item); </span><br><span class="line">    <span class="comment">// 뭘 넣을지 모르기때문에 배열도 any타입.</span></span><br><span class="line">    <span class="comment">// 여기에서 타입을 지정해주는 순간 모든 프로퍼티가 영향받는다</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pop() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.data.shift();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> queue = <span class="keyword">new</span> Queue();</span><br><span class="line"></span><br><span class="line">queue.push(<span class="number">0</span>);</span><br><span class="line">queue.push(<span class="string">'1'</span>); <span class="comment">// 의도하지 않은 실수!</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(queue.pop().toFixed()); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(queue.pop().toFixed()); <span class="comment">// Runtime error</span></span><br></pre></td></tr></table></figure>
+<p>원래 배열은 똑같은 타입의 요소만을 나열하는 것이 정석이다. 배열을 쓴다는 것은 순회하겠다는 의미이다. 순회하면서 똑같은 처리를 연속적으로 하겠다는 의미. 그런데 타입이 다르면 문제가 생긴다. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NumberQueue</span> <span class="keyword">extends</span> <span class="title">Queue</span> </span>&#123;</span><br><span class="line">  <span class="comment">// number 타입의 요소만을 push한다.</span></span><br><span class="line">  push(item: number) &#123;</span><br><span class="line">    <span class="keyword">super</span>.push(item); <span class="comment">// 부모 클래스의 push 함수를 그대로 쓰겠다.</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pop(): number &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.pop();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>그래서 숫자만 넣을 수 있는 클래스를 따로 만들었다!<br>근데 이런일 있을때마다 클래스 몽땅 새로 만들 수는 없잖아, 그래서 제네릭이 나왔다.  –&gt;</p>
+<p><strong>제네릭</strong>은 <strong>타입 매개변수</strong>라고 한다. 타입을 외부에서 결정하게 한다. 정의할 때에 타입을 결정할 수 없다면 실행할 때에 타입을 결정할 수 있게.  </p>
+<!-- `const numberQueue = new Queue<number>();`
+number 는 T로 넘어간다.  
+~하나의 클래스로 여러가지 타입에 대응하는 큐를 만들 수 있게 되었다~ -->
+<p>제네릭은 함수에도 쓸 수 있다.  </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 어떤 타입의 배열을 매개변수로 받아서 어떤 타입의 배열을 반환하겠다.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span>&lt;<span class="title">T</span>&gt;(<span class="params">items: T[]</span>): <span class="title">T</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> items.reverse();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// implements 가능 -&gt; 얘가 제일 낫다</span></span><br><span class="line"><span class="keyword">interface</span> User = &#123;</span><br><span class="line">  name: <span class="built_in">string</span>,</span><br><span class="line">  age?: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 순수하게 타입만 만든다</span></span><br><span class="line"><span class="keyword">type</span> User = &#123;</span><br><span class="line">  name: <span class="built_in">string</span>,</span><br><span class="line">  age?: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 인스턴스를 생성하지 않는 클래스는 이상하다! </span></span><br><span class="line"><span class="keyword">class</span> User &#123;</span><br><span class="line">  name: <span class="built_in">string</span>,</span><br><span class="line">  age?: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span>&lt;<span class="title">T</span>&gt;(<span class="params">items: T[]</span>): <span class="title">T</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> items.reverse();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arg = [&#123; name: <span class="string">'Lee'</span> &#125;, &#123; name: <span class="string">'Kim'</span> &#125;, &#123; name: <span class="string">'Park'</span>, age: <span class="number">20</span> &#125;];</span><br><span class="line"><span class="comment">// 인수에 의해 타입 매개변수가 결정된다.</span></span><br><span class="line"><span class="keyword">const</span> reversed = reverse(arg);</span><br><span class="line"><span class="built_in">console</span>.log(reversed); <span class="comment">// [ &#123; name: 'Kim' &#125;, &#123; name: 'Lee' &#125; ]</span></span><br></pre></td></tr></table></figure>
+<h2 id="Angular-template"><a href="#Angular-template" class="headerlink" title="Angular - template"></a>Angular - template</h2><h3 id="템플릿"><a href="#템플릿" class="headerlink" title="템플릿"></a>템플릿</h3><p>사실 HTML이 아니고 문자열이다. 그 안에 템플릿 문법이 포함되어 있다. 템플릿은 컴파일되어 뷰를 만든다.  </p>
+<p><strong>데이터바인딩</strong>:<br>템플릿과 컴포넌트 클래스를 연결시키겠다는 의미. 템플릿이 컴포넌트 클래스에서 필요한 데이터를 가져와서 바인딩한다. 프로퍼티는 표현식이므로 템플릿 문법에 포함될 수 있다. 이때 자동적으로 프로퍼티 표현식은 문자열로 변환된다. 데이터가 HTML과 합쳐져서 우리가 원하는 뷰가 만들어진다. 결국 뷰는 HTML 과 CSS 로 만들어져야한다. 컴포넌트는 뷰를 만들기 위한 데이터를 제공한다.  </p>
+<p>앵귤러는 <strong>MVW</strong> 이다. Model, View, Whatever(아무거나)(ㅋㅋㅋㅋ)<br><!-- DOM을 만들기 위해 모델을 가지고 있는데, 모델은 컴포넌트에 가지고 있을수도 있고 서비스나 디렉티브에 가지고 을수도 있다. --><br>템플릿과 연동하여 뷰(DOM)을 만든다. 템플릿이 일방적으로 데이터를 끌어간다. 왜냐면 컴포넌트 클래스는 템플릿을 모르기 때문이다.<br>그러나 이벤트 발생 시에는 다른데, 브라우저에서 이벤트가 발생하면 이벤트 핸들러를 통해 컴포넌트 클래스로 연결된다. 이벤트는 상태변화를 나타낸다. 상태변화는 DOM에서 발생하고, 모델은 할 일을 수행한다. 뷰를 다시 만들 때에는, 바뀐 부분만 다시 만들어야 한다.  </p>
+<h2 id="Data-Binding"><a href="#Data-Binding" class="headerlink" title="Data Binding"></a>Data Binding</h2><p>자바스크립트가 HTML에 의존하지 않는 방식이 필요하다!<br>데이터바인딩의 핵심은, 템플릿이 주도권을 갖는다는 것.<br>템플릿은 컴포넌트 클래스의 클래스 필드를 참조하며 필요한 데이터를 가져온다.<br>컴포넌트 클래스는 자기 일만 묵묵히 하면 된다.  </p>
 <ul>
-<li>함수 평가 -&gt; 함수객체만들어짐 -&gt; 실행중인 실행컨텍스트의 렉시컬환경을 상위스코프로 결정</li>
-<li>함수 실행 -&gt; 실행컨텍스트가 스택에 쌓이고, 렉시컬환경과 환경레코드의 내용이 실행하면서 채워진다.</li>
+<li>왜 이벤트바인딩은 템플릿 -&gt; 컴포넌트클래스 방향인가?<br>DOM 이벤트는 view에서 발생하기 때문.  <!-- 뷰의 돔이벤트가 발생하면 데이터가 바뀌었겠거니 하고 생각한다.  
+timer함수나 ajax통신도 마찬가지. 데이터가 바뀔 가능성이 높다.   -->
+</li>
 </ul>
-<h3 id="모든-함수는-클로저"><a href="#모든-함수는-클로저" class="headerlink" title="모든 함수는 클로저?"></a>모든 함수는 클로저?</h3><p>모든 함수는 자신이 정의된 위치에 의해 자신의 상위스코프를 <code>[[environment]]</code>내부슬롯에 저장한다.<br>모든 함수는 상위스코프를 다 기억한다.<br>모든 함수는 이론적으로 다 클로저다.<br>클로저의 정의는, <strong>상위스코프를 만든 함수가 없어져도 상위스코프를 참조할 수 있다</strong>면 다 클로저라고 한다.<br>전역실행컨텍스트는 소멸하지않으니까 의미가 없지만, 만약 전역실행컨텍스트도 소멸한다고하면 전역함수도 자신의 상위스코프를 들고다니기때문에 다 클로저이다. 전역함수의 상위스코프는 전역렉시컬환경이다.<br>그러나,<br>만약 상위스코프의 식별자를 참조할일이 없다면 최신브라우저는 굳이 상위스코프를 기억하지않는다. 의미가 없기 때문이다.<br>클로저라고 부르지도 않는다.  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 일반적으로 클로저라고 하지 않는다.</span></span><br><span class="line">  <span class="comment">// bar 함수는 클로저였지만 곧바로 소멸한다.</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 상위 스코프의 식별자를 참조한다.</span></span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">  &#125;</span><br><span class="line">  bar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo();</span><br></pre></td></tr></table></figure>
-<p>위와 같은 경우는 foo 가 죽었을때 bar도 같이 죽기때문에, 클로저였지만 클로저라고 하지않는다.<br>실질적인 클로저의 조건은 즉,  </p>
-<ol>
-<li>상위스코프의 식별자를 하나라도 참조해야하며  </li>
-<li>상위스코프보다 생명주기가 길어야한다.  </li>
-</ol>
-<h2 id="클로저의-활용"><a href="#클로저의-활용" class="headerlink" title="클로저의 활용"></a>클로저의 활용</h2><p>최신 상태를 안전하게 유지하는 것이 본질적 목표이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> $counter = <span class="built_in">document</span>.querySelector(<span class="string">'.counter'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> increase = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 카운트 상태를 유지하기 위한 자유 변수</span></span><br><span class="line">  <span class="keyword">let</span> num = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    $counter.textContent = ++num; <span class="comment">// 상태 변경</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'.increase'</span>).onclick = increase;</span><br></pre></td></tr></table></figure></p>
-<p>이때 increase함수는 caller가 없다.<br>브라우저가 온클릭이벤트 발생시에 호출해준다. 클릭이벤트가 발생하면 이벤트큐에 함수객체가 들어갔다가, 스택이 비면 실행된다.<br>한번 클릭해서 더하기를 했다가 소멸되고, 클릭하면 다시 실행컨텍스트가 생기고 또 실행하고 소멸되고. 생기고 소멸되고의 반복. 상위스코프는 한번 생긴 후로 사라진적이 없으므로 num은 유지된다. 왜냐면, increase라는 변수에 함수를 담아놓았기 때문에.  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="comment">// num: 0, // 프로퍼티는 public이므로 정보 은닉이 되지 않는다.</span></span><br><span class="line">        increase() &#123;</span><br><span class="line">          $counter.textContent = ++num; <span class="comment">// 상태 변경</span></span><br><span class="line">        &#125;,</span><br><span class="line">        decrease() &#123;</span><br><span class="line">          <span class="keyword">if</span> (num &lt;= <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">          $counter.textContent = --num; <span class="comment">// 상태 변경</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br></pre></td></tr></table></figure>
-<p>리턴은 한번만 할수있기에 자료구조에 다 담아서 한번에 리턴할 수 있다. 이때 리턴되는 자료구조, 즉 객체는 리턴되기 직전에 객체가 된다. 그 안에 리턴될 메소드들은 객체로 만들어질때 같이 만들어진다. 리턴되는 객체는 스코프를 만들지않는다! 스코프가 객체 내에서 만들어지지는 않는다. 메소드들이 자신의 상위스코프를 기억한다. 리턴되는 함수들의 상위스코프는 객체가아니라 <strong>리턴하는 함수의 렉시컬환경</strong>이다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> $counter = <span class="built_in">document</span>.querySelector(<span class="string">'.counter'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> Counter = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">// ① 카운트 상태를 유지하기 위한 자유 변수</span></span><br><span class="line">      <span class="keyword">let</span> num = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// this.num = 0; // ② 프로퍼티는 public이므로 정보 은닉이 되지 않는다.</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      Counter.prototype.increase = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        $counter.textContent = ++num;</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      Counter.prototype.decrease = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num &lt;= <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        $counter.textContent = --num;</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> Counter;</span><br><span class="line">    &#125;());</span><br></pre></td></tr></table></figure>
-<p>counter를 찾고, prototype은 프로토타입체인에서 찾아서 increase를 추가하는데. 이 increase 함수의 상위스코프도 현재 실행중인 실행컨텍스트, 즉 즉시실행함수의 렉시컬환경이다.  </p>
-<!-- ## 함수형 프로그래밍
-
-변수 사용 지양을 통한 상태변화의 최소화.
-객체는 참조가 공유되기때문에 변경에 영향을 받고 추적이 어렵다
--> 객체를 얼려서 이뮤터블하게 쓴다 -> 딥카피해서 넘기고 얼린다 다른애들이 변경못하게
-이런 것을 추구하는게 함수형 프로그래밍
-함수는 지역변수가 아닌 외부상태를 절대 변경하지말아야한다 -> 순수함수 -->
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/typescript/">Typescript</a></li></ul>
 
       
     </footer>
@@ -284,7 +236,7 @@ class Student extends Human {
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/3/">Next</a>
+    <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/3/">Next</a>
   </nav>
 
 </section>
@@ -297,6 +249,42 @@ class Student extends Human {
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/07/01/0701/">옵저버블, 에러핸들러, 인터셉터</a></h6>
+              <span>July 1, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/06/25/0625/">생명주기, 서비스, RxJS</a></h6>
+              <span>June 25, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/06/24/0624/">Directive</a></h6>
+              <span>June 24, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -334,42 +322,6 @@ class Student extends Human {
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/07/0607/">클로저</a></h6>
-              <span>June 7, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/05/0605/">실행컨텍스트</a></h6>
-              <span>June 5, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/05/23/0523/">DOM, 동기식 &amp; 비동기식, 이벤트</a></h6>
-              <span>May 23, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -379,7 +331,7 @@ class Student extends Human {
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -389,7 +341,7 @@ class Student extends Human {
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">32</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -400,7 +352,7 @@ class Student extends Human {
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

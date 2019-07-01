@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>옵저버블, 에러핸들러, 인터셉터 | Rudy&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="TILAngular">
+  
+  
+  
+  
+  <meta name="description" content="subscribe, 옵저버블, 옵저버http 메소드 get 을 날렸을 때, subscribe를 안 하면 요청을 받을 수 없다.옵저버블은 관측 대상이므로, 그것을 지켜보고 있는 옵저버가 없으면 아무것도 하지 않는다.옵저버블과 옵저버를 이어주어야 하는데(옵저버가 옵저버블을 바라보게), 그것이 바로 subscribe 이다.   12this.http.get&amp;lt;">
+<meta name="keywords" content="TIL,Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="옵저버블, 에러핸들러, 인터셉터">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/07/01/0701/index.html">
+<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="subscribe, 옵저버블, 옵저버http 메소드 get 을 날렸을 때, subscribe를 안 하면 요청을 받을 수 없다.옵저버블은 관측 대상이므로, 그것을 지켜보고 있는 옵저버가 없으면 아무것도 하지 않는다.옵저버블과 옵저버를 이어주어야 하는데(옵저버가 옵저버블을 바라보게), 그것이 바로 subscribe 이다.   12this.http.get&amp;lt;">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-01T10:36:34.705Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="옵저버블, 에러핸들러, 인터셉터">
+<meta name="twitter:description" content="subscribe, 옵저버블, 옵저버http 메소드 get 을 날렸을 때, subscribe를 안 하면 요청을 받을 수 없다.옵저버블은 관측 대상이므로, 그것을 지켜보고 있는 옵저버가 없으면 아무것도 하지 않는다.옵저버블과 옵저버를 이어주어야 하는데(옵저버가 옵저버블을 바라보게), 그것이 바로 subscribe 이다.   12this.http.get&amp;lt;">
+  
+    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/fashion.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-0701" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      옵저버블, 에러핸들러, 인터셉터
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/07/01/0701/" class="article-date">
+	  <time datetime="2019-06-30T15:00:00.000Z" itemprop="datePublished">July 1, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
+ 
+      <!-- 
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+ -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="subscribe-옵저버블-옵저버"><a href="#subscribe-옵저버블-옵저버" class="headerlink" title="subscribe, 옵저버블, 옵저버"></a>subscribe, 옵저버블, 옵저버</h2><p>http 메소드 get 을 날렸을 때, <strong>subscribe</strong>를 안 하면 요청을 받을 수 없다.<br>옵저버블은 관측 대상이므로, 그것을 지켜보고 있는 옵저버가 없으면 아무것도 하지 않는다.<br>옵저버블과 옵저버를 이어주어야 하는데(옵저버가 옵저버블을 바라보게), 그것이 바로 subscribe 이다.  </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.http.get&lt;Todo[]&gt;(<span class="keyword">this</span>.url)</span><br><span class="line">  .subscribe(<span class="function"><span class="params">todos</span> =&gt;</span> <span class="keyword">this</span>.todos = todos);</span><br></pre></td></tr></table></figure>
+<p>옵저버는 subscribe 라는 메소드를 통해서 옵저버블을 지켜보고 있다.<br>데이터를 가져온 결과물을 옵저버에게 notification 해준다.  </p>
+<ul>
+<li>옵저버블: 데이터 스트림을 방출할 수 있는 객체.<br>즉, 데이터 스트림을 가지고 있다. 옵저버가 있으면 옵저버에게 방출하고, 옵저버가 없으면 방출하지 않는다.  </li>
+<li>옵저버: 관측자. 옵저버블을 관측하며 데이터를 받는다.  </li>
+<li>subscribe: 옵저버블과 옵저버를 이어준다.  </li>
+</ul>
+<p>subscribe의 인수로 전달하는 것이 옵저버이다.<br>옵저버블이 객체고, 옵저버는 함수.<br><code>옵저버블.subscribe(옵저버)</code><br>=&gt; 인수로 전달한 옵저버가 옵저버블을 subscribe한다는 뜻이다.<br>뭔가 행위를 통해서 가져온 데이터를 옵저버의 인수로 넘겨준다.<br>따라서 인수의 네이밍을 제대로 하려면 우리가 무엇을 가져올 지를 알아야 한다.  </p>
+<p>위의 예제에서, 옵저버블은 todos를 옵저버에게 전달한다.<br>get 메소드는 자기가 무엇을 가져올 지를 모른다. 그래서 무조건 <strong>객체를 리턴</strong>하도록 되어있고, 타입을 맞춰서 할당해주어야 하므로 <code>&lt;Todo[]&gt;</code> 를 해주는 것이다. -&gt; 제네릭!<br>or,<br><code>todos as Todo[]</code> -&gt; todos는 Todo[]타입으로 보겠다. -&gt; 강제형변환. 타입캐스팅.  </p>
+<p>subscribe 안에는 데이터가 왔을 때 할 일을 적어주는 것이다.<br>-&gt; 옵저버블님, 데이터 가져오시면 todos에 주세요. 그럼 제가 어떠한 일을 하겠습니다.  </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.http.delete&lt;Todo&gt;(<span class="string">`<span class="subst">$&#123;this.url&#125;</span><span class="subst">$&#123;id&#125;</span>`</span>)</span><br><span class="line">  .subscribe(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.todos = <span class="keyword">this</span>.todos.filter(<span class="function"><span class="params">todo</span> =&gt;</span> todo.id !== id));</span><br><span class="line">  <span class="comment">// subscribe(_ =&gt; this.todos = this.todos.filter(todo =&gt; todo.id !== id));</span></span><br></pre></td></tr></table></figure>
+<p>위의 예제에서는 빈 객체가 넘어오는 상황이고, 빈 객체는 받아줄 필요가 없으므로 함수의 매개변수는 비워둔다.<br><code>()</code> 대신 <code>_</code> 를 쓰면, 인수가 넘어왔을 때 쓰지 않겠다는 명확한 의사표시이다.  </p>
+<p>subscribe도 then과 마찬가지로, 두 번째 함수를 주면 에러를 캐치하게 된다.  </p>
+<h2 id="에러핸들러"><a href="#에러핸들러" class="headerlink" title="에러핸들러"></a>에러핸들러</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.http.get&lt;Todo[]&gt;(<span class="keyword">this</span>.url)</span><br><span class="line">  .subscribe(</span><br><span class="line">    <span class="comment">// 요청 성공 처리 콜백 함수 (Observer의 next 메소드)</span></span><br><span class="line">    todos =&gt; <span class="keyword">this</span>.todos = todos,</span><br><span class="line">    <span class="comment">// 요청 실패 처리 콜백 함수 (Observer의 error 메소드)</span></span><br><span class="line">    (error: HttpErrorResponse) =&gt; <span class="built_in">console</span>.error(error)</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+<p>에러핸들러에 인수로 에러를 전달해서, 에러가 이벤트객체타입이다, 라고 판별되면 클라이언트 에러이고, 아니면 백엔드의 에러로 판별된다.  </p>
+<p><code>todos$</code> 처럼 달러가 뒤에 붙으면 옵저버블이라는 암묵적 표시이다.  </p>
+<p>파이프로 <code>shareReplay</code>를 걸어주면 옵저버블이 <strong>공유옵저버블</strong>이 된다.  </p>
+<h3 id="콜드-옵저버블-핫-옵저버블"><a href="#콜드-옵저버블-핫-옵저버블" class="headerlink" title="콜드 옵저버블, 핫 옵저버블"></a>콜드 옵저버블, 핫 옵저버블</h3><p><strong>콜드 옵저버블</strong>: 옵저버와 옵저버블이 일대일관계. 유니캐스트.<br><strong>핫 옵저버블</strong>: 여러 개의 옵저버가 하나의 옵저버블을 <strong>공유</strong>. 멀티캐스트.  </p>
+<p>shareReplay 라는 오퍼레이터는, 콜드 옵저버블을 핫 옵저버블로 만든다.<br>-&gt; 여러번 subscribe을 해도 동일한 데이터가 간다.  </p>
+<h2 id="인터셉터"><a href="#인터셉터" class="headerlink" title="인터셉터"></a>인터셉터</h2><!-- 좀 어려운데, 프로젝트에 쓰일 수도 있음.  -->
+<ul>
+<li><p>인터셉터가 왜 필요한가<br>만약 로그인을 하지 않은 상태에서 메인페이지로 바로 접근하려고 하면 튕겨낼 필요가 있다.<br>이때 로그인을 했는지 안 했는지 확인하고 튕겨내야 하는데, 보통 서버가 보안을 걸어놓는다.<br>그럼 우리는, 로그인에 성공하면 백엔드가 우리에게 넘겨주는 토큰을(지금은 일단 JWT(JSON Web Token)방법) 받는다. 로그인에 성공했으므로 토큰이라는 객체를 json으로 주고, 그것을 받아서 클라이언트가 가지고 있어야 한다(이 방법은 여러가지인데 심플하게는 로컬스토리지나 쿠키에 담는다. 보안 측면에서는 쿠키가 조금 더 낫지만 둘 다 장단점이 있다). 토큰은 암호화되어서 오기 때문에 우리가 열어봐도 뭔지 모른다. 로그인 페이지 이후에 보안이 필요한 다른 페이지로 갈때는 항상 토큰을 들고 간다. 그럼 토큰을 어떻게 서버에 줄것인가? 결론은 ‘<strong>헤더</strong>에 담는다’. 라우팅을 써서 이동할 때마다 헤더셋팅을 해야한다는 말인데, 귀찮다! 그래서 인터셉터라는 것을 만들어둬서 무조건 토큰을 담아가게 만든다. 인터셉터를 만들어두면, 우리가 요청할 때마다 헤더셋팅을 일일이 해줄 필요가 없어진다.  </p>
+</li>
+<li><p>파이프라인이란?<br>우리가 서버에 요청을 보내려고 코드로 적는 모든 과정들을 파이프라인이라고 한다.<br>인터셉터를 한 번 만들어두면 HTTP 요청을 검사하거나 변환할 수 있다.  </p>
+</li>
+</ul>
+<p>인터셉터를 작성하려면 HttpInterceptor 인터페이스를 implements 해야 한다.  </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AuthInterceptor <span class="keyword">implements</span> HttpInterceptor &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> auth: AuthService</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  intercept(req: HttpRequest&lt;<span class="built_in">any</span>&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;<span class="built_in">any</span>&gt;&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> authToken = <span class="keyword">this</span>.auth.getToken();</span><br><span class="line">    <span class="keyword">const</span> clonedRequest = req.clone(&#123;</span><br><span class="line">      headers: req.headers.set(<span class="string">'Authorization'</span>, authToken)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> next.handle(clonedRequest);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  ...</span><br><span class="line">  providers: [&#123;</span><br><span class="line">    provide: HTTP_INTERCEPTORS,</span><br><span class="line">    useClass: AuthInterceptor,</span><br><span class="line">    multi: <span class="literal">true</span></span><br><span class="line">  &#125;]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>리퀘스트 메세지에 있는 헤더에는 키가 있고 값이 있다. 요청할 때 우리가 authorization(백엔드와 합의된 키 이름)이라는 키를 넣고, 값으로는 토큰의 전체문자열을 넣고 서버에 날린다. 서버는 우리와 합의된 그 authorization이라는 키에 토큰이 담겨있겠거니 생각하고 그것을 꺼내서 서버에서 확인한다. 암호화된 토큰을 서버에서는 풀 수 있기 때문에, 확인해서 권한이 있는지 없는지를 확인한다. 따라서 JWT를 쓸 것이라면 서버와 클라이언트는 이 키를 합의해놓아야 한다. 그리고 그 키의 값으로 로컬스토리지에 담아놓은 토큰을 꺼내서 요청할 때 키와 값을 담아서 보내는 것이다.<br>인터셉트는 첫번째 인수로 우리가 날릴 리퀘스트 객체를 준다. (여기에서 백엔드와 합의한 키와 토큰값을 셋팅한다)<br>그리고 루트모듈에 providers 를 추가한다.  </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/06/25/0625/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">생명주기, 서비스, RxJS</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#subscribe-옵저버블-옵저버"><span class="nav-number">1.</span> <span class="nav-text">subscribe, 옵저버블, 옵저버</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#에러핸들러"><span class="nav-number">2.</span> <span class="nav-text">에러핸들러</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#콜드-옵저버블-핫-옵저버블"><span class="nav-number">2.1.</span> <span class="nav-text">콜드 옵저버블, 핫 옵저버블</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#인터셉터"><span class="nav-number">3.</span> <span class="nav-text">인터셉터</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+        <!-- 
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+           -->
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
