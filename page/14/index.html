@@ -97,7 +97,7 @@
         
           <section id="main">
   
-    <article id="post-0425" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0426" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +105,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0425/">컴퓨터 공학 TIL 0425</a>
+      <a class="article-title" href="/2019/05/03/0426/">컴퓨터 공학 TIL 0426</a>
     </h1>
   
 
@@ -113,7 +113,7 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/03/0425/" class="article-date">
+	<a href="/2019/05/03/0426/" class="article-date">
 	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
 	</a>
 
@@ -125,49 +125,91 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Internet-네트워크-계층-IP담당"><a href="#Internet-네트워크-계층-IP담당" class="headerlink" title="Internet(네트워크 계층): IP담당"></a>Internet(네트워크 계층): IP담당</h2><p>IP는 IP라우팅을 한다.<br>인터넷 계층 : 아이피.(아이피주소는 내가 데이터를 보내고자 하는 상대 호스트 컴퓨터)<br>최종적으로 도달하는 <strong>호스트를 특정</strong>하기 위해 아이피주소가 필요함.<br>상대방의 호스트를 특정하기 위한 <strong>아이피주소를 관리</strong>하는 계층이 네트워크 계층.<br>강사님 추천 책: “TCP/IP 완벽 가이드”  </p>
-<p><strong>NAT</strong> : 호스트1이 유투브에게 데이터를 요구하면 유투브는 공인아이피인 라우터까지는 보낼 수 있는데 정확히<br>어느 호스트가 보낸 건지 사설아이피까지는 알 수 없다. 그렇다고 늘 브로드캐스트로 보낼 수는 없다.<br>그래서 라우터는 랜카드 중 하나를 임대하여 사설 아이피를 공인 아이피와 매핑한다.<br>그리고 소스 아이피를 자신의 공인아이피로 바꿔서 보낸다.<br>서버가 영상을 공인아이피로 보내면, 변환테이블에서 공인아이피와 연결된 사설아이피를 찾는다.<br>그리고 사설아이피를 다시 목적지로 설정하여 보내준다. 랜카드가 많이 필요하다는 단점이 있다.  </p>
-<p><strong>NAPT</strong> : 호스트가 서버와 통신하고자 할때, 모든 호스트들이 같은 랜카드를 빌려오되,<br>구분을 해야하므로 포트번호까지 이용하여 구분한다. 같은 123.108.157.1 이라는 랜카드를 써도<br>포트번호를 달리해서 쓰면 구분지을 수 있는 것이다.  </p>
-<h2 id="Transport-전송계층-포트담당"><a href="#Transport-전송계층-포트담당" class="headerlink" title="Transport(전송계층): 포트담당"></a>Transport(전송계층): 포트담당</h2><p>특정 컴퓨터에게 데이터가 잘 도착했을 때 해당 <strong>프로세스</strong>에게 데이터를 전달하기위해 <code>포트번호</code>가 필요.<br>이 포트는 패킷이 필요한 프로세스를 특정하기 위해 사용된다.<br>이 <strong>포트를 관리</strong>하는 계층이 전송계층. 포트번호는 2^16-1 까지 할당가능하다.<br>패킷에는 아이피주소 말고도 포트번호가 쓰여있어서,<br>해당 포트번호가 특정하는 프로세스에게 데이터를 전송된다.<br>ex) 데이터를 보내긴 보내는데, 유투브 프로세스가 3개 돌아가고 있다면 그 중 어느 프로세스에 데이터를<br>    보낼 것인가?</p>
-<p>서버에는 소켓이 많다. 서버는 특정 컴퓨터의 특정 프로세스일 뿐이다.<br>포트가 특정 프로세스를 특정한다고 했는데, 포트는 소켓에 부여된 숫자이다.<br>이 숫자가 0부터 2^16-1 까지. 2바이트짜리 정수.<br>소켓에는 두 가지 종류가 있다.  </p>
+        <h2 id="ADT-abstract-data-type-추상-자료형"><a href="#ADT-abstract-data-type-추상-자료형" class="headerlink" title="ADT(abstract data type), 추상 자료형"></a>ADT(abstract data type), 추상 자료형</h2><p>자료구조의 인터페이스(함수 시그니쳐를, 함수 사용법을) 명시해 놓은 것. 기능 명세.<br>구체적인 구현설명이 들어가면 안 된다.<br>-&gt; 인터페이스와 내부구현의 분리, 추상화.  </p>
+<p>이미 존재하는 자료구조를 이용해서 새로운 자료구조를 구현.<br>스택 구현 방법:  </p>
 <ol>
-<li><p>데이터를 전송하고 있는 <code>데이터 소켓</code><br>실제로 클라이언트와 일대일로 매핑되어 데이터를 주고 받는다.  </p>
-</li>
-<li><p>서버를 대표하는 <code>리스닝 소켓</code><br>클라이언트가 리퀘스트를 날릴 때 서버에서 데이터를 받는 소켓<br>리스닝 소켓은 클라이언트로부터 최초의 접속 요청을 받는 소켓<br>접속 후에 실제로 데이터를 주고받는 것은 데이터 소켓  </p>
-</li>
+<li>배열  </li>
+<li>연결 리스트  </li>
+<li>파이썬의 리스트  </li>
 </ol>
-<p><code>well-known port</code>: 자주 쓰이는 유명한 포트번호.<br>0~1023 번까지 있는데 서버가 특정 서비스에 따라 특정 포트를 쓴다.  </p>
-<p>전송계층에는 두 가지 프로토콜이 있다.  </p>
-<h2 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP / UDP"></a>TCP / UDP</h2><ul>
-<li><p><strong>TCP</strong><br>신뢰도가 높다. 패킷이 유실되면 <strong>재전송</strong>을 해준다. HTTP는 일반적으로 TCP 위에서 돈다.<br>패킷을 보낸 다음에 상대방이 패킷을 잘 받았는지 인증을 받아서 확인한다.<br>-&gt; 패킷이 유실되었는지 계속 관리해야하기 때문에 네트워크에 부담이 된다.<br>파일 전송이나 메일 전송은 TCP를 이용한다.<br>연결 지향성: 서버와 호스트가 데이터를 주고받을 때 소켓을 가지고 접속과 연결이 되어야 한다.  </p>
-</li>
-<li><p><strong>UDP</strong><br>신뢰도가 낮다. 패킷이 유실되더라도 재전송을 해주지 않는다. 보내면 끝.<br>-&gt; 한번 보내면 끝이기 때문에 가볍고 빠르다.<br>동영상이나 빠른 속도가 필요한 게임 등은 UDP를 이용한다.<br>비연결 지향성: 접속이나 연결이 없이 그냥 보내기만 한다.  </p>
-</li>
-</ul>
-<h2 id="Application-응용-표현-세션-계층"><a href="#Application-응용-표현-세션-계층" class="headerlink" title="Application (응용, 표현, 세션 계층)"></a>Application (응용, 표현, 세션 계층)</h2><p><code>Secure Socket Layer(SSL)</code>(Transport Layer Security)를 어플리케이션과 트랜스포트 사이에 끼워넣는다.<br>이 레이어는 <strong>암호화</strong>를 한다. 내가 html 과 js를 만들어서 보내면<br>다른 해커가 스푸핑을 통해서 파일들을 뺏더라도 암호화가 되어있어서 볼 수 없다.<br>받는 상대방은 <strong>복호화</strong>를 해서 볼 수 있다.  </p>
-<ul>
-<li>http: 메세지 기반의 프로토콜. 단순한 문자열을 주고 받고 해석함.<br>(html 파일이나 js 파일도 결국 문자열일 뿐이다)  </li>
-<li>dns: 도메인 네임 시스템. 사람이 읽고 기억하기 쉬운 이름.<br>원래 어떤 사이트에 가려면 아이피주소를 써야하는데,<br>우리는 그 누구도 페이스북에 접속하려고 아이피를 적지 않는다. 대신 도메인 위치를 적는다.<br>그리고 DNS SERVER 에서 도메인 네임에 대한 아이피를 알려준다.<br>받아온 아이피는 캐시로 저장된다.  </li>
-</ul>
-<p><code>HTTP</code> : 하이퍼 텍스트 트랜스퍼 프로토콜<br>“나 이번에 새로 쓴 논문이 있어 인터넷에 링크 걸어둘게!”<br>원래는 진짜 정적파일 텍스트만 보는 용도였다.<br>http 1.0 이하에서는 연결이 일시적이다. 한번 데이터 주고받으면 끝.<br>그런데 점점 컴퓨터 성능이 좋아지니까 이미지나 동영상, 스크립트 파일도 받게 되었다.<br>그래서 한번 리퀘스트를 받은 다음에 한번의 리스폰스로 끝나는 게 아니게 되었다.<br>그래서 http 1.1부터는 연결을 유지한다. 한번 연결하면 끊지 않고 계속 연결.<br>만약 일시적 연결을 원한다면 헤더에 <code>connection:close</code> 를 포함하면 된다.  </p>
-<p><strong>메서드</strong>: 클라이언트 요청의 종류  </p>
-<ul>
-<li><code>GET</code> : URL 이 지원하는 자원을 찾아 클라이언트에 전송</li>
-<li><code>POST</code> : 클라이언트가 임의의 데이터를 서버로 보낸다.<br>주로 form 형식을 사용하며 서버의 프로그램에 전달</li>
-<li>HEAD: GET과 같지만 메세지 본문이 없다. 테스트 용도</li>
-<li>PUT: 지정한 URL에 요청의 본문내용을 저장</li>
-<li>DELETE: 지정한 자원을 지움</li>
-<li>TRACE: 클라이언트가 서버에 보낸 요청의 복사본을 돌려받는다.</li>
-</ul>
-<h3 id="상태코드"><a href="#상태코드" class="headerlink" title="상태코드"></a>상태코드</h3><p>200번대 : 성공<br>300번대 : 서버가 옮겨간것같은데 저쪽으로 다시 시도해볼래?<br>400번대 : 클라이언트가 잘못했다<br>500번대 : 서버가 잘못했다  </p>
-<h3 id="컨텐트-협상"><a href="#컨텐트-협상" class="headerlink" title="컨텐트 협상:"></a>컨텐트 협상:</h3><ol>
-<li><p>서버 주도 협상:<br> -&gt; 최선 추측<br>클라이언트가 원하는 것이 없을 때, 요청과 가장 비슷한 것을 가져감.  </p>
-</li>
-<li><p>에이전트 주도 협상:<br> 클라이언트가 자원을 고를 수 있음<br>-&gt; 클라이언트: 글 좀 보내봐<br>서버: 한국어도 있고 영어도 있고 프랑스어도 있는데… 뭐 보내지?<br>클라이언트: Accept - Language: kr;q=0.7, fr;q=0, en;q=0.4<br> “한국어가 최우선이고 한국어 없으면 영어 보내줘. 프랑스어는 있어도 보내지마”  </p>
-</li>
+<h3 id="스택"><a href="#스택" class="headerlink" title="스택"></a>스택</h3><p>접시쌓기를 생각해보자.<br>접시를 하나씩 위로 쌓는다면 보통은 위에서부터 하나씩 가져간다.<br>이처럼, 데이터1, 데이터2, 데이터3, 데이터4 가 쌓였을 때 데이터4 부터 먼저 사라지는 것.<br>제일 나중에 들어오면 제일 먼저 나간다. : <code>Last In First Out</code> = 후입선출  </p>
+<p>pop: 삭제하면서 반환<br>peek: 다음으로 나올 데이터를 반환만 하고 삭제하지 않음  </p>
+<p>일반적으로 스택의 맨 위 데이터는 top 으로 가리킨다.  </p>
+<p><em>나중에 꼭 풀어볼 것</em>  </p>
+<ol>
+<li>후위 표기법 계산기  </li>
+<li>미로찾기  </li>
 </ol>
+<h3 id="큐"><a href="#큐" class="headerlink" title="큐"></a>큐</h3><p>줄서기와 같다.<br>맨 처음에 데이터1이 들어오고 그 다음에 데이터2, 데이터3가 들어온다면<br>제일 먼저 온 데이터1이 먼저 나간다. : <code>First In First Out</code> = 선입선출  </p>
+<h2 id="연결-리스트-linked-list"><a href="#연결-리스트-linked-list" class="headerlink" title="연결 리스트(linked list)"></a>연결 리스트(linked list)</h2><ol>
+<li><code>싱글 링크드 리스트</code><br>노드가 데이터 + 링크<br>싱글 링크드 리스트의 노드는 데이터에 대한 링크가 하나이다.<br>링크가 하나만 있으면 양방향이 아니게 된다.<br>1 -&gt; 2 -&gt; 1 이 안 됨.  </li>
+<li><code>더미 더블 링크드 리스트</code> -&gt; 이중 연결 리스트<br>노드가 링크 + 데이터 + 링크<br>링크가 두 개이기 때문에 양방향이다.<br>1 -&gt; 2 -&gt; 1 이 가능함. </li>
+</ol>
+<p><code>더미 노드</code>:  </p>
 <ul>
-<li>random pivot<br>리스트의 첫번째, 중간, 마지막 값을 가져와서 중간값을 찾아서 pivot 으로 설정.<br>-&gt; 거의 average case 에 가깝게 구현이 되더라는 것이 정설.  </li>
+<li>데이터가 없다  </li>
+<li><p>구현 편의성이 높아지면서 에러 가능성이 낮다<br>  구현이 좋아진다 = 프로그래머의 실수를 줄일 수 있다<br><code>dummy</code>(head)~<code>1</code>~<code>2</code>~<code>3</code>~<code>dummy</code>(tail)</p>
+</li>
+<li><p>delete<br>reference count 가 0 이 되면<br>(어떤 값을 참조하는 것들이 모두 사라지면)<br>garbage collection 에 의해 사라진다.  </p>
+</li>
+</ul>
+<p>delete 도 이와 비슷하게<br>지우려는 노드를 참조하는 다른 노드의 연결을 끊어버리면 된다.  </p>
+<h2 id="배열과-링크드리스트의-차이"><a href="#배열과-링크드리스트의-차이" class="headerlink" title="배열과 링크드리스트의 차이"></a>배열과 링크드리스트의 차이</h2><p><strong>배열 :</strong><br>실제 메모리에도 데이터가 일렬로 들어간다.<br>인덱싱이 가능하므로 검색도 빠르다. O(1)<br>단, 데이터 삽입이나 삭제를 할 때 최악의 경우 O(n)<br>검색을 자주 할 때 배열을 쓴다.  </p>
+<p><strong>연결리스트 :</strong><br>실제 메모리에서 데이터가 일렬로 들어가지 않고 흩어져있으며 서로 연결되어 있다.<br>인덱싱을 하려면 모든 데이터를 순회해야 하므로 검색이 느리다. O(n)<br>데이터 삽입을 할 때 싱글 링크드 리스트의 경우 O(1),<br>더블 링크드 리스트의 경우도 O(1).<br>삽입과 삭제를 자주 할 때 연결리스트를 쓴다.  </p>
+<h1 id="앞으로-공부하라고-하신-내용"><a href="#앞으로-공부하라고-하신-내용" class="headerlink" title="앞으로 공부하라고 하신 내용"></a>앞으로 공부하라고 하신 내용</h1><p>linked list, stack, queue 는 선형 자료구조.<br>앞으로는 비선형 자료구조도 공부해야 할 것.  </p>
+<ul>
+<li>tree(이진트리)  <ul>
+<li>순회(travorsal)  <ul>
+<li>전위(preorder)  </li>
+<li>중위(inorder)  </li>
+<li>후위(postorder)<br>-&gt; 전위, 중위, 후위는 스택의 일종이고, 스택은 DFS의 일종.<br>  반복문과 재귀로 구현  </li>
+<li>레벨 순서(level order)  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>BST(Binary Search Tree)<br>  O(n^2)  </li>
+<li><p>균형이진트리 (Balanced, self balancing)  </p>
+<ul>
+<li>AVL 트리  </li>
+<li>RED-BLACK 트리  </li>
+</ul>
+</li>
+<li><p>B-Tree (데이터베이스의 인덱스에 쓰임)<br>  : 균형이진트리 + 하드웨어 아키텍쳐  </p>
+</li>
+<li><p>Heap (완전이진트리, 배열로 구현한다)  </p>
+</li>
+<li><p>Hash Table(map)  </p>
+<ul>
+<li>hash function  </li>
+<li>collision(충돌)  <ul>
+<li>chaining(체이닝)  </li>
+<li>open-addressing 기법  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Graph(그래프)  </p>
+<ul>
+<li>순회  <ul>
+<li>DFS (깊이 우선 탐색) -&gt; 스택 기반  </li>
+<li>BFS (너비 우선 탐색) -&gt; 큐 기반  </li>
+</ul>
+</li>
+<li>MST(Minimum Spanning Tree) 최소 신장 트리  <ul>
+<li>그리디 알고리즘 기반  </li>
+<li>kruskal algorithm  </li>
+<li>prim algorithm  </li>
+</ul>
+</li>
+<li>최단 경로 문제(shortest path)  <ul>
+<li>dijkstra algorithm -&gt; 그리디 알고리즘  </li>
+<li>Balman-ford algorithm  </li>
+<li>flord-warshall -&gt; 다이나믹 프로그래밍  </li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
       
@@ -191,7 +233,7 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-0419-python" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0419" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -199,7 +241,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0419-python/">파이썬 기초 문법</a>
+      <a class="article-title" href="/2019/05/03/0419/">컴퓨터 공학 TIL 0419</a>
     </h1>
   
 
@@ -207,7 +249,7 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/03/0419-python/" class="article-date">
+	<a href="/2019/05/03/0419/" class="article-date">
 	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
 	</a>
 
@@ -219,59 +261,55 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="파이썬-자료형-기초"><a href="#파이썬-자료형-기초" class="headerlink" title="파이썬 자료형 기초"></a>파이썬 자료형 기초</h1><ul>
-<li>string = “abcde”  <ul>
-<li>string<code>[2]</code> = ‘c’  </li>
-<li>string<code>[2:]</code> = ‘cde’ (2번 자리 이상)  </li>
-<li>string<code>[:2]</code> = ‘ab’ (0번 이상, 2번 미만)  </li>
-<li>string<code>[0:1]</code> = ‘a’ (0번 째 이상, 1번 미만)  </li>
-<li>string<code>[0:2]+&quot;z&quot;+string[3:]</code> = ‘abzde’ ( ab + z + de )  </li>
-<li>string<code>.replace(&#39;c&#39;,&#39;z&#39;)</code> = ‘abzde’ (c 를 z 로 바꾸어서 보여줌. 원본이 바뀌지는 않는다.)  </li>
+        <h1 id="파이썬-기초와-알고리즘-3일차"><a href="#파이썬-기초와-알고리즘-3일차" class="headerlink" title="파이썬 기초와 알고리즘 3일차"></a>파이썬 기초와 알고리즘 3일차</h1><p><code>.replace()</code> - 원본의 데이터를 바꾸지 않음.  </p>
+<ul>
+<li><p>튜플은 <strong>성능 최적화</strong>를 위해 존재.<br>데이터를 바꿀 수 없기 때문에 데이터를 가져와서 읽는 용도로만 사용한다.<br>리스트보다 빠르다. 튜플을 쓸 수 있다면 튜플을 쓸 것.  </p>
+</li>
+<li><p>딕셔너리 = “Collection of Pairs”<br>pair = <code>key : item</code><br>키와 밸류가 한 쌍으로 모여있다.  </p>
+</li>
+<li><p>뷰객체와 리스트객체의 차이<br>원본에 데이터를 추가했을 때 뷰 객체에서는 변경사항이 저장되지만 리스트는 안됨.  </p>
+</li>
+</ul>
+<p>파이썬은 단순성이 존재목적.  </p>
+<ul>
+<li>expression: 식.<br>무언가를 반환할 수 있다면 그것은 식이다.<br>단항식 역시 참과 거짓, 혹은 값 자체를 반환할 수 있으므로 식이다.  </li>
+</ul>
+<p>a+b : <code>이항식. binary expression</code><br>“abc” : <code>단항식 unary expression</code>  </p>
+<p>파이썬에서는 함수도 식이다.<br>식이라면 반드시 무언가를 반환해야 한다.<br>print() 도 함수고, 반환이 없어보이지만 실제로는 none 을 반환함.  </p>
+<p><code>stdin</code> : standard input (키보드), 0<br><code>stdout</code> : standard output (모니터), 1<br><code>stderr</code> : standard error (모니터), 2  </p>
+<h2 id="문자열"><a href="#문자열" class="headerlink" title="문자열"></a>문자열</h2><ul>
+<li>ASCII  </li>
+<li><p>UNICODE  </p>
+<ul>
+<li>UTF-8  </li>
+<li>UTF-16  </li>
+<li>UTF-32  </li>
+<li>~CP949~  </li>
+</ul>
+</li>
+<li><p>문자집합 :<br>영어, 불어, 독일어는 언어체계는 다르지만 같은 문자집합을 공유한다.  </p>
+</li>
+<li><p>문자 인코딩 : 모스부호처럼 문자를 부호화하는 것.<br>  반대로 모스부호를 문자로 만드는 것은 복호화.  </p>
+</li>
+<li><p>코트 포인트 : 내 맘대로 a를 13으로 바꿀 수 없다. 전세계 사람들이 약속을 해야 한다.<br>  a = 97 일때, a는 chracter 고, 97은 코드포인트. 어떠한 문자에 매핑되어있는 숫자.<br>  이렇게 매핑된 문자와 숫자를 테이블로 정리를 해놓은 것이 ASCII.  </p>
+</li>
+</ul>
+<p>ASCII의 치명적 약점 : </p>
+<ol>
+<li>7비트만 사용할 수 있고 127개까지만 문자가 매핑되어있다.  </li>
+<li>영어밖에 없다.  </li>
+</ol>
+<p>-&gt; <strong>UNICODE</strong><br>16비트짜리 평면을 17개 만들었다.<br>ASCII 코드가 임베디드 되어 있다.  </p>
+<ul>
+<li>UTF-8<ul>
+<li>8비트 기반</li>
+<li>아스키에 소속된 영어는 여전히 1바이트, 한글은 3바이트로 저장됨  </li>
 </ul>
 </li>
 </ul>
-<h3 id="문자열-포매팅"><a href="#문자열-포매팅" class="headerlink" title="문자열 포매팅"></a>문자열 포매팅</h3><p>문자열 내의 어떤 값을 삽입하는 방법.  </p>
-<p>a = 10<br>b = ‘abcde’  </p>
+<p>big endian &amp; little endian &amp; endian less(빅, 리틀 상관없이 그 자체가 저장됨)  </p>
 <ul>
-<li><code>print(&quot;%d, %s&quot; %(a,b))</code> = 10, abcde  </li>
-<li><code>print(&#39;숫자는 {0} 문자열은 {1}&#39;.format(a,b))</code><br>  = 숫자는 10 문자열은 abcde  </li>
-<li><code>print(f&#39;숫자는 {} 문자열은 {}&#39;)</code><br>  = 숫자는 10 문자열은 abcde  </li>
-</ul>
-<p>a = 0.1234512345  </p>
-<ul>
-<li><code>print(f&#39;{a:.3}&#39;)</code> = 0.123 (소수점 뒤의 3자리까지만 자르기)  </li>
-</ul>
-<h3 id="Dictionary"><a href="#Dictionary" class="headerlink" title="Dictionary"></a>Dictionary</h3><ul>
-<li>dic = {‘a’:1, 2:’two’, ‘func’:lambda a,b: a+b}<ul>
-<li>dic<code>[&#39;a&#39;]</code> = 1 (a라는 키의 value를 가져오기)  </li>
-<li>dic<code>[func](1,2)</code> = 3 (func 라는 키의 value 인 함수를 실행)<br>  lambda: 함수가 위치한 메모리 주소값  </li>
-<li>dic.<code>keys()</code> = dict_keys([‘a’, 2, ‘func’]) (dic 의 모든 키값을 가져오기)  </li>
-<li>dic.<code>items()</code> = dict_items<code>([(&#39;a&#39;, 1), (2, &#39;two&#39;), (&#39;func&#39;, &lt;function &lt;lambda&gt; at 0x05B738E8&gt;)])</code><br>  (key와 value값이 튜플로 묶여서 나옴) -&gt; 튜플인 이유가 있나?  </li>
-<li>key_list = <code>list(dic.keys())</code> = [‘a’, 2, ‘func’] (key만 모아서 리스트로 만들기)  </li>
-</ul>
-</li>
-</ul>
-<p><strong>list 와 view 객체와의 차이</strong><br>key_view = dic.keys() = dict_keys([‘a’, 2, ‘func’])<br>key_list = [‘a’, 2, ‘func’]<br>일 때,<br><code>dic[5]=&#39;five&#39;</code> 딕셔너리에 쌍을 추가하면<br>key_view = dict_keys([‘a’, 2, ‘func’, <code>5</code>]) -&gt; 추가되었음<br>key_list = [‘a’, 2, ‘func’] -&gt; 추가 되지 않았음  </p>
-<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>집합 자료형인 세트에서는 중복이 허용되지 않는다.  </p>
-<p>s1 = set([1,2,3,4])<br>s2 = set([3,4,5,6])  </p>
-<ul>
-<li><code>s1|s2</code> or <code>s1.union(s2)</code>= {1,2,3,4,5,6} (합집합)  </li>
-<li><code>s1&amp;s2</code> or <code>s1.intersection(s2)</code>= {3,4} (교집합)  </li>
-<li><code>s1-s2</code> or <code>s1.difference(s2)</code> = {1,2} (차집합)  </li>
-<li><code>s2-s1</code> or <code>s2.difference(s1)</code> = {5,6} (차집합)  </li>
-<li><code>s1^s2</code> or <code>s1.symmetric_difference(s2)</code>= {1,2,5,6} (대칭 차집합)  </li>
-</ul>
-<h3 id="True-False"><a href="#True-False" class="headerlink" title="True / False"></a>True / False</h3><ul>
-<li><strong>거짓</strong>으로 취급하는 데이터  <ul>
-<li>“” 빈 문자열  </li>
-<li>[] 빈 리스트  </li>
-<li>() 빈 튜플  </li>
-<li>{} 빈 딕셔너리  </li>
-<li>false  </li>
-<li>none (JS의 undefined)  </li>
-<li>0  </li>
-</ul>
-</li>
+<li>단순 정렬 알고리즘(bubble sort)<br><a href="https://blueshirudy.tistory.com/13" target="_blank" rel="noopener">과정 정리해본 노트</a></li>
 </ul>
 
       
@@ -283,7 +321,7 @@
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cs/">CS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
 
       
     </footer>
@@ -299,7 +337,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/13/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/15/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/13/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/15/">Next</a>
   </nav>
 
 </section>
@@ -312,6 +350,18 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/07/03/0703/">Forms</a></h6>
+              <span>July 3, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -373,18 +423,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/11/0611/">SPA, Routing</a></h6>
-              <span>June 11, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -394,7 +432,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">16</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -404,7 +442,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">33</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -415,7 +453,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
