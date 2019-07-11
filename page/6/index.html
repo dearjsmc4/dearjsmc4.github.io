@@ -97,7 +97,7 @@
         
           <section id="main">
   
-    <article id="post-0529" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0607" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +105,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/29/0529/">웹 서버, 애플리케이션 서버</a>
+      <a class="article-title" href="/2019/06/07/0607/">클로저</a>
     </h1>
   
 
@@ -113,8 +113,8 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/29/0529/" class="article-date">
-	  <time datetime="2019-05-28T15:00:00.000Z" itemprop="datePublished">May 29, 2019</time>
+	<a href="/2019/06/07/0607/" class="article-date">
+	  <time datetime="2019-06-06T15:00:00.000Z" itemprop="datePublished">June 7, 2019</time>
 	</a>
 
       
@@ -125,8 +125,40 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="웹-서버와-애플리케이션-서버"><a href="#웹-서버와-애플리케이션-서버" class="headerlink" title="웹 서버와 애플리케이션 서버"></a>웹 서버와 애플리케이션 서버</h2><h3 id="웹-서버"><a href="#웹-서버" class="headerlink" title="웹 서버"></a>웹 서버</h3><p>클라이언트의 <strong>정적파일 요청에 응답</strong>할 수 있는 서버가 웹 서버이다.<br>-&gt; HTML, CSS, Javascript, JPG, SVG, XML 와 같은 정적파일들을 제공.<br><code>https://www.naver.com</code><br>이것은 naver.com 도메인서버에 찾아가서 index.html 을 달라는 요청이다. 이 요청을 서버가 알아들어야 한다. 알아듣고 index.html 파일을 찾아서 읽어들인 뒤 메모리에 올려서 랜선에 태워서 요청한 컴퓨터로 보내야 한다. 그러면 랜선을 타고 이진수가 전달된다. 클라이언트는 리스폰스를 받고 이진수를 메모리에 저장하다가, 다 도착했다는 것을 인식하면 그때 실행 -&gt; 다운로드한다.  </p>
-<h3 id="애플리케이션-서버"><a href="#애플리케이션-서버" class="headerlink" title="애플리케이션 서버"></a>애플리케이션 서버</h3><p>웹 서버보다 머리가 좋고, 우리는 애플리케이션 서버를 주로 쓸 것이다. <strong>정적파일을 제공</strong>할 수 있는 기능은 물론, <strong>REST API를 처리</strong>할 수 있다. (API는 우리가 함수 쓰듯이 쓸 수 있는 것이다). 인수를 줄 수도 있고 안 줄 수도있지만 리턴은 항상 있고, 이 리턴을 리스폰스라고 한다. 우리는 보낸 요청에 대한 응답(성공이든 실패든)을 백엔드로부터 받는다. 그럼 우리는 어떻게 리퀘스트를 날릴 것인지, 인수가 있을 때는 어떤 형식으로 줄 것인지, 리스폰스는 어떻게 받을 것인지, 받아서 어떻게 해석할 건지 알아야 한다.<br>근데 리스폰스가 언제 올까? 올 수도 있고 안 올 수도 있고, 1초 후에 올지 10초 후에 올지 모른다. 비동기로 동작하기 때문이다. 그래서 <strong>비동기처리</strong>를 해주어야하고, 이때 <strong>프로미스</strong>를 쓴다. 응답이 오면 무엇을 해줄게 라는 약속.  </p>
+        <h2 id="시작-전-예제"><a href="#시작-전-예제" class="headerlink" title="시작 전 예제"></a>시작 전 예제</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.prototype.x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">foo() <span class="comment">// ?</span></span><br></pre></td></tr></table></figure>
+<p>-&gt; 스코프체인과 프로토타입체인은 따로따로 일하는게 아니라 식별자를 찾을 때 협력하는 관계이다.</p>
+<h2 id="예제-2"><a href="#예제-2" class="headerlink" title="예제 2"></a>예제 2</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    arr[i] += x;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(arr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); <span class="comment">// [ 2, 3, 4 ]</span></span><br></pre></td></tr></table></figure>
+<p>foo 함수에 대한 평가가 이루어져서 arr 이 함수의 환경레코드에 등록된다.<br>for문 안의 변수가 var로 초기화 되는 것이었다면 함수의 환경레코드에 들어가겠지만(블록레벨스코프를 지원하지않으니까) let은 for문 안에서만 유효하기때문에 스코프도 for문으로 제한된다. 함수내부를 평가할 때 for문은 일단 지나쳐버리고, 함수내부를 실행할 때 arr에 배열을 할당해준다. (객체가 되어 할당된다)<br>현재 실행중인 실행컨텍스트는 foo 이다. for문을 만나면 for문에 대한 새로운 렉시컬환경을 만든다. 실행컨텍스트를 새로 만드는 게 아니다! 실행컨텍스트를 만드는 건 실행 가능한 코드의 4가지 종류(전역, 함수, eval, 모듈)만 만드는거다.<br>for문은 실행컨텍스트를 만들지 않고 for의 렉시컬환경만 만든다. 그리고 기존의 렉시컬환경(foo)을 새로운 렉시컬환경(for)으로 갈아끼우면서(함수 실행 컨텍스트가 기존에 foo의 렉시컬환경과의 관계를 끊고 블록 렉시컬 환경을 가리키게된다) 부자관계를 맺고(for의 외부환경참조가 foo의 렉시컬환경을 가리킨다) for문을 실행한 후, foo 함수의 렉시컬환경으로 되돌린다. -&gt; tc39 ecma 262 - 13.2.13 참고  </p>
+<h2 id="클로저"><a href="#클로저" class="headerlink" title="클로저"></a>클로저</h2><p>클로저를 배워야하는 이유 : 정보은닉보다는 <strong>안전한 상태유지</strong>가 주 목적이다.<br>근데 왜 상태유지를 클로저로 해야할까?<br>-&gt; 전역변수로 상태유지를 할 수도 있지만 그건 안전하지가 않다. 왜냐면 아무나 고칠 수 있기 때문이다.<br><!-- 안전하다고 하려면 상태를 변경할 수 있는 자격이 필요하다.    --><br>안전하게, 라는 말을 빼고 상태유지를 하는 방법은 객체의 프로퍼티가 있음.<br>그러나 프로퍼티 역시 접근해서 상태를 바꿀 수도 있다. 객체의 모든 프로퍼티는 퍼블릭하다.<br>안전한 상태유지를 하고싶다면 클로저를 써야 한다.  </p>
+<!-- 실행컨텍스트의 관점에서 이해하고 설명할 수 있어야한다.
+요즘은 내부함수가 아니라 중첩함수(nested function) 이라고 하는 추세이다. -->
+<h3 id="예제"><a href="#예제" class="headerlink" title="예제"></a>예제</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outerFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> x = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">innerFunc</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  innerFunc();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">outerFunc(); <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+<p>전역코드가 평가되어 x와 outerfunc이 등록된다.<br>outerfunc가 실행되면 실행컨텍스트에 함수 실행컨텍스트 스택이 쌓이고 렉시컬환경과 환경레코드가 생기고 x와 innerfunc가 등록된다. 함수 내부가 실행되면 x에 10이 할당되고, innerfunc가 호출된다. inner함수의 실행컨텍스트가 스택에 쌓이고, inner가 현재 실행중인 실행컨텍스트가 된다. x를 바라볼때, 현재 실행중인 실행컨텍스트의 렉시컬환경의 환경레코드에서 찾는다. inner에 없으니 외부환경참조를 타고 outer로 가서(이것이 스코프체인), outer의 렉시컬환경의 환경레코드에서 찾아서 출력한다. </p>
+<h3 id="외부환경참조"><a href="#외부환경참조" class="headerlink" title="외부환경참조"></a>외부환경참조</h3><p>함수가 호출되기전에 평가되고 함수객체가 만들어진다. 평가될 때, 실행 중인 전역실행컨텍스트의 <strong>렉시컬환경</strong>(상위스코프)을 <code>[[environment]]</code> 내부슬롯에 넣는다. -&gt; 자신이 정의된 위치에 의거해서 이미 결정되어진다. 모든 함수객체는 <code>[[environment]]</code>를 가지고 있다. 렉시컬환경도 객체니까 그 참조값을 가지고 있다. 함수 객체가 소멸되지 않는한 상위스코프 참조는 사라지지않는다. 그러니까 상위스코프도 절대 죽지않는다. 왜냐면 살아있는 중첩함수에 의해 상위스코프 참조가 끊어지지 않았기 때문에, 가비지컬렉터가 없애지않는다. 상위함수는 죽어도 그 상위함수의 렉시컬환경은 살아있다.  </p>
+<ul>
+<li>함수 평가 -&gt; 함수객체만들어짐 -&gt; 실행중인 실행컨텍스트의 렉시컬환경을 상위스코프로 결정</li>
+<li>함수 실행 -&gt; 실행컨텍스트가 스택에 쌓이고, 렉시컬환경과 환경레코드의 내용이 실행하면서 채워진다.</li>
+</ul>
+<h3 id="모든-함수는-클로저"><a href="#모든-함수는-클로저" class="headerlink" title="모든 함수는 클로저?"></a>모든 함수는 클로저?</h3><p>모든 함수는 자신이 정의된 위치에 의해 자신의 상위스코프를 <code>[[environment]]</code>내부슬롯에 저장한다.<br>모든 함수는 상위스코프를 다 기억한다.<br>모든 함수는 이론적으로 다 클로저다.<br>클로저의 정의는, <strong>상위스코프를 만든 함수가 없어져도 상위스코프를 참조할 수 있다</strong>면 다 클로저라고 한다.<br>전역실행컨텍스트는 소멸하지않으니까 의미가 없지만, 만약 전역실행컨텍스트도 소멸한다고하면 전역함수도 자신의 상위스코프를 들고다니기때문에 다 클로저이다. 전역함수의 상위스코프는 전역렉시컬환경이다.<br>그러나,<br>만약 상위스코프의 식별자를 참조할일이 없다면 최신브라우저는 굳이 상위스코프를 기억하지않는다. 의미가 없기 때문이다.<br>클로저라고 부르지도 않는다.  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 일반적으로 클로저라고 하지 않는다.</span></span><br><span class="line">  <span class="comment">// bar 함수는 클로저였지만 곧바로 소멸한다.</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 상위 스코프의 식별자를 참조한다.</span></span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">  &#125;</span><br><span class="line">  bar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo();</span><br></pre></td></tr></table></figure>
+<p>위와 같은 경우는 foo 가 죽었을때 bar도 같이 죽기때문에, 클로저였지만 클로저라고 하지않는다.<br>실질적인 클로저의 조건은 즉,  </p>
+<ol>
+<li>상위스코프의 식별자를 하나라도 참조해야하며  </li>
+<li>상위스코프보다 생명주기가 길어야한다.  </li>
+</ol>
+<h2 id="클로저의-활용"><a href="#클로저의-활용" class="headerlink" title="클로저의 활용"></a>클로저의 활용</h2><p>최신 상태를 안전하게 유지하는 것이 본질적 목표이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> $counter = <span class="built_in">document</span>.querySelector(<span class="string">'.counter'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> increase = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 카운트 상태를 유지하기 위한 자유 변수</span></span><br><span class="line">  <span class="keyword">let</span> num = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    $counter.textContent = ++num; <span class="comment">// 상태 변경</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'.increase'</span>).onclick = increase;</span><br></pre></td></tr></table></figure></p>
+<p>이때 increase함수는 caller가 없다.<br>브라우저가 온클릭이벤트 발생시에 호출해준다. 클릭이벤트가 발생하면 이벤트큐에 함수객체가 들어갔다가, 스택이 비면 실행된다.<br>한번 클릭해서 더하기를 했다가 소멸되고, 클릭하면 다시 실행컨텍스트가 생기고 또 실행하고 소멸되고. 생기고 소멸되고의 반복. 상위스코프는 한번 생긴 후로 사라진적이 없으므로 num은 유지된다. 왜냐면, increase라는 변수에 함수를 담아놓았기 때문에.  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="comment">// num: 0, // 프로퍼티는 public이므로 정보 은닉이 되지 않는다.</span></span><br><span class="line">        increase() &#123;</span><br><span class="line">          $counter.textContent = ++num; <span class="comment">// 상태 변경</span></span><br><span class="line">        &#125;,</span><br><span class="line">        decrease() &#123;</span><br><span class="line">          <span class="keyword">if</span> (num &lt;= <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">          $counter.textContent = --num; <span class="comment">// 상태 변경</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br></pre></td></tr></table></figure>
+<p>리턴은 한번만 할수있기에 자료구조에 다 담아서 한번에 리턴할 수 있다. 이때 리턴되는 자료구조, 즉 객체는 리턴되기 직전에 객체가 된다. 그 안에 리턴될 메소드들은 객체로 만들어질때 같이 만들어진다. 리턴되는 객체는 스코프를 만들지않는다! 스코프가 객체 내에서 만들어지지는 않는다. 메소드들이 자신의 상위스코프를 기억한다. 리턴되는 함수들의 상위스코프는 객체가아니라 <strong>리턴하는 함수의 렉시컬환경</strong>이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> $counter = <span class="built_in">document</span>.querySelector(<span class="string">'.counter'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> Counter = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="comment">// ① 카운트 상태를 유지하기 위한 자유 변수</span></span><br><span class="line">      <span class="keyword">let</span> num = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// this.num = 0; // ② 프로퍼티는 public이므로 정보 은닉이 되지 않는다.</span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      Counter.prototype.increase = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        $counter.textContent = ++num;</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      Counter.prototype.decrease = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num &lt;= <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        $counter.textContent = --num;</span><br><span class="line">      &#125;;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> Counter;</span><br><span class="line">    &#125;());</span><br></pre></td></tr></table></figure>
+<p>counter를 찾고, prototype은 프로토타입체인에서 찾아서 increase를 추가하는데. 이 increase 함수의 상위스코프도 현재 실행중인 실행컨텍스트, 즉 즉시실행함수의 렉시컬환경이다.  </p>
+<!-- ## 함수형 프로그래밍
+
+변수 사용 지양을 통한 상태변화의 최소화.
+객체는 참조가 공유되기때문에 변경에 영향을 받고 추적이 어렵다
+-> 객체를 얼려서 이뮤터블하게 쓴다 -> 딥카피해서 넘기고 얼린다 다른애들이 변경못하게
+이런 것을 추구하는게 함수형 프로그래밍
+함수는 지역변수가 아닌 외부상태를 절대 변경하지말아야한다 -> 순수함수 -->
 
       
     </div>
@@ -149,7 +181,7 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-0523" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0605" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -157,7 +189,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/23/0523/">DOM, 동기식 &amp; 비동기식, 이벤트</a>
+      <a class="article-title" href="/2019/06/05/0605/">실행컨텍스트</a>
     </h1>
   
 
@@ -165,8 +197,8 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/23/0523/" class="article-date">
-	  <time datetime="2019-05-22T15:00:00.000Z" itemprop="datePublished">May 23, 2019</time>
+	<a href="/2019/06/05/0605/" class="article-date">
+	  <time datetime="2019-06-04T15:00:00.000Z" itemprop="datePublished">June 5, 2019</time>
 	</a>
 
       
@@ -177,34 +209,56 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><p>트리를 만든다 -&gt; 부자관계가 있다.<br><strong>DOM 트리</strong> : html 텍스트문서를 파싱한 결과로, 메모리에 들어가있는 트리모양의 자료구조.<br>우리가 작성한 구조 안에 돔트리를 컨트롤 할 수있는 DOM API가 있다면 자바스크립트파일을 실행할 때 그것들을 조작할 수 있다. 직접 메모리에 접근하여 돔트리구조 자체를 바꿔버린다 -&gt; 화면을 다시 그려야함 -&gt; 비용이 든다!<br>우리는 SPA(single page application) 로 개발을 할 것이다. html을 딱 하나만 만든다는 것. html 코드의 조각들은 자바스크립트 내부에 들어가있다. -&gt; 앵귤러 리액트 (뷰) 가 이런 일들을 위한 것. 페이지를 리페인팅하는 비용은 적게 들고 퍼포먼스 올리고…<br>모던웹개발에서는 SPA를 만들때 프레임워크를 쓰는 것이 좋다.  </p>
-<ul>
-<li><p>html 태그안에 들어있는 <strong>어트리뷰트</strong>는 왜 어트리뷰트인가?<br>어트리뷰트는 초기값. 변하지 않는다. -&gt; 인풋의 타입이나 밸류는 태그 안에서 지정한 그대로다.<br>프로퍼티는 변한다 -&gt; 브라우저에서 인풋에 내용을 넣으면 프로퍼티 밸류가 바뀐다 -&gt; 상태<br>이 상태는 돔요소가 가지고 있다.  </p>
-</li>
-<li><p><strong>노드</strong>: 돔트리상의 하나하나의 가지 -&gt; 엘리먼트라고도 한다.<br>문서노드(진입점), 요소 노드, 텍스트노드, 어트리뷰트 노드 등이 있다.  </p>
-</li>
-<li><p>HTMLCollection &amp; NodeList<br><code>document.querySelector()</code>로 불러올 때는 NodeList라는 자료구조에 담아서 가져온다 -&gt; Non live<br>get 종류의 메소드로 불러오면 <code>HTMLCollection</code> 에 담겨서 온다 -&gt; live (실시간으로 바뀐다)<br>HTMLCollection은 유사배열객체이다. NodeList도 유사배열객체.<br>가져온 유사배열 객체를 elem 이라는 변수에 담았다고 했을 때,  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[...elems].forEach(<span class="function"><span class="params">elem</span> =&gt;</span> elem.className = <span class="string">'blue'</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>유사배열객체를 배열로 반환하면 배열고차함수를 사용할 수 있다.  </p>
-<!-- id는 전역에 변수로 남아버린다. id를 많이 줄수록 변수도 많아지는것! -->
-<h2 id="동기식-amp-비동기식"><a href="#동기식-amp-비동기식" class="headerlink" title="동기식 &amp; 비동기식"></a>동기식 &amp; 비동기식</h2><p>동기라는건 순서가 보장된다는 뜻이다.<br>반대로 비동기는 실행 순서가 보장되지 않는다.<br><!-- 비동기함수인 셋타임함수를 누가 호출하는가? 0초 경과 후에 콜백함수를 누가 호출? --></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'func1'</span>);</span><br><span class="line">  func2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'func2'</span>);</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  func3();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'func3'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func1();</span><br></pre></td></tr></table></figure>
-<p>함수가 종료된다는 건 콜스택에서 빠진다는 말이다.<br>setTimeout 함수는 0초가 경과했는지를 검사해야하고, 0초가 경과하면 tick 이라는 이벤트가 발생하는데<br>그때 셋타임은 이벤트큐로 들어간다(큐는 선입선출이고 콜스택은 후입선출이다). 그리고 콜스택이 비었는지를 이벤트루프가 돌면서 체크하다가 콜스택이 비면 이벤트큐에서 이벤트를 갖다가 콜스택에 넣는다. 즉 동기함수들이 모두 끝난 후에 가장 마지막에 실행된다.</p>
-<p>자바스크립트는 콜스택이 1개이고, 단일스레드이고, 병렬처리가 안 된다.<br>그러나 워낙 고속이다보니 한번에 여러 일을 하는것처럼 보일뿐이다.<br>함수를 잘게잘게 나누라는것도 이런 이유때문이다. 빨리 실행하고 버리게.  </p>
-<h2 id="이벤트"><a href="#이벤트" class="headerlink" title="이벤트"></a>이벤트</h2><ul>
-<li>이벤트를 등록하는 세 가지 방법  </li>
-</ul>
+        <h2 id="실행-컨텍스트"><a href="#실행-컨텍스트" class="headerlink" title="실행 컨텍스트"></a>실행 컨텍스트</h2><p>컨텍스트는 문맥이라는 뜻. 코드에도 맥락이 있다.<br><!-- 식별자하면 선언이라는 키워드를 떠올려야함.(단, 프로퍼티는 식별자라고 잘 불리지않음. 식별자는 스코프체인에서 찾지만,프로퍼티는 프로토타입체인에서 찾기때문) --><br>실행 컨텍스트는 <strong>자바스크립트엔진의 동작원리</strong>와 밀접한 관련이 있다.<br>모든 실행 가능한 코드는 우선 평가 과정을 거치면서 실행을 위한 준비를 해야한다. 실행 컨텍스트는 실행 가능한 코드를 평가하고 실행하기 위한 환경이다. 이 실행 컨텍스트는 코드 평가 과정에서 생성되고, 코드 내 선언문이 평가되어 그 결과가 실행컨텍스트에 등록된다.<br>실행 가능한 코드는 4가지 유형이 있다.  </p>
 <ol>
-<li>html 태그 안에 직접 함수를 호출 -&gt; html과 js는 분리하도록 하자…  </li>
-<li><strong>on 프로퍼티</strong>를 이용한다. 원래 값이 null 인 상태인데 여기다 이벤트를 우리가 달아주면 된다.<br><code>btn.onclick = function foo() {}</code> -&gt; 이벤트 핸들러 프로퍼티 방식<br>여기서 foo 는 메소드이다. 프로퍼티의 값이 함수면 메소드니까.<br>이벤트 핸들러를 하나밖에 달 수 없다. 두 개를 달면 덮어쓴다. html요소에만 쓸 수 있다.  </li>
-<li><strong>addEventListener 메소드</strong> 방식. 요소 선택 후에 <code>btn.addEventListener(&#39;click&#39;, function () {})</code> 이런 식으로 호출. 이때 인수로 함수를 주는거니까 콜백으로 주는 것이다. 클릭 이벤트가 발생하면 함수호출해달라는 뜻. html요소뿐 아니라 모든 돔요소에서 동작한다. 돔요소를 지정해주지 않으면 전역 어디에서든 이벤트가 동작한다.  </li>
+<li>전역코드 - 전역에 존재하는 텍스트 코드.  </li>
+<li>함수코드 - 함수 내부에 존재하는 텍스트 코드.  </li>
+<li>eval 코드 - eval 함수에 인수로 전달된 텍스트 코드.  </li>
+<li>모듈코드 - 모듈 내부에 존재하는 텍스트 코드.  <!-- 우리는 전역코드와 함수코드에 집중하자. 코드별로 컨텍스트가 따로다.   -->
+</li>
 </ol>
-<p>이벤트가 시작되면 window에서부터 시작해서 지정된 요소까지 타고 내려간다 -&gt; 캡처링<br>요소를 찍고 다시 window로 거슬러 올라간다 -&gt; 기본값은 버블링  </p>
-<p>이벤트객체: (e)  </p>
-<p><strong>이벤트타겟!!!</strong><br>실제로 이벤트를 발생시킨 요소에 대한 참조.<br>버튼이 여러개일때 내가 누른 ‘그’ 버튼을 참조한다.<br><!-- e.target 는 애드이벤트리스너 안에서 this와 같다. 애드이벤트리스너 앞에 있는 요소. --></p>
-<p><strong>이벤트 위임</strong><br>div에 이벤트를 걸고, div 안에서 어떤 버튼이 이벤트를 발생시켰는지를 e.target과 버블링을 이용하여 잡아낸다.  </p>
+<h3 id="전역코드"><a href="#전역코드" class="headerlink" title="전역코드"></a>전역코드</h3><p><strong>전역스코프</strong>를 생성하고 전역객체와 연결되어야 한다.<br>(전역객체는 브라우저를 열자마자 생성되며, 프로퍼티와 메소드, WEB API, 변수들이 들어있다.)<br>var 키워드로 선언된 변수는 전역객체와 전역스코프에 들어가지만 let, const 는 전역스코프에만 들어간다<br>-&gt; 그래서 윈도우에서 참조못한다.<br>-&gt; declarative environment record 에 들어가있다.<br><!-- (전역 스코프와 전역 객체가 어떻게 다르더라...) --><br>전역코드평가를 통해 <strong>전역실행컨텍스트</strong>가 생성된다.  </p>
+<h3 id="함수코드"><a href="#함수코드" class="headerlink" title="함수코드"></a>함수코드</h3><p><strong>지역스코프</strong>를 만든다. 지역스코프는 전역스코프를 가장 최상위로 하는 스코프체인의 일원으로 등록되어야 한다.<br>함수 코드가 평가되면 <strong>함수실행컨텍스트</strong>가 생성된다.</p>
+<p>두 코드는실행컨텍스트의 내용, 즉 하는 일이 다르다. </p>
+<ul>
+<li><p>평가와 실행은 다르다<br>어떤 코드가 실행되기 위해서는 평가단계를 거친다. 평가의 아웃풋이 실행컨텍스트이다. 평가를 하면 실행컨텍스트가 만들어진다. 선언문들만 뽑아서 먼저 실행하는걸 코드평가라고 한다 -&gt; 변수선언때 배웠다!<br>실행컨텍스트를 만들어서 선언문을 실행한 결과로 만들어진 식별자를 등록한다.<br>그리고 런타임이 시작돼서 선언문을 제외한 코드가 실행 된다. -&gt; 값이 할당되고 연산도 가능해진다  </p>
+</li>
+<li><p>변수의 선언과 할당을 실행 컨텍스트로 이해하기<br>전역 코드가 평가될 때 전역 실행컨텍스트가 생성되고 x라는 식별자를 등록한다. 전역실행컨텍스트를 객체라고 생각하자. 실제로 객체이기도 하고. 그 안에 프로퍼티와 값이 있다. 식별자 x만을 등록할 순 없고 값을 줘야하는데, 할당 전에 먼저 undefined를 값으로 넣어둔다. 그게 호이스팅이었다!<br>할당은 식별자와 값을 바인딩하는 것이다. 그럼 먼저 식별자를 찾아야 하는데, 전역실행컨텍스트에서 식별자를 찾는다. 만약 없다면 레퍼런스에러가 난다. 식별자를 찾은 후엔 값을 할당한다. 할당이라는 코드실행결과 역시 실행컨텍스트에서 관리된다. 사실 이보단 더 복잡하지만.. 일단 개요를 말하자면 그렇다.<br>변수를 선언한다는 건, 변수명을 실행컨텍스트에 등록하여 자바스크립트엔진이 관리하도록 하는 것이다.<br>-&gt; (실행컨텍스트야 너가 이 식별자 좀 가지고 있어 관리좀 하게) </p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 전역 변수 선언</span></span><br><span class="line"><span class="keyword">const</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> y = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 함수 정의</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 지역 변수 선언</span></span><br><span class="line">  <span class="keyword">const</span> x = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">const</span> y = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 메소드 호출</span></span><br><span class="line">  <span class="built_in">console</span>.log(a + x + y); <span class="comment">// 130</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 함수 호출</span></span><br><span class="line">foo(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 메소드 호출</span></span><br><span class="line"><span class="built_in">console</span>.log(x + y); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>전역객체가 일단 존재하고, 전역코드가 평가되면 전역실행컨텍스트가 생성된다. 전역의 const 변수 x, y 선언문을 평가하여 실행컨텍스트에 등록한다. foo 함수 선언문을 평가하여 foo 함수 객체를 등록한다(이때 내부 코드는 아직 평가되지 않았다!).<br>코드가 실행되면 전역 const x, y에 1, 2를 할당하고 foo 함수를 건너뛰어 foo 함수 호출문으로 간다. 함수가 호출되어 함수 내부로 들어간다. 이제 함수코드가 평가되고 함수실행컨텍스트가 만들어진다. x, y, a를 등록한다. <strong>(arguments 객체도 있다!)</strong> 함수코드가 실행이 되면 10, 20, 100 을 할당하고 콘솔로그를 찍으러 간다. 콘솔은 전역객체에서 찾을 수 있다. 함수 실행컨텍스트에서 모든 식별자를 참조할 수 있으므로 130이라는 결과가 출력된다. foo 함수 실행이 끝나면 전역코드로 나와 콘솔을 실행한다. 이때는 전역실행컨텍스트에서 x, y 를 찾아 3이 출력된다.  </p>
+<h2 id="실행컨텍스트-스택"><a href="#실행컨텍스트-스택" class="headerlink" title="실행컨텍스트 스택"></a>실행컨텍스트 스택</h2><p>전역 코드를 실행할 때 함수 호출을 만나면 전역 코드 실행을 멈추고 함수 코드를 실행한다. 함수 코드를 실행하고 나면 다시 전역 코드로 돌아와야 하는데, 어떻게 돌아올까? 멈춘 곳에서부터 다시 코드를 실행하는 매커니즘이 실행 컨텍스트 스택이다.<br><!-- (이거 콜스택이야!) --><br>평가 전에 이미 전역객체는 실행 컨텍스트 스택에 만들어져 있다. 그래야 평가했을때 var 변수를 전역객체의 프로퍼티로 넣을 수 있으니까. 그리고 항상 스택의 맨 밑에 깔려있다. 전역실행컨텍스트은 종료될 수 없고, 브라우저를 끄지않는 한 살아있다. 스택의 맨 위에 있는 실행컨텍스트는 현재 실행중인 실행컨텍스트이다. 이렇게 스택에 쌓이는 매커니즘으로 자기가 어디로 돌아가야 할지를 알게된다. 현재 실행중인 실행컨텍스트, 즉 최상위의 실행컨텍스트가 실행을 마치고 사라지면 그 다음 실행컨텍스트로 컨트롤이 이동하는것이다.  </p>
+<h2 id="렉시컬-환경-중요"><a href="#렉시컬-환경-중요" class="headerlink" title="렉시컬 환경(중요)"></a>렉시컬 환경(중요)</h2><p>이것이 바로 스코프. 실행 컨텍스트가 하나의 심플한 객체로 만들어진 게 아니라 복잡한 구조로 만들어져있다. 식별자가 선언되는 환경. 좀 더 정확히 얘기하면 환경레코드가 스코프이다. 렉시컬환경은 실행컨텍스트 소속이다.  </p>
+<p>실행 컨텍스트는 <strong>LexicalEnvironment 컴포넌트와 VariableEnvironment 컴포넌트</strong>로 구성된다. 실행컨텍스트가 이 두 개의 프로퍼티를 가지고 있다. 처음엔 동일한 렉시컬환경객체를 가리킨 상태에서 시작함. 렉시컬환경은 3개의 프로퍼티를 가진다.  </p>
+<ol>
+<li>환경레코드: 식별자와 값을 관리한다  </li>
+<li>외부렉시컬환경에대한참조: 상위스코프에 대한 참조 -&gt; 클로저와 연결  </li>
+<li>this바인딩: 메소드를 이용한 this 결정  </li>
+</ol>
+<pre><code class="javascript"><span class="keyword">var</span> x = <span class="number">1</span>;
+<span class="keyword">const</span> y = <span class="number">2</span>;
+
+<span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params">a</span>) </span>{
+  <span class="keyword">var</span> x = <span class="number">3</span>;
+  <span class="keyword">const</span> y = <span class="number">4</span>;
+
+  <span class="function"><span class="keyword">function</span> <span class="title">bar</span> (<span class="params">b</span>) </span>{
+    <span class="keyword">const</span> z = <span class="number">5</span>;
+    <span class="built_in">console</span>.log(a + b + x + y + z);
+}
+  bar(<span class="number">10</span>);
+}
+
+foo(<span class="number">20</span>); <span class="comment">// 42</span>
+</code></pre>
+<p>함수는 자기가 정의된 곳에서 평가 된다. 어디에서 정의되었는지에 따라 상위스코프가 결정된다.<br>함수가 상위스코프를 기억하는 방법? -&gt; 함수가 평가될 때 실행중인 실행컨텍스트를 기억한다.<br>-&gt; 이것을 외부렉시컬환경참조에다가 넣는다<br>bar는 foo가 평가될 때 만들어진다. 함수는 객체니까 프로퍼티가 있고, 외부에 공개되지않는 <code>[[environment]]</code>라는 내부슬롯에 자기의 상위스코프를 항상 들고다닌다 -&gt; 이것이 클로저<br>자기의 직속상위스코프만 알고있으면 더 위의 스코프까지 알 수 있다.<br>이론적으로 자바스크립트의 모든 함수는 자신의 상위스코프를 기억하는 클로저이다.  </p>
+<!-- 화살표함수는 this가 없고 렉시컬this를 참조할수있음.
+흡사 화살표함수.bind(this) 와 같다. 즉 상위의 this를 바인딩.
+
+할당을 위해 식별자를 찾을떄, 현재실행중인 실행컨텍스트에서 찾는다.
+
+연산을 위해 식별자를 찾을때 현재실행중인 실행컨텍스트에서부터 찾고, 없으면 현재실행컨텍스트의 외부참조를 따라 올라가서 찾는다.  -->
 
       
     </div>
@@ -231,7 +285,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/5/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/7/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/5/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/7/">Next</a>
   </nav>
 
 </section>
@@ -244,6 +298,42 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/07/10/0710/">Routing</a></h6>
+              <span>July 10, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/07/08/0708/">Module</a></h6>
+              <span>July 8, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/07/08/template-form/">Angular Template Driven Form</a></h6>
+              <span>July 8, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -281,42 +371,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/24/0624/">Directive</a></h6>
-              <span>June 24, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/17/0617/">Generic, Angular</a></h6>
-              <span>June 17, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/14/0614/">Angular</a></h6>
-              <span>June 14, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -326,7 +380,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -336,7 +390,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -347,7 +401,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

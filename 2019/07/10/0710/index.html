@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Routing | Rudy&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="TILAngular">
+  
+  
+  
+  
+  <meta name="description" content="Angular RoutingSEO검색엔진최적화(Search Engine Optimization, SEO).검색로봇이 24시간을 전세계 사이트를 돌아다닌다.사이트들을 페이지별로 검색하고 다니면서 페이지의 HTML구조까지 들여다본다.여기서 시맨틱구조가 중요한데, 검색엔진이 태그의 이름을 보고 이 페이지가 무엇에 대한 페이지인지 알 수 있기 때문이다.예를 들어">
+<meta name="keywords" content="TIL,Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Routing">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/07/10/0710/index.html">
+<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="Angular RoutingSEO검색엔진최적화(Search Engine Optimization, SEO).검색로봇이 24시간을 전세계 사이트를 돌아다닌다.사이트들을 페이지별로 검색하고 다니면서 페이지의 HTML구조까지 들여다본다.여기서 시맨틱구조가 중요한데, 검색엔진이 태그의 이름을 보고 이 페이지가 무엇에 대한 페이지인지 알 수 있기 때문이다.예를 들어">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-11T09:37:20.299Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Routing">
+<meta name="twitter:description" content="Angular RoutingSEO검색엔진최적화(Search Engine Optimization, SEO).검색로봇이 24시간을 전세계 사이트를 돌아다닌다.사이트들을 페이지별로 검색하고 다니면서 페이지의 HTML구조까지 들여다본다.여기서 시맨틱구조가 중요한데, 검색엔진이 태그의 이름을 보고 이 페이지가 무엇에 대한 페이지인지 알 수 있기 때문이다.예를 들어">
+  
+    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/fashion.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-0710" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Routing
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/07/10/0710/" class="article-date">
+	  <time datetime="2019-07-09T15:00:00.000Z" itemprop="datePublished">July 10, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
+ 
+      <!-- 
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+ -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Angular-Routing"><a href="#Angular-Routing" class="headerlink" title="Angular Routing"></a>Angular Routing</h1><h2 id="SEO"><a href="#SEO" class="headerlink" title="SEO"></a>SEO</h2><p><strong>검색엔진최적화</strong>(Search Engine Optimization, SEO).<br>검색로봇이 24시간을 전세계 사이트를 돌아다닌다.<br>사이트들을 페이지별로 검색하고 다니면서 페이지의 HTML구조까지 들여다본다.<br>여기서 시맨틱구조가 중요한데, 검색엔진이 태그의 이름을 보고 이 페이지가 무엇에 대한 페이지인지 알 수 있기 때문이다.<br>예를 들어 <code>nav</code>태그는 중요한 메인메뉴를 가지고있을텐데, 그럼 그 네비게이션을 유심히 들여다볼 것이다.<br>사실 검색엔진이 무엇을 중요히 여기는지는 기밀이다.<br>검색엔진 동작원리에 맞춰 상위노출을 시도할 수 있기 때문이다.  </p>
+<p>SEO가 적용되도록 만들려면 모든 페이지마다 고유한 URL을 가져야 한다.<br>Ajax의 경우 주소창이 변하지않는데, 그러면 모든 페이지가 주소가 하나이며, 검색엔진이 이게 한 페이지인지 열 페이지인지 알 수가 없다. 그래서 대부분의 SPA 애플리케이션은 라우터기능을 제공하고 있다. 단, SEO를 완전하게 충족시키려면 조금 다른 방법이 필요하다. 서버가 페이지를 제공해 주는 것이다. 앵귤러는 자체적으로 서버사이드 렌더링을 하기위한 모듈이 따로있고, 그것을 앵귤러 유니버설이라고 한다. 서버사이드렌더링으로 SPA를 구축하는 경우도 많고, 리액트도 그렇다. 리액트는 Next.js같은 서버사이드 렌더링을 지원해주는 프레임워크가 따로 있다.  </p>
+<p>애플리케이션은 웹사이트가 아니기때문에 SEO에 그렇게 민감하지 않아도 될 수도 있다.<br>그러나 <strong>정보성</strong>을 띈 웹 앱이라면 SEO가 중요하다.  </p>
+<h2 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h2><p>라우팅모듈은 <strong>라우팅에 대한 정보</strong>를 담는 모듈이다. 모든 라우팅을 관리한다.<br>라우팅모듈이 주소창을 계속 주시하고 있다가, 주소창의 path가 바뀌면 그에 해당하는 컴포넌트를 화면에 활성화시켜 화면 전환이 이루어진다. </p>
+<p>라우트를 구성하려면 모듈을 추가해주어야 하는데, <code>ng new</code> 로 앵귤러 프로젝트를 생성할 때 라우팅 옵션에 yes 라고 답하면 app-routing-module.ts 파일이 생성된다. </p>
+<p>루트모듈에 라우팅모듈을 등록해준다.<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">'./app-routing.module'</span>;</span><br><span class="line"></span><br><span class="line">imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    AppRoutingModule </span><br><span class="line">  ],</span><br></pre></td></tr></table></figure></p>
+<p>라우팅 모듈은 다음과 같이 작성된다.<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; IndexComponent &#125; <span class="keyword">from</span> <span class="string">'./components/index.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ServiceComponent &#125; <span class="keyword">from</span> <span class="string">'./components/service.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AboutComponent &#125; <span class="keyword">from</span> <span class="string">'./components/about.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NotFoundComponent &#125; <span class="keyword">from</span> <span class="string">'./components/not-found.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 라우트 구성</span></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123; path: <span class="string">''</span>, redirectTo: <span class="string">'home'</span>, pathMatch: <span class="string">'full'</span> &#125;,</span><br><span class="line">  &#123; path: <span class="string">'home'</span>, component: IndexComponent &#125;,</span><br><span class="line">  &#123; path: <span class="string">'service'</span>, component: ServiceComponent &#125;,</span><br><span class="line">  &#123; path: <span class="string">'about'</span>, component: AboutComponent &#125;,</span><br><span class="line">  &#123; path: <span class="string">'**'</span>, component: NotFoundComponent &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  imports: [RouterModule.forRoot(routes)],</span><br><span class="line">  exports: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppRoutingModule &#123; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>라우팅 모듈에는 라우트 구성이 등록된다.<br>객체로 이루어진 배열에서 path와 일치하는 컴포넌트를 찾아 화면에 활성화시켜준다.  </p>
+<p><code>imports: [RouterModule.forRoot(routes)]</code><br>모든 라우트 구성을 포함한 라우터 모듈을 생성하고, 루트모듈에 등록한다. forRoot라는 함수를 호출하고, 우리가 사용할 routes를 인수로 던져준다. 만약 자식에서 쓰려면 forChild로 쓰인다. 반드시 export 해주어야한다.  </p>
+<p>라우팅을 위한 템플릿은 다음과 같이 작성한다.  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">routerLink</span>=<span class="string">"/"</span>&gt;</span>Logo<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">routerLink</span>=<span class="string">"/home"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">routerLink</span>=<span class="string">"/service"</span>&gt;</span>Service<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">routerLink</span>=<span class="string">"/about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>활성화시킬 컴포넌트를 사용하는 컴포넌트에선 컴포넌트의 태그명으로 쓰는게아니라 <code>router-outlet</code>을 이용한다. </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">app-navigation</span>&gt;</span><span class="tag">&lt;/<span class="name">app-navigation</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">router-outlet</span>&gt;</span><span class="tag">&lt;/<span class="name">router-outlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>404페이지를 만들고싶을때에는, 라우트모듈의 path 를 <code>**</code>로 해준다. ‘배열 안의 그 어떤 path에도 해당하지 않으면,’ 이라는 뜻이다. 항상 맨 마지막에 달아주도록 한다. </p>
+</li>
+<li><p>만약 로고를 눌러도, 다른 메뉴를 눌러도 인덱스 페이지로 돌아가게 해주고 싶으면, <code>redirectTo: &#39;home&#39;</code> 으로 설정해준다. <code>pathMatch</code>와 함께 써야 한다.  </p>
+</li>
+</ul>
+<!-- 그러나 라우팅은 네비게이션에서만 하는게 아니다. 로그인에 따라 라우팅이 달라질수있고 네비게이션도 없을때 어떻게하면될까.
+
+movies/:id 이렇게 보낼때에는, 라우터링크에 배열을 할당한다. 이렇게 해서 이동한 페이지에서, 그 컴포넌트에서는 서버에 아이디를 주고 그에 맞는 데이터를 가져와서 보여줘야한다. 여기서 activateroute를 쓰는구나. 왜 굳이 파라미터를 가져와야하나 싶었는데. 이걸 디테일페이지에서 캐치해서 서버와 통신해야하니까...
+this.route.paramMap.subscribe(
+  params => params.get('id')
+)
+옵저버블이라는 뜻이고, 파라미터가 변하는지를 주시하고있다는 뜻. 
+여기서 id 를 가져올 수 있음.
+
+만약 파라미터가 동적인 변수가 아니라 정적인 값을 보내야한다면
+path, component, 그리고 data를 준다
+data: { cart: true } => 이 컴포넌트에서는 카트를 표시해라.
+그래서 컴포넌트 안에서 data를 받아서 this.data에 할당해주면. data가 트루이면 보여지고 아니면 안보여지고.
+
+돔을 그리는 것: 컴포넌트
+컴포넌트를 활성화할지 결정하는것: 라우터 -->
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/08/0708/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Module</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular-Routing"><span class="nav-number">1.</span> <span class="nav-text">Angular Routing</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SEO"><span class="nav-number">1.1.</span> <span class="nav-text">SEO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Routing"><span class="nav-number">1.2.</span> <span class="nav-text">Routing</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+        <!-- 
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+           -->
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

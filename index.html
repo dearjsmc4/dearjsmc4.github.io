@@ -97,7 +97,7 @@
         
           <section id="main">
   
-    <article id="post-0703" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0710" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +105,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/07/03/0703/">Forms</a>
+      <a class="article-title" href="/2019/07/10/0710/">Routing</a>
     </h1>
   
 
@@ -113,8 +113,8 @@
     
     <div class="article-meta">
       
-	<a href="/2019/07/03/0703/" class="article-date">
-	  <time datetime="2019-07-02T15:00:00.000Z" itemprop="datePublished">July 3, 2019</time>
+	<a href="/2019/07/10/0710/" class="article-date">
+	  <time datetime="2019-07-09T15:00:00.000Z" itemprop="datePublished">July 10, 2019</time>
 	</a>
 
       
@@ -125,28 +125,41 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Forms"><a href="#Forms" class="headerlink" title="Forms"></a>Forms</h2><h3 id="HTML-Forms"><a href="#HTML-Forms" class="headerlink" title="HTML Forms"></a>HTML Forms</h3><p>폼은 직접 사용자와 대면하는 곳이기 때문에 친절해야하고 사용하기 편해야 하며, 깨끗하고 아름다워야 한다. 꼼꼼히 만들어야 한다. 폼이 있으면 폼 상에 submit 이벤트가 발생할 수 있도록 submit 타입의 버튼이 있어야 한다. (요즘은 button tag에 submit 타입을 걸어주는 경우가 많다고 한다)  </p>
-<p>서버에 스트레스를 주지 않기 위해 폼에 대한 <strong>유효성 검사</strong>(validation check)는 클라이언트 측에서 해주어야 한다. 그리고 틀린 곳이 있다면 사용자에게 알려주어서 다시 데이터를 입력할 수 있게 안내해야 한다. 모든 절차가 끝난 후에야 서버로 날리는 것이다. 그리고 데이터를 보낼 때에는 조금씩 여러 번 보내는 것이 아니라, 한번에 보내는 것이 좋다. 서버는 요청이 와야 동작하고, 서버와 클라이언트는 일대다 관계이기 때문에 최소한의 요청을 보내야 서버의 스트레스를 줄여줄 수 있다.  </p>
+        <h1 id="Angular-Routing"><a href="#Angular-Routing" class="headerlink" title="Angular Routing"></a>Angular Routing</h1><h2 id="SEO"><a href="#SEO" class="headerlink" title="SEO"></a>SEO</h2><p><strong>검색엔진최적화</strong>(Search Engine Optimization, SEO).<br>검색로봇이 24시간을 전세계 사이트를 돌아다닌다.<br>사이트들을 페이지별로 검색하고 다니면서 페이지의 HTML구조까지 들여다본다.<br>여기서 시맨틱구조가 중요한데, 검색엔진이 태그의 이름을 보고 이 페이지가 무엇에 대한 페이지인지 알 수 있기 때문이다.<br>예를 들어 <code>nav</code>태그는 중요한 메인메뉴를 가지고있을텐데, 그럼 그 네비게이션을 유심히 들여다볼 것이다.<br>사실 검색엔진이 무엇을 중요히 여기는지는 기밀이다.<br>검색엔진 동작원리에 맞춰 상위노출을 시도할 수 있기 때문이다.  </p>
+<p>SEO가 적용되도록 만들려면 모든 페이지마다 고유한 URL을 가져야 한다.<br>Ajax의 경우 주소창이 변하지않는데, 그러면 모든 페이지가 주소가 하나이며, 검색엔진이 이게 한 페이지인지 열 페이지인지 알 수가 없다. 그래서 대부분의 SPA 애플리케이션은 라우터기능을 제공하고 있다. 단, SEO를 완전하게 충족시키려면 조금 다른 방법이 필요하다. 서버가 페이지를 제공해 주는 것이다. 앵귤러는 자체적으로 서버사이드 렌더링을 하기위한 모듈이 따로있고, 그것을 앵귤러 유니버설이라고 한다. 서버사이드렌더링으로 SPA를 구축하는 경우도 많고, 리액트도 그렇다. 리액트는 Next.js같은 서버사이드 렌더링을 지원해주는 프레임워크가 따로 있다.  </p>
+<p>애플리케이션은 웹사이트가 아니기때문에 SEO에 그렇게 민감하지 않아도 될 수도 있다.<br>그러나 <strong>정보성</strong>을 띈 웹 앱이라면 SEO가 중요하다.  </p>
+<h2 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h2><p>라우팅모듈은 <strong>라우팅에 대한 정보</strong>를 담는 모듈이다. 모든 라우팅을 관리한다.<br>라우팅모듈이 주소창을 계속 주시하고 있다가, 주소창의 path가 바뀌면 그에 해당하는 컴포넌트를 화면에 활성화시켜 화면 전환이 이루어진다. </p>
+<p>라우트를 구성하려면 모듈을 추가해주어야 하는데, <code>ng new</code> 로 앵귤러 프로젝트를 생성할 때 라우팅 옵션에 yes 라고 답하면 app-routing-module.ts 파일이 생성된다. </p>
+<p>루트모듈에 라우팅모듈을 등록해준다.<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">'./app-routing.module'</span>;</span><br><span class="line"></span><br><span class="line">imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    AppRoutingModule </span><br><span class="line">  ],</span><br></pre></td></tr></table></figure></p>
+<p>라우팅 모듈은 다음과 같이 작성된다.<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; IndexComponent &#125; <span class="keyword">from</span> <span class="string">'./components/index.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ServiceComponent &#125; <span class="keyword">from</span> <span class="string">'./components/service.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AboutComponent &#125; <span class="keyword">from</span> <span class="string">'./components/about.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NotFoundComponent &#125; <span class="keyword">from</span> <span class="string">'./components/not-found.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 라우트 구성</span></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123; path: <span class="string">''</span>, redirectTo: <span class="string">'home'</span>, pathMatch: <span class="string">'full'</span> &#125;,</span><br><span class="line">  &#123; path: <span class="string">'home'</span>, component: IndexComponent &#125;,</span><br><span class="line">  &#123; path: <span class="string">'service'</span>, component: ServiceComponent &#125;,</span><br><span class="line">  &#123; path: <span class="string">'about'</span>, component: AboutComponent &#125;,</span><br><span class="line">  &#123; path: <span class="string">'**'</span>, component: NotFoundComponent &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  imports: [RouterModule.forRoot(routes)],</span><br><span class="line">  exports: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppRoutingModule &#123; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>라우팅 모듈에는 라우트 구성이 등록된다.<br>객체로 이루어진 배열에서 path와 일치하는 컴포넌트를 찾아 화면에 활성화시켜준다.  </p>
+<p><code>imports: [RouterModule.forRoot(routes)]</code><br>모든 라우트 구성을 포함한 라우터 모듈을 생성하고, 루트모듈에 등록한다. forRoot라는 함수를 호출하고, 우리가 사용할 routes를 인수로 던져준다. 만약 자식에서 쓰려면 forChild로 쓰인다. 반드시 export 해주어야한다.  </p>
+<p>라우팅을 위한 템플릿은 다음과 같이 작성한다.  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">routerLink</span>=<span class="string">"/"</span>&gt;</span>Logo<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">routerLink</span>=<span class="string">"/home"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">routerLink</span>=<span class="string">"/service"</span>&gt;</span>Service<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">routerLink</span>=<span class="string">"/about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>활성화시킬 컴포넌트를 사용하는 컴포넌트에선 컴포넌트의 태그명으로 쓰는게아니라 <code>router-outlet</code>을 이용한다. </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">app-navigation</span>&gt;</span><span class="tag">&lt;/<span class="name">app-navigation</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">router-outlet</span>&gt;</span><span class="tag">&lt;/<span class="name">router-outlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>폼 요소 : form 태그 전체  </li>
-<li>폼 컨트롤 : form 태그 안의 요소들  </li>
+<li><p>404페이지를 만들고싶을때에는, 라우트모듈의 path 를 <code>**</code>로 해준다. ‘배열 안의 그 어떤 path에도 해당하지 않으면,’ 이라는 뜻이다. 항상 맨 마지막에 달아주도록 한다. </p>
+</li>
+<li><p>만약 로고를 눌러도, 다른 메뉴를 눌러도 인덱스 페이지로 돌아가게 해주고 싶으면, <code>redirectTo: &#39;home&#39;</code> 으로 설정해준다. <code>pathMatch</code>와 함께 써야 한다.  </p>
+</li>
 </ul>
-<p>폼에는 <code>action</code> 과 <code>method</code> 라는 두 어트리뷰트를 쓰는데,<br><code>action=&quot;url&quot;</code><br><code>method=&quot;GET/POST&quot;</code><br>와 같은 형태로 써준다.<br>클라이언트가 서버에게 정보를 주는 방식은 다양한데 그 중 대표적인건 GET과 POST<br>url의 <strong>쿼리</strong>에 담아서 보낸다. 쿼리부분은 ?키=밸류&amp;키=밸류&amp;키=밸류… 형식으로 이루어진 부분이다.  </p>
-<!-- 그러나 ajax에서는 폼요소가 아니라 폼컨트롤들만 써서 그걸로 객체를 만들어서 페이로드를 날렷엇는데, 앵귤러에서는 폼요소를 쓴다.-->
-<p>폼을 왜 쓰냐면, 모든 폼 컨트롤의 유효성검사 결과가 true이면 폼 전체의 유효성검사 결과 역시 true이므로, <strong>폼 컨트롤 전체를 하나로 관리</strong>하기 위해서 쓰는 것이다. 앵귤러에서는 두 가지 방식이 있는데,  </p>
-<ol>
-<li><strong>템플릿 기반 폼</strong> -&gt; 폼 관리의 주체가 템플릿 -&gt; 템플릿이 복잡해지는 단점 -&gt; 간단한 폼일 때 쓴다  </li>
-<li><strong>리액티브 폼</strong> -&gt; 폼 관리의 주체가 컴포넌트 클래스 -&gt; 폼이 클 때 쓴다<br>이 두 가지 방식으로는 특히 에러처리가 편하다. </li>
-</ol>
-<p>ex) <code>action=&quot;/signup&quot;</code> 일 때 -&gt; REST API 라는 뜻이다. 파일명으로 요청하는 게 아니라 path 로 요청하고 있기 때문이다. HTML 파일을 준 서버와 데이터를 요청할 서버가 다를 수 있는데, 이 상황에선 같은 곳에 있다는 뜻이다.  </p>
-<p>input 태그의 어트리뷰트  </p>
-<ul>
-<li><strong>required</strong> : 값이 반드시 입력되어야 함    </li>
-<li><strong>pattern</strong> : 정규표현식  </li>
-</ul>
-<h3 id="Angular-Forms"><a href="#Angular-Forms" class="headerlink" title="Angular Forms"></a>Angular Forms</h3><p><code>FormsModule</code> 을 추가한 순간, <code>novalidate</code> 가 자동으로 form 태그에 추가된다. 이는 HTML 표준 폼으로써의 동작을 막는다. 그로 인해 submit 의 기본동작도 막는다: form action 에 걸려있는 경로로 리퀘스트를 날리고, 화면 전환하는 동작을 막는다. 따라서 앵귤러에서는 대신 <code>ngSubmit</code> 이벤트를 이용한다.  </p>
-<p>폼 요소는 폼 컨트롤 요소의 부모로서 존재하며, 모든 폼 컨트롤 요소들의 유효성검증 상태가 true 이면 폼 자체의 유효성검증상태도 true가 된다.</p>
-<p><code>#form=&quot;ngForm&quot;</code><br>템플릿 참조변수를 선언하고, 앵귤러가 관리하는 폼에 대한 인스턴스를 바인딩한다.<br>폼 컨트롤 요소에 ngModel 을 추가하면 앵귤러가 관리하게 되고, 이때부터는 앵귤러가 관리하는 폼 컨트롤 요소에 name 어트리뷰트가 없으면 에러가 난다.  </p>
+<!-- 그러나 라우팅은 네비게이션에서만 하는게 아니다. 로그인에 따라 라우팅이 달라질수있고 네비게이션도 없을때 어떻게하면될까.
+
+movies/:id 이렇게 보낼때에는, 라우터링크에 배열을 할당한다. 이렇게 해서 이동한 페이지에서, 그 컴포넌트에서는 서버에 아이디를 주고 그에 맞는 데이터를 가져와서 보여줘야한다. 여기서 activateroute를 쓰는구나. 왜 굳이 파라미터를 가져와야하나 싶었는데. 이걸 디테일페이지에서 캐치해서 서버와 통신해야하니까...
+this.route.paramMap.subscribe(
+  params => params.get('id')
+)
+옵저버블이라는 뜻이고, 파라미터가 변하는지를 주시하고있다는 뜻. 
+여기서 id 를 가져올 수 있음.
+
+만약 파라미터가 동적인 변수가 아니라 정적인 값을 보내야한다면
+path, component, 그리고 data를 준다
+data: { cart: true } => 이 컴포넌트에서는 카트를 표시해라.
+그래서 컴포넌트 안에서 data를 받아서 this.data에 할당해주면. data가 트루이면 보여지고 아니면 안보여지고.
+
+돔을 그리는 것: 컴포넌트
+컴포넌트를 활성화할지 결정하는것: 라우터 -->
 
       
     </div>
@@ -169,7 +182,7 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-0701" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0708" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -177,7 +190,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/07/01/0701/">옵저버블, 에러핸들러, 인터셉터</a>
+      <a class="article-title" href="/2019/07/08/0708/">Module</a>
     </h1>
   
 
@@ -185,8 +198,8 @@
     
     <div class="article-meta">
       
-	<a href="/2019/07/01/0701/" class="article-date">
-	  <time datetime="2019-06-30T15:00:00.000Z" itemprop="datePublished">July 1, 2019</time>
+	<a href="/2019/07/08/0708/" class="article-date">
+	  <time datetime="2019-07-07T15:00:00.000Z" itemprop="datePublished">July 8, 2019</time>
 	</a>
 
       
@@ -197,38 +210,35 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="subscribe-옵저버블-옵저버"><a href="#subscribe-옵저버블-옵저버" class="headerlink" title="subscribe, 옵저버블, 옵저버"></a>subscribe, 옵저버블, 옵저버</h2><p>http 메소드 get 을 날렸을 때, <strong>subscribe</strong>를 안 하면 요청을 받을 수 없다.<br>옵저버블은 관측 대상이므로, 그것을 지켜보고 있는 옵저버가 없으면 아무것도 하지 않는다.<br>옵저버블과 옵저버를 이어주어야 하는데(옵저버가 옵저버블을 바라보게), 그것이 바로 subscribe 이다.  </p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.http.get&lt;Todo[]&gt;(<span class="keyword">this</span>.url)</span><br><span class="line">  .subscribe(<span class="function"><span class="params">todos</span> =&gt;</span> <span class="keyword">this</span>.todos = todos);</span><br></pre></td></tr></table></figure>
-<p>옵저버는 subscribe 라는 메소드를 통해서 옵저버블을 지켜보고 있다.<br>데이터를 가져온 결과물을 옵저버에게 notification 해준다.  </p>
+        <h1 id="Angular-NgModule"><a href="#Angular-NgModule" class="headerlink" title="Angular NgModule"></a>Angular NgModule</h1><p>모듈은 컴포넌트를 가지고 있다.  </p>
+<p>Angular의 큰 덩어리 하나하나가 합쳐져 하나의 모듈이 된다.<br>키워드: <strong>재사용성</strong>. 같은 기능을 하나로 합친다.  </p>
 <ul>
-<li>옵저버블: 데이터 스트림을 방출할 수 있는 객체.<br>즉, 데이터 스트림을 가지고 있다. 옵저버가 있으면 옵저버에게 방출하고, 옵저버가 없으면 방출하지 않는다.  </li>
-<li>옵저버: 관측자. 옵저버블을 관측하며 데이터를 받는다.  </li>
-<li>subscribe: 옵저버블과 옵저버를 이어준다.  </li>
+<li>Angular의 모듈<ol>
+<li><strong>기능모듈</strong>  <ul>
+<li>프론트에게 가장 중요한 건 화면이다.  </li>
 </ul>
-<p>subscribe의 인수로 전달하는 것이 옵저버이다.<br>옵저버블이 객체고, 옵저버는 함수.<br><code>옵저버블.subscribe(옵저버)</code><br>=&gt; 인수로 전달한 옵저버가 옵저버블을 subscribe한다는 뜻이다.<br>뭔가 행위를 통해서 가져온 데이터를 옵저버의 인수로 넘겨준다.<br>따라서 인수의 네이밍을 제대로 하려면 우리가 무엇을 가져올 지를 알아야 한다.  </p>
-<p>위의 예제에서, 옵저버블은 todos를 옵저버에게 전달한다.<br>get 메소드는 자기가 무엇을 가져올 지를 모른다. 그래서 무조건 <strong>객체를 리턴</strong>하도록 되어있고, 타입을 맞춰서 할당해주어야 하므로 <code>&lt;Todo[]&gt;</code> 를 해주는 것이다. -&gt; 제네릭!<br>or,<br><code>todos as Todo[]</code> -&gt; todos는 Todo[]타입으로 보겠다. -&gt; 강제형변환. 타입캐스팅.  </p>
-<p>subscribe 안에는 데이터가 왔을 때 할 일을 적어주는 것이다.<br>-&gt; 옵저버블님, 데이터 가져오시면 todos에 주세요. 그럼 제가 어떠한 일을 하겠습니다.  </p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.http.delete&lt;Todo&gt;(<span class="string">`<span class="subst">$&#123;this.url&#125;</span><span class="subst">$&#123;id&#125;</span>`</span>)</span><br><span class="line">  .subscribe(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.todos = <span class="keyword">this</span>.todos.filter(<span class="function"><span class="params">todo</span> =&gt;</span> todo.id !== id));</span><br><span class="line">  <span class="comment">// subscribe(_ =&gt; this.todos = this.todos.filter(todo =&gt; todo.id !== id));</span></span><br></pre></td></tr></table></figure>
-<p>위의 예제에서는 빈 객체가 넘어오는 상황이고, 빈 객체는 받아줄 필요가 없으므로 함수의 매개변수는 비워둔다.<br><code>()</code> 대신 <code>_</code> 를 쓰면, 인수가 넘어왔을 때 쓰지 않겠다는 명확한 의사표시이다.  </p>
-<p>subscribe도 then과 마찬가지로, 두 번째 함수를 주면 에러를 캐치하게 된다.  </p>
-<h2 id="에러핸들러"><a href="#에러핸들러" class="headerlink" title="에러핸들러"></a>에러핸들러</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.http.get&lt;Todo[]&gt;(<span class="keyword">this</span>.url)</span><br><span class="line">  .subscribe(</span><br><span class="line">    <span class="comment">// 요청 성공 처리 콜백 함수 (Observer의 next 메소드)</span></span><br><span class="line">    todos =&gt; <span class="keyword">this</span>.todos = todos,</span><br><span class="line">    <span class="comment">// 요청 실패 처리 콜백 함수 (Observer의 error 메소드)</span></span><br><span class="line">    (error: HttpErrorResponse) =&gt; <span class="built_in">console</span>.error(error)</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
-<p>에러핸들러에 인수로 에러를 전달해서, 에러가 이벤트객체타입이다, 라고 판별되면 클라이언트 에러이고, 아니면 백엔드의 에러로 판별된다.  </p>
-<p><code>todos$</code> 처럼 달러가 뒤에 붙으면 옵저버블이라는 암묵적 표시이다.  </p>
-<p>파이프로 <code>shareReplay</code>를 걸어주면 옵저버블이 <strong>공유옵저버블</strong>이 된다.  </p>
-<h3 id="콜드-옵저버블-핫-옵저버블"><a href="#콜드-옵저버블-핫-옵저버블" class="headerlink" title="콜드 옵저버블, 핫 옵저버블"></a>콜드 옵저버블, 핫 옵저버블</h3><p><strong>콜드 옵저버블</strong>: 옵저버와 옵저버블이 일대일관계. 유니캐스트.<br><strong>핫 옵저버블</strong>: 여러 개의 옵저버가 하나의 옵저버블을 <strong>공유</strong>. 멀티캐스트.  </p>
-<p>shareReplay 라는 오퍼레이터는, 콜드 옵저버블을 핫 옵저버블로 만든다.<br>-&gt; 여러번 subscribe을 해도 동일한 데이터가 간다.  </p>
-<h2 id="인터셉터"><a href="#인터셉터" class="headerlink" title="인터셉터"></a>인터셉터</h2><!-- 좀 어려운데, 프로젝트에 쓰일 수도 있음.  -->
-<ul>
-<li><p>인터셉터가 왜 필요한가<br>만약 로그인을 하지 않은 상태에서 메인페이지로 바로 접근하려고 하면 튕겨낼 필요가 있다.<br>이때 로그인을 했는지 안 했는지 확인하고 튕겨내야 하는데, 보통 서버가 보안을 걸어놓는다.<br>그럼 우리는, 로그인에 성공하면 백엔드가 우리에게 넘겨주는 토큰을(지금은 일단 JWT(JSON Web Token)방법) 받는다. 로그인에 성공했으므로 토큰이라는 객체를 json으로 주고, 그것을 받아서 클라이언트가 가지고 있어야 한다(이 방법은 여러가지인데 심플하게는 로컬스토리지나 쿠키에 담는다. 보안 측면에서는 쿠키가 조금 더 낫지만 둘 다 장단점이 있다). 토큰은 암호화되어서 오기 때문에 우리가 열어봐도 뭔지 모른다. 로그인 페이지 이후에 보안이 필요한 다른 페이지로 갈때는 항상 토큰을 들고 간다. 그럼 토큰을 어떻게 서버에 줄것인가? 결론은 ‘<strong>헤더</strong>에 담는다’. 라우팅을 써서 이동할 때마다 헤더셋팅을 해야한다는 말인데, 귀찮다! 그래서 인터셉터라는 것을 만들어둬서 무조건 토큰을 담아가게 만든다. 인터셉터를 만들어두면, 우리가 요청할 때마다 헤더셋팅을 일일이 해줄 필요가 없어진다.  </p>
 </li>
-<li><p>파이프라인이란?<br>우리가 서버에 요청을 보내려고 코드로 적는 모든 과정들을 파이프라인이라고 한다.<br>인터셉터를 한 번 만들어두면 HTTP 요청을 검사하거나 변환할 수 있다.  </p>
+<li><strong>공유모듈</strong><ul>
+<li>여러 화면에 쓰이는 공유모듈은 shared라는 이름으로 만들어주는게 통상적이다. 기능모듈이 공유모듈을 import 한다.  </li>
+</ul>
+</li>
+<li><strong>코어모듈</strong>  <ul>
+<li>서비스 위주이다.  </li>
+</ul>
+</li>
+</ol>
 </li>
 </ul>
-<p>인터셉터를 작성하려면 HttpInterceptor 인터페이스를 implements 해야 한다.  </p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AuthInterceptor <span class="keyword">implements</span> HttpInterceptor &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> auth: AuthService</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  intercept(req: HttpRequest&lt;<span class="built_in">any</span>&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;<span class="built_in">any</span>&gt;&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> authToken = <span class="keyword">this</span>.auth.getToken();</span><br><span class="line">    <span class="keyword">const</span> clonedRequest = req.clone(&#123;</span><br><span class="line">      headers: req.headers.set(<span class="string">'Authorization'</span>, authToken)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> next.handle(clonedRequest);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  ...</span><br><span class="line">  providers: [&#123;</span><br><span class="line">    provide: HTTP_INTERCEPTORS,</span><br><span class="line">    useClass: AuthInterceptor,</span><br><span class="line">    multi: <span class="literal">true</span></span><br><span class="line">  &#125;]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>리퀘스트 메세지에 있는 헤더에는 키가 있고 값이 있다. 요청할 때 우리가 authorization(백엔드와 합의된 키 이름)이라는 키를 넣고, 값으로는 토큰의 전체문자열을 넣고 서버에 날린다. 서버는 우리와 합의된 그 authorization이라는 키에 토큰이 담겨있겠거니 생각하고 그것을 꺼내서 서버에서 확인한다. 암호화된 토큰을 서버에서는 풀 수 있기 때문에, 확인해서 권한이 있는지 없는지를 확인한다. 따라서 JWT를 쓸 것이라면 서버와 클라이언트는 이 키를 합의해놓아야 한다. 그리고 그 키의 값으로 로컬스토리지에 담아놓은 토큰을 꺼내서 요청할 때 키와 값을 담아서 보내는 것이다.<br>인터셉트는 첫번째 인수로 우리가 날릴 리퀘스트 객체를 준다. (여기에서 백엔드와 합의한 키와 토큰값을 셋팅한다)<br>그리고 루트모듈에 providers 를 추가한다.  </p>
+<h2 id="About-Module"><a href="#About-Module" class="headerlink" title="About Module"></a>About Module</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  declarations: [</span><br><span class="line">    AppComponent</span><br><span class="line">  ],</span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule</span><br><span class="line">  ],</span><br><span class="line">  providers: [],</span><br><span class="line">  bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123; &#125;</span><br></pre></td></tr></table></figure>
+<p>데코레이터의 인자는 <strong>메타데이터 객체</strong>이다. 메타데이터 객체에는 컴퓨터에게 알려주는 정보들이 담겨있다. 메타데이터 객체 안의 정보를 전달하여 데코레이터가 장식하는 클래스의 인스턴스가 만들어질 때 관여한다. 위의 상황에서는 AppModule 인스턴스가 만들어질 때 메타데이터 객체가 필요한 것이다.  </p>
+<p>가장 중요한 부분은 <strong>선언부(declarations)</strong>이다. 이 부분에는 우리가 만드는 모든 컴포넌트, 모든 파이프, 모든 디렉티브를 나열하여준다. 그러면 루트모듈이 관장하는 전체 애플리케이션에서 루트모듈 선언부에 등록된 것들이 사용가능해진다. </p>
+<p><strong>imports</strong>에서는 루트모듈이 사용하는 <strong>모듈</strong>을 쓴다. 모듈은 모듈을 사용할 수 있다. 루트모듈이 기능모듈과 코어모듈을 임포트하여 쓴다고 했듯이. 루트모듈은 <code>BrowserModule</code> 을 사용하고있는데, BrowserModule 은 루트모듈에 반드시 들어가있어야한다. BrowserModule 은 브라우저에서 동작하는 애플리케이션을 만들 때 필요한 모듈들을 모아놓은 것이다. 코어모듈을 자체적으로 임포트하고 있는데, 그 코어모듈안에는 ngIf, ngFor 같은 디렉티브들이 들어가있다. BrowserModule 은 루트모듈에만 정의해두면된다. 추후에 만들 모듈에는 BrowserModule 이 아닌 <code>CommonModule</code> 만 있다. CommonModule 은 코어모듈의 디렉티브들을 지원하는 것들이 있다. </p>
+<p><strong>providers</strong>는 서비스만 써준다. 요즘에는 역할이 무색해졌는데, Angular6로 넘어오면서 Injectable 데코레이터에 <code>provideIn</code> 이 생기면서 여기에 서비스를 써줄 수 있게 되었기 때문이다. 만약 provideIn 에 쓰지 않으면 providers에 적어주면 된다. </p>
+<p>루트모듈은  <code>bootstrap: [AppComponent]</code> 를 갖고있어야 한다. Angular 애플리케이션을 가동하면 루트모듈이 돌면서 필요한 모듈이나 컴포넌트, 디렉티브를 불러모으는데, 가장 먼저 실행하는 것이 모든 컴포넌트들의 부모인 <strong>App Component 를 발화</strong>하는 것이다. 즉, 진입점인 App Component 가 뜨지 않으면 다른 컴포넌트들도 다 뜨지 않는다. 루트컴포넌트가 발화하면 루트컴포넌트의 템플릿에 쓰여진 내용이 가장 먼저 기동된다. 보통 라우터를 먼저 쓴다. </p>
+<!-- 서비스내의 providedIn 이 있으니까 모듈에 따로 안 넣어도 되고, root 라는 말은 전역에서 사용할 수 있는 서비스라는 뜻이다. 
+root 를 코어모듈로 바꿔주면 된다. 
 
+exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
       
     </div>
     <footer class="entry-meta entry-footer">
@@ -254,7 +264,7 @@
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/">Next</a>
   </nav>
 
 </section>
@@ -267,6 +277,42 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/07/10/0710/">Routing</a></h6>
+              <span>July 10, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/07/08/0708/">Module</a></h6>
+              <span>July 8, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/07/08/template-form/">Angular Template Driven Form</a></h6>
+              <span>July 8, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -304,42 +350,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/24/0624/">Directive</a></h6>
-              <span>June 24, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/17/0617/">Generic, Angular</a></h6>
-              <span>June 17, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/14/0614/">Angular</a></h6>
-              <span>June 14, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -349,7 +359,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -359,7 +369,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -370,7 +380,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

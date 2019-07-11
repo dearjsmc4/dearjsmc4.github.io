@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Module | Rudy&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="TILAngular">
+  
+  
+  
+  
+  <meta name="description" content="Angular NgModule모듈은 컴포넌트를 가지고 있다.   Angular의 큰 덩어리 하나하나가 합쳐져 하나의 모듈이 된다.키워드: 재사용성. 같은 기능을 하나로 합친다.    Angular의 모듈 기능모듈   프론트에게 가장 중요한 건 화면이다.     공유모듈 여러 화면에 쓰이는 공유모듈은 shared라는 이름으로 만들어주는게 통상적이다. 기능모듈">
+<meta name="keywords" content="TIL,Angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Module">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/07/08/0708/index.html">
+<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="Angular NgModule모듈은 컴포넌트를 가지고 있다.   Angular의 큰 덩어리 하나하나가 합쳐져 하나의 모듈이 된다.키워드: 재사용성. 같은 기능을 하나로 합친다.    Angular의 모듈 기능모듈   프론트에게 가장 중요한 건 화면이다.     공유모듈 여러 화면에 쓰이는 공유모듈은 shared라는 이름으로 만들어주는게 통상적이다. 기능모듈">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-11T09:37:51.324Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Module">
+<meta name="twitter:description" content="Angular NgModule모듈은 컴포넌트를 가지고 있다.   Angular의 큰 덩어리 하나하나가 합쳐져 하나의 모듈이 된다.키워드: 재사용성. 같은 기능을 하나로 합친다.    Angular의 모듈 기능모듈   프론트에게 가장 중요한 건 화면이다.     공유모듈 여러 화면에 쓰이는 공유모듈은 shared라는 이름으로 만들어주는게 통상적이다. 기능모듈">
+  
+    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/fashion.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-0708" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Module
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/07/08/0708/" class="article-date">
+	  <time datetime="2019-07-07T15:00:00.000Z" itemprop="datePublished">July 8, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
+ 
+      <!-- 
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+ -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Angular-NgModule"><a href="#Angular-NgModule" class="headerlink" title="Angular NgModule"></a>Angular NgModule</h1><p>모듈은 컴포넌트를 가지고 있다.  </p>
+<p>Angular의 큰 덩어리 하나하나가 합쳐져 하나의 모듈이 된다.<br>키워드: <strong>재사용성</strong>. 같은 기능을 하나로 합친다.  </p>
+<ul>
+<li>Angular의 모듈<ol>
+<li><strong>기능모듈</strong>  <ul>
+<li>프론트에게 가장 중요한 건 화면이다.  </li>
+</ul>
+</li>
+<li><strong>공유모듈</strong><ul>
+<li>여러 화면에 쓰이는 공유모듈은 shared라는 이름으로 만들어주는게 통상적이다. 기능모듈이 공유모듈을 import 한다.  </li>
+</ul>
+</li>
+<li><strong>코어모듈</strong>  <ul>
+<li>서비스 위주이다.  </li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="About-Module"><a href="#About-Module" class="headerlink" title="About Module"></a>About Module</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  declarations: [</span><br><span class="line">    AppComponent</span><br><span class="line">  ],</span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule</span><br><span class="line">  ],</span><br><span class="line">  providers: [],</span><br><span class="line">  bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123; &#125;</span><br></pre></td></tr></table></figure>
+<p>데코레이터의 인자는 <strong>메타데이터 객체</strong>이다. 메타데이터 객체에는 컴퓨터에게 알려주는 정보들이 담겨있다. 메타데이터 객체 안의 정보를 전달하여 데코레이터가 장식하는 클래스의 인스턴스가 만들어질 때 관여한다. 위의 상황에서는 AppModule 인스턴스가 만들어질 때 메타데이터 객체가 필요한 것이다.  </p>
+<p>가장 중요한 부분은 <strong>선언부(declarations)</strong>이다. 이 부분에는 우리가 만드는 모든 컴포넌트, 모든 파이프, 모든 디렉티브를 나열하여준다. 그러면 루트모듈이 관장하는 전체 애플리케이션에서 루트모듈 선언부에 등록된 것들이 사용가능해진다. </p>
+<p><strong>imports</strong>에서는 루트모듈이 사용하는 <strong>모듈</strong>을 쓴다. 모듈은 모듈을 사용할 수 있다. 루트모듈이 기능모듈과 코어모듈을 임포트하여 쓴다고 했듯이. 루트모듈은 <code>BrowserModule</code> 을 사용하고있는데, BrowserModule 은 루트모듈에 반드시 들어가있어야한다. BrowserModule 은 브라우저에서 동작하는 애플리케이션을 만들 때 필요한 모듈들을 모아놓은 것이다. 코어모듈을 자체적으로 임포트하고 있는데, 그 코어모듈안에는 ngIf, ngFor 같은 디렉티브들이 들어가있다. BrowserModule 은 루트모듈에만 정의해두면된다. 추후에 만들 모듈에는 BrowserModule 이 아닌 <code>CommonModule</code> 만 있다. CommonModule 은 코어모듈의 디렉티브들을 지원하는 것들이 있다. </p>
+<p><strong>providers</strong>는 서비스만 써준다. 요즘에는 역할이 무색해졌는데, Angular6로 넘어오면서 Injectable 데코레이터에 <code>provideIn</code> 이 생기면서 여기에 서비스를 써줄 수 있게 되었기 때문이다. 만약 provideIn 에 쓰지 않으면 providers에 적어주면 된다. </p>
+<p>루트모듈은  <code>bootstrap: [AppComponent]</code> 를 갖고있어야 한다. Angular 애플리케이션을 가동하면 루트모듈이 돌면서 필요한 모듈이나 컴포넌트, 디렉티브를 불러모으는데, 가장 먼저 실행하는 것이 모든 컴포넌트들의 부모인 <strong>App Component 를 발화</strong>하는 것이다. 즉, 진입점인 App Component 가 뜨지 않으면 다른 컴포넌트들도 다 뜨지 않는다. 루트컴포넌트가 발화하면 루트컴포넌트의 템플릿에 쓰여진 내용이 가장 먼저 기동된다. 보통 라우터를 먼저 쓴다. </p>
+<!-- 서비스내의 providedIn 이 있으니까 모듈에 따로 안 넣어도 되고, root 라는 말은 전역에서 사용할 수 있는 서비스라는 뜻이다. 
+root 를 코어모듈로 바꿔주면 된다. 
+
+exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/10/0710/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Routing
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/08/template-form/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Angular Template Driven Form</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Angular-NgModule"><span class="nav-number">1.</span> <span class="nav-text">Angular NgModule</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#About-Module"><span class="nav-number">1.1.</span> <span class="nav-text">About Module</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+        <!-- 
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+           -->
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>

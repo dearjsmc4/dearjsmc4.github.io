@@ -97,7 +97,7 @@
         
           <section id="main">
   
-    <article id="post-0418" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0510" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +105,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0418/">컴퓨터 공학 TIL 0418</a>
+      <a class="article-title" href="/2019/05/10/0510/">전역변수 문제점, 모듈패턴, 프로퍼티 정의, 생성자 함수</a>
     </h1>
   
 
@@ -113,78 +113,90 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/03/0418/" class="article-date">
-	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
+	<a href="/2019/05/10/0510/" class="article-date">
+	  <time datetime="2019-05-09T15:00:00.000Z" itemprop="datePublished">May 10, 2019</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
  
       <!--  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="파이썬-기초와-알고리즘-2일차"><a href="#파이썬-기초와-알고리즘-2일차" class="headerlink" title="파이썬 기초와 알고리즘 2일차"></a>파이썬 기초와 알고리즘 2일차</h1><p>프로그래머는 프로그래밍(추상화) 하는 사람.  </p>
-<ul>
-<li>Procedual Programming : 함수를 통한 추상화<br>함수(function, (routine, procedure, subroutine))  </li>
-<li>OOP(Object-Oriented Programming) : 객체를 통한 추상화  </li>
-</ul>
-<h3 id="함수에서의-추상화"><a href="#함수에서의-추상화" class="headerlink" title="함수에서의 추상화"></a>함수에서의 추상화</h3><p>함수 시그니쳐/인터페이스 와 내부구현을 구분하기  </p>
-<ul>
-<li>함수 시그니쳐(Function Signature)<br>-&gt; 함수 이름, 매개변수(parameter, argument), 결과값(반환)  </li>
-<li>인터페이스(Interface)  </li>
-<li>내부 구현(Implementation)  </li>
-</ul>
-<p>나는 <code>Math.pow()</code>함수를 사용할 때 내부 구현을 몰라도, 함수 시그니쳐만 알면 사용할 수 있다.<br>자바스크립트를 만든 사람들은 내부 구현을 맡아서 하는 것이고,<br>유저 프로그래머는 인터페이스만 알면 된다.<br>함수 시그니쳐를 모아놓은 것 -&gt; documentation  </p>
-<h3 id="시그니쳐를-설계할-때-주의할-점"><a href="#시그니쳐를-설계할-때-주의할-점" class="headerlink" title="시그니쳐를 설계할 때 주의할 점"></a>시그니쳐를 설계할 때 주의할 점</h3><ol>
-<li>함수 이름은 누가 봐도 이 함수가 하는 일이 뭔지 알 수 있게 지어야 한다.  </li>
-<li>매개변수와 리턴값을 잘 설계해야 한다.<br>어떤 함수를 설계했을 때, 그 함수의 리턴값을 이용해 또다른 함수를 실행할 때 문제가 없도록.<br>예를 들어 내가 만든 함수는 문자형을 반환하는데, 다른 사람이 만든 함수가 숫자형을 매개변수로 받는 경우.<br>-&gt; “인터페이스도 안 맞추고 일하냐, 가관이다.” 소리가 나오는 상황.<br>-&gt; 기능 명세  </li>
-</ol>
-<h2 id="실수-real-number"><a href="#실수-real-number" class="headerlink" title="실수(real number)"></a>실수(real number)</h2><h3 id="부동-소수점"><a href="#부동-소수점" class="headerlink" title="부동 소수점"></a>부동 소수점</h3><ol>
-<li><p>32비트로 실수를 표현하기 : <strong>단정도</strong> </p>
+        <h2 id="전역-변수의-문제점"><a href="#전역-변수의-문제점" class="headerlink" title="전역 변수의 문제점"></a>전역 변수의 문제점</h2><ol>
+<li><p>중복 선언이 가능하다.<br> var 키워드의 경우 중복 선언이 가능한데, 이때 의도치않은 재할당이 일어날 수 있다.</p>
 </li>
-<li><p>64비트로 실수를 표현하기 : <strong>배정도</strong> -&gt; 자바스크립트  </p>
+<li><p>생명 주기가 길다.<br> 스코프에 식별자가 등록되면 태어나는 것이고, 스코프가 죽으면 그 스코프의 변수도 죽는다. 전역 변수는 스코프가 소멸되지 않는다. 전역 스코프가 소멸되면 다른 window 전역 객체들도 다 못 쓰게 되는 것이다. 게다가 변수가 소멸되지 않으면 계속 메모리공간을 차지하고 있게 되는 문제도 있다.  </p>
 </li>
 </ol>
+<p>함수의 생명 주기가 끝날 때는 식별자가 함수 객체를 가리키고 있는 그 참조를 끊어버리고 나중에 다시 함수를 호출하면 다시 참조하게 된다. 함수는 최대한 간결하고 짧게(스코프를 좁게) 만들고, 함수 하나당 할 일도 하나만 준다. 변수가 태어나자마자 빨리 소멸되도록 하는 것이다.</p>
+<ol start="3">
+<li><p>누구나 접근 가능하고 누구나 변경 가능하다. 값이 변할 확률이 높다.<br> 예상치못한 값의 변경은 에러를 일으키기 딱 좋다.  </p>
+</li>
+<li><p>네임 스페이스 오염<br> 브라우저에서는 파일별로 스코프가 생기지 않는다. 따라서 각 파일마다 전역변수를 따로 설정하더라도 브라우저에서 변수가 충돌할 수 있다.</p>
+</li>
+</ol>
+<p><strong>캡슐화</strong>:<br>인터넷에서 내가 쓰지 않은 남의 댓글은 특별한 방법을 쓰지 않는 이상 삭제하거나 수정할 수 없다. 애초에 삭제나 수정버튼이 제공되지 않기 때문이다. 이처럼 어떤 변수를 아무나 참조하거나 변경할 수 없게 하고 싶다면 캡슐화를 통해 변수를 숨겨버릴 수도 있다. 자바스크립트는 클로저를 통해 캡슐화를 한다.  </p>
+<h2 id="모듈패턴"><a href="#모듈패턴" class="headerlink" title="모듈패턴"></a>모듈패턴</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Counter = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// private 변수</span></span><br><span class="line">    <span class="keyword">var</span> num = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        increase()&#123;</span><br><span class="line">            <span class="keyword">return</span> ++num;</span><br><span class="line">        &#125;,</span><br><span class="line">        decrease()&#123;</span><br><span class="line">            <span class="keyword">return</span> --num;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Counter.num); <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(Counter.increase()); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(Counter.decrease()); <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+<p>전역 변수를 사용하지 않는 방법 중 하나다. (이해가 안 되면 외워야 한다)<br>중첩함수가 외부함수보다 더 오래 살아남으면 그것을 클로져라고 한다. 함수 객체는 생성되어질때 자신의 상위스코프를 기억한다. (렉시컬 스코프와 연결되는 얘기다) 그래서 외부함수가 죽었어도 중첩함수가 갖고있던 상위스코프는 살아있다. 따라서 참조도 가능하고, 상위스코프에 있던 지역변수는 자유변수가 된다. 살아있는 상위스코프를 참조하고 있으니까 상태유지도 가능하다. 하지만 밖에서 변수 num 을 참조할 순 없다. 중첩함수만이 외부함수를 참조하고 변경할 수 있다.  </p>
+<!-- 외부스코프를 나타내는 객체가 사실은 절대 죽지 않으니까 메모리낭비가 아닌가?
+요즘 브라우저에서 클로져를 엄청나게 최적화해놔서 괜찮다는듯...
+100개의 변수가 있더라도 참조하는 변수만 기억함. 나머지는 기억안함. -->
+<h2 id="프로퍼티-정의"><a href="#프로퍼티-정의" class="headerlink" title="프로퍼티 정의"></a>프로퍼티 정의</h2><p>프로퍼티를 정의한다는건 프로퍼티 생성과 다르다.<br><code>Object.getOwnPropertyDescriptor</code> 메소드가 반환하는 게 프로퍼티의 어트리뷰트들인데, 이것들은 자바스크립트 엔진이 프로퍼티를 생성할 때 자동으로 기본값으로 정의해준다. 함수로 이렇게 정의된 어트리뷰트들을 바꿀 수도 있지만 실제로 그렇게 할 일이 많지는 않다.<br><!-- (enumerable : 열거가능한지. for in 문같은걸로 돌렸을 때 열거될수있는지.) --><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> me = &#123;</span><br><span class="line">name : <span class="string">'Rudy'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(me,<span class="string">'name'</span>));</span><br><span class="line"><span class="comment">//&#123;value: "Rudy", writable: true, enumerable: true, configurable: true&#125;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="내부슬롯-내부메소드"><a href="#내부슬롯-내부메소드" class="headerlink" title="내부슬롯/내부메소드"></a>내부슬롯/내부메소드</h3><p>ECMAScript 스펙에서 나오는 말…<br><code>[[Call]]</code> 이나 <code>[[Prototype]]</code> 처럼 대괄호가 두 개 겹쳐있는 애들이 내부슬롯이다.<br><!-- ecmascript 스펙이 뭔가. 스펙은 설계서. 일을 왜하는지, 어떻게하는지. 
+자바스크립트엔진을 어떻게 구현해야하는지.
+내부 슬롯, 내부 메소드는  --><br>자바스크립트 엔진이 코드를 실행하는 알고리즘을 설명하기 위해 ECMAScript 스펙에서 사용하는 의사 프로퍼티. 자바스크립트엔진은 내부슬롯과 내부메소드의 사양을 만족시키는 것이 중요하다. 이 내부 슬롯은 내가 직접 접근할 수는 없고 필요하다면 간접적으로 접근 가능하다. 하지만 접근할 수 없게 만든 것들에는 역시 접근하지 않는 것이 좋겠다.  </p>
+<h3 id="데이터-프로퍼티와-접근자-프로퍼티"><a href="#데이터-프로퍼티와-접근자-프로퍼티" class="headerlink" title="데이터 프로퍼티와 접근자 프로퍼티"></a>데이터 프로퍼티와 접근자 프로퍼티</h3><p>프로퍼티에는 두 가지 종류가 있다. 데이터 프로퍼티와 접근자 프로퍼티이다.<br>위에서 살펴보았듯, <code>Object.getOwnPropertyDescriptor</code> 는 객체가 가지고 있는 프로퍼티의 정의값을 본다. 프로퍼티 어트리뷰트들을 담아서 프로퍼티 디스크립터라는 객체를 반환해준다고 하는데, 데이터 프로퍼티에는 value, writable, enumerable, configurable 이렇게 네 가지 어트리뷰트가 있다. 보통 우리가 보는 대부분의 프로퍼티는 데이터 프로퍼티이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(me,<span class="string">'name'</span>));</span><br><span class="line"><span class="comment">// &#123;value: "Rudy", writable: true, enumerable: true, configurable: true&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>접근자 프로퍼티에는 자체적으로는 값이 없고, 다른 데이터 프로퍼티의 값을 가져오거나 갱신할 때 쓴다.  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(me.__proto__);</span><br><span class="line"><span class="comment">// &#123;constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …&#125;</span></span><br></pre></td></tr></table></figure>
+<p><code>__proto__</code> 는 접근자 프로퍼티이다. 접근자 프로퍼티에는 value 가 보이지 않는다.  </p>
+<h2 id="생성자-함수에-의한-객체-생성"><a href="#생성자-함수에-의한-객체-생성" class="headerlink" title="생성자 함수에 의한 객체 생성"></a>생성자 함수에 의한 객체 생성</h2><p>타입변환할 때 쓸 수 있는 방법 중 하나가 생성자 함수인데, 생성자함수는 타입변환이 주 업무가 아니다.<br>생성자 함수는 매개변수로 외부정보를 받아서 new 연산자와 함께 호출하여 여러 개의 객체를 만들어낼 수 있는 함수다. constructor 라고 한다. 리터럴 표기법으로도 여러 개의 객체를 만들 수 있지만, 한 번에 하나의 객체만 만들어낼 수 있고, 그러므로 여러 개를 만들려면 그만큼의 노가다가 필요하다. 게다가 같은 로직이 중복될 수 있는 문제가 있다. 또한 재사용이 불가능하다. 리터럴 표기법으로는 객체가 생성되고 말 뿐, 미리 만들어진 프로퍼티를 사용할 수는 없기 때문이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Object</span>());</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>당장 콘솔창에서 <code>new Object();</code> 를 찍어보면 빈 객체가 만들어지는 것을 볼 수 있다. <strong>Object 생성자 함수</strong> 라고 한다. 물론 new 연산자를 붙이지 않아도 자바스크립트 엔진이 new 연산자가 붙어있는 것처럼 동작하기는 하지만, new 연산자를 붙여주는 것이 정석이니 그렇게 하도록 하자. 만들어진 빈 객체에는 프로퍼티나 메소드를 추가할 수 있다. 그런데 이렇게 일일이 추가하여 만들 것이라면 리터럴로 만드는 것보다 그렇게 큰 메리트는 없다. 객체를 만드는 방법에는  </p>
 <ul>
-<li>첫 번째 비트는 부호를 의미 한다.  </li>
-<li>가수부(mantissa)가 52bit 이다.  </li>
+<li>리터럴표기법  </li>
+<li>Object 생성자 함수  </li>
+<li>생성자 함수(우리가 만든)(중요!)  </li>
+<li>Object.create() 함수  </li>
+<li>Class  </li>
 </ul>
-<h3 id="64-실수-자료형-설계하기"><a href="#64-실수-자료형-설계하기" class="headerlink" title="64 실수 자료형 설계하기"></a>64 실수 자료형 설계하기</h3><p>실수 자료형을 표현한 수식<br><code>± 1.man × 2^exp - bias</code><br>1.man 은 가수(mantissa), 2는 밑수, exp-bias 는 지수(exponent)  </p>
-<h4 id="정규화"><a href="#정규화" class="headerlink" title="정규화"></a>정규화</h4><p>정수부분을 0이 아닌 자연수로 만들기.<br>ex) 5234.433 -&gt; 5.234433 * 10^3  </p>
-<ul>
-<li>10진수 실수 10.625를 2진수 실수로 바꾸고 정규화<br>10.625 -&gt; 1010.101(2) -&gt; <code>1</code>.010101(2) * 2^3  </li>
-</ul>
-<p>2진수의 경우 0이 아닌 자연수는 1밖에 없다.<br>그래서 실제 가수부는 1.010101 이지만<br>정수부분을 뺀 소수부분 <code>010101</code> 을 가수부(mantissa)에 저장한다.<br>(나머지 부분은 0으로 채운다)<br>배정도의 가수부는 52bit 이지만,<br>-&gt; <code>&gt;&gt;&gt; sys.float_info.mant_dig</code> 이 53이었던 이유.  </p>
-<p>(+)</p>
-<p>10진수를 2진수가 커버할 때,<br>한 자리 수 중에 가장 큰 수인 9를 커버하려면<br>2진수 4자리가 필요하다. <code>1111(2) = 15</code><br>두 자리 수 중에 가장 큰 수인 99를 커버하려면<br>7자리가 필요하다. <code>1111111(2) = 127</code>  </p>
-<p>이때, 가수부를 53자리까지 (맨 앞의 1 포함) 키운다면<br>9,007,199,254,740,991 까지 커버할 수 있고, 총 15자리이다.<br>-&gt; <code>&gt;&gt;&gt; sys.float_info.dig</code> 가 15인 이유.  </p>
-<h4 id="exp-bias"><a href="#exp-bias" class="headerlink" title="exp-bias"></a>exp-bias</h4><p>1.010101(2) * 2^<code>3</code><br>지수를 저장하기.  </p>
-<p><code>± 1.man * 2^exp-bias</code><br>즉, 3이 exp-bias 이다.<br>bias 는 음수를 지원하기 위해 IEEE 가 자체적으로 만든 프로토콜.<br>ex) 만약 -8 을 저장해야 한다면?  </p>
-<p>double 의 bias 를 구하는 식은,<br><code>bias = 2^n-1 - 1</code><br>n은 지수부의 비트 수를 뜻한다.<br>double 의 지수부의 비트 수는 11bit 이므로,<br>bias = 2^11-1 - 1<br>bias = 2^10 - 1 = 1023  </p>
-<p>지수부에는 3이 들어가야 맞는 것이지만, 편향치를 고려하여 저장해야 한다.<br>내가 저장해야 하는 실제 지수 값과 편향치를 안다면 메모리에 저장할 값도 알 수 있다.  </p>
-<p><code>Ere = Emem - bias</code><br>즉, <code>Emem = Ere + bias</code>  </p>
-<p>Emem = 3 + 1023 = 1026 이 된다.  </p>
-<p><strong>이제 필요한 값은 다 구했다</strong>  </p>
-<p><code>± 1.man × 2^exp - bias</code>  </p>
+<p>등이 있지만 생성자 우리가 만드는 생성자 함수를 먼저 살펴보자.<br><del>왜냐면 마지막 2개는 아직 안 배웠다.</del>  </p>
+<!-- 인자로 원시값을 주면 랩핑해서 문자열이면 문자열객체를 만들고 숫자면 숫자객체를 만든다.
+원시값을 객체처럼쓰면(메소드를 쓰면) 자바스크립트엔진이 그것을 객체타입으로 만든다. 
+메소드를 호출하고 난 후에 변경된값을 반환하고 다시 원래값으로 돌아간다(부수효과가없음)
+래퍼객체. 원시값타입을 객체로 바꾸는거 -->
+<h3 id="생성자-함수가-객체를-만드는-방법"><a href="#생성자-함수가-객체를-만드는-방법" class="headerlink" title="생성자 함수가 객체를 만드는 방법"></a>생성자 함수가 객체를 만드는 방법</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> me = <span class="keyword">new</span> Person(<span class="string">'Rudy'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(me);</span><br><span class="line"><span class="comment">// Person &#123;name: "Rudy"&#125;</span></span><br></pre></td></tr></table></figure>
+<p>(객체 앞에 붙어있는 Person 은 생성자 함수의 이름이다.)<br>new 연산자와 함께 생성자 함수가 호출되면, 생성자 함수 내부로 컨트롤이 이동하여 두 가지의 암묵적인 동작이 일어난다.  </p>
 <ol>
-<li>sign : 0  </li>
-<li>exponent(exp - bias) : Emem = 1026 = 01000000001(2)  </li>
-<li>mantissa : 010101000000…. (52bit를 채울 때까지 0을 넣는다)  </li>
+<li>빈 객체를 만들어서  </li>
+<li>this에 할당한다.(이를 <strong>this 바인딩</strong> 이라고 한다.)  </li>
 </ol>
-<hr>
+<p>그리고 <code>this.name = &#39;Rudy&#39;;</code> 와 같이 프로퍼티들을 추가하고 할당해준다. 이것이 프로퍼티 동적추가/동적생성이다.<br>이때 <strong>this는 생성자함수가 (미래에) 생성할 객체(인스턴스)</strong>를 가리킨다. 마지막에는 암묵적으로 <strong>this 인 객체</strong>를 반환한다.  </p>
+<p>생성자 함수 내부에 return문이 없더라도 생성자 함수는 암묵적으로 this 를 반환해준다. 그러므로 굳이 return 문을 넣을 필요도 없고 넣어서도 안 된다. 만약 return 문을 넣게 되면 무시되거나, 원시값을 리턴하도록 설정해둔 경우 this 가 아닌 원시값이 리턴되어버린다.  </p>
+<p>생성자 함수를 new 없이 호출하면 일반함수호출이 되고, 이때의 this 는 무조건 생성자 함수가 만들어낼 객체가 아니라 전역 객체인 window 가 된다. 그리고 return 문이 없으므로 undefined 가 반환된다. 그래서 생성자함수가 일반함수와 똑같이 생겼더라도 <strong>반드시 new 로 호출</strong>해야 한다. 애초에 생성자 함수의 함수명을 파스칼케이스로 써서 구별하도록 약속되어 있으니 잘 알아보고 호출하도록 하자(이것도 개발자들끼리의 약속이지, 자바스크립트 엔진이 알아주는 것은 아니다). 이처럼 함수도 다양한 방식으로 호출할 수 있고 그때마다 this가 동적으로 결정된다.  </p>
+<p>그리고 this 바인딩이라고 하였는데, 변수에는 값을 <em>할당</em> 한다고 하고 식별자에는 값을 <em>바인딩</em> 한다고 한다.  </p>
+<!-- - 일반 객체를 호출할 수 없는 이유?  
+함수 객체만 가지고있는
+`[[call]]` 과 `[[constructor]]` 내부메소드가 없기때문이다.
+일반함수,    생성자함수.
+이렇게 둘로 나눠놓고 new 를 붙엿나 안붙엿나 검사를 한단다.
+new가 붙으면 생성자함수니까... -->
+<p>일반함수는 다 호출할 수 있지만 생성자 함수로 호출할 수 있는 함수는 정해져 있다. 화살표함수는 생성자 함수로 호출할 수 없다. 화살표함수는 콜백으로 자주 쓰이고, 생성자 내부메소드가 없다. 객체 내에서 메소드축약표현으로 쓴 메소드 역시 생성자함수로 호출이 안 된다.  </p>
+<ul>
+<li><code>new.target</code><br>생성자 함수가 new와 함께 호출되었는지 아닌지를 검사한다. IE에서는 지원이 되지 않는다.  </li>
+</ul>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cs/">CS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
 
       
     </footer>
@@ -196,7 +208,7 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-0423-1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0508" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -204,7 +216,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0423-1/">컴퓨터 공학 TIL 0423-1</a>
+      <a class="article-title" href="/2019/05/08/0508/">원시 값과 객체, 함수, 스코프</a>
     </h1>
   
 
@@ -212,113 +224,73 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/03/0423-1/" class="article-date">
-	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
+	<a href="/2019/05/08/0508/" class="article-date">
+	  <time datetime="2019-05-07T15:00:00.000Z" itemprop="datePublished">May 8, 2019</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
  
       <!--  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="메모리-계층-주요-키워드"><a href="#메모리-계층-주요-키워드" class="headerlink" title="메모리 계층 (주요 키워드)"></a>메모리 계층 (주요 키워드)</h2><p><em>지금은 모르더라도 나중에 꼭 알아둬야할 내용</em></p>
-<ol>
-<li>레지스터  </li>
-<li>캐시  <ul>
-<li>지역성 원리(principle of locality) -&gt; 캐시 히트, 캐시 미스  </li>
-</ul>
+        <h2 id="원시-값"><a href="#원시-값" class="headerlink" title="원시 값"></a>원시 값</h2><p><strong>변경 불가능한 값.</strong> 변수와 헷갈리면 안 된다. 변수 자체가 값도 아닐 뿐더러, 변수는 당연히 변수값이 변한다. 그런데 변수가 가지고 있는 값 자체가 원시 값(숫자, 문자, 불리언, null, undefined, symbol)일 때 값은 바뀌지 않는다. 상수하고도 헷갈리면 안 된다. <strong>상수도 값을 갖고 있을 수 있는 변수</strong>이다. 단지 재할당을 못할 뿐이지. 그래서 변하지 않는 수라고 하면 상수하고 헷갈리기 쉽다.<br><code>const a = {};</code> 일 때는 빈 객체를 변경할 수 있다. 객체는 객체타입이며 변경가능한 값이기 때문이다. <strong>변경 불가능하다는 것은 재할당 불가능하다는 것이 아니다.</strong><br><!-- 변수가 나쁜 건 아니지만 남발하면 안 좋다. 왜냐면 대부분의 에러가 변수때문에 나기 때문에. 따라서 변수는 스코프를 좁혀서 얼른 쓰고 얼른 버리는 게 좋다. 다른 곳에서 변경되지않도록.   --><br>대부분의 언어에서 문자열은 객체로 취급받는데 자바스크립트는 원시 값으로 취급받는다. <strong>재할당 이외의 방법으로는 절대 변할 수 없기 때문에 신뢰성이 보장</strong>된다. 요즘은 객체도 ‘얼려서’ 변경을 못하도록 하기도 한다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;그럼 객체도 처음부터 원시 값으로 만들지 그랬냐&quot; </span><br><span class="line">-&gt; 객체를 하나 만든다는 게 생각보다 비용이 많이 드는 일이다. </span><br><span class="line">프로퍼티도 하나의 객체이고. 그러면 객체를 통째로 썼다 지웠다 하는 것보단 차라리 </span><br><span class="line">변경 가능하게 만드는 게 더 나은 일일 것이다. 신뢰성과 맞바꾸더라도... </span><br><span class="line">게다가 원시 값은 Pass by Value, 값을 복사해서 넘겨주는 전달인데, </span><br><span class="line">만약 객체를 통째로 복사해서 전달한다면 큰 낭비이기도 하다.</span><br></pre></td></tr></table></figure></p>
+<p>(+)<br><strong>가비지컬렉터</strong>: 메모리공간의 값을 지우고 다니는 애가 아니라, 메모리공간의 할당을 해제하고 다니는 애다. 메모리공간 확보라는 건 ‘여기 쓸 거니까 건들지마’ 라는거고, 메모리공간 해제라는 건 ‘여기 쓰는 사람 없으니까 써도 돼’ 라는 것.  </p>
+<h2 id="객체"><a href="#객체" class="headerlink" title="객체"></a>객체</h2><p>객체를 할당한 변수가 확보한 메모리공간에는 객체가 실제로 저장된 메모리공간의 주소가 저장되어있고, 이를 <strong>참조값</strong>이라고 한다. 식별자가 객체를 가리키고 있는(point) 상태이다. 참조값(메모리주소) 자체는 원시값이라서 바꿀 수 없지만 메모리공간에 저장된 실제 객체는 변경 가능하다. 객체 리터럴이 평가되어 값이 된다는 건 메모리에 이진수로 저장된다는 말이다. 두 개의 식별자가 한 객체를 공유한다는 건 한 쪽이 데이터를 변경하면 다른 한 쪽도 영향을 받으므로 부작용이 된다.  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person1 = &#123;</span><br><span class="line">  name: <span class="string">'Lee'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> person2 = &#123;</span><br><span class="line">  name: <span class="string">'Lee'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(person1 === person2); <span class="comment">// ①</span></span><br><span class="line"><span class="built_in">console</span>.log(person1.name === person2.name); <span class="comment">// ②</span></span><br></pre></td></tr></table></figure>
+<p>1번은 false, 2번은 true 가 나온다.<br>객체 비교는 참조값이 달라서 false고, 2번은 원시값 비교(‘Lee’)가 되기 때문에 true이다.</p>
+<h2 id="함수"><a href="#함수" class="headerlink" title="함수"></a>함수</h2><p>함수 안으로 필요한 정보를 밀어넣고(input) 값을 만들면 그 값을 내보낸다(output).<br><code>function</code> 키워드는 함수 선언이라기보다는 <strong>함수 정의</strong>라고 하자.<br>함수 정의만으로 함수가 실행되는 것은 아니고, <strong>함수 호출</strong>이라는 트리거가 있어야 한다. <code>return</code>은 옵션이고, return 을 안 쓰면 암묵적으로 undefined 가 반환된다(완료 값). 매개변수도 변수라서 인수가 할당된다. 매개변수는 함수 몸체 안에서만 유효하다.<br>함수는 <strong>재사용</strong>을 위해 쓴다. 코드의 중복을 줄이고, 유지보수를 편리하게 한다. 실수가 줄어들고 품질도 좋아지고 돈도 적게 든다. 같은 코드가 여기저기 흩어져있으면 무언가를 고쳐야 할 때 여기저기 흩어진 코드에 다 찾아가서 고쳐줘야 한다.<br>함수명도 함수 몸체 내에서만 유효한 식별자이다. (보통 재귀함수에서 쓴다) 함수를 호출 할 때 보통 <code>foo();</code> 라고 하는데, 이때 foo 는 함수명이 아니라 자바스크립트 엔진이 함수명으로 암묵적으로 생성한 식별자이다.<br>인수 = argument<br>인자 (매개변수) = parameter  </p>
+<h3 id="함수-정의"><a href="#함수-정의" class="headerlink" title="함수 정의"></a>함수 정의</h3><ol>
+<li>함수 선언문  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hello'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li>메모리  <ul>
-<li>segmentation  <ul>
-<li>코드  </li>
-<li>데이터  </li>
-<li>힙 (slow)  </li>
-<li>스택 (fast)  </li>
-</ul>
-</li>
-<li>가상메모리  <ul>
-<li>page  </li>
-<li>page frame  </li>
-<li>page fault  </li>
-<li>page title  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>하드디스크  </li>
 </ol>
-<h2 id="Big-O"><a href="#Big-O" class="headerlink" title="Big O"></a>Big O</h2><p>데이터 갯수가 늘어날 때 T(n)이 어떤 식으로 늘어나는가<br>(어떤 형태의 그래프를 그리는가) 우리의 주 관심사.<br>그래프의 모양만 알기 위해서는 최고차항만 필요하다. -&gt; <code>O(n^2)</code></p>
-<p><strong>이해가 안 되면 외워</strong>  </p>
-<ol>
-<li>O(a): 상수 시간<br> ex) 배열의 인덱싱  <pre><code>링크드 리스트의 삽입,삭제  
-</code></pre></li>
-<li>O(log n): 로그 시간<br> ex) BST - insert, search, delete  </li>
-<li>O(n): 선형 시간<br> ex) 링크드 리스트의 탐색 / 특정배열에서의 삽입,삭제  </li>
-<li>O(n log n): 선형 로그 시간<br> ex) quick sort, merge sort<br> 비교 정렬(comparison sorting)의 경우 성능이 아무리 좋아도 O(n log n)보다 성능이 좋을 순 없다.  </li>
-<li>O(n^2): 지수 시간<br> ex) 버블 소트, 선택 정렬, 삽입 정렬  </li>
+<p>함수 선언문은 함수명이 필수다.<br>함수명 안 쓰고 변수에 할당하면 그게 함수 표현식이 된다.  </p>
+<ol start="2">
+<li>함수 표현식  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hello'</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-<hr>
-<h2 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h2><ul>
-<li>Job scheduling -&gt; scheduler<br>-&gt; context switching<br>process status(프로세스 상태)<br>thread -&gt; multi threading(cpu 작업이 많을 때)  </li>
-</ul>
-<p>multi threading 의 문제  </p>
+<p>변수 선언문 + 할당문.  </p>
+<p>함수 선언문을 썼을 때, 자바스크립트 엔진이 암묵적으로 함수명과 같은 식별자를 등록하여 식별자가 함수 객체를 가리키게 하고, 그 식별자를 이용해 함수를 호출하게 된다. 함수 표현식도 var 키워드로 인해 foo 라는 식별자가 등록이 되고 함수 객체를 가리키게 된다. 똑같이 동작하는 것 같지만 사실 조금 다르다. 만약 코드 상으로 함수를 정의하기 전에 호출을 먼저 하게 되면 함수 선언문의 경우 함수 호이스팅에 의해 hello 가 콘솔에 출력된다. 함수 선언문은 foo 라는 식별자를 만듦과 동시에 함수 객체까지 메모리공간에 할당해버리기 때문이다. 하지만 var 키워드를 이용한 함수 표현식은 foo 라는 식별자가 등록만 되어있는 상태이기 때문에 호출하게 되면 foo 는 함수가 아니라는 에러가 뜬다.  </p>
+<p>(+)<br>일반 객체와 함수 객체의 차이?<br>일반 객체와 달리 함수 객체는 호출할 수 있다. </p>
+<p>인수와 매개변수의 개수가 일치하지 않아도 에러가 나지는 않는다.<br>매개변수의 갯수는 정해져 있지는 않지만 적을 수록 좋고, 3개까지 쓰는 게 제일 좋다. (왜인지 잘 기억이 안 나므로 알아보고 업데이트 하겠음)<br>3개가 넘어가면 그것들을 객체로 만들어서 넘기면 좋다.<br><!-- 강사님 추천 책: 클린 코드   --></p>
 <ul>
-<li>race condition  </li>
-<li>dead-lock </li>
+<li>반환문 <code>return</code>  <ol>
+<li>리턴 키워드 뒤에 지정한 값을 반환.  </li>
+<li>함수의 실행을 중단하고 함수몸체를 빠져나간다. 값을 리턴했는데 뭘 더 할 게 없으니까.<br>리턴 뒤에 어떤 값을 적지 않아도 된다. 그냥 함수를 빠져나갈 뿐.  </li>
+</ol>
+</li>
 </ul>
-<h3 id="Concurrency-Programming-동시성-프로그래밍"><a href="#Concurrency-Programming-동시성-프로그래밍" class="headerlink" title="Concurrency Programming (동시성 프로그래밍)"></a>Concurrency Programming (동시성 프로그래밍)</h3><ul>
-<li><code>Asyncronous I/O</code><br>자바스크립트는 헤비한 연산 하지 않는다.<br>따라서 I/O bound 작업에만 쓴다.  </li>
-</ul>
-<h2 id="program-과-process"><a href="#program-과-process" class="headerlink" title="program 과 process"></a>program 과 process</h2><ul>
-<li>program :<br>하드디스크에 저장되어 있는 “하나”의 이미지  </li>
-<li>process :<br>메인 메모리에 올라와서 <code>실행</code>을 시작한 프로그램  </li>
-</ul>
-<p>notepad.exe 라는 프로그램은 하나이지만(program),<br>노트패드 창을 여러 개 띄워서 <code>실행</code>(process) 수 있다.<br>실행되고 있는 여러 개의 notepad 는 <code>PID</code> 를 부여하여 구분  </p>
-<h3 id="선점형-스케줄링과-비선점형-스케줄링"><a href="#선점형-스케줄링과-비선점형-스케줄링" class="headerlink" title="선점형 스케줄링과 비선점형 스케줄링"></a>선점형 스케줄링과 비선점형 스케줄링</h3><ul>
-<li><p>선점형 스케줄링(pre-emptive scheduling) : 새치기가 가능하다.  </p>
+<h3 id="즉시실행함수"><a href="#즉시실행함수" class="headerlink" title="즉시실행함수"></a>즉시실행함수</h3><p>정의와 동시에 호출되는 함수. 함수 정의하면 함수 객체가 만들어지고, 그 객체는 호출할 수 있으니까 끝에 () 로 호출. 단 한 번 호출할 수 있다. 그래서 뭐 함수명을 식별자로 만들고 어쩌구 저쩌구도 안한다. 그냥 메모리를 단 한 번 쓰고 사라진다. 이름을 붙여줄 수도 있지만 재귀를 하지 않는 이상 이름이 의미가 없다. 즉시실행함수는 반드시 그룹연산자 (…) 로 묶어주거나 function 키워드 앞에 <code>!</code> 이나 <code>+</code> 를 붙여주어야 한다. 보통 그룹연산자로 묶은 뒤 그 안에서 호출까지 한다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  [실행 코드]</span><br><span class="line">&#125;());</span><br></pre></td></tr></table></figure></p>
+<h3 id="중첩-함수"><a href="#중첩-함수" class="headerlink" title="중첩 함수"></a>중첩 함수</h3><p>함수가 함수 안에서 정의되었다. 외부함수를 도와주는 헬퍼함수의 역할을 한다. 스코프와 연관이 있다. 외부함수도 스코프를 만들고 내부함수도 스코프를 만드니까 스코프도 중첩이 된다. </p>
+<h3 id="콜백함수"><a href="#콜백함수" class="headerlink" title="콜백함수"></a>콜백함수</h3><p>외부에서 밀어넣어주는 헬퍼함수. 두 함수를 합친다. 중첩함수는 태생적으로 함수 안에 있는거고 콜백은 밖에서 밀어넣어진다. 내가 넘기는 콜백함수에 따라 함수가 하는 일이 달라질 수 있다.</p>
+<h2 id="스코프"><a href="#스코프" class="headerlink" title="스코프"></a>스코프</h2><p>식별자는 값과 바인딩이 되어있다. 왜냐면 값 없이는 식별자는 의미가 없기 때문이다. 스코프는 상하관계가 있다. 이 상하관계는 중첩관계에 의해서 만들어진다. 중첩된 함수 내부에서 선언된 변수는 하위스코프에, 외부함수에서 선언된 변수는 상위스코프에. 전역변수는 전역스코프에 있다. 자바스크립트는 함수가 스코프를 만들고, 이것을 함수레벨스코프라고 한다(var 키워드가 지원하는…). let이나 const는 블록레벨스코프를 지원한다.<br>똑같은 코드도 어디있느냐에 따라(문맥에 따라) 다르게 동작한다. 똑같은 말이라도 어떤 상황에서 하냐에 따라 다른 것처럼. 그 문맥이 스코프다.<br>자식객체는 부모객체의 자산을 쓸 수 있지만 그 반대는 안 된다. 하위스코프의 변수를 상위스코프에서 참조할 수 없다. 내 스코프에서 참조할 변수의 선언을 찾지 못하면 상위로 찾아 올라간다. 상위스코프와 하위스코프가 연결된 것을 <strong>스코프체인</strong>이라고 하는 것이다.  </p>
+<!-- 렉시컬?
+사전으로는 어휘의, 단어의.. 라는 뜻인데. 렉싱은 어휘를 뜻하고. 음... 식별자들이 렉시컬환경에 등록된다고 생각하면 그냥 식별자라는 어휘들을 모아두는 환경이라고 보면 안 되나? -->
+<!-- 함수 선언문, 하면 선언이니까 식별자가 만들어지고 식별자는 함수객체를 가리킨다. 
+그러니까 스코프체인에서 변수를 검색하는것과 똑같이 동작함.
+스코프는 선언될 때에 결정됨.
+함수 안의 변수는 호출될지안될지모르기때문에 실행할때 함수가 호출되면 그때 선언.
+-->
+<h3 id="렉시컬-스코프"><a href="#렉시컬-스코프" class="headerlink" title="렉시컬 스코프"></a>렉시컬 스코프</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> x = <span class="number">10</span>;</span><br><span class="line">  bar();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); <span class="comment">// ?</span></span><br><span class="line">bar(); <span class="comment">// ?</span></span><br></pre></td></tr></table></figure>
+<p>스코프가 결정되는데에는 두 가지 방식이 있다.  </p>
 <ol>
-<li><p>created : process 생성<br>OS의 스케줄러가 <strong>우선순위</strong>를 파악  </p>
-</li>
-<li><p>waiting : Queue 실행 대기 상태<br>우선순위가 높으면 이미 실행 중인 프로세스를 waiting 으로 보내고 실행됨<br>-&gt; <code>Priority Algorithm</code><br>우선순위가 같다면 <strong>정해진 시간동안</strong> 실행<br>-&gt; <code>Round Robin Algorithm</code>  </p>
-</li>
+<li>함수를 어디서 호출했는지에 따라 상위 스코프가 결정되거나  </li>
+<li>함수를 어디서 정의했는지에 따라 상위 스코프가 결정된다.  </li>
 </ol>
-<ul>
-<li>time slice  </li>
-<li><p>quantum  </p>
-<p>정해진 시간동안의 실행이 모두 끝나면 상태가 어떻든 무조건 queue 로 돌아감<br>-&gt; <code>aging</code><br>우선순위가 높은 프로세스들이 들어와서 우선순위가 낮은 프로세스가 실행되지 못하고<br>무한히 대기중인 상태인 <strong>기아상태</strong> 를 해결하기 위한 방법. 오랫동안 대기한<br>프로세스의 우선순위를 점진적으로 증가시켜 실행할 수 있도록 해준다. </p>
-<p><em>I/O 작업</em><br>파일 입출력이나 네트워크 작업<br>CPU가 필요없고 미친듯이 느리다.<br>-&gt; blocked 로 가서 작업이 완료된 후 waiting 으로 갔다가 running 으로.  </p>
-<p>-&gt; waiting 과 blocked<br>waiting 은 cpu 가 부르면 바로 올라갈 수 있다.<br>blocked 는 i/o 가 끝날 때까지 무조건 기다려야 함.</p>
-</li>
-</ul>
-<ol start="3">
-<li>running : CPU 할당(실행)<br>실행이 끝나면 terminated  </li>
-</ol>
-</li>
-<li><p>비선점형 스케줄링 : 새치기가 불가능하다.  </p>
-</li>
-</ul>
-<h3 id="context-switching"><a href="#context-switching" class="headerlink" title="context switching"></a>context switching</h3><p>정해진 시간동안의 실행이 끝나면 무조건 queue 로 돌아가서 waiting 상태가 되는데,<br>queue 로 끌어내려지는 시점에서 CPU 레지스터에 저장되어있는 실행상태정보(IR과 PC 등)를<br>PCB라는 별도의 공간에 저장한다.  </p>
-<ul>
-<li>Instruction Register: 실행되고 있는 부분  </li>
-<li>Program Counter: 다음 실행될 코드를 가리키고 있는 부분  </li>
-<li>PCB(Process Control Block)<br>그리고 다시 실행할 차례가 돌아오면 PCB의 내용을 다시 CPU에 넣어서 실행할 수 있도록 한다.<br>  -&gt;(디스패치라고도 한다)  </li>
-</ul>
-<p>context switching 이 많이 일어나면 시스템에 과부하가 생긴다.<br>100분의 1초마다 프로세스가 전환이 되면, 1초에 컨텍스트스위칭이 100번 일어나는 것인데,<br>두 프로세스를 실행하기 위해 그 사이에 작업이 추가되는 것이니까<br>그만큼 일종의 오버헤드가 걸릴 수 있다. </p>
-<p><em>context switching 을 안할 수 없는 이유</em><br>라운드로빈에서 시간이 다 될 때마다 끌어내려질건데<br>이때는 무조건 컨텍스트 스위칭이 일어날 수 밖에 없음.<br>그렇다고 컨텍스트스위칭을 줄이겠다고 5초마다 한 번 한다면<br>내가 뭔가 할때마다 최소 5초는 기다려야한다는 뜻.<br>즉, 멀티태스킹이 아니게 되는거임.<br>그렇다고 내가 기다리는 시간을 줄여서 컨텍스트 스위칭을 많이 하면 시스템 과부하가 일어나고.<br>-&gt;<code>sys.getswitchinterval() == 0.005</code>  </p>
+<p>자바스크립트는 <strong>함수를 어디서 정의했는지</strong>에 따라 상위 스코프가 결정된다. 즉 2번에 해당되고, 이를 <strong>정적 스코프</strong>, 또는 <strong>렉시컬 스코프</strong>라고 한다(1번은 동적 스코프라고 한다). 함수 bar 는 var x = 1; 과 같이 전역에서 정의되었기 때문에 bar 는 1를 출력한다. 만약 동적 스코프였다면 foo 함수 안에서 bar 가 호출되었기 때문에 foo 가 bar 의 상위 스코프가 되고, bar는 1이 아니라 10을 출력하게 될 것이다. </p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cs/">CS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
 
       
     </footer>
@@ -334,7 +306,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/10/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/12/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/10/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/12/">Next</a>
   </nav>
 
 </section>
@@ -347,6 +319,42 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/07/10/0710/">Routing</a></h6>
+              <span>July 10, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/07/08/0708/">Module</a></h6>
+              <span>July 8, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/07/08/template-form/">Angular Template Driven Form</a></h6>
+              <span>July 8, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -384,42 +392,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/24/0624/">Directive</a></h6>
-              <span>June 24, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/17/0617/">Generic, Angular</a></h6>
-              <span>June 17, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/14/0614/">Angular</a></h6>
-              <span>June 14, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -429,7 +401,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -439,7 +411,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">35</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -450,7 +422,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
