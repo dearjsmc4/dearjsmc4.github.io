@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Local Storage에 저장하기 | Rudy&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Javascript">
+  
+  
+  
+  
+  <meta name="description" content="Local Storage내가 만든 페이지가 어떤 데이터를 기억하고,새로고침을 해도 데이터를 잃어버리지 않게 하고 싶다면local storage 에 저장하는 방법이 있다.   ( + 세션 스토리지와 로컬 스토리지세션 스토리지는 로컬 스토리지와 비슷하다.다른 점은, 로컬 스토리지에 저장된 데이터는 새로고침을 하거나 창을 닫았다 열어도데이터를 직접 지우지 않는">
+<meta name="keywords" content="Javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Local Storage에 저장하기">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/03/19/local-storage/index.html">
+<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="Local Storage내가 만든 페이지가 어떤 데이터를 기억하고,새로고침을 해도 데이터를 잃어버리지 않게 하고 싶다면local storage 에 저장하는 방법이 있다.   ( + 세션 스토리지와 로컬 스토리지세션 스토리지는 로컬 스토리지와 비슷하다.다른 점은, 로컬 스토리지에 저장된 데이터는 새로고침을 하거나 창을 닫았다 열어도데이터를 직접 지우지 않는">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-05T06:11:42.303Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Local Storage에 저장하기">
+<meta name="twitter:description" content="Local Storage내가 만든 페이지가 어떤 데이터를 기억하고,새로고침을 해도 데이터를 잃어버리지 않게 하고 싶다면local storage 에 저장하는 방법이 있다.   ( + 세션 스토리지와 로컬 스토리지세션 스토리지는 로컬 스토리지와 비슷하다.다른 점은, 로컬 스토리지에 저장된 데이터는 새로고침을 하거나 창을 닫았다 열어도데이터를 직접 지우지 않는">
+  
+    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+  
+  <link rel="icon" href="/css/images/favicon.ico">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+    
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+
+  <link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&amp;ver=4.6.1" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/fashion.css">
+  <link rel="stylesheet" href="/css/glyphs.css">
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+
+
+<header id="allheader" class="site-header" role="banner">
+  <div class="clearfix container">
+      <div class="site-branding">
+
+          <h1 class="site-title">
+            
+              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+            
+          </h1>
+          
+          
+            
+          <nav id="main-navigation" class="main-navigation" role="navigation">
+            <a class="nav-open">Menu</a>
+            <a class="nav-close">Close</a>
+
+            <div class="clearfix sf-menu">
+              <ul id="main-nav" class="menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
+                    
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                    
+              </ul>
+            </div>
+          </nav>
+
+      </div>
+  </div>
+</header>
+
+
+  <div id="container">
+    <div id="wrap">
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-local-storage" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      Local Storage에 저장하기
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/03/19/local-storage/" class="article-date">
+	  <time datetime="2019-03-18T15:00:00.000Z" itemprop="datePublished">March 19, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript/">Javascript</a>
+ 
+      <!-- 
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+ -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Local-Storage"><a href="#Local-Storage" class="headerlink" title="Local Storage"></a>Local Storage</h1><p>내가 만든 페이지가 어떤 데이터를 기억하고,<br>새로고침을 해도 데이터를 잃어버리지 않게 하고 싶다면<br>local storage 에 저장하는 방법이 있다.  </p>
+<p>( + 세션 스토리지와 로컬 스토리지<br>세션 스토리지는 로컬 스토리지와 비슷하다.<br>다른 점은, 로컬 스토리지에 저장된 데이터는 새로고침을 하거나 창을 닫았다 열어도<br>데이터를 직접 지우지 않는 이상 그대로 남아있다.<br>세션 스토리지에 저장이 되면 세션이 끝난 후에, 즉 브라우저를 닫는 경우에 데이터가 사라진다. )  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">'name'</span>, <span class="string">'Rudy'</span>); </span><br><span class="line"><span class="comment">// 로컬 스토리지에 name 이라는 키값을 가진 Rudy 를 저장</span></span><br><span class="line"></span><br><span class="line">localStorage.getItem(<span class="string">'name'</span>); </span><br><span class="line"><span class="comment">// 저장된 name 의 데이터인 Rudy 를 불러옴</span></span><br></pre></td></tr></table></figure>
+<p>기본 문법은 위와 같고 필요한 기능에 따라 적절히 수정하여 쓰면 된다.<br>오늘은 로컬스토리지에 데이터를 저장하고 불러오는 두 가지 방법을 배웠다.<br><code>serialize();</code> 를 이용하는 방법과<br><code>dictionary</code> 를 이용하는 방법이다.  </p>
+<h2 id="serialize"><a href="#serialize" class="headerlink" title="serialize();"></a>serialize();</h2><p>폼 태그 안의 데이터를 문자열로 합쳐주는 메소드이다.  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"content_form"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"content1"</span> <span class="attr">id</span>=<span class="string">"content1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"content2"</span> <span class="attr">id</span>=<span class="string">"content2"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"content3"</span> <span class="attr">id</span>=<span class="string">"content3"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn_save"</span>&gt;</span>Save<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn_load"</span>&gt;</span>Load<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> storage_key = <span class="string">"content"</span></span><br><span class="line">    $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">"#btn_save"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="comment">//폼 데이터를 문자열로 합치기</span></span><br><span class="line">            <span class="keyword">var</span> form_content = $(<span class="string">"#content_form"</span>).serialize();</span><br><span class="line">            <span class="comment">//합친 문자열을 저장</span></span><br><span class="line">            localStorage.setItem(storage_key, form_content);</span><br><span class="line">            <span class="comment">//폼 submit 이 일어나지 않게</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        $(<span class="string">"#btn_load"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> form_content = localStorage.getItem(storage_key);</span><br><span class="line">        <span class="keyword">var</span> split_data = form_content.split(<span class="string">"&amp;"</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> split_data)&#123;</span><br><span class="line">            <span class="keyword">var</span> content_data = split_data[i].split(<span class="string">"="</span>);</span><br><span class="line">            <span class="keyword">var</span> key = content_data[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">var</span> data = content_data[<span class="number">1</span>];</span><br><span class="line">            $(<span class="string">"#"</span>+key).val(data);</span><br><span class="line">        &#125; <span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">        </span><br><span class="line">    &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>save 버튼을 누르면 로컬 스토리지에 content 라는 키가 생기고<br>serialize 를 썼기 때문에 value 는<br>content1=hela&amp;content2=thor&amp;content3=loki<br>이런 식으로 생기게 된다.<br>load 버튼을 누르면 다시 데이터가 화면에 보이게 했는데,<br>그때 저장된 값을 불러와 split(); 을 이용해서 &amp; 를 기준으로 나눠주면<br>콘솔에 띄웠을 때 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(3) [&quot;content1=hela&quot;, &quot;content2=thor&quot;, &quot;content3=loki&quot;]</span><br><span class="line"></span><br><span class="line">0: &quot;content1=hela&quot;</span><br><span class="line"></span><br><span class="line">1: &quot;content2=thor&quot;</span><br><span class="line"></span><br><span class="line">2: &quot;content3=loki&quot;</span><br></pre></td></tr></table></figure>
+<p>이렇게 나뉘어서 배열이 생긴다.<br>그 안에서 다시 각 요소를 = 를 기준으로 나누면 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(2) [&quot;content1&quot;, &quot;hela&quot;]</span><br><span class="line"></span><br><span class="line">0: &quot;content1&quot;</span><br><span class="line"></span><br><span class="line">1: &quot;hela&quot;</span><br><span class="line"></span><br><span class="line">(2) [&quot;content2&quot;, &quot;thor&quot;]</span><br><span class="line"></span><br><span class="line">0: &quot;content2&quot;</span><br><span class="line"></span><br><span class="line">1: &quot;thor&quot;</span><br><span class="line"></span><br><span class="line">(2) [&quot;content3&quot;, &quot;loki&quot;]</span><br><span class="line"></span><br><span class="line">0: &quot;content3&quot;</span><br><span class="line"></span><br><span class="line">1: &quot;loki&quot;</span><br></pre></td></tr></table></figure>
+<p>이렇게 우리가 원하는 대로 예쁘게 나뉘어진다.<br>각 배열의 인덱스값을 이용해 데이터를 변수에 담고<br>해당하는 인풋태그(content1, content2, content3)의 value 값을 data로(hela, thor, loki)바꿔주겠다- 하는 코드다.</p>
+<p>쓰려면 쓸 수야 있겠지만 이렇게 하면 다시 로드할 때 한글이나 특수문자 등은 전부 깨져서 나온다.<br><code>decodeURIComponent();</code> 를 따로 사용해줘야 한다.<br>그리고 계속 split 을 하기도 번거롭고.</p>
+<h2 id="dictionary"><a href="#dictionary" class="headerlink" title="dictionary"></a>dictionary</h2><p>사전형 데이터를 만들어 저장하는 방법이다.<br>보통은 이 방법이 더 많이 쓰인다.  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> people = &#123;&#125;;</span><br><span class="line">people[<span class="string">"name"</span>] = <span class="string">"Rudy"</span>;</span><br></pre></td></tr></table></figure>
+<p>사전형이라고는 하지만 그냥 객체를 만드는 것이다.<br>오늘 객체에 대해 자세히 배운 것은 아니고… 프로퍼티와 값을 할당하고 불러오는 정도만 배웠다.<br>사전형 데이터를 저장하려면 <code>JSON.stringify();</code> 를 써서 문자형 데이터로 바꿔서 저장해줘야 한다.<br>안 그러면 [object Object] 라고 나와서 마음이 아파진다.<br>저장한 문자형 데이터를 다시 사전형 데이터로 불러올 때는 <code>JSON.parse();</code> 를 사용한다.  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list = &#123;&#125;;   <span class="comment">// 빈 객체를 만들고</span></span><br><span class="line">list[<span class="string">"name"</span>] = <span class="string">"rudy"</span>;   <span class="comment">// 그 안에 name 키값을 가진 rudy 를 넣었을 때</span></span><br><span class="line">&#123;<span class="attr">name</span>: <span class="string">"rudy"</span>&#125;   <span class="comment">// 객체를 불러오면 원래 모습은 이렇지만</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(list);   <span class="comment">// 문자형 데이터로 바꾸고 나면</span></span><br><span class="line"><span class="string">"&#123;"</span>name<span class="string">":"</span>rudy<span class="string">"&#125;"</span>   <span class="comment">// 쌍따옴표 안에 들어가면서 문자형이 된다!</span></span><br></pre></td></tr></table></figure>
+<p>JSON.parse(); 를 하면 다시 쌍따옴표에 들어가지 않은 형태인<br><code>{name: &quot;rudy&quot;}</code><br>가 된다.</p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/20/git-flow/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          git flow 사용해보기
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/18/validation/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Validation, 유효성 검사</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Local-Storage"><span class="nav-number">1.</span> <span class="nav-text">Local Storage</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#serialize"><span class="nav-number">1.1.</span> <span class="nav-text">serialize();</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dictionary"><span class="nav-number">1.2.</span> <span class="nav-text">dictionary</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+</nav> -->
+    <footer id="footer" class="site-footer">
+  
+
+  <div class="clearfix container">
+      <div class="site-info">
+	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+        <!-- 
+            <span id="busuanzi_container_site_uv">
+              本站访客数<span id="busuanzi_value_site_uv"></span>人次  
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+            </span>
+           -->
+      </div>
+      <div class="site-credit">
+        Theme by <a href="https://github.com/iTimeTraveler/hexo-theme-hipaper" target="_blank">hipaper</a>
+      </div>
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("allheader").offsetHeight - document.getElementById("footer").offsetHeight + "px";
+
+
+    <!-- headerblur min height -->
+    
+    
+</script>
+    
+<div style="display: none;">
+  <script src="https://s11.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+</div>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js" async=""></script>
+</body>
+</html>
