@@ -97,7 +97,7 @@
         
           <section id="main">
   
-    <article id="post-0425" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0423-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +105,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0425/">컴퓨터 공학 TIL 0425</a>
+      <a class="article-title" href="/2019/05/03/0423-1/">컴퓨터 공학 TIL 0423-1</a>
     </h1>
   
 
@@ -113,7 +113,7 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/03/0425/" class="article-date">
+	<a href="/2019/05/03/0423-1/" class="article-date">
 	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
 	</a>
 
@@ -125,50 +125,90 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Internet-네트워크-계층-IP담당"><a href="#Internet-네트워크-계층-IP담당" class="headerlink" title="Internet(네트워크 계층): IP담당"></a>Internet(네트워크 계층): IP담당</h2><p>IP는 IP라우팅을 한다.<br>인터넷 계층 : 아이피.(아이피주소는 내가 데이터를 보내고자 하는 상대 호스트 컴퓨터)<br>최종적으로 도달하는 <strong>호스트를 특정</strong>하기 위해 아이피주소가 필요함.<br>상대방의 호스트를 특정하기 위한 <strong>아이피주소를 관리</strong>하는 계층이 네트워크 계층.<br>강사님 추천 책: “TCP/IP 완벽 가이드”  </p>
-<p><strong>NAT</strong> : 호스트1이 유투브에게 데이터를 요구하면 유투브는 공인아이피인 라우터까지는 보낼 수 있는데 정확히<br>어느 호스트가 보낸 건지 사설아이피까지는 알 수 없다. 그렇다고 늘 브로드캐스트로 보낼 수는 없다.<br>그래서 라우터는 랜카드 중 하나를 임대하여 사설 아이피를 공인 아이피와 매핑한다.<br>그리고 소스 아이피를 자신의 공인아이피로 바꿔서 보낸다.<br>서버가 영상을 공인아이피로 보내면, 변환테이블에서 공인아이피와 연결된 사설아이피를 찾는다.<br>그리고 사설아이피를 다시 목적지로 설정하여 보내준다. 랜카드가 많이 필요하다는 단점이 있다.  </p>
-<p><strong>NAPT</strong> : 호스트가 서버와 통신하고자 할때, 모든 호스트들이 같은 랜카드를 빌려오되,<br>구분을 해야하므로 포트번호까지 이용하여 구분한다. 같은 123.108.157.1 이라는 랜카드를 써도<br>포트번호를 달리해서 쓰면 구분지을 수 있는 것이다.  </p>
-<h2 id="Transport-전송계층-포트담당"><a href="#Transport-전송계층-포트담당" class="headerlink" title="Transport(전송계층): 포트담당"></a>Transport(전송계층): 포트담당</h2><p>특정 컴퓨터에게 데이터가 잘 도착했을 때 해당 <strong>프로세스</strong>에게 데이터를 전달하기위해 <code>포트번호</code>가 필요.<br>이 포트는 패킷이 필요한 프로세스를 특정하기 위해 사용된다.<br>이 <strong>포트를 관리</strong>하는 계층이 전송계층. 포트번호는 2^16-1 까지 할당가능하다.<br>패킷에는 아이피주소 말고도 포트번호가 쓰여있어서,<br>해당 포트번호가 특정하는 프로세스에게 데이터를 전송된다.<br>ex) 데이터를 보내긴 보내는데, 유투브 프로세스가 3개 돌아가고 있다면 그 중 어느 프로세스에 데이터를<br>    보낼 것인가?</p>
-<p>서버에는 소켓이 많다. 서버는 특정 컴퓨터의 특정 프로세스일 뿐이다.<br>포트가 특정 프로세스를 특정한다고 했는데, 포트는 소켓에 부여된 숫자이다.<br>이 숫자가 0부터 2^16-1 까지. 2바이트짜리 정수.<br>소켓에는 두 가지 종류가 있다.  </p>
+        <h2 id="메모리-계층-주요-키워드"><a href="#메모리-계층-주요-키워드" class="headerlink" title="메모리 계층 (주요 키워드)"></a>메모리 계층 (주요 키워드)</h2><p><em>지금은 모르더라도 나중에 꼭 알아둬야할 내용</em></p>
 <ol>
-<li><p>데이터를 전송하고 있는 <code>데이터 소켓</code><br>실제로 클라이언트와 일대일로 매핑되어 데이터를 주고 받는다.  </p>
+<li>레지스터  </li>
+<li>캐시  <ul>
+<li>지역성 원리(principle of locality) -&gt; 캐시 히트, 캐시 미스  </li>
+</ul>
 </li>
-<li><p>서버를 대표하는 <code>리스닝 소켓</code><br>클라이언트가 리퀘스트를 날릴 때 서버에서 데이터를 받는 소켓<br>리스닝 소켓은 클라이언트로부터 최초의 접속 요청을 받는 소켓<br>접속 후에 실제로 데이터를 주고받는 것은 데이터 소켓  </p>
+<li>메모리  <ul>
+<li>segmentation  <ul>
+<li>코드  </li>
+<li>데이터  </li>
+<li>힙 (slow)  </li>
+<li>스택 (fast)  </li>
+</ul>
+</li>
+<li>가상메모리  <ul>
+<li>page  </li>
+<li>page frame  </li>
+<li>page fault  </li>
+<li>page title  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>하드디스크  </li>
+</ol>
+<h2 id="Big-O"><a href="#Big-O" class="headerlink" title="Big O"></a>Big O</h2><p>데이터 갯수가 늘어날 때 T(n)이 어떤 식으로 늘어나는가<br>(어떤 형태의 그래프를 그리는가) 우리의 주 관심사.<br>그래프의 모양만 알기 위해서는 최고차항만 필요하다. -&gt; <code>O(n^2)</code></p>
+<p><strong>이해가 안 되면 외워</strong>  </p>
+<ol>
+<li>O(a): 상수 시간<br> ex) 배열의 인덱싱  <pre><code>링크드 리스트의 삽입,삭제  
+</code></pre></li>
+<li>O(log n): 로그 시간<br> ex) BST - insert, search, delete  </li>
+<li>O(n): 선형 시간<br> ex) 링크드 리스트의 탐색 / 특정배열에서의 삽입,삭제  </li>
+<li>O(n log n): 선형 로그 시간<br> ex) quick sort, merge sort<br> 비교 정렬(comparison sorting)의 경우 성능이 아무리 좋아도 O(n log n)보다 성능이 좋을 순 없다.  </li>
+<li>O(n^2): 지수 시간<br> ex) 버블 소트, 선택 정렬, 삽입 정렬  </li>
+</ol>
+<hr>
+<h2 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h2><ul>
+<li>Job scheduling -&gt; scheduler<br>-&gt; context switching<br>process status(프로세스 상태)<br>thread -&gt; multi threading(cpu 작업이 많을 때)  </li>
+</ul>
+<p>multi threading 의 문제  </p>
+<ul>
+<li>race condition  </li>
+<li>dead-lock </li>
+</ul>
+<h3 id="Concurrency-Programming-동시성-프로그래밍"><a href="#Concurrency-Programming-동시성-프로그래밍" class="headerlink" title="Concurrency Programming (동시성 프로그래밍)"></a>Concurrency Programming (동시성 프로그래밍)</h3><ul>
+<li><code>Asyncronous I/O</code><br>자바스크립트는 헤비한 연산 하지 않는다.<br>따라서 I/O bound 작업에만 쓴다.  </li>
+</ul>
+<h2 id="program-과-process"><a href="#program-과-process" class="headerlink" title="program 과 process"></a>program 과 process</h2><ul>
+<li>program :<br>하드디스크에 저장되어 있는 “하나”의 이미지  </li>
+<li>process :<br>메인 메모리에 올라와서 <code>실행</code>을 시작한 프로그램  </li>
+</ul>
+<p>notepad.exe 라는 프로그램은 하나이지만(program),<br>노트패드 창을 여러 개 띄워서 <code>실행</code>(process) 수 있다.<br>실행되고 있는 여러 개의 notepad 는 <code>PID</code> 를 부여하여 구분  </p>
+<h3 id="선점형-스케줄링과-비선점형-스케줄링"><a href="#선점형-스케줄링과-비선점형-스케줄링" class="headerlink" title="선점형 스케줄링과 비선점형 스케줄링"></a>선점형 스케줄링과 비선점형 스케줄링</h3><ul>
+<li><p>선점형 스케줄링(pre-emptive scheduling) : 새치기가 가능하다.  </p>
+<ol>
+<li><p>created : process 생성<br>OS의 스케줄러가 <strong>우선순위</strong>를 파악  </p>
+</li>
+<li><p>waiting : Queue 실행 대기 상태<br>우선순위가 높으면 이미 실행 중인 프로세스를 waiting 으로 보내고 실행됨<br>-&gt; <code>Priority Algorithm</code><br>우선순위가 같다면 <strong>정해진 시간동안</strong> 실행<br>-&gt; <code>Round Robin Algorithm</code>  </p>
 </li>
 </ol>
-<p><code>well-known port</code>: 자주 쓰이는 유명한 포트번호.<br>0~1023 번까지 있는데 서버가 특정 서비스에 따라 특정 포트를 쓴다.  </p>
-<p>전송계층에는 두 가지 프로토콜이 있다.  </p>
-<h2 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP / UDP"></a>TCP / UDP</h2><ul>
-<li><p><strong>TCP</strong><br>신뢰도가 높다. 패킷이 유실되면 <strong>재전송</strong>을 해준다. HTTP는 일반적으로 TCP 위에서 돈다.<br>패킷을 보낸 다음에 상대방이 패킷을 잘 받았는지 인증을 받아서 확인한다.<br>-&gt; 패킷이 유실되었는지 계속 관리해야하기 때문에 네트워크에 부담이 된다.<br>파일 전송이나 메일 전송은 TCP를 이용한다.<br>연결 지향성: 서버와 호스트가 데이터를 주고받을 때 소켓을 가지고 접속과 연결이 되어야 한다.  </p>
-</li>
-<li><p><strong>UDP</strong><br>신뢰도가 낮다. 패킷이 유실되더라도 재전송을 해주지 않는다. 보내면 끝.<br>-&gt; 한번 보내면 끝이기 때문에 가볍고 빠르다.<br>동영상이나 빠른 속도가 필요한 게임 등은 UDP를 이용한다.<br>비연결 지향성: 접속이나 연결이 없이 그냥 보내기만 한다.  </p>
-</li>
-</ul>
-<h2 id="Application-응용-표현-세션-계층"><a href="#Application-응용-표현-세션-계층" class="headerlink" title="Application (응용, 표현, 세션 계층)"></a>Application (응용, 표현, 세션 계층)</h2><p><code>Secure Socket Layer(SSL)</code>(Transport Layer Security)를 어플리케이션과 트랜스포트 사이에 끼워넣는다.<br>이 레이어는 <strong>암호화</strong>를 한다. 내가 html 과 js를 만들어서 보내면<br>다른 해커가 스푸핑을 통해서 파일들을 뺏더라도 암호화가 되어있어서 볼 수 없다.<br>받는 상대방은 <strong>복호화</strong>를 해서 볼 수 있다.  </p>
 <ul>
-<li>http: 메세지 기반의 프로토콜. 단순한 문자열을 주고 받고 해석함.<br>(html 파일이나 js 파일도 결국 문자열일 뿐이다)  </li>
-<li>dns: 도메인 네임 시스템. 사람이 읽고 기억하기 쉬운 이름.<br>원래 어떤 사이트에 가려면 아이피주소를 써야하는데,<br>우리는 그 누구도 페이스북에 접속하려고 아이피를 적지 않는다. 대신 도메인 위치를 적는다.<br>그리고 DNS SERVER 에서 도메인 네임에 대한 아이피를 알려준다.<br>받아온 아이피는 캐시로 저장된다.  </li>
-</ul>
-<p><code>HTTP</code> : 하이퍼 텍스트 트랜스퍼 프로토콜<br>“나 이번에 새로 쓴 논문이 있어 인터넷에 링크 걸어둘게!”<br>원래는 진짜 정적파일 텍스트만 보는 용도였다.<br>http 1.0 이하에서는 연결이 일시적이다. 한번 데이터 주고받으면 끝.<br>그런데 점점 컴퓨터 성능이 좋아지니까 이미지나 동영상, 스크립트 파일도 받게 되었다.<br>그래서 한번 리퀘스트를 받은 다음에 한번의 리스폰스로 끝나는 게 아니게 되었다.<br>그래서 http 1.1부터는 연결을 유지한다. 한번 연결하면 끊지 않고 계속 연결.<br>만약 일시적 연결을 원한다면 헤더에 <code>connection:close</code> 를 포함하면 된다.  </p>
-<p><strong>메서드</strong>: 클라이언트 요청의 종류  </p>
-<ul>
-<li><code>GET</code> : URL 이 지원하는 자원을 찾아 클라이언트에 전송</li>
-<li><code>POST</code> : 클라이언트가 임의의 데이터를 서버로 보낸다.<br>주로 form 형식을 사용하며 서버의 프로그램에 전달</li>
-<li>HEAD: GET과 같지만 메세지 본문이 없다. 테스트 용도</li>
-<li>PUT: 지정한 URL에 요청의 본문내용을 저장</li>
-<li>DELETE: 지정한 자원을 지움</li>
-<li>TRACE: 클라이언트가 서버에 보낸 요청의 복사본을 돌려받는다.</li>
-</ul>
-<h3 id="상태코드"><a href="#상태코드" class="headerlink" title="상태코드"></a>상태코드</h3><p>200번대 : 성공<br>300번대 : 서버가 옮겨간것같은데 저쪽으로 다시 시도해볼래?<br>400번대 : 클라이언트가 잘못했다<br>500번대 : 서버가 잘못했다  </p>
-<h3 id="컨텐트-협상"><a href="#컨텐트-협상" class="headerlink" title="컨텐트 협상:"></a>컨텐트 협상:</h3><ol>
-<li><p>서버 주도 협상:<br> -&gt; 최선 추측<br>클라이언트가 원하는 것이 없을 때, 요청과 가장 비슷한 것을 가져감.  </p>
+<li>time slice  </li>
+<li><p>quantum  </p>
+<p>정해진 시간동안의 실행이 모두 끝나면 상태가 어떻든 무조건 queue 로 돌아감<br>-&gt; <code>aging</code><br>우선순위가 높은 프로세스들이 들어와서 우선순위가 낮은 프로세스가 실행되지 못하고<br>무한히 대기중인 상태인 <strong>기아상태</strong> 를 해결하기 위한 방법. 오랫동안 대기한<br>프로세스의 우선순위를 점진적으로 증가시켜 실행할 수 있도록 해준다. </p>
+<p><em>I/O 작업</em><br>파일 입출력이나 네트워크 작업<br>CPU가 필요없고 미친듯이 느리다.<br>-&gt; blocked 로 가서 작업이 완료된 후 waiting 으로 갔다가 running 으로.  </p>
+<p>-&gt; waiting 과 blocked<br>waiting 은 cpu 가 부르면 바로 올라갈 수 있다.<br>blocked 는 i/o 가 끝날 때까지 무조건 기다려야 함.</p>
 </li>
-<li><p>에이전트 주도 협상:<br> 클라이언트가 자원을 고를 수 있음<br>-&gt; 클라이언트: 글 좀 보내봐<br>서버: 한국어도 있고 영어도 있고 프랑스어도 있는데… 뭐 보내지?<br>클라이언트: Accept - Language: kr;q=0.7, fr;q=0, en;q=0.4<br> “한국어가 최우선이고 한국어 없으면 영어 보내줘. 프랑스어는 있어도 보내지마”  </p>
-</li>
+</ul>
+<ol start="3">
+<li>running : CPU 할당(실행)<br>실행이 끝나면 terminated  </li>
 </ol>
-<ul>
-<li>random pivot<br>리스트의 첫번째, 중간, 마지막 값을 가져와서 중간값을 찾아서 pivot 으로 설정.<br>-&gt; 거의 average case 에 가깝게 구현이 되더라는 것이 정설.  </li>
+</li>
+<li><p>비선점형 스케줄링 : 새치기가 불가능하다.  </p>
+</li>
 </ul>
+<h3 id="context-switching"><a href="#context-switching" class="headerlink" title="context switching"></a>context switching</h3><p>정해진 시간동안의 실행이 끝나면 무조건 queue 로 돌아가서 waiting 상태가 되는데,<br>queue 로 끌어내려지는 시점에서 CPU 레지스터에 저장되어있는 실행상태정보(IR과 PC 등)를<br>PCB라는 별도의 공간에 저장한다.  </p>
+<ul>
+<li>Instruction Register: 실행되고 있는 부분  </li>
+<li>Program Counter: 다음 실행될 코드를 가리키고 있는 부분  </li>
+<li>PCB(Process Control Block)<br>그리고 다시 실행할 차례가 돌아오면 PCB의 내용을 다시 CPU에 넣어서 실행할 수 있도록 한다.<br>  -&gt;(디스패치라고도 한다)  </li>
+</ul>
+<p>context switching 이 많이 일어나면 시스템에 과부하가 생긴다.<br>100분의 1초마다 프로세스가 전환이 되면, 1초에 컨텍스트스위칭이 100번 일어나는 것인데,<br>두 프로세스를 실행하기 위해 그 사이에 작업이 추가되는 것이니까<br>그만큼 일종의 오버헤드가 걸릴 수 있다. </p>
+<p><em>context switching 을 안할 수 없는 이유</em><br>라운드로빈에서 시간이 다 될 때마다 끌어내려질건데<br>이때는 무조건 컨텍스트 스위칭이 일어날 수 밖에 없음.<br>그렇다고 컨텍스트스위칭을 줄이겠다고 5초마다 한 번 한다면<br>내가 뭔가 할때마다 최소 5초는 기다려야한다는 뜻.<br>즉, 멀티태스킹이 아니게 되는거임.<br>그렇다고 내가 기다리는 시간을 줄여서 컨텍스트 스위칭을 많이 하면 시스템 과부하가 일어나고.<br>-&gt;<code>sys.getswitchinterval() == 0.005</code>  </p>
 
       
     </div>
@@ -299,7 +339,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/12/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/14/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/12/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/14/">Next</a>
   </nav>
 
 </section>
@@ -319,6 +359,18 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/07/12/0712/">(no title)</a></h6>
+              <span>July 12, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/07/10/0710/">Routing</a></h6>
               <span>July 10, 2019</span>
             </div>
@@ -331,7 +383,7 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/07/08/0708/">Module</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/07/08/template-form/">Angular Template Driven Form</a></h6>
               <span>July 8, 2019</span>
             </div>
 
@@ -343,7 +395,7 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/07/08/template-form/">Angular Template Driven Form</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/07/08/0708/">Module</a></h6>
               <span>July 8, 2019</span>
             </div>
 
@@ -373,18 +425,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/25/0625/">생명주기, 서비스, RxJS</a></h6>
-              <span>June 25, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -394,7 +434,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -404,7 +444,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -415,7 +455,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

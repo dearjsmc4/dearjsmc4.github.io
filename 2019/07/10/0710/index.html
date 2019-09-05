@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Rudy&#39;s Blog">
 <meta property="og:description" content="Angular RoutingSEO검색엔진최적화(Search Engine Optimization, SEO).검색로봇이 24시간을 전세계 사이트를 돌아다닌다.사이트들을 페이지별로 검색하고 다니면서 페이지의 HTML구조까지 들여다본다.여기서 시맨틱구조가 중요한데, 검색엔진이 태그의 이름을 보고 이 페이지가 무엇에 대한 페이지인지 알 수 있기 때문이다.예를 들어">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-11T09:37:20.299Z">
+<meta property="og:updated_time" content="2019-07-12T08:48:51.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Routing">
 <meta name="twitter:description" content="Angular RoutingSEO검색엔진최적화(Search Engine Optimization, SEO).검색로봇이 24시간을 전세계 사이트를 돌아다닌다.사이트들을 페이지별로 검색하고 다니면서 페이지의 HTML구조까지 들여다본다.여기서 시맨틱구조가 중요한데, 검색엔진이 태그의 이름을 보고 이 페이지가 무엇에 대한 페이지인지 알 수 있기 때문이다.예를 들어">
@@ -138,7 +138,10 @@
 <p>SEO가 적용되도록 만들려면 모든 페이지마다 고유한 URL을 가져야 한다.<br>Ajax의 경우 주소창이 변하지않는데, 그러면 모든 페이지가 주소가 하나이며, 검색엔진이 이게 한 페이지인지 열 페이지인지 알 수가 없다. 그래서 대부분의 SPA 애플리케이션은 라우터기능을 제공하고 있다. 단, SEO를 완전하게 충족시키려면 조금 다른 방법이 필요하다. 서버가 페이지를 제공해 주는 것이다. 앵귤러는 자체적으로 서버사이드 렌더링을 하기위한 모듈이 따로있고, 그것을 앵귤러 유니버설이라고 한다. 서버사이드렌더링으로 SPA를 구축하는 경우도 많고, 리액트도 그렇다. 리액트는 Next.js같은 서버사이드 렌더링을 지원해주는 프레임워크가 따로 있다.  </p>
 <p>애플리케이션은 웹사이트가 아니기때문에 SEO에 그렇게 민감하지 않아도 될 수도 있다.<br>그러나 <strong>정보성</strong>을 띈 웹 앱이라면 SEO가 중요하다.  </p>
 <h2 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h2><p>라우팅모듈은 <strong>라우팅에 대한 정보</strong>를 담는 모듈이다. 모든 라우팅을 관리한다.<br>라우팅모듈이 주소창을 계속 주시하고 있다가, 주소창의 path가 바뀌면 그에 해당하는 컴포넌트를 화면에 활성화시켜 화면 전환이 이루어진다. </p>
-<p>라우트를 구성하려면 모듈을 추가해주어야 하는데, <code>ng new</code> 로 앵귤러 프로젝트를 생성할 때 라우팅 옵션에 yes 라고 답하면 app-routing-module.ts 파일이 생성된다. </p>
+<p>라우트를 구성하려면 모듈을 추가해주어야 하는데, <code>ng new</code> 로 앵귤러 프로젝트를 생성할 때 라우팅 옵션에 yes 라고 답하면 app-routing-module.ts 파일이 생성된다.  </p>
+<ul>
+<li>또는 <code>ng g m 모듈이름 --routing</code> 을 하면 모듈과 함께 라우팅 모듈도 함께 생성된다.<br>라우팅모듈은 모듈이 가지고 있는 컴포넌트들의 라우팅을 관리한다.<br>라우팅모듈에는 필요한 컴포넌트들을 임포트 해주어야 하며, 라우트 구성을 작성해준다.<br>라우팅모듈은 라우팅을 사용하는 피쳐모듈이 임포트하고, 그 모듈은 루트모듈이 임포트한다.<br>루트모듈에 임포트할 때에는, 반드시 AppRoutingModule 이전에 등록해준다.  </li>
+</ul>
 <p>루트모듈에 라우팅모듈을 등록해준다.<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">'./app-routing.module'</span>;</span><br><span class="line"></span><br><span class="line">imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    AppRoutingModule </span><br><span class="line">  ],</span><br></pre></td></tr></table></figure></p>
 <p>라우팅 모듈은 다음과 같이 작성된다.<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; IndexComponent &#125; <span class="keyword">from</span> <span class="string">'./components/index.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ServiceComponent &#125; <span class="keyword">from</span> <span class="string">'./components/service.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AboutComponent &#125; <span class="keyword">from</span> <span class="string">'./components/about.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NotFoundComponent &#125; <span class="keyword">from</span> <span class="string">'./components/not-found.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 라우트 구성</span></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123; path: <span class="string">''</span>, redirectTo: <span class="string">'home'</span>, pathMatch: <span class="string">'full'</span> &#125;,</span><br><span class="line">  &#123; path: <span class="string">'home'</span>, component: IndexComponent &#125;,</span><br><span class="line">  &#123; path: <span class="string">'service'</span>, component: ServiceComponent &#125;,</span><br><span class="line">  &#123; path: <span class="string">'about'</span>, component: AboutComponent &#125;,</span><br><span class="line">  &#123; path: <span class="string">'**'</span>, component: NotFoundComponent &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  imports: [RouterModule.forRoot(routes)],</span><br><span class="line">  exports: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppRoutingModule &#123; &#125;</span><br></pre></td></tr></table></figure></p>
 <p>라우팅 모듈에는 라우트 구성이 등록된다.<br>객체로 이루어진 배열에서 path와 일치하는 컴포넌트를 찾아 화면에 활성화시켜준다.  </p>
@@ -189,10 +192,19 @@ data: { cart: true } => 이 컴포넌트에서는 카트를 표시해라.
     
 <nav id="article-nav">
   
+    <a href="/2019/07/12/0712/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
   
-    <a href="/2019/07/08/0708/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2019/07/08/template-form/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Module</div>
+      <div class="article-nav-title">Angular Template Driven Form</div>
     </a>
   
 </nav>

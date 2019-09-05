@@ -97,6 +97,105 @@
         
           <section id="main">
   
+    <article id="post-0611" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/11/0611/">SPA, Routing</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/06/11/0611/" class="article-date">
+	  <time datetime="2019-06-10T15:00:00.000Z" itemprop="datePublished">June 11, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+ 
+      <!--  -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SPA-Single-Page-Application"><a href="#SPA-Single-Page-Application" class="headerlink" title="SPA(Single Page Application)"></a>SPA(Single Page Application)</h2><p>앵귤러, 뷰, 리액트 등을 배우려면 SPA부터 잘 알아야 한다.  </p>
+<p>SPA는 페이지가 여러 개일지라도 <strong>HTML파일은 단 하나</strong>다. 자바스크립트는 하나일수도, 여러개일수도(웹팩으로 쪼갤 수 있다). 게다가 HTML파일에는 빈 태그가 있고, 그것을 루트태그라고 하는데 JS가 돌면서 루트태그 안에 view를 집어넣는다.<br><!-- Ajax를 쓸 때 생기는 여러 제약사항을 커버하기 위한 모던 웹 패러다임이다.??   --><br>HTML을 처음 부르면 리소스를 가져올텐데, 첫 페이지를 로딩하는 순간 모든 리소스를 한번에 다운로드하는 것이 기본이다. 그래서 <strong>첫 페이지 로딩이 느리다</strong>는 단점이 있다. 하지만 뒷 페이지부터는 화면을 갈아끼기만 하면 되므로 퍼포먼스가 좋다. SPA를 사용하는 가장 큰 이유는, <strong>사용자 경험</strong>이 일반 네이티브 앱과 비교할 때 손색이 없기 때문이다. <strong>부드러운 화면전환</strong>이 가능하다. 화면전환이라는 건 HTML을 완전히 새로 그린다는건데 쓸데없는 통신, 쓸데없는 렌더링이 발생한다. 화면이 깜빡하면 네이티브 앱처럼 동작하는 게 아니다.(엑셀이 화면깜빡거리지 않잖아) AJAX에서의 화면전환은 전부 다 그리는 게 아니라 필요한 부분만 그린다.<br><!-- 웹은 원래 문서 공유/문서 간 이동을 위해 만들어졌다. --></p>
+<p>a태그는 기본적으로 화면전환을 일으키는데, 이때 <code>e.preventDefault</code>를 써서 화면전환을 막고 Ajax 요청을 한다.<br>Ajax방식으로 하면 URL이 하나이기때문에 검색로봇이 검색할 수 없다 -&gt; 구글에서 아무리 찾아도 첫 페이지밖에 안 나온다.<br>이것이 <strong>SEO 이슈</strong>이다. 일반 웹 페이지에서 SEO이슈가 터지는 건 치명적이다. 검색이 안 되면 곤란하다. 근데 내부에서만 쓰는 웹 애플리케이션은 반대로 검색이 되면 곤란하다.<br>그리고 주소창이 안 바뀌면 SEO이슈뿐만 아니라 앞으로가기/뒤로가기가 안 되는 문제가 생긴다. 그래서 히스토리를 관리할 수 있는 HTML5 메소드가 나왔는데, HTML5니까 되는 브라우저도 있고 안 되는 브라우저도 있다.<br>웹 앱도 검색이 됐으면 좋겠다면 서버사이드 렌더링을 해야한다.<br>모든 것을 만족시키는 혁신적인 방법, 은탄환은 지금까지도 앞으로도 없다.  </p>
+<!-- 우선 결론적으로, 우리가 바닐라스크립트로 라우팅을 구현하기는 바람직하지 않고 매우 힘들다. 앵귤러 뷰 리액트 같은 것들로 하는 게 현명하다. 우리가 이보다 잘 만들 수는 없어... -->
+<ul>
+<li>웹 애플리케이션 vs 웹 페이지<br>일반적인 정보를 제공하는 단순한 페이지 = 웹 페이지<br>내가 페이지에서 어떤 일을 한다 = 웹 어플리케이션  </li>
+</ul>
+<h2 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h2><p>출발지와 목적지까지의 경로가 여러 개 있을 때, 경로를 결정하는 방식.<br>웹에서는 라우팅을 화면이동으로 이해한다.  </p>
+<ol>
+<li>주소창에 URL을 입력하거나  </li>
+<li>a태그를 클릭하거나  </li>
+<li>뒤로가기/앞으로가기를 클릭할 때  </li>
+</ol>
+<h2 id="SPA와-Routing"><a href="#SPA와-Routing" class="headerlink" title="SPA와 Routing"></a>SPA와 Routing</h2><ul>
+<li><p>전통적 링크방식<br>주소창을 바꾼다. 바뀐 주소를 서버에 요청하고, 그 요청에 대한 응답이 오면 화면을 새롭게 그린다.<br>검색엔진에 의해 검색당하려면 페이지들이 고유의 URL을 가지고 있어야 한다.<br>SEO이슈 없고 히스토리 관리 문제없고 구현도 쉽지만, 불필요한 퍼포먼스가 너무 많다.  </p>
+</li>
+<li><p>Ajax 방식<br>href 속성이 필요없다. 주소창이 바뀌지 않는다(동작을 막았으니까).<br>화면깜빡임이나 불필요한 리소스 요청, 렌더링이 없지만 자바스크립트 코딩을 해야 한다.<br>히스토리 관리가 안 되고, SEO이슈 발생. 게다가 리로딩하면 초기의 index 페이지로 돌아간다.<br>리로딩은 URL을 다시 보내는 것이기 때문이다.  </p>
+</li>
+<li><p>hash 방식<br>요청은 새로 보내지 않으면서 주소는 다르게 관리하는 방법.<br>기존 URL에서 해쉬가 바뀌어도 요청이 새로 발생하지 않는 것을 이용한 방법.<br>히스토리관리가 되지만, 주소창에 해쉬(#)가 들어가야하기때문에 보기에 좋지 않다.<br><code>#!</code>을 사용하기도 하는데 이를 해시뱅(Hash-bang)이라고 부른다.<br>load 이벤트 : 모든 리소스가 다 준비됐을 때<br>contentloaded 이벤트 : 돔이 완성됐을 때 -&gt; 로드 이벤트보다 먼저 발생  </p>
+</li>
+<li><p>Pjax 방식<br>hash 방식의 가장 큰 단점은 SEO 이슈이다. 이를 보완한 방법이 HTML5의 Histroy API인 pushState와 popstate 이벤트를 사용한 PJAX 방식이다. 리로드하면 서버에 REST API처럼 다시 요청이 간다. 서버에서 대응해줘야 할 필요가 있다. 백엔드의 협력이 필요하다.  </p>
+</li>
+</ul>
+<!-- 수퍼
+extend관계일때 super를 불러줘야한다. 부모가 this를 만들어서 자식에게 주면 그것을 자식이 이어서쓴다
+부모가 빈 객체를 this에 바인딩하고 name을 세팅한 뒤 this를 리턴하면 
+super가 this를 리턴하는데 그것이 자식의 this로 들어간다
+this는 name을 가지고있는 인스턴스이고, 거기에다가 grade를 추가.
+이때 human과 student가 프로토타입체인이 구성되어서 메소드도 상속받는다
+Student 는 클래스지만 클래스도 함수니까 프로토타입도 생김.
+
+```javascript
+class Human {
+  constructor(name) {
+    this.name = name;
+  }
+
+  speak() {
+    console.log('집에가고싶다');
+  }
+}
+
+class Student extends Human {
+  constructor(name, grade) {
+    super(name);
+    this.grade = grade;
+  }
+}
+``` -->
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-0607" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -181,111 +280,11 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-0605" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/06/05/0605/">실행컨텍스트</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/06/05/0605/" class="article-date">
-	  <time datetime="2019-06-04T15:00:00.000Z" itemprop="datePublished">June 5, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="실행-컨텍스트"><a href="#실행-컨텍스트" class="headerlink" title="실행 컨텍스트"></a>실행 컨텍스트</h2><p>컨텍스트는 문맥이라는 뜻. 코드에도 맥락이 있다.<br><!-- 식별자하면 선언이라는 키워드를 떠올려야함.(단, 프로퍼티는 식별자라고 잘 불리지않음. 식별자는 스코프체인에서 찾지만,프로퍼티는 프로토타입체인에서 찾기때문) --><br>실행 컨텍스트는 <strong>자바스크립트엔진의 동작원리</strong>와 밀접한 관련이 있다.<br>모든 실행 가능한 코드는 우선 평가 과정을 거치면서 실행을 위한 준비를 해야한다. 실행 컨텍스트는 실행 가능한 코드를 평가하고 실행하기 위한 환경이다. 이 실행 컨텍스트는 코드 평가 과정에서 생성되고, 코드 내 선언문이 평가되어 그 결과가 실행컨텍스트에 등록된다.<br>실행 가능한 코드는 4가지 유형이 있다.  </p>
-<ol>
-<li>전역코드 - 전역에 존재하는 텍스트 코드.  </li>
-<li>함수코드 - 함수 내부에 존재하는 텍스트 코드.  </li>
-<li>eval 코드 - eval 함수에 인수로 전달된 텍스트 코드.  </li>
-<li>모듈코드 - 모듈 내부에 존재하는 텍스트 코드.  <!-- 우리는 전역코드와 함수코드에 집중하자. 코드별로 컨텍스트가 따로다.   -->
-</li>
-</ol>
-<h3 id="전역코드"><a href="#전역코드" class="headerlink" title="전역코드"></a>전역코드</h3><p><strong>전역스코프</strong>를 생성하고 전역객체와 연결되어야 한다.<br>(전역객체는 브라우저를 열자마자 생성되며, 프로퍼티와 메소드, WEB API, 변수들이 들어있다.)<br>var 키워드로 선언된 변수는 전역객체와 전역스코프에 들어가지만 let, const 는 전역스코프에만 들어간다<br>-&gt; 그래서 윈도우에서 참조못한다.<br>-&gt; declarative environment record 에 들어가있다.<br><!-- (전역 스코프와 전역 객체가 어떻게 다르더라...) --><br>전역코드평가를 통해 <strong>전역실행컨텍스트</strong>가 생성된다.  </p>
-<h3 id="함수코드"><a href="#함수코드" class="headerlink" title="함수코드"></a>함수코드</h3><p><strong>지역스코프</strong>를 만든다. 지역스코프는 전역스코프를 가장 최상위로 하는 스코프체인의 일원으로 등록되어야 한다.<br>함수 코드가 평가되면 <strong>함수실행컨텍스트</strong>가 생성된다.</p>
-<p>두 코드는실행컨텍스트의 내용, 즉 하는 일이 다르다. </p>
-<ul>
-<li><p>평가와 실행은 다르다<br>어떤 코드가 실행되기 위해서는 평가단계를 거친다. 평가의 아웃풋이 실행컨텍스트이다. 평가를 하면 실행컨텍스트가 만들어진다. 선언문들만 뽑아서 먼저 실행하는걸 코드평가라고 한다 -&gt; 변수선언때 배웠다!<br>실행컨텍스트를 만들어서 선언문을 실행한 결과로 만들어진 식별자를 등록한다.<br>그리고 런타임이 시작돼서 선언문을 제외한 코드가 실행 된다. -&gt; 값이 할당되고 연산도 가능해진다  </p>
-</li>
-<li><p>변수의 선언과 할당을 실행 컨텍스트로 이해하기<br>전역 코드가 평가될 때 전역 실행컨텍스트가 생성되고 x라는 식별자를 등록한다. 전역실행컨텍스트를 객체라고 생각하자. 실제로 객체이기도 하고. 그 안에 프로퍼티와 값이 있다. 식별자 x만을 등록할 순 없고 값을 줘야하는데, 할당 전에 먼저 undefined를 값으로 넣어둔다. 그게 호이스팅이었다!<br>할당은 식별자와 값을 바인딩하는 것이다. 그럼 먼저 식별자를 찾아야 하는데, 전역실행컨텍스트에서 식별자를 찾는다. 만약 없다면 레퍼런스에러가 난다. 식별자를 찾은 후엔 값을 할당한다. 할당이라는 코드실행결과 역시 실행컨텍스트에서 관리된다. 사실 이보단 더 복잡하지만.. 일단 개요를 말하자면 그렇다.<br>변수를 선언한다는 건, 변수명을 실행컨텍스트에 등록하여 자바스크립트엔진이 관리하도록 하는 것이다.<br>-&gt; (실행컨텍스트야 너가 이 식별자 좀 가지고 있어 관리좀 하게) </p>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 전역 변수 선언</span></span><br><span class="line"><span class="keyword">const</span> x = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> y = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 함수 정의</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 지역 변수 선언</span></span><br><span class="line">  <span class="keyword">const</span> x = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">const</span> y = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 메소드 호출</span></span><br><span class="line">  <span class="built_in">console</span>.log(a + x + y); <span class="comment">// 130</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 함수 호출</span></span><br><span class="line">foo(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 메소드 호출</span></span><br><span class="line"><span class="built_in">console</span>.log(x + y); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
-<p>전역객체가 일단 존재하고, 전역코드가 평가되면 전역실행컨텍스트가 생성된다. 전역의 const 변수 x, y 선언문을 평가하여 실행컨텍스트에 등록한다. foo 함수 선언문을 평가하여 foo 함수 객체를 등록한다(이때 내부 코드는 아직 평가되지 않았다!).<br>코드가 실행되면 전역 const x, y에 1, 2를 할당하고 foo 함수를 건너뛰어 foo 함수 호출문으로 간다. 함수가 호출되어 함수 내부로 들어간다. 이제 함수코드가 평가되고 함수실행컨텍스트가 만들어진다. x, y, a를 등록한다. <strong>(arguments 객체도 있다!)</strong> 함수코드가 실행이 되면 10, 20, 100 을 할당하고 콘솔로그를 찍으러 간다. 콘솔은 전역객체에서 찾을 수 있다. 함수 실행컨텍스트에서 모든 식별자를 참조할 수 있으므로 130이라는 결과가 출력된다. foo 함수 실행이 끝나면 전역코드로 나와 콘솔을 실행한다. 이때는 전역실행컨텍스트에서 x, y 를 찾아 3이 출력된다.  </p>
-<h2 id="실행컨텍스트-스택"><a href="#실행컨텍스트-스택" class="headerlink" title="실행컨텍스트 스택"></a>실행컨텍스트 스택</h2><p>전역 코드를 실행할 때 함수 호출을 만나면 전역 코드 실행을 멈추고 함수 코드를 실행한다. 함수 코드를 실행하고 나면 다시 전역 코드로 돌아와야 하는데, 어떻게 돌아올까? 멈춘 곳에서부터 다시 코드를 실행하는 매커니즘이 실행 컨텍스트 스택이다.<br><!-- (이거 콜스택이야!) --><br>평가 전에 이미 전역객체는 실행 컨텍스트 스택에 만들어져 있다. 그래야 평가했을때 var 변수를 전역객체의 프로퍼티로 넣을 수 있으니까. 그리고 항상 스택의 맨 밑에 깔려있다. 전역실행컨텍스트은 종료될 수 없고, 브라우저를 끄지않는 한 살아있다. 스택의 맨 위에 있는 실행컨텍스트는 현재 실행중인 실행컨텍스트이다. 이렇게 스택에 쌓이는 매커니즘으로 자기가 어디로 돌아가야 할지를 알게된다. 현재 실행중인 실행컨텍스트, 즉 최상위의 실행컨텍스트가 실행을 마치고 사라지면 그 다음 실행컨텍스트로 컨트롤이 이동하는것이다.  </p>
-<h2 id="렉시컬-환경-중요"><a href="#렉시컬-환경-중요" class="headerlink" title="렉시컬 환경(중요)"></a>렉시컬 환경(중요)</h2><p>이것이 바로 스코프. 실행 컨텍스트가 하나의 심플한 객체로 만들어진 게 아니라 복잡한 구조로 만들어져있다. 식별자가 선언되는 환경. 좀 더 정확히 얘기하면 환경레코드가 스코프이다. 렉시컬환경은 실행컨텍스트 소속이다.  </p>
-<p>실행 컨텍스트는 <strong>LexicalEnvironment 컴포넌트와 VariableEnvironment 컴포넌트</strong>로 구성된다. 실행컨텍스트가 이 두 개의 프로퍼티를 가지고 있다. 처음엔 동일한 렉시컬환경객체를 가리킨 상태에서 시작함. 렉시컬환경은 3개의 프로퍼티를 가진다.  </p>
-<ol>
-<li>환경레코드: 식별자와 값을 관리한다  </li>
-<li>외부렉시컬환경에대한참조: 상위스코프에 대한 참조 -&gt; 클로저와 연결  </li>
-<li>this바인딩: 메소드를 이용한 this 결정  </li>
-</ol>
-<pre><code class="javascript"><span class="keyword">var</span> x = <span class="number">1</span>;
-<span class="keyword">const</span> y = <span class="number">2</span>;
-
-<span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params">a</span>) </span>{
-  <span class="keyword">var</span> x = <span class="number">3</span>;
-  <span class="keyword">const</span> y = <span class="number">4</span>;
-
-  <span class="function"><span class="keyword">function</span> <span class="title">bar</span> (<span class="params">b</span>) </span>{
-    <span class="keyword">const</span> z = <span class="number">5</span>;
-    <span class="built_in">console</span>.log(a + b + x + y + z);
-}
-  bar(<span class="number">10</span>);
-}
-
-foo(<span class="number">20</span>); <span class="comment">// 42</span>
-</code></pre>
-<p>함수는 자기가 정의된 곳에서 평가 된다. 어디에서 정의되었는지에 따라 상위스코프가 결정된다.<br>함수가 상위스코프를 기억하는 방법? -&gt; 함수가 평가될 때 실행중인 실행컨텍스트를 기억한다.<br>-&gt; 이것을 외부렉시컬환경참조에다가 넣는다<br>bar는 foo가 평가될 때 만들어진다. 함수는 객체니까 프로퍼티가 있고, 외부에 공개되지않는 <code>[[environment]]</code>라는 내부슬롯에 자기의 상위스코프를 항상 들고다닌다 -&gt; 이것이 클로저<br>자기의 직속상위스코프만 알고있으면 더 위의 스코프까지 알 수 있다.<br>이론적으로 자바스크립트의 모든 함수는 자신의 상위스코프를 기억하는 클로저이다.  </p>
-<!-- 화살표함수는 this가 없고 렉시컬this를 참조할수있음.
-흡사 화살표함수.bind(this) 와 같다. 즉 상위의 this를 바인딩.
-
-할당을 위해 식별자를 찾을떄, 현재실행중인 실행컨텍스트에서 찾는다.
-
-연산을 위해 식별자를 찾을때 현재실행중인 실행컨텍스트에서부터 찾고, 없으면 현재실행컨텍스트의 외부참조를 따라 올라가서 찾는다.  -->
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/5/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/7/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/5/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/7/">Next</a>
   </nav>
 
 </section>
@@ -305,6 +304,18 @@ foo(<span class="number">20</span>); <span class="comment">// 42</span>
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/07/12/0712/">(no title)</a></h6>
+              <span>July 12, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/07/10/0710/">Routing</a></h6>
               <span>July 10, 2019</span>
             </div>
@@ -317,7 +328,7 @@ foo(<span class="number">20</span>); <span class="comment">// 42</span>
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/07/08/0708/">Module</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/07/08/template-form/">Angular Template Driven Form</a></h6>
               <span>July 8, 2019</span>
             </div>
 
@@ -329,7 +340,7 @@ foo(<span class="number">20</span>); <span class="comment">// 42</span>
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/07/08/template-form/">Angular Template Driven Form</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/07/08/0708/">Module</a></h6>
               <span>July 8, 2019</span>
             </div>
 
@@ -359,18 +370,6 @@ foo(<span class="number">20</span>); <span class="comment">// 42</span>
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/25/0625/">생명주기, 서비스, RxJS</a></h6>
-              <span>June 25, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -380,7 +379,7 @@ foo(<span class="number">20</span>); <span class="comment">// 42</span>
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -390,7 +389,7 @@ foo(<span class="number">20</span>); <span class="comment">// 42</span>
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -401,7 +400,7 @@ foo(<span class="number">20</span>); <span class="comment">// 42</span>
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

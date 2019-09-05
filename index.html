@@ -97,6 +97,50 @@
         
           <section id="main">
   
+    <article id="post-0712" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+    <div class="article-meta">
+      
+	<a href="/2019/07/12/0712/" class="article-date">
+	  <time datetime="2019-07-12T08:48:44.902Z" itemprop="datePublished">July 12, 2019</time>
+	</a>
+
+       
+      <!--  -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Guard"><a href="#Guard" class="headerlink" title="Guard"></a>Guard</h2><p>가드는 서비스이다.</p>
+<p><code>ng g g Auth</code></p>
+<p>CanActivate - 커뮤니티컴포넌트를 활성화시킬수있는지 아닌지를 결정<br>implements 하여 구현할때 반드시 boolean 반환<br>false 일때, 컴포넌트의 활성화를 막는다.<br>라우트 구성의 객체에 CanActivate: [AuthGuard] 를 추가해준다.<br>CanActivateChild<br>CanLoad</p>
+<h2 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h2><p>기본적으로 클라이언트와 서버는 요청과 응답, 한 싸이클.<br>요청은 반드시 응답으로 이어진다.<br>서버는 어디서 요청이 왔는지 기억하지 않는다.<br>웹서버는 기본적으로 stateless 이다. 클라이언트의 상태를 관리하지 않는다.<br>이때 문제는, 내가 한번 로그인했을때 요청을 받으면<br>서버는 내가 로그인 했다는 상태를 기억하지 않는다. 로그인을 해도 서버는 몰라<br>즉 서버는 로그인처리가 되지 않는다. </p>
+<p>로그인을 가능하게 하는 것에는 역사가 있는데,<br>가장 올드한 방법은 쿠키라는 작은 파일이다.<br>클라이언트가 요청을 보내면, 서버가 세션아이디를 따서 보낸다<br>클라이언트는 그 아이디를 쿠키에 적어서, 다음부터는 서버에 쿠키를 넘긴다.<br>서버는 세션아이디를 기억하고 있으며, 쿠키가 올때마다 비교해서 로그인된상태인지 확인한다.<br>이 경우 서버는 stateful 상태가 된다.<br>문제는, 서버가 기억을 해야하며, 클라이언트도 기억을 해야하므로 일이 많아진다. </p>
+<p>이제는 JWT를 쓰는데,<br>서버가 stateless 가 될 수 있고, 클라이언트는 토큰을 기억한다.<br>서버가 준 정보가 암호화가 되어있으므로, 해킹당해도 보안가능.<br>인증서와같은 토큰을 만들어 클라이언트에 보낸다. 클라이언트는 그 인증서를 볼 수 없다. 암호화가 되어있기 때문이다. 클라이언트는 토큰을 잃어버려서는 안된다. 다시 로그인해야하니까.<br>기억하는 방법은, 로컬스토리지에 넣든가 쿠키에 저장하든가.<br>서버에서 토큰이 날라오면 로컬스토리지에 넣을 수 있고, 누가 가져가도 암호화되어있으니 노상관.</p>
+<p>토큰은 무의미한 스트링처럼 보인다.<br>헤더, 페이로드, 유효성식별(이 정보가 유효한지)로 나누어져있다<br>유효성식별에는, 서버가 클라이언트에게 주는 키가 있고, 이 키로 암호를 풀 수 있다. </p>
+<p>JWT에는 유효기간이 있다. 한번 로그인하면 앞으로 로그인할필요 없는경우가 유효기간이 긴 것이다. 보안에 자신있으면 길게 하고 아니면 짧게.</p>
+<p>토큰을 로컬에 저장하는 이유는</p>
+<ol>
+<li>restapi중에 헤더에 토큰없이 요청이왔을때 튕겨내는 것들이 있기 때문.(서버에인증)</li>
+<li>AuthGuard 제어(화면제어)</li>
+</ol>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+      
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-0710" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -129,7 +173,10 @@
 <p>SEO가 적용되도록 만들려면 모든 페이지마다 고유한 URL을 가져야 한다.<br>Ajax의 경우 주소창이 변하지않는데, 그러면 모든 페이지가 주소가 하나이며, 검색엔진이 이게 한 페이지인지 열 페이지인지 알 수가 없다. 그래서 대부분의 SPA 애플리케이션은 라우터기능을 제공하고 있다. 단, SEO를 완전하게 충족시키려면 조금 다른 방법이 필요하다. 서버가 페이지를 제공해 주는 것이다. 앵귤러는 자체적으로 서버사이드 렌더링을 하기위한 모듈이 따로있고, 그것을 앵귤러 유니버설이라고 한다. 서버사이드렌더링으로 SPA를 구축하는 경우도 많고, 리액트도 그렇다. 리액트는 Next.js같은 서버사이드 렌더링을 지원해주는 프레임워크가 따로 있다.  </p>
 <p>애플리케이션은 웹사이트가 아니기때문에 SEO에 그렇게 민감하지 않아도 될 수도 있다.<br>그러나 <strong>정보성</strong>을 띈 웹 앱이라면 SEO가 중요하다.  </p>
 <h2 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h2><p>라우팅모듈은 <strong>라우팅에 대한 정보</strong>를 담는 모듈이다. 모든 라우팅을 관리한다.<br>라우팅모듈이 주소창을 계속 주시하고 있다가, 주소창의 path가 바뀌면 그에 해당하는 컴포넌트를 화면에 활성화시켜 화면 전환이 이루어진다. </p>
-<p>라우트를 구성하려면 모듈을 추가해주어야 하는데, <code>ng new</code> 로 앵귤러 프로젝트를 생성할 때 라우팅 옵션에 yes 라고 답하면 app-routing-module.ts 파일이 생성된다. </p>
+<p>라우트를 구성하려면 모듈을 추가해주어야 하는데, <code>ng new</code> 로 앵귤러 프로젝트를 생성할 때 라우팅 옵션에 yes 라고 답하면 app-routing-module.ts 파일이 생성된다.  </p>
+<ul>
+<li>또는 <code>ng g m 모듈이름 --routing</code> 을 하면 모듈과 함께 라우팅 모듈도 함께 생성된다.<br>라우팅모듈은 모듈이 가지고 있는 컴포넌트들의 라우팅을 관리한다.<br>라우팅모듈에는 필요한 컴포넌트들을 임포트 해주어야 하며, 라우트 구성을 작성해준다.<br>라우팅모듈은 라우팅을 사용하는 피쳐모듈이 임포트하고, 그 모듈은 루트모듈이 임포트한다.<br>루트모듈에 임포트할 때에는, 반드시 AppRoutingModule 이전에 등록해준다.  </li>
+</ul>
 <p>루트모듈에 라우팅모듈을 등록해준다.<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; AppRoutingModule &#125; <span class="keyword">from</span> <span class="string">'./app-routing.module'</span>;</span><br><span class="line"></span><br><span class="line">imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    AppRoutingModule </span><br><span class="line">  ],</span><br></pre></td></tr></table></figure></p>
 <p>라우팅 모듈은 다음과 같이 작성된다.<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Routes, RouterModule &#125; <span class="keyword">from</span> <span class="string">'@angular/router'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; IndexComponent &#125; <span class="keyword">from</span> <span class="string">'./components/index.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; ServiceComponent &#125; <span class="keyword">from</span> <span class="string">'./components/service.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AboutComponent &#125; <span class="keyword">from</span> <span class="string">'./components/about.component'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NotFoundComponent &#125; <span class="keyword">from</span> <span class="string">'./components/not-found.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 라우트 구성</span></span><br><span class="line"><span class="keyword">const</span> routes: Routes = [</span><br><span class="line">  &#123; path: <span class="string">''</span>, redirectTo: <span class="string">'home'</span>, pathMatch: <span class="string">'full'</span> &#125;,</span><br><span class="line">  &#123; path: <span class="string">'home'</span>, component: IndexComponent &#125;,</span><br><span class="line">  &#123; path: <span class="string">'service'</span>, component: ServiceComponent &#125;,</span><br><span class="line">  &#123; path: <span class="string">'about'</span>, component: AboutComponent &#125;,</span><br><span class="line">  &#123; path: <span class="string">'**'</span>, component: NotFoundComponent &#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  imports: [RouterModule.forRoot(routes)],</span><br><span class="line">  exports: [RouterModule]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppRoutingModule &#123; &#125;</span><br></pre></td></tr></table></figure></p>
 <p>라우팅 모듈에는 라우트 구성이 등록된다.<br>객체로 이루어진 배열에서 path와 일치하는 컴포넌트를 찾아 화면에 활성화시켜준다.  </p>
@@ -182,89 +229,11 @@ data: { cart: true } => 이 컴포넌트에서는 카트를 표시해라.
 <!-- Table of Contents -->
 
   
-    <article id="post-0708" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/07/08/0708/">Module</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/07/08/0708/" class="article-date">
-	  <time datetime="2019-07-07T15:00:00.000Z" itemprop="datePublished">July 8, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Angular-NgModule"><a href="#Angular-NgModule" class="headerlink" title="Angular NgModule"></a>Angular NgModule</h1><p>모듈은 컴포넌트를 가지고 있다.  </p>
-<p>Angular의 큰 덩어리 하나하나가 합쳐져 하나의 모듈이 된다.<br>키워드: <strong>재사용성</strong>. 같은 기능을 하나로 합친다.  </p>
-<ul>
-<li>Angular의 모듈<ol>
-<li><strong>기능모듈</strong>  <ul>
-<li>프론트에게 가장 중요한 건 화면이다.  </li>
-</ul>
-</li>
-<li><strong>공유모듈</strong><ul>
-<li>여러 화면에 쓰이는 공유모듈은 shared라는 이름으로 만들어주는게 통상적이다. 기능모듈이 공유모듈을 import 한다.  </li>
-</ul>
-</li>
-<li><strong>코어모듈</strong>  <ul>
-<li>서비스 위주이다.  </li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h2 id="About-Module"><a href="#About-Module" class="headerlink" title="About Module"></a>About Module</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  declarations: [</span><br><span class="line">    AppComponent</span><br><span class="line">  ],</span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule</span><br><span class="line">  ],</span><br><span class="line">  providers: [],</span><br><span class="line">  bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123; &#125;</span><br></pre></td></tr></table></figure>
-<p>데코레이터의 인자는 <strong>메타데이터 객체</strong>이다. 메타데이터 객체에는 컴퓨터에게 알려주는 정보들이 담겨있다. 메타데이터 객체 안의 정보를 전달하여 데코레이터가 장식하는 클래스의 인스턴스가 만들어질 때 관여한다. 위의 상황에서는 AppModule 인스턴스가 만들어질 때 메타데이터 객체가 필요한 것이다.  </p>
-<p>가장 중요한 부분은 <strong>선언부(declarations)</strong>이다. 이 부분에는 우리가 만드는 모든 컴포넌트, 모든 파이프, 모든 디렉티브를 나열하여준다. 그러면 루트모듈이 관장하는 전체 애플리케이션에서 루트모듈 선언부에 등록된 것들이 사용가능해진다. </p>
-<p><strong>imports</strong>에서는 루트모듈이 사용하는 <strong>모듈</strong>을 쓴다. 모듈은 모듈을 사용할 수 있다. 루트모듈이 기능모듈과 코어모듈을 임포트하여 쓴다고 했듯이. 루트모듈은 <code>BrowserModule</code> 을 사용하고있는데, BrowserModule 은 루트모듈에 반드시 들어가있어야한다. BrowserModule 은 브라우저에서 동작하는 애플리케이션을 만들 때 필요한 모듈들을 모아놓은 것이다. 코어모듈을 자체적으로 임포트하고 있는데, 그 코어모듈안에는 ngIf, ngFor 같은 디렉티브들이 들어가있다. BrowserModule 은 루트모듈에만 정의해두면된다. 추후에 만들 모듈에는 BrowserModule 이 아닌 <code>CommonModule</code> 만 있다. CommonModule 은 코어모듈의 디렉티브들을 지원하는 것들이 있다. </p>
-<p><strong>providers</strong>는 서비스만 써준다. 요즘에는 역할이 무색해졌는데, Angular6로 넘어오면서 Injectable 데코레이터에 <code>provideIn</code> 이 생기면서 여기에 서비스를 써줄 수 있게 되었기 때문이다. 만약 provideIn 에 쓰지 않으면 providers에 적어주면 된다. </p>
-<p>루트모듈은  <code>bootstrap: [AppComponent]</code> 를 갖고있어야 한다. Angular 애플리케이션을 가동하면 루트모듈이 돌면서 필요한 모듈이나 컴포넌트, 디렉티브를 불러모으는데, 가장 먼저 실행하는 것이 모든 컴포넌트들의 부모인 <strong>App Component 를 발화</strong>하는 것이다. 즉, 진입점인 App Component 가 뜨지 않으면 다른 컴포넌트들도 다 뜨지 않는다. 루트컴포넌트가 발화하면 루트컴포넌트의 템플릿에 쓰여진 내용이 가장 먼저 기동된다. 보통 라우터를 먼저 쓴다. </p>
-<!-- 서비스내의 providedIn 이 있으니까 모듈에 따로 안 넣어도 되고, root 라는 말은 전역에서 사용할 수 있는 서비스라는 뜻이다. 
-root 를 코어모듈로 바꿔주면 된다. 
-
-exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/2/">Next</a>
   </nav>
 
 </section>
@@ -284,6 +253,18 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
               <div class="widget-entry-summary" style="margin: 0;">
             
 
+              <h6 style="margin: 0;"><a href="/2019/07/12/0712/">(no title)</a></h6>
+              <span>July 12, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
               <h6 style="margin: 0;"><a href="/2019/07/10/0710/">Routing</a></h6>
               <span>July 10, 2019</span>
             </div>
@@ -296,7 +277,7 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/07/08/0708/">Module</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/07/08/template-form/">Angular Template Driven Form</a></h6>
               <span>July 8, 2019</span>
             </div>
 
@@ -308,7 +289,7 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/07/08/template-form/">Angular Template Driven Form</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/07/08/0708/">Module</a></h6>
               <span>July 8, 2019</span>
             </div>
 
@@ -338,18 +319,6 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/25/0625/">생명주기, 서비스, RxJS</a></h6>
-              <span>June 25, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -359,7 +328,7 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -369,7 +338,7 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -380,7 +349,7 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
