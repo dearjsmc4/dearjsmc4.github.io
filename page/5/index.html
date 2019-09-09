@@ -97,6 +97,77 @@
         
           <section id="main">
   
+    <article id="post-0617" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/06/17/0617/">Generic, Angular</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/06/17/0617/" class="article-date">
+	  <time datetime="2019-06-16T15:00:00.000Z" itemprop="datePublished">June 17, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
+ 
+      <!--  -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="제네릭"><a href="#제네릭" class="headerlink" title="제네릭"></a>제네릭</h2><p>shift, unshift, pop, push 등은 원본 배열을 변형시키기 때문에 잘 쓰지 않는다.<br>pop과 push 의 대체문법은 concat, […todos, {…}] -&gt; 순서만 바꾸면 shift, unshift를 대체가능하다.<br>위의 네 가지는 쓸 필요도 없고 안 쓰는 것이 좋다.  </p>
+<!-- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span> </span>&#123;</span><br><span class="line">  protected data = []; <span class="comment">// data: any[]</span></span><br><span class="line"></span><br><span class="line">  push(item) &#123;</span><br><span class="line">    <span class="keyword">this</span>.data.push(item); </span><br><span class="line">    <span class="comment">// 뭘 넣을지 모르기때문에 배열도 any타입.</span></span><br><span class="line">    <span class="comment">// 여기에서 타입을 지정해주는 순간 모든 프로퍼티가 영향받는다</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pop() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.data.shift();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> queue = <span class="keyword">new</span> Queue();</span><br><span class="line"></span><br><span class="line">queue.push(<span class="number">0</span>);</span><br><span class="line">queue.push(<span class="string">'1'</span>); <span class="comment">// 의도하지 않은 실수!</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(queue.pop().toFixed()); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">console</span>.log(queue.pop().toFixed()); <span class="comment">// Runtime error</span></span><br></pre></td></tr></table></figure>
+<p>원래 배열은 똑같은 타입의 요소만을 나열하는 것이 정석이다. 배열을 쓴다는 것은 순회하겠다는 의미이다. 순회하면서 똑같은 처리를 연속적으로 하겠다는 의미. 그런데 타입이 다르면 문제가 생긴다. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NumberQueue</span> <span class="keyword">extends</span> <span class="title">Queue</span> </span>&#123;</span><br><span class="line">  <span class="comment">// number 타입의 요소만을 push한다.</span></span><br><span class="line">  push(item: number) &#123;</span><br><span class="line">    <span class="keyword">super</span>.push(item); <span class="comment">// 부모 클래스의 push 함수를 그대로 쓰겠다.</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pop(): number &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">super</span>.pop();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>그래서 숫자만 넣을 수 있는 클래스를 따로 만들었다!<br>근데 이런일 있을때마다 클래스 몽땅 새로 만들 수는 없잖아, 그래서 제네릭이 나왔다.  –&gt;</p>
+<p><strong>제네릭</strong>은 <strong>타입 매개변수</strong>라고 한다. 타입을 외부에서 결정하게 한다. 정의할 때에 타입을 결정할 수 없다면 실행할 때에 타입을 결정할 수 있게.  </p>
+<!-- `const numberQueue = new Queue<number>();`
+number 는 T로 넘어간다.  
+~하나의 클래스로 여러가지 타입에 대응하는 큐를 만들 수 있게 되었다~ -->
+<p>제네릭은 함수에도 쓸 수 있다.  </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 어떤 타입의 배열을 매개변수로 받아서 어떤 타입의 배열을 반환하겠다.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span>&lt;<span class="title">T</span>&gt;(<span class="params">items: T[]</span>): <span class="title">T</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> items.reverse();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// implements 가능 -&gt; 얘가 제일 낫다</span></span><br><span class="line"><span class="keyword">interface</span> User = &#123;</span><br><span class="line">  name: <span class="built_in">string</span>,</span><br><span class="line">  age?: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 순수하게 타입만 만든다</span></span><br><span class="line"><span class="keyword">type</span> User = &#123;</span><br><span class="line">  name: <span class="built_in">string</span>,</span><br><span class="line">  age?: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 인스턴스를 생성하지 않는 클래스는 이상하다! </span></span><br><span class="line"><span class="keyword">class</span> User &#123;</span><br><span class="line">  name: <span class="built_in">string</span>,</span><br><span class="line">  age?: <span class="built_in">number</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span>&lt;<span class="title">T</span>&gt;(<span class="params">items: T[]</span>): <span class="title">T</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> items.reverse();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arg = [&#123; name: <span class="string">'Lee'</span> &#125;, &#123; name: <span class="string">'Kim'</span> &#125;, &#123; name: <span class="string">'Park'</span>, age: <span class="number">20</span> &#125;];</span><br><span class="line"><span class="comment">// 인수에 의해 타입 매개변수가 결정된다.</span></span><br><span class="line"><span class="keyword">const</span> reversed = reverse(arg);</span><br><span class="line"><span class="built_in">console</span>.log(reversed); <span class="comment">// [ &#123; name: 'Kim' &#125;, &#123; name: 'Lee' &#125; ]</span></span><br></pre></td></tr></table></figure>
+<h2 id="Angular-template"><a href="#Angular-template" class="headerlink" title="Angular - template"></a>Angular - template</h2><h3 id="템플릿"><a href="#템플릿" class="headerlink" title="템플릿"></a>템플릿</h3><p>사실 HTML이 아니고 문자열이다. 그 안에 템플릿 문법이 포함되어 있다. 템플릿은 컴파일되어 뷰를 만든다.  </p>
+<p><strong>데이터바인딩</strong>:<br>템플릿과 컴포넌트 클래스를 연결시키겠다는 의미. 템플릿이 컴포넌트 클래스에서 필요한 데이터를 가져와서 바인딩한다. 프로퍼티는 표현식이므로 템플릿 문법에 포함될 수 있다. 이때 자동적으로 프로퍼티 표현식은 문자열로 변환된다. 데이터가 HTML과 합쳐져서 우리가 원하는 뷰가 만들어진다. 결국 뷰는 HTML 과 CSS 로 만들어져야한다. 컴포넌트는 뷰를 만들기 위한 데이터를 제공한다.  </p>
+<p>앵귤러는 <strong>MVW</strong> 이다. Model, View, Whatever(아무거나)(ㅋㅋㅋㅋ)<br><!-- DOM을 만들기 위해 모델을 가지고 있는데, 모델은 컴포넌트에 가지고 있을수도 있고 서비스나 디렉티브에 가지고 을수도 있다. --><br>템플릿과 연동하여 뷰(DOM)을 만든다. 템플릿이 일방적으로 데이터를 끌어간다. 왜냐면 컴포넌트 클래스는 템플릿을 모르기 때문이다.<br>그러나 이벤트 발생 시에는 다른데, 브라우저에서 이벤트가 발생하면 이벤트 핸들러를 통해 컴포넌트 클래스로 연결된다. 이벤트는 상태변화를 나타낸다. 상태변화는 DOM에서 발생하고, 모델은 할 일을 수행한다. 뷰를 다시 만들 때에는, 바뀐 부분만 다시 만들어야 한다.  </p>
+<h2 id="Data-Binding"><a href="#Data-Binding" class="headerlink" title="Data Binding"></a>Data Binding</h2><p>자바스크립트가 HTML에 의존하지 않는 방식이 필요하다!<br>데이터바인딩의 핵심은, 템플릿이 주도권을 갖는다는 것.<br>템플릿은 컴포넌트 클래스의 클래스 필드를 참조하며 필요한 데이터를 가져온다.<br>컴포넌트 클래스는 자기 일만 묵묵히 하면 된다.  </p>
+<ul>
+<li>왜 이벤트바인딩은 템플릿 -&gt; 컴포넌트클래스 방향인가?<br>DOM 이벤트는 view에서 발생하기 때문.  <!-- 뷰의 돔이벤트가 발생하면 데이터가 바뀌었겠거니 하고 생각한다.  
+timer함수나 ajax통신도 마찬가지. 데이터가 바뀔 가능성이 높다.   -->
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/typescript/">Typescript</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-0614" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -219,110 +290,11 @@ shadowDom: 나중에 컴포넌트가 합쳐졌을때 다른 컴포넌트의 간�
 <!-- Table of Contents -->
 
   
-    <article id="post-0611" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/06/11/0611/">SPA, Routing</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/06/11/0611/" class="article-date">
-	  <time datetime="2019-06-10T15:00:00.000Z" itemprop="datePublished">June 11, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="SPA-Single-Page-Application"><a href="#SPA-Single-Page-Application" class="headerlink" title="SPA(Single Page Application)"></a>SPA(Single Page Application)</h2><p>앵귤러, 뷰, 리액트 등을 배우려면 SPA부터 잘 알아야 한다.  </p>
-<p>SPA는 페이지가 여러 개일지라도 <strong>HTML파일은 단 하나</strong>다. 자바스크립트는 하나일수도, 여러개일수도(웹팩으로 쪼갤 수 있다). 게다가 HTML파일에는 빈 태그가 있고, 그것을 루트태그라고 하는데 JS가 돌면서 루트태그 안에 view를 집어넣는다.<br><!-- Ajax를 쓸 때 생기는 여러 제약사항을 커버하기 위한 모던 웹 패러다임이다.??   --><br>HTML을 처음 부르면 리소스를 가져올텐데, 첫 페이지를 로딩하는 순간 모든 리소스를 한번에 다운로드하는 것이 기본이다. 그래서 <strong>첫 페이지 로딩이 느리다</strong>는 단점이 있다. 하지만 뒷 페이지부터는 화면을 갈아끼기만 하면 되므로 퍼포먼스가 좋다. SPA를 사용하는 가장 큰 이유는, <strong>사용자 경험</strong>이 일반 네이티브 앱과 비교할 때 손색이 없기 때문이다. <strong>부드러운 화면전환</strong>이 가능하다. 화면전환이라는 건 HTML을 완전히 새로 그린다는건데 쓸데없는 통신, 쓸데없는 렌더링이 발생한다. 화면이 깜빡하면 네이티브 앱처럼 동작하는 게 아니다.(엑셀이 화면깜빡거리지 않잖아) AJAX에서의 화면전환은 전부 다 그리는 게 아니라 필요한 부분만 그린다.<br><!-- 웹은 원래 문서 공유/문서 간 이동을 위해 만들어졌다. --></p>
-<p>a태그는 기본적으로 화면전환을 일으키는데, 이때 <code>e.preventDefault</code>를 써서 화면전환을 막고 Ajax 요청을 한다.<br>Ajax방식으로 하면 URL이 하나이기때문에 검색로봇이 검색할 수 없다 -&gt; 구글에서 아무리 찾아도 첫 페이지밖에 안 나온다.<br>이것이 <strong>SEO 이슈</strong>이다. 일반 웹 페이지에서 SEO이슈가 터지는 건 치명적이다. 검색이 안 되면 곤란하다. 근데 내부에서만 쓰는 웹 애플리케이션은 반대로 검색이 되면 곤란하다.<br>그리고 주소창이 안 바뀌면 SEO이슈뿐만 아니라 앞으로가기/뒤로가기가 안 되는 문제가 생긴다. 그래서 히스토리를 관리할 수 있는 HTML5 메소드가 나왔는데, HTML5니까 되는 브라우저도 있고 안 되는 브라우저도 있다.<br>웹 앱도 검색이 됐으면 좋겠다면 서버사이드 렌더링을 해야한다.<br>모든 것을 만족시키는 혁신적인 방법, 은탄환은 지금까지도 앞으로도 없다.  </p>
-<!-- 우선 결론적으로, 우리가 바닐라스크립트로 라우팅을 구현하기는 바람직하지 않고 매우 힘들다. 앵귤러 뷰 리액트 같은 것들로 하는 게 현명하다. 우리가 이보다 잘 만들 수는 없어... -->
-<ul>
-<li>웹 애플리케이션 vs 웹 페이지<br>일반적인 정보를 제공하는 단순한 페이지 = 웹 페이지<br>내가 페이지에서 어떤 일을 한다 = 웹 어플리케이션  </li>
-</ul>
-<h2 id="Routing"><a href="#Routing" class="headerlink" title="Routing"></a>Routing</h2><p>출발지와 목적지까지의 경로가 여러 개 있을 때, 경로를 결정하는 방식.<br>웹에서는 라우팅을 화면이동으로 이해한다.  </p>
-<ol>
-<li>주소창에 URL을 입력하거나  </li>
-<li>a태그를 클릭하거나  </li>
-<li>뒤로가기/앞으로가기를 클릭할 때  </li>
-</ol>
-<h2 id="SPA와-Routing"><a href="#SPA와-Routing" class="headerlink" title="SPA와 Routing"></a>SPA와 Routing</h2><ul>
-<li><p>전통적 링크방식<br>주소창을 바꾼다. 바뀐 주소를 서버에 요청하고, 그 요청에 대한 응답이 오면 화면을 새롭게 그린다.<br>검색엔진에 의해 검색당하려면 페이지들이 고유의 URL을 가지고 있어야 한다.<br>SEO이슈 없고 히스토리 관리 문제없고 구현도 쉽지만, 불필요한 퍼포먼스가 너무 많다.  </p>
-</li>
-<li><p>Ajax 방식<br>href 속성이 필요없다. 주소창이 바뀌지 않는다(동작을 막았으니까).<br>화면깜빡임이나 불필요한 리소스 요청, 렌더링이 없지만 자바스크립트 코딩을 해야 한다.<br>히스토리 관리가 안 되고, SEO이슈 발생. 게다가 리로딩하면 초기의 index 페이지로 돌아간다.<br>리로딩은 URL을 다시 보내는 것이기 때문이다.  </p>
-</li>
-<li><p>hash 방식<br>요청은 새로 보내지 않으면서 주소는 다르게 관리하는 방법.<br>기존 URL에서 해쉬가 바뀌어도 요청이 새로 발생하지 않는 것을 이용한 방법.<br>히스토리관리가 되지만, 주소창에 해쉬(#)가 들어가야하기때문에 보기에 좋지 않다.<br><code>#!</code>을 사용하기도 하는데 이를 해시뱅(Hash-bang)이라고 부른다.<br>load 이벤트 : 모든 리소스가 다 준비됐을 때<br>contentloaded 이벤트 : 돔이 완성됐을 때 -&gt; 로드 이벤트보다 먼저 발생  </p>
-</li>
-<li><p>Pjax 방식<br>hash 방식의 가장 큰 단점은 SEO 이슈이다. 이를 보완한 방법이 HTML5의 Histroy API인 pushState와 popstate 이벤트를 사용한 PJAX 방식이다. 리로드하면 서버에 REST API처럼 다시 요청이 간다. 서버에서 대응해줘야 할 필요가 있다. 백엔드의 협력이 필요하다.  </p>
-</li>
-</ul>
-<!-- 수퍼
-extend관계일때 super를 불러줘야한다. 부모가 this를 만들어서 자식에게 주면 그것을 자식이 이어서쓴다
-부모가 빈 객체를 this에 바인딩하고 name을 세팅한 뒤 this를 리턴하면 
-super가 this를 리턴하는데 그것이 자식의 this로 들어간다
-this는 name을 가지고있는 인스턴스이고, 거기에다가 grade를 추가.
-이때 human과 student가 프로토타입체인이 구성되어서 메소드도 상속받는다
-Student 는 클래스지만 클래스도 함수니까 프로토타입도 생김.
-
-```javascript
-class Human {
-  constructor(name) {
-    this.name = name;
-  }
-
-  speak() {
-    console.log('집에가고싶다');
-  }
-}
-
-class Student extends Human {
-  constructor(name, grade) {
-    super(name);
-    this.grade = grade;
-  }
-}
-``` -->
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/6/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/6/">Next</a>
   </nav>
 
 </section>
@@ -335,6 +307,18 @@ class Student extends Human {
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/09/09/0909/">React Basic</a></h6>
+              <span>September 9, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -396,18 +380,6 @@ class Student extends Human {
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/25/0625/">생명주기, 서비스, RxJS</a></h6>
-              <span>June 25, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -417,7 +389,7 @@ class Student extends Human {
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -427,7 +399,7 @@ class Student extends Human {
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">38</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -438,7 +410,7 @@ class Student extends Human {
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

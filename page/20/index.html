@@ -97,6 +97,65 @@
         
           <section id="main">
   
+    <article id="post-0429" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/02/0429/">ECMAScript &amp; Javascript</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/05/02/0429/" class="article-date">
+	  <time datetime="2019-05-01T15:00:00.000Z" itemprop="datePublished">May 2, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript/">Javascript</a>
+ 
+      <!--  -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="자바스크립트와-ECMA스크립트"><a href="#자바스크립트와-ECMA스크립트" class="headerlink" title="자바스크립트와 ECMA스크립트"></a>자바스크립트와 ECMA스크립트</h2><p>참고: <a href="https://medium.freecodecamp.org/whats-the-difference-between-javascript-and-ECMAscript-cba48c73a2b5" target="_blank" rel="noopener">What’s the difference between JavaScript and ECMAScript?</a></p>
+<p><strong>ECMA International</strong>:<br>표준을 만드는 단체.<br>대부분의 키보드들이 같은 순서의 자음모음 순서를 가지고 있고 같은 위치의 스페이스 엔터 등등이 있다.<br>그건 바로 대부분의 키보드 회사들이 쿼티레이아웃이라는 표준을 가지고 키보드를 만들기 때문이다.<br>그런 표준을 만들어내는 곳이다.  </p>
+<p><strong>ECMA-262</strong>:<br>ECMA international 에서 발표하는 표준.<br>스크립트 언어에서 통용되는 구체적 사양, 설명을 포함하고 있다.<br>ECMAScript의 명세번호라고 이해하자.  </p>
+<p><strong>Scripting Language</strong>:<br>요소나 시스템 위에서의 <strong>동작</strong>을 위해 만들어진 프로그래밍 언어.<br>걷다, 달리다, 점프하다 와 같은 명령들을 생각해보자.<br>이런 동작들은 사람이나 개나 게임캐릭터들처럼 그것을 수행해줄 무언가가 필요하다.<br>이 명령을 수행할 대상이 없이는 걷고 뛰고 점프하는 행동 자체가 불가능하다.<br>이러한 행동들이 스크립트언어가 겉으로 보이는 요소들을 조작하고 제어하는것과 비슷하다.<br>(그러니까 내가 요소이고 나를 걷고 뛰고 점프하도록 조작하고 제어하는 역할을 하는 것이 스크립트언어 라고 보면 될 듯?<br>그래서 웹상에서 동작을 제어하는 자바스크립트가 스크립트언어라고 불리는 것이겠지.)  </p>
+<p><strong>ECMAScript</strong>:<br>ECMA-262 기술규격에 정의된, 표준화된 스크립트 프로그래밍 언어.<br>스크립트 언어가 ECMAscript를 준수한다고 여겨지려면 반드시 지켜야하는 규칙과 세부사항, 가이드라인을 제공함.<br>스크립트언어의 기본 뼈대(코어)를 이룬다. 모든 스크립트 언어들이 기본적으로 갖춰야 하는 내용이니까.  </p>
+<p><strong>Javascript</strong>:<br>ECMAscript 표준을 준수하는 스크립트 언어. ECMAscript 와 브라우저가 별도로 지원하는 WEB API 를 포함하는 개념.  </p>
+<p><strong>Javascript Engine</strong>:<br>자바스크립트 코드를 이해하고 실행시킬 수 있는 통역기.<br>크롬의 v8, 파이어폭스의 스파이더몽키 등 웹 브라우저에서 사용된다.<br>브라우저의 자바스크립트 엔진은 사람이 언어를 이해하는 능력과 비슷하다.<br>자바스크립트 엔진은 걷다, 뛰다, 점프하다 와 같은 행동들이 어떤 뜻인지 <strong>이해</strong>한다.<br>사람이 걸으랄 때 걷고 점프하랄때 점프하고 뛰랄 때 뛸 수 있는 것도<br>그 행동들이 어떤 의미인지 알아듣기때문에 가능한 것.<br>그러니까 사람에게도 이런 자바스크립트 엔진이 들어있어서 그것들을 이해할 수 있다고 생각하면 될 듯.<br>해석해줄 엔진이 없다면 스크립트언어가 아무리 명령해도 알아들을 수 없겠지.<br>브라우저마다 엔진의 차이는 있다. 왜냐면 ECMAScript가 업데이트될 때 모든 브라우저들이 한꺼번에<br>업데이트 하는 것이 아니기 때문이며 각 브라우저의 엔진마다 어떻게 해석하고 구현할 것인지가 다르기 때문이다.  </p>
+<h2 id="WEB-API"><a href="#WEB-API" class="headerlink" title="WEB API?"></a>WEB API?</h2><p>그 전에 API가 무엇인지부터 생각해보자.<br><strong>API</strong>는 어플리케이션 프로그래밍 인터페이스.<br>모든 언어는 API를 지원하고, 그 API를 사용해서 코딩을 하는 것이다.<br>우리가 애플리케이션을 구현하기 위해 시간의 순서대로 배치해야할 부품들.<br>우리가 쓰는 함수들. 우리가 만들지는 않았지만 간편히 사용 가능한, 그 언어가 가지고 있는 조작장치.  </p>
+<p><strong>WEB API</strong>는 웹에서 여러 유용한 작업을 할 수 있도록 제공되는 API.<br>예를 들어 웹 오디오 API는 브라우저의 오디오를 조작하기 위한 메서드를 제공.<br>근데 그 뒷편에서 브라우저는 사실 더 복잡한 로우레벨코드를 실행 중.<br>내가 직접 그런 복잡한 일을 하지 않아도 되게 해주는 것이 브라우저 API.<br><code>setTimeout()</code>, <code>alert()</code> 같은 것들이 그 예시.<br>W3C에서 표준을 관리.<br>( 내가 직접 하려면 정말 복잡한 코드를 이해하고 쓸 줄 알아야 하지만<br>WEB API가 있음으로써 브라우저에서 내가 쉽게 할 수 있는 일들이 더 많아지는 것이라고 이해하면 되겠다. )  </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript/">Javascript</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-ir" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -163,91 +222,11 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-dldddt" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/08/dldddt/">정의형 리스트, Definition List</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/04/08/dldddt/" class="article-date">
-	  <time datetime="2019-04-07T15:00:00.000Z" itemprop="datePublished">April 8, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/html-css/">HTML/CSS</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dt</span>&gt;</span>run<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span>(사람동물이) 달리다[뛰다]<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span>(사업체 등을) 운영[경영/관리]하다<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="정의형-리스트"><a href="#정의형-리스트" class="headerlink" title="정의형 리스트"></a>정의형 리스트</h1><p>li 태그와 h1~h6 태그와 p 태그 등을 번거롭게 쓰는 것 대신<br>정의형 리스트를 활용해보자.  </p>
-<ul>
-<li><strong>dl</strong> : definition list, 용어를 정의하는 목록을 만든다.  </li>
-<li><strong>dt</strong> : definition term, 정의하고자 하는 용어의 제목을 넣는다.  </li>
-<li><strong>dd</strong> : definition description, 용어의 설명을 넣는다.  </li>
-</ul>
-<p>dt와 dd는 반드시 일대일로 대응되어야 하는 것은 아니다.<br>하나의 dt 아래에 여러 개의 dd 가 올 수도 있다.<br>그리고 HTML 5.2 부터는 dl 안에 div 를 넣어서 dt 와 dd 를 감쌀 수 있다.  </p>
-<h2 id="주의사항"><a href="#주의사항" class="headerlink" title="주의사항"></a>주의사항</h2><p><a href="https://www.w3.org/TR/html52/grouping-content.html#the-dl-element" target="_blank" rel="noopener">HTML 5.2: 4.4 Grouping content</a>  </p>
-<blockquote>
-<p>Each term-description group consists of one or more terms (represented by dt elements) possibly as children of a div element child, and one or more descriptions (represented by dd elements possibly as children of a div element child), ignoring any nodes other than dt and dd element children, and dt and dd elements that are children of div element children within a single dl element.</p>
-</blockquote>
-<ol>
-<li>각 정의형 리스트는 div 요소 내에 한 개 이상의 dt, dd 를 가질 수 있다.  </li>
-<li>dl 의 div 안에는 dt 나 dd 가 아닌 요소를 넣을 수 없다.  </li>
-</ol>
-<p>그리고  </p>
-<ol start="3">
-<li>단일 dl 요소 내에 dt, dd 를 묶은 div 요소와 dt, dd 요소는 서로 형제로서 존재할 수 없다.  </li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>run<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dd</span>&gt;</span>(사람동물이) 달리다[뛰다]<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>run<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dd</span>&gt;</span>(사업체 등을) 운영[경영/관리]하다<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/../img/error.png" alt="Error">  </p>
-<p>위의 코드를 HTML Validator 로 돌려보면 에러 표시가 난다.<br>div 요소 밖에 dd 와 dt 가 존재하면서 둘 사이가 형제요소가 되기 때문이다.<br>dl 은,  </p>
-<ol>
-<li>한 개 이상의 dd 가 따라붙는 한 개 이상의 dt 요소들로 구성되거나  </li>
-<li>한 개 이상의 div 요소로 구성될 수 있다.  </li>
-</ol>
-<p>둘 중 하나의 상황만 허용된다는 것이다.  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>run<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dd</span>&gt;</span>(사람동물이) 달리다[뛰다]<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>run<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dd</span>&gt;</span>(사업체 등을) 운영[경영/관리]하다<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>위와 같은 코드는 오류가 나지 않는다.<br>dt 와 dd 가 따로 떨어져있는게 아니라 div 요소 안에 자식요소로서 존재하기 때문이다.  </p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/html-css/">HTML/CSS</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">HTML5</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/19/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/21/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/19/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/21/">Next</a>
   </nav>
 
 </section>
@@ -260,6 +239,18 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/09/09/0909/">React Basic</a></h6>
+              <span>September 9, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -321,18 +312,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/25/0625/">생명주기, 서비스, RxJS</a></h6>
-              <span>June 25, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -342,7 +321,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -352,7 +331,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">38</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -363,7 +342,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

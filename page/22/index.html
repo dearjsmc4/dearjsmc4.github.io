@@ -97,6 +97,71 @@
         
           <section id="main">
   
+    <article id="post-box-sizing" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/01/box-sizing/">박스사이징, content-box &amp; border-box</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/04/01/box-sizing/" class="article-date">
+	  <time datetime="2019-03-31T15:00:00.000Z" itemprop="datePublished">April 1, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/html-css/">HTML/CSS</a>
+ 
+      <!--  -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>오늘 CSS 박스모델을 배우면서 콘텐트박스와 보더박스에 대해 배웠는데<br>헷갈리는 부분이 있어서 정리해보기로 했다.  </p>
+<h1 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h1><p>box-sizing 속성은 박스의 크기를 결정하는 방식을 설정한다.<br>내가 임의로 div 박스 두 개를 만들어보았고 오른쪽은 각 박스의 스타일 속성이다.<br>구분을 쉽게 하기 위해 너비를 주로 볼 것이다.<br>마진값은 얼마를 주든 투명하니까, 일단 보여지는 너비를 가지고 얘기하자.  </p>
+<p>​<img src="/../img/box1.jpg" alt="div1의 스타일속성">  </p>
+<p><img src="/../img/box2.jpg" alt="div2의 스타일속성">  </p>
+<p><img src="/../img/box12.jpg" alt>  </p>
+<p>박스 두 개의 width 값은 300px 로 같은데, 왜 보여지는 크기는 다른 것일까?<br>박스사이징 속성이 다르기 때문이다.<br>박스사이징으로 달라진 결과는 다음과 같다.  </p>
+<p>​<img src="/../img/box1-1.jpg" alt="div1의 모습">  </p>
+<p>div1은 <strong>box-sizing: content-box</strong>​ 로 설정되었다.<br>컨텐츠부분의 너비는 300px로 고정이 되고 그 후에 패딩값과 테두리값이 더해졌다.<br>그래서 보여지는 총 너비, 즉 테두리까지 포함한 너비는<br>300px + 100px(양쪽 패딩값) + 10px(양쪽 테두리값) = 410px이 된다.</p>
+<p>​<br>​​<img src="/../img/box2-1.jpg" alt="div2의 모습">  </p>
+<p>div2는 <strong>box-sizing: border-box</strong>로 설정되었다.<br>그러자 컨텐츠부분의 너비가 300px이 아닌 190px 로 줄어든 것을 확인할 수 있다.<br>그래서 보여지는 총 너비는 190px + 100px + 10px = 300px 이 되고,<br>내가 원래 설정한 width 값인 300px에 꼭 맞게 된다.</p>
+<h2 id="content-box"><a href="#content-box" class="headerlink" title="content-box"></a>content-box</h2><p>content-box​ 는 <strong>컨텐츠 너비, 패딩, 테두리까지 전부 너비에 포함</strong>하기 때문에<br>내가 width 를 300px 로 설정했더라도<br>패딩이나 테두리값을 주면 그 크기가 너비에 포함되어 더 커지게 된다.<br>그리고 내가 실제로 사용할 수 있는 컨텐츠부분의 너비가 그대로 300px 로 고정될 수 있다.  </p>
+<h2 id="border-box"><a href="#border-box" class="headerlink" title="border-box"></a>border-box</h2><p>border-box 는 내가 정한 width 값을 벗어나지 않게 해준다.<br>박스 안에 여백을 얼마나 주든 테두리를 얼마나 주든,<br><strong>전체 너비는 내가 지정한 300px 그대로 고정</strong>된다.<br>대신, 안쪽 여백을 주게 되면 내가 실제로 사용할 수 있는 부분이 그만큼 줄어들게 된다.  </p>
+<h2 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h2><p>간단하게 기억하려면 이름 그대로 생각하면 될 것 같다.  </p>
+<p><strong>content-box</strong> 는 내가 실제로 사용할 수 있는 <strong>컨텐츠 너비를 기준</strong>으로 크기를 정하는 것,<br>(내가 설정한 width 가 곧 내가 실제로 사용할 수 있는 너비가 되니까)  </p>
+<p><strong>border-box</strong> 는 <strong>가장 바깥쪽 테두리를 기준</strong>으로 크기를 정하는 것.<br>(내가 설정한 width 가 박스 전체의 크기가 되니까)  </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/html-css/">HTML/CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">CSS</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-git-flow" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -167,79 +232,11 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-local-storage" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/19/local-storage/">Local Storage에 저장하기</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/03/19/local-storage/" class="article-date">
-	  <time datetime="2019-03-18T15:00:00.000Z" itemprop="datePublished">March 19, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript/">Javascript</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Local-Storage"><a href="#Local-Storage" class="headerlink" title="Local Storage"></a>Local Storage</h1><p>내가 만든 페이지가 어떤 데이터를 기억하고,<br>새로고침을 해도 데이터를 잃어버리지 않게 하고 싶다면<br>local storage 에 저장하는 방법이 있다.  </p>
-<p>( + 세션 스토리지와 로컬 스토리지<br>세션 스토리지는 로컬 스토리지와 비슷하다.<br>다른 점은, 로컬 스토리지에 저장된 데이터는 새로고침을 하거나 창을 닫았다 열어도<br>데이터를 직접 지우지 않는 이상 그대로 남아있다.<br>세션 스토리지에 저장이 되면 세션이 끝난 후에, 즉 브라우저를 닫는 경우에 데이터가 사라진다. )  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">localStorage.setItem(<span class="string">'name'</span>, <span class="string">'Rudy'</span>); </span><br><span class="line"><span class="comment">// 로컬 스토리지에 name 이라는 키값을 가진 Rudy 를 저장</span></span><br><span class="line"></span><br><span class="line">localStorage.getItem(<span class="string">'name'</span>); </span><br><span class="line"><span class="comment">// 저장된 name 의 데이터인 Rudy 를 불러옴</span></span><br></pre></td></tr></table></figure>
-<p>기본 문법은 위와 같고 필요한 기능에 따라 적절히 수정하여 쓰면 된다.<br>오늘은 로컬스토리지에 데이터를 저장하고 불러오는 두 가지 방법을 배웠다.<br><code>serialize();</code> 를 이용하는 방법과<br><code>dictionary</code> 를 이용하는 방법이다.  </p>
-<h2 id="serialize"><a href="#serialize" class="headerlink" title="serialize();"></a>serialize();</h2><p>폼 태그 안의 데이터를 문자열로 합쳐주는 메소드이다.  </p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">id</span>=<span class="string">"content_form"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"content1"</span> <span class="attr">id</span>=<span class="string">"content1"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"content2"</span> <span class="attr">id</span>=<span class="string">"content2"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"content3"</span> <span class="attr">id</span>=<span class="string">"content3"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn_save"</span>&gt;</span>Save<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn_load"</span>&gt;</span>Load<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> storage_key = <span class="string">"content"</span></span><br><span class="line">    $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">"#btn_save"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="comment">//폼 데이터를 문자열로 합치기</span></span><br><span class="line">            <span class="keyword">var</span> form_content = $(<span class="string">"#content_form"</span>).serialize();</span><br><span class="line">            <span class="comment">//합친 문자열을 저장</span></span><br><span class="line">            localStorage.setItem(storage_key, form_content);</span><br><span class="line">            <span class="comment">//폼 submit 이 일어나지 않게</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        $(<span class="string">"#btn_load"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> form_content = localStorage.getItem(storage_key);</span><br><span class="line">        <span class="keyword">var</span> split_data = form_content.split(<span class="string">"&amp;"</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i <span class="keyword">in</span> split_data)&#123;</span><br><span class="line">            <span class="keyword">var</span> content_data = split_data[i].split(<span class="string">"="</span>);</span><br><span class="line">            <span class="keyword">var</span> key = content_data[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">var</span> data = content_data[<span class="number">1</span>];</span><br><span class="line">            $(<span class="string">"#"</span>+key).val(data);</span><br><span class="line">        &#125; <span class="keyword">return</span> <span class="literal">false</span>; </span><br><span class="line">        </span><br><span class="line">    &#125;);</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-<p>save 버튼을 누르면 로컬 스토리지에 content 라는 키가 생기고<br>serialize 를 썼기 때문에 value 는<br>content1=hela&amp;content2=thor&amp;content3=loki<br>이런 식으로 생기게 된다.<br>load 버튼을 누르면 다시 데이터가 화면에 보이게 했는데,<br>그때 저장된 값을 불러와 split(); 을 이용해서 &amp; 를 기준으로 나눠주면<br>콘솔에 띄웠을 때 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">(3) [&quot;content1=hela&quot;, &quot;content2=thor&quot;, &quot;content3=loki&quot;]</span><br><span class="line"></span><br><span class="line">0: &quot;content1=hela&quot;</span><br><span class="line"></span><br><span class="line">1: &quot;content2=thor&quot;</span><br><span class="line"></span><br><span class="line">2: &quot;content3=loki&quot;</span><br></pre></td></tr></table></figure>
-<p>이렇게 나뉘어서 배열이 생긴다.<br>그 안에서 다시 각 요소를 = 를 기준으로 나누면 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">(2) [&quot;content1&quot;, &quot;hela&quot;]</span><br><span class="line"></span><br><span class="line">0: &quot;content1&quot;</span><br><span class="line"></span><br><span class="line">1: &quot;hela&quot;</span><br><span class="line"></span><br><span class="line">(2) [&quot;content2&quot;, &quot;thor&quot;]</span><br><span class="line"></span><br><span class="line">0: &quot;content2&quot;</span><br><span class="line"></span><br><span class="line">1: &quot;thor&quot;</span><br><span class="line"></span><br><span class="line">(2) [&quot;content3&quot;, &quot;loki&quot;]</span><br><span class="line"></span><br><span class="line">0: &quot;content3&quot;</span><br><span class="line"></span><br><span class="line">1: &quot;loki&quot;</span><br></pre></td></tr></table></figure>
-<p>이렇게 우리가 원하는 대로 예쁘게 나뉘어진다.<br>각 배열의 인덱스값을 이용해 데이터를 변수에 담고<br>해당하는 인풋태그(content1, content2, content3)의 value 값을 data로(hela, thor, loki)바꿔주겠다- 하는 코드다.</p>
-<p>쓰려면 쓸 수야 있겠지만 이렇게 하면 다시 로드할 때 한글이나 특수문자 등은 전부 깨져서 나온다.<br><code>decodeURIComponent();</code> 를 따로 사용해줘야 한다.<br>그리고 계속 split 을 하기도 번거롭고.</p>
-<h2 id="dictionary"><a href="#dictionary" class="headerlink" title="dictionary"></a>dictionary</h2><p>사전형 데이터를 만들어 저장하는 방법이다.<br>보통은 이 방법이 더 많이 쓰인다.  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> people = &#123;&#125;;</span><br><span class="line">people[<span class="string">"name"</span>] = <span class="string">"Rudy"</span>;</span><br></pre></td></tr></table></figure>
-<p>사전형이라고는 하지만 그냥 객체를 만드는 것이다.<br>오늘 객체에 대해 자세히 배운 것은 아니고… 프로퍼티와 값을 할당하고 불러오는 정도만 배웠다.<br>사전형 데이터를 저장하려면 <code>JSON.stringify();</code> 를 써서 문자형 데이터로 바꿔서 저장해줘야 한다.<br>안 그러면 [object Object] 라고 나와서 마음이 아파진다.<br>저장한 문자형 데이터를 다시 사전형 데이터로 불러올 때는 <code>JSON.parse();</code> 를 사용한다.  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list = &#123;&#125;;   <span class="comment">// 빈 객체를 만들고</span></span><br><span class="line">list[<span class="string">"name"</span>] = <span class="string">"rudy"</span>;   <span class="comment">// 그 안에 name 키값을 가진 rudy 를 넣었을 때</span></span><br><span class="line">&#123;<span class="attr">name</span>: <span class="string">"rudy"</span>&#125;   <span class="comment">// 객체를 불러오면 원래 모습은 이렇지만</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(list);   <span class="comment">// 문자형 데이터로 바꾸고 나면</span></span><br><span class="line"><span class="string">"&#123;"</span>name<span class="string">":"</span>rudy<span class="string">"&#125;"</span>   <span class="comment">// 쌍따옴표 안에 들어가면서 문자형이 된다!</span></span><br></pre></td></tr></table></figure>
-<p>JSON.parse(); 를 하면 다시 쌍따옴표에 들어가지 않은 형태인<br><code>{name: &quot;rudy&quot;}</code><br>가 된다.</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript/">Javascript</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/21/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/23/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/21/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="page-number current">22</span><a class="page-number" href="/page/23/">23</a><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/23/">Next</a>
   </nav>
 
 </section>
@@ -252,6 +249,18 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/09/09/0909/">React Basic</a></h6>
+              <span>September 9, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -313,18 +322,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/06/25/0625/">생명주기, 서비스, RxJS</a></h6>
-              <span>June 25, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -334,7 +331,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -344,7 +341,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">37</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">38</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -355,7 +352,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
