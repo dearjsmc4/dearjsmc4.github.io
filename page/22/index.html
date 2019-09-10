@@ -97,71 +97,6 @@
         
           <section id="main">
   
-    <article id="post-box-sizing" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/01/box-sizing/">박스사이징, content-box &amp; border-box</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/04/01/box-sizing/" class="article-date">
-	  <time datetime="2019-03-31T15:00:00.000Z" itemprop="datePublished">April 1, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/html-css/">HTML/CSS</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>오늘 CSS 박스모델을 배우면서 콘텐트박스와 보더박스에 대해 배웠는데<br>헷갈리는 부분이 있어서 정리해보기로 했다.  </p>
-<h1 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h1><p>box-sizing 속성은 박스의 크기를 결정하는 방식을 설정한다.<br>내가 임의로 div 박스 두 개를 만들어보았고 오른쪽은 각 박스의 스타일 속성이다.<br>구분을 쉽게 하기 위해 너비를 주로 볼 것이다.<br>마진값은 얼마를 주든 투명하니까, 일단 보여지는 너비를 가지고 얘기하자.  </p>
-<p>​<img src="/../img/box1.jpg" alt="div1의 스타일속성">  </p>
-<p><img src="/../img/box2.jpg" alt="div2의 스타일속성">  </p>
-<p><img src="/../img/box12.jpg" alt>  </p>
-<p>박스 두 개의 width 값은 300px 로 같은데, 왜 보여지는 크기는 다른 것일까?<br>박스사이징 속성이 다르기 때문이다.<br>박스사이징으로 달라진 결과는 다음과 같다.  </p>
-<p>​<img src="/../img/box1-1.jpg" alt="div1의 모습">  </p>
-<p>div1은 <strong>box-sizing: content-box</strong>​ 로 설정되었다.<br>컨텐츠부분의 너비는 300px로 고정이 되고 그 후에 패딩값과 테두리값이 더해졌다.<br>그래서 보여지는 총 너비, 즉 테두리까지 포함한 너비는<br>300px + 100px(양쪽 패딩값) + 10px(양쪽 테두리값) = 410px이 된다.</p>
-<p>​<br>​​<img src="/../img/box2-1.jpg" alt="div2의 모습">  </p>
-<p>div2는 <strong>box-sizing: border-box</strong>로 설정되었다.<br>그러자 컨텐츠부분의 너비가 300px이 아닌 190px 로 줄어든 것을 확인할 수 있다.<br>그래서 보여지는 총 너비는 190px + 100px + 10px = 300px 이 되고,<br>내가 원래 설정한 width 값인 300px에 꼭 맞게 된다.</p>
-<h2 id="content-box"><a href="#content-box" class="headerlink" title="content-box"></a>content-box</h2><p>content-box​ 는 <strong>컨텐츠 너비, 패딩, 테두리까지 전부 너비에 포함</strong>하기 때문에<br>내가 width 를 300px 로 설정했더라도<br>패딩이나 테두리값을 주면 그 크기가 너비에 포함되어 더 커지게 된다.<br>그리고 내가 실제로 사용할 수 있는 컨텐츠부분의 너비가 그대로 300px 로 고정될 수 있다.  </p>
-<h2 id="border-box"><a href="#border-box" class="headerlink" title="border-box"></a>border-box</h2><p>border-box 는 내가 정한 width 값을 벗어나지 않게 해준다.<br>박스 안에 여백을 얼마나 주든 테두리를 얼마나 주든,<br><strong>전체 너비는 내가 지정한 300px 그대로 고정</strong>된다.<br>대신, 안쪽 여백을 주게 되면 내가 실제로 사용할 수 있는 부분이 그만큼 줄어들게 된다.  </p>
-<h2 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h2><p>간단하게 기억하려면 이름 그대로 생각하면 될 것 같다.  </p>
-<p><strong>content-box</strong> 는 내가 실제로 사용할 수 있는 <strong>컨텐츠 너비를 기준</strong>으로 크기를 정하는 것,<br>(내가 설정한 width 가 곧 내가 실제로 사용할 수 있는 너비가 되니까)  </p>
-<p><strong>border-box</strong> 는 <strong>가장 바깥쪽 테두리를 기준</strong>으로 크기를 정하는 것.<br>(내가 설정한 width 가 박스 전체의 크기가 되니까)  </p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/html-css/">HTML/CSS</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">CSS</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
     <article id="post-float" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -205,6 +140,71 @@
 <p>​<img src="/../img/7.jpg" alt="content"><br>박스1과 2 아래에 “나는 가상으로 만들어진 노드!” 라는 content 텍스트가 보이게 된다.<br>나는 이 가상요소에 어떤 텍스트도 보이지 않기를 원하기에 그냥 “” 로 비워두기로 했다.  </p>
 <p>그리고 이 가상요소는 날 때부터 인라인 요소인데<br><strong>clear:both 는 인라인 요소에는 적용되지 않는다.</strong> 인라인블록에도 해봤는데 먹히지 않는다.<br>그래서 이 가상노드의 <strong>display 값을 block</strong> 으로 설정해주어서<br>clear:both 가 적용되도록 한다.  </p>
 <p>​<img src="/../img/8.jpg" alt="content"><br>오버플로우로 인한 문제도 해결되었다.<br>가상요소를 사용하면 overflow:hidden 을 썼을 때 박스가 잘려보이던 문제도 해결이 된다.  </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/html-css/">HTML/CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">CSS</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-box-sizing" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/01/box-sizing/">박스사이징, content-box &amp; border-box</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/04/01/box-sizing/" class="article-date">
+	  <time datetime="2019-03-31T15:00:00.000Z" itemprop="datePublished">April 1, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/html-css/">HTML/CSS</a>
+ 
+      <!--  -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>오늘 CSS 박스모델을 배우면서 콘텐트박스와 보더박스에 대해 배웠는데<br>헷갈리는 부분이 있어서 정리해보기로 했다.  </p>
+<h1 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h1><p>box-sizing 속성은 박스의 크기를 결정하는 방식을 설정한다.<br>내가 임의로 div 박스 두 개를 만들어보았고 오른쪽은 각 박스의 스타일 속성이다.<br>구분을 쉽게 하기 위해 너비를 주로 볼 것이다.<br>마진값은 얼마를 주든 투명하니까, 일단 보여지는 너비를 가지고 얘기하자.  </p>
+<p>​<img src="/../img/box1.jpg" alt="div1의 스타일속성">  </p>
+<p><img src="/../img/box2.jpg" alt="div2의 스타일속성">  </p>
+<p><img src="/../img/box12.jpg" alt>  </p>
+<p>박스 두 개의 width 값은 300px 로 같은데, 왜 보여지는 크기는 다른 것일까?<br>박스사이징 속성이 다르기 때문이다.<br>박스사이징으로 달라진 결과는 다음과 같다.  </p>
+<p>​<img src="/../img/box1-1.jpg" alt="div1의 모습">  </p>
+<p>div1은 <strong>box-sizing: content-box</strong>​ 로 설정되었다.<br>컨텐츠부분의 너비는 300px로 고정이 되고 그 후에 패딩값과 테두리값이 더해졌다.<br>그래서 보여지는 총 너비, 즉 테두리까지 포함한 너비는<br>300px + 100px(양쪽 패딩값) + 10px(양쪽 테두리값) = 410px이 된다.</p>
+<p>​<br>​​<img src="/../img/box2-1.jpg" alt="div2의 모습">  </p>
+<p>div2는 <strong>box-sizing: border-box</strong>로 설정되었다.<br>그러자 컨텐츠부분의 너비가 300px이 아닌 190px 로 줄어든 것을 확인할 수 있다.<br>그래서 보여지는 총 너비는 190px + 100px + 10px = 300px 이 되고,<br>내가 원래 설정한 width 값인 300px에 꼭 맞게 된다.</p>
+<h2 id="content-box"><a href="#content-box" class="headerlink" title="content-box"></a>content-box</h2><p>content-box​ 는 <strong>컨텐츠 너비, 패딩, 테두리까지 전부 너비에 포함</strong>하기 때문에<br>내가 width 를 300px 로 설정했더라도<br>패딩이나 테두리값을 주면 그 크기가 너비에 포함되어 더 커지게 된다.<br>그리고 내가 실제로 사용할 수 있는 컨텐츠부분의 너비가 그대로 300px 로 고정될 수 있다.  </p>
+<h2 id="border-box"><a href="#border-box" class="headerlink" title="border-box"></a>border-box</h2><p>border-box 는 내가 정한 width 값을 벗어나지 않게 해준다.<br>박스 안에 여백을 얼마나 주든 테두리를 얼마나 주든,<br><strong>전체 너비는 내가 지정한 300px 그대로 고정</strong>된다.<br>대신, 안쪽 여백을 주게 되면 내가 실제로 사용할 수 있는 부분이 그만큼 줄어들게 된다.  </p>
+<h2 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h2><p>간단하게 기억하려면 이름 그대로 생각하면 될 것 같다.  </p>
+<p><strong>content-box</strong> 는 내가 실제로 사용할 수 있는 <strong>컨텐츠 너비를 기준</strong>으로 크기를 정하는 것,<br>(내가 설정한 width 가 곧 내가 실제로 사용할 수 있는 너비가 되니까)  </p>
+<p><strong>border-box</strong> 는 <strong>가장 바깥쪽 테두리를 기준</strong>으로 크기를 정하는 것.<br>(내가 설정한 width 가 박스 전체의 크기가 되니까)  </p>
 
       
     </div>

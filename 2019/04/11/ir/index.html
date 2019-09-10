@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://dearjsmc4.github.io/img/btn7.png">
 <meta property="og:image" content="https://dearjsmc4.github.io/img/btn5.PNG">
 <meta property="og:image" content="https://dearjsmc4.github.io/img/btn6.PNG">
-<meta property="og:updated_time" content="2019-09-05T07:12:32.809Z">
+<meta property="og:updated_time" content="2019-09-10T08:32:03.410Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Image Replacement 기법">
 <meta name="twitter:description" content="IR 기법버튼의 텍스트를 마크업 상에서 그대로 유지하면서 보이지는 않게 하는 법.기법이라고는 하지만 엄청나게 대단하거나 복잡하진 않다.대부분 내가 아는 속성들을 응용했을 뿐이었다. 버튼 만들기우선 버튼부분의 마크업은 아래와 같고,CSS의 박스사이징은 border-box 값을 준 상태다. 중요 1&amp;lt;button class=&quot;next&quot;&amp;gt;다음으로 넘기기">
@@ -152,7 +152,7 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.next</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">22px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">22px</span>;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">padding-top</span>: <span class="number">22px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="/../img/btn7.png" alt="왼쪽: border-box, 오른쪽: content-box">  </p>
 <p>각 버튼에 padding-top:22px 을 주어서 텍스트를 밀어낸 결과.<br>보더박스는 박스 크기에 변함이 없는 반면, 콘텐트박스는 패딩값만큼 박스높이가 늘어나버렸다.<br>의도대로 잘 나온 보더박스 쪽으로 진행을 계속 해야 한다.<br>버튼에 넣고자 하는 아이콘을 배치해준다. </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.next</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">22px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">22px</span>;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">padding-top</span>: <span class="number">22px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.next</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">22px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">22px</span>;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">padding-top</span>: <span class="number">22px</span>;</span><br><span class="line">  <span class="attribute">border</span>: none;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(icon.png);</span><br><span class="line">  <span class="attribute">background-position</span>: -<span class="number">331px</span> -<span class="number">186px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: transparent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="/../img/btn5.PNG" alt="아이콘 추가"></p>
 <h2 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h2><p>이제 텍스트를 숨겨야 하니<br>버튼에 <code>overflow:hidden;</code> 을 사용해서 텍스트를 숨겨준다.<br>( display:none; 이나 visibility:hidden; 을 사용하게 되면<br><strong><em>화면 낭독기가 텍스트를 읽지 않고 지나가게 된다</em></strong>고 하니 주의하자.<br>웹 접근성을 위해 이런 복잡한 길로 가고 있는 것인데 말짱 도루묵이 되어버리면 안 되니 말이다.)</p>
 <p><img src="/../img/btn6.PNG" alt="완성!">  </p>
@@ -176,11 +176,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/05/02/0430/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/05/02/js-basic/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          변수, 데이터타입, 연산자
+          Javascript Basic
         
       </div>
     </a>
