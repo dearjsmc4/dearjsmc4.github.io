@@ -97,7 +97,7 @@
         
           <section id="main">
   
-    <article id="post-0424" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0503" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +105,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0424/">컴퓨터 공학 TIL 0424</a>
+      <a class="article-title" href="/2019/05/03/0503/">변수, 값, 문과 표현식, 데이터타입</a>
     </h1>
   
 
@@ -113,61 +113,70 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/03/0424/" class="article-date">
-	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
+	<a href="/2019/05/03/0503/" class="article-date">
+	  <time datetime="2019-05-03T10:40:59.000Z" itemprop="datePublished">May 3, 2019</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
  
       <!--  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="OOP-꼭-공부해야-함"><a href="#OOP-꼭-공부해야-함" class="headerlink" title="OOP (꼭 공부해야 함)"></a>OOP (꼭 공부해야 함)</h1><ol>
-<li>캡슐화(encapsulation) : 정보 은닉을 포함  </li>
-<li>정보 은닉(information hiding)  </li>
-<li>다형성 (polymophism) : 상속(inheritance)<br> -&gt; 메소드 오버라이딩(method overriding)<br> -&gt; 함수 오버로딩과 헷갈리면 안됨.  </li>
-<li>디자인 패턴(SOLID)  <ul>
-<li>Single responsibility principle(단일 책임 원칙)  </li>
-<li>Open-closed principle(확장-폐쇄 원칙)  </li>
-<li>Liskov substitution principle(리스코브 치환 원칙)  </li>
-<li>Interface segregation principle(인터페이스 분리 원칙)  </li>
-<li>Dependancy inversion principle (의존 역전 원칙)  </li>
-</ul>
-</li>
-</ol>
-<p><strong>객체 지향</strong><br>객체지향 : 관련 있는 변수와 함수를 묶어둠.<br>    변수 : 상태정보(<code>데이터</code>)<br>    함수(여기선 함수가 아니라 메서드) : <code>기능</code>   </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Account:</span><br><span class="line">    #생성자(constructor): 객체를 생성할 때 반드시 한번호출한다 --&gt; Account() 형태로 쓴다</span><br><span class="line">    def __init__(self, cust_name, init_balance):</span><br><span class="line">        # 인스턴스 멤버(속성, 데이터, 변수)를 설정</span><br><span class="line">        self.name=cust_name</span><br><span class="line">        self.balance=init_balance</span><br><span class="line">    #소멸자(destructor): 객체가 소멸될 때 반드시 한번 호출</span><br><span class="line">    def __del__(self):</span><br><span class="line">        pass</span><br><span class="line">    #인스턴스 메서드(기능, 행동)</span><br><span class="line">    def deposit(self, money):</span><br><span class="line">        if money &lt; 0:</span><br><span class="line">            return False</span><br><span class="line">        #관련 있는 변수 : 인스턴스멤버</span><br><span class="line">        self.balance+=money</span><br><span class="line">        return True</span><br><span class="line">        </span><br><span class="line">    def withdraw(self, money):</span><br><span class="line">        if money &gt; self.balance:</span><br><span class="line">            return 0</span><br><span class="line">        self.balance -= money</span><br><span class="line">        return money</span><br><span class="line">    </span><br><span class="line">    def transter(self, other, money):</span><br><span class="line">        self.balance -= money</span><br><span class="line">        #다른 객체의 멤버에 바로 접근하지 않는다는 것이 원칙이다</span><br><span class="line">        #다른 객체의 멤버값(데이터)을 변경할때는 반드시 상대 객체가 가진 메서드에 위임해야한다.</span><br><span class="line">        # = 메시지 패싱 </span><br><span class="line">        other.deposit(money)</span><br></pre></td></tr></table></figure>
-<p>-&gt; <strong>입력값은 같지만 상태정보에 따라 결과값은 다르게 나온다</strong></p>
-<h1 id="네트워크"><a href="#네트워크" class="headerlink" title="네트워크"></a>네트워크</h1><h2 id="Network-Interface-물리계층-데이터-링크-계층-mac-address-담당"><a href="#Network-Interface-물리계층-데이터-링크-계층-mac-address-담당" class="headerlink" title="Network Interface(물리계층, 데이터 링크 계층): mac address 담당"></a>Network Interface(물리계층, 데이터 링크 계층): mac address 담당</h2><h3 id="LAN-amp-WAN"><a href="#LAN-amp-WAN" class="headerlink" title="LAN &amp; WAN"></a>LAN &amp; WAN</h3><ul>
-<li><p>LAN : <code>Local Area Network</code><br>같은 지역 내에서 라우터를 통해 서로 연결.<br>아이피주소가 필요없이 물리주소만 알고있으면 라우터를 거치지 않고도 연결이 가능.<br>맥주소를 통해 LAN 안에서만 데이터를 주고받는 프로토콜 = <code>이더넷 프로토콜</code><br>패킷 : 패킷의 맨 윗 부분에 이더넷 헤더가 들어감.<br>이더넷 헤더에는 패킷을 받을 상대방의 맥주소와 송신자의 맥주소가 들어감.<br>받는 사람과 보내는 사람은 같은 LAN 안에 존재해야함.<br><code>MTU(maximum transfer unit)</code> : 한번에 보낼 수 있는 데이터의 크기.<br>패킷은 한번에 1500바이트를 넘지 않는다.  </p>
-</li>
-<li><p>WAN : <code>Wide Area Network</code>  </p>
-</li>
-</ul>
-<h2 id="Internet-네트워크-계층-IP담당"><a href="#Internet-네트워크-계층-IP담당" class="headerlink" title="Internet(네트워크 계층): IP담당"></a>Internet(네트워크 계층): IP담당</h2><p><code>ARP(Address Resolution Protocol)</code>: 브로드캐스트로 어떤 IP 를 사용하는 호스트의 맥 주소를 알아낸다.   </p>
-<p><strong>How? :</strong><br>서로 맥 주소를 모르는 상태에서 호스트1과 호스트2가<br>이더넷 프로토콜을 이용해 데이터를 주고 받고 싶을 때.<br>이때 호스트1이 특별한 <code>패킷</code>을 만들어서 송신자부분에 자신의 아이피와 맥 주소를 쓴다.<br>그리고 수신자 부분엔 호스트2의 아이피를 써놓음. 맥주소는 00:00:00… 과 같이 쓴다.<br>라우터에게 패킷을 던진다.<br>“이거 <code>브로드캐스트</code>로 좀 쏴줄래?” -&gt; 마치 방송하듯이 모든 호스트에게 패킷을 다 보낸다.<br>다른 호스트들이 패킷을 받았을 때, 아이피주소를 보고 자신의 것과 같은지 확인한 후에 무시하거나 리스폰스 한다.<br>호스트2는 <code>리스폰스 패킷</code>을 보낸다.<br>보내는 호스트에다가 자신의 아이피주소와 맥주소를 쓰고<br>받는 호스트에는 처음에 보냈던 호스트1의 주소를 그대로 써서 보낸다.<br>-&gt; 이제 서로의 맥주소를 알게 되었으므로 <code>라우터를 거치지 않고 직접</code> 통신한다.<br>호스트1: “나 이제 호스트2 주소 알아! 직접 통신하자.”<br>한번 ARP를 하고 나면 <code>ARP 테이블</code>(모든 컴퓨터에 다 있음)에다가 맥주소를 저장해둔다.  </p>
-<h3 id="IP프로토콜"><a href="#IP프로토콜" class="headerlink" title="IP프로토콜:"></a>IP프로토콜:</h3><p>IPv4 : 내 아이피주소, 서브넷마스크, 게이트웨이  </p>
+        <h2 id="변수"><a href="#변수" class="headerlink" title="변수"></a>변수</h2><p>들어가기 전에.  </p>
 <ul>
-<li><code>아이피</code>는 주소. 4바이트로 구성이 되어있다. 한 자리당 1바이트, 0~255까지.<br>  첫번째 자리에서 클라스 단위를 구분한다.  </li>
-<li><code>서브넷마스크</code>: 어디까지가 네트워크 주소인가?<br>호스트아이디에 할당된 비트를 서브넷으로 쪼갤 수 있다.<br>호스트아이디중에 앞의 두 개 비트를 서브넷아이디로.<br>네트워크가 여러 개일때 연결할 수 있는 호스트의 수는 적어진다.  </li>
+<li>자바스크립트는 왜 8바이트 숫자를 쓰는가  </li>
 </ul>
-<p>전세계적으로 유니크한, 세상에 하나 뿐인 <code>공인 아이피(public IP)</code>.<br><code>사설 네트워크(privite network)</code>가 구성되어 공인 아이피를 공유하고,<br>그들이 쓰는 아이피가 <code>사설 아이피(privite IP)</code>.<br>사설아이피는 동적으로 할당되기때문에<br>컴퓨터를 껐다 키면 바뀌어있다.<br>(커피숍에서 해킹을 해도 날 잡으러 오기는 힘든 이유.)  </p>
-<h2 id="정렬-알고리즘"><a href="#정렬-알고리즘" class="headerlink" title="정렬 알고리즘"></a>정렬 알고리즘</h2><p>단순 알고리즘(비교정렬) : <a href="https://blueshirudy.tistory.com/13" target="_blank" rel="noopener">버블 정렬</a>,<br><a href="https://blueshirudy.tistory.com/19" target="_blank" rel="noopener">삽입 정렬</a>, <a href="https://blueshirudy.tistory.com/20" target="_blank" rel="noopener">선택 정렬</a><br>분할 정복: <a href="https://blueshirudy.tistory.com/18" target="_blank" rel="noopener">퀵 정렬</a>, 병합 정렬, 힙 정렬  </p>
-<p><strong>분할 정복 기법(divide &amp; conquer)</strong><br>어떤 어려운 문제를 잘개 <em>쪼개서</em>,  작게 쪼개진 문제를 하나씩 <em>해결</em> 해나감으로써<br>작은 솔루션들이 모여 전체 문제에 대한 솔루션을 구하는 기법.  </p>
+<p>자바스크립트의 변수에는 숫자, 문자, 불리언 등을 자유롭게 넣을 수 있다. 즉, 변수에 뭐가 들어올지 모른다는 말이 된다. 그래서 메모리 공간을 좀 넉넉히 확보한다. 다른 언어같으면 ‘이 변수는 4바이트 정수 숫자를 저장할거야’ 라고 크기를 딱 정해줄텐데, (선언될 때 타입을 정하니까 <code>정적 타입 언어</code> 라고 한다.) 자바스크립트는 <strong>동적 타입 언어</strong>라서 크기를 정해주지 않는다. 변수의 타입은 할당될 때의 값의 타입에 따라 정해진다.  </p>
+<p>숫자의 경우, 내가 숫자를 얼마나 넣을 줄 알겠는가. 그러니까 일단 제일 많이 넣을 수 있을 정도로 메모리공간을 보유해놓는 것이다. 따라서 자바스크립트에서 숫자는 무조건 8바이트를 쓴다. 자바스크립트는 개발자가 타입을 덜 신경쓰도록 만들어진 언어다.  </p>
+<p>숫자의 크기가 8바이트면 8개의 셀을 쓸 것이고, 8개의 주소가 있을 것이다. 이때 변수는 선두 어드레스를 기억하고, 변수값을 불러올 때 몇 바이트를 가지고 와야할지 알아야 하는데, 그것은 데이터 타입으로 결정한다. 데이터 타입의 크기를 참고(메모리 공간을 얼마나 차지하고 있나)하여 그만큼의 데이터를 전부 불러온다. 만약 가져와야하는 바이트보다 조금 가져오면 데이터가 왜곡되기 때문이다.</p>
+<h3 id="변수의-재할당"><a href="#변수의-재할당" class="headerlink" title="변수의 재할당"></a>변수의 재할당</h3><p><code>var x;</code><br><code>x = 10;</code><br><code>=</code>: 우변의 값을 좌변으로 할당하는 할당연산자  </p>
+<p>변수가 선언되면, 선언과 초기화단계를 거쳐 변수명과 메모리공간이 매핑되었고 undefined 가 할당된 상태가 된다. 그리고 런타임에 자바스크립트엔진이 10 이라는 숫자(값)를 이진수로 바꿔서 메모리 공간에 값을 넣는다.  </p>
+<p><strong>!중요!</strong></p>
+<p>undefined를 싹 지우고 숫자를 그 자리에 넣는게 아니라, <strong>새로운 공간에 숫자를 넣고 변수 x가 그 공간을 가리키게</strong> 한다. 원시타입은 변경불가능한(immutable) 값이기 때문이다.  </p>
+<p>undefined는 데이터타입이면서 값이기도 하다. 그러니까 할당이 될 수 있다. undefined는 원시타입이고, 변경할 수 없다.<br>-&gt; 메모리공간에 할당된 undefined를 지우고 다른 값으로 바꿀 수 없다는 뜻이다.<br>undefined가 할당된 공간은 그냥 놔두고, 새로운 공간에 10이라고 이진수로 쓰고 x 가 10을 가리키게 한다. 그럼 undefined는 쓰레기값(어떤 식별자도 참조하지않는 값)이 된다. 쓰레기값이 되면 가비지컬렉터가 치운다. (언제 치울지는 모른다 그건 개발자가 신경 쓸 일은 아니다)<br>이것이 자바스크립트에서의 변수의 <strong>재할당.</strong>  </p>
+<h3 id="변수-호이스팅"><a href="#변수-호이스팅" class="headerlink" title="변수 호이스팅"></a>변수 호이스팅</h3><p>선언만 된 상태에서 참조했을 때 초기화된 상태인 undefined 가 나오는 현상.<br>(호이스팅을 배우는 이유는 쓰라고 배우는게 아니라 쓰지말라고 배우는 거라고 하셨다…)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a);</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">100</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>var 키워드를 사용했으므로 첫 번째 a는 undefined, 두 번째 a는 100이 나온다.<br>자바스크립트 엔진이 변수 선언문을 실행한 후에 코드를 한 줄씩 실행하면서 값을 할당하게 되는데,<br>함수 내에서 첫 a를 콘솔에 출력하려고 할 때에는 아직 100 이라는 값이 할당되지 않아 undefined 인 상태다.<br>두 번째 a를 출력할 때에는 a에 100이 할당 된 후이기 때문에 100이 정상적으로 출력된다.  </p>
+<ul>
+<li>var 키워드의 문제:  <ul>
+<li>중복선언이 된다.  </li>
+<li>호이스팅이 된다.  </li>
+<li>키워드 없이 선언되면서 심지어 전역변수가 된다.  </li>
+<li>블록레벨스코프를 지원 안하고 함수레벨스코프를 지원. </li>
+<li>상수 선언이 안 된다. (상수는 재할당을 못하는 변수. 상수도 변수다!)<br>(변수명을 대문자로만 지으면 상수란 뜻으로 통한다고 한다)  </li>
+</ul>
+</li>
+</ul>
+<p>그래서 ES6에서 const 와 let 키워드가 도입되었다.<br>const: 할당 한번만 가능<br>let: 재할당가능, 재선언 불가능<br>둘 다 변수호이스팅을 안하는 것처럼 동작한다.</p>
+<h2 id="값"><a href="#값" class="headerlink" title="값"></a>값</h2><p>더 이상 평가될 수 없는 표현식.<br>10+20 이 왜 표현식일까? 평가라는 단계를 거쳐 30이라는 하나의 값을 만들기 때문이다.<br>그럼 30은 왜 표현식이냐. 30도 30으로 평가되니까.<br>정확히는, 30도 메모리에 들어갈때 컴퓨터를 위해 이진수 값으로 평가되어 들어가기 때문이다.</p>
+<h3 id="리터럴"><a href="#리터럴" class="headerlink" title="리터럴"></a>리터럴</h3><p>리터럴이라는 상태는, 내가 그냥 30이라고 쓴 상태다. 리터럴 표기법이 별 게 아니고 그냥 내가 10이라고 쓰면 그게 리터럴 표기법으로 만든 리터럴이다. 30은 숫자 리터럴이고, 자바스크립트엔진이 30을 읽고 “아 숫자 30을 만들라는 거구나,” 하고<br>숫자 30에 대응하는 값(이진수)을 만든다. 30이라는 리터럴이 이진수값으로 평가되었다. 결국 <strong>리터럴은 값을 만드는 방법중에 가장 심플한 표현식</strong> 이다.  </p>
+<p>정확히는 리터럴은 값이 아니라 값을 만드는 표현식이다. 근데 어차피 리터럴은 값이 될 예정이니까 그냥 값이라고 퉁칠 수도 있다. 리터럴은 값이 될 순 있지만 값이 리터럴이 될 수 없다는건 리터럴이 평가되서 값이 될 수는 있지만 값이 평가되어 리터럴이 될 수는 없다는 말이다. </p>
+<h2 id="표현식"><a href="#표현식" class="headerlink" title="표현식"></a>표현식</h2><p>변수에 할당되는 것은 값으로 평가될 수 있는 모든 표현식이다.<br><code>var a = 10;</code><br>이 때 콘솔창에서 a 를 입력하면 10이 나온다. a 도 평가되어 10이 나왔다는 뜻이다.<br>이때 a 를 <strong>식별자 표현식</strong>이라고 한다.<br><code>a + 10</code> 은 a 라는 식별자 표현식과 10 이라는 리터럴 표현식이 합쳐진 표현식이다.<br>그래서 표현식은 표현식의 일부가 될 수 있다는 것을 알 수 있다.  </p>
+<h2 id="문"><a href="#문" class="headerlink" title="문"></a>문</h2><p>문은 하나의 키워드와 식별자로 이루어진 명령이다.<br><code>var foo;</code> 는 선언’문’이다. 왜? var 와 foo 로 이루어진 변수 선언명령이기 때문이다.  </p>
+<h2 id="표현식-vs-문"><a href="#표현식-vs-문" class="headerlink" title="표현식 vs 문"></a>표현식 vs 문</h2><p>표현식은 값을 만드는게 주 업무이며, 문은 무언가를 실행하거나 명령하는 것이 주 업무다.<br>문의 개념이 좀 더 포괄적이다. 따라서 표현식은 문이다. 평가하여 값을 만들라는 일종의 명령이기 때문이다. 하지만 우리는 보통 표현식은 ‘평가’를 한다고 하지, ‘명령’한다고는 하지 않는다. 표현식은 ‘평가’가 주 업무다.  </p>
+<p>문은, 표현식인 문과 표현식이 아닌 문이 있다.  </p>
+<ul>
+<li>표현식인 문 : 값을 만드는 일을 하는 문  </li>
+<li>표현식이 아닌 문 : 값을 만드는 일이 아닌 다른 일을 하는 문  </li>
+</ul>
+<p>둘을 구별하는 가장 쉬운 방법은 변수에 할당해보는 것이다.<br>할당이 잘 되면 표현식인 문이고, 안 되면 표현식이 아닌 문이다.<br>가장 쉬운 예로는, if문은 표현식이 아닌 문이다. if문을 변수에 넣지는 않는다.  </p>
+<p>(+)<br>자바스크립트의 할당문은 식이다.<br><code>sum = 10;</code> 을 콘솔창에서 출력해보면 10으로 평가되어 나온다. 값으로 평가되는 표현식이라는 뜻이다.  </p>
+<h2 id="데이터-타입"><a href="#데이터-타입" class="headerlink" title="데이터 타입"></a>데이터 타입</h2><h3 id="문자열-타입"><a href="#문자열-타입" class="headerlink" title="문자열 타입"></a>문자열 타입</h3><p>자바스크립트엔진은 문자열의 크기를 보고 크기에 맞는 메모리공간을 확보한다.<br>문자열을 따옴표로 묶는 것은 식별자로 오해하지 않게 하기 위해서고, 문자열의 시작과 끝을 알리기 위해서이기도 하다. 마치 열고 닫는 태그같은 것이다.<br>ES6부터는 템플릿 리터럴이 도입되었는데, 1+1 같은 산술연산이 들어가도 평가 후에 문자열로 변환된다. </p>
+<h3 id="undefined"><a href="#undefined" class="headerlink" title="undefined"></a>undefined</h3><p>변수가 선언되었을 때, 개발자가 보기에는 선언만 되고 할당이 되지 않은 상태이지만 사실 자바스크립트엔진에 의해서 선언과 동시에 undefined가 할당된 상태다(값이 할당되었으니 정의도 되었다). undefined는 개발자가 직접 할당하는 것이 아니다. 할당은 자바스크립트엔진이 해주고, 나는 그게 “할당이 안된 상태구나,” 하고 인식하면 된다. 내가 일부러 undefined를 할당할 일이 얼마나 있을까.  </p>
+<h3 id="null"><a href="#null" class="headerlink" title="null"></a>null</h3><p>변수에 null 을 할당하면 변수가 참조하고 있던 값 말고 null 을 가리키게 한다. null은 값이 없다는 뜻이니까, 변수가 가리키는 값은 ‘없다’. 참조가 끊어지게 된다.<br>null 을 할당하게 되면 자연스레 변수가 원래 참조하고 있던 메모리 공간이 해제되지만, null은 값이지 메모리 공간을 해제하라는 명령어가 아니다. null 을 할당하는 것은 그다지 효율적이지 못하기도 하다.<br>a가 null 을 바라보게되면 a가 바라보던 값이 혼자 남게 되어 쓰레기값이 된다? 그럴거면 null을 쓰나 다른 값을 쓰나 똑같고, 그럴거면 스코프를 줄여서 변수를 소멸시키는 게 낫다.<br>(함수는 null 에서 자주 쓰인다고 한다. 리턴값이 없을때 에러를 내보내면 멈추니까 그냥 null 을 리턴해버린다고…)  </p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cs/">CS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
 
       
     </footer>
@@ -179,7 +188,7 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-0423-1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0419" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -187,7 +196,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0423-1/">컴퓨터 공학 TIL 0423-1</a>
+      <a class="article-title" href="/2019/05/03/0419/">컴퓨터 공학 TIL 0419</a>
     </h1>
   
 
@@ -195,7 +204,7 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/03/0423-1/" class="article-date">
+	<a href="/2019/05/03/0419/" class="article-date">
 	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
 	</a>
 
@@ -207,90 +216,56 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="메모리-계층-주요-키워드"><a href="#메모리-계층-주요-키워드" class="headerlink" title="메모리 계층 (주요 키워드)"></a>메모리 계층 (주요 키워드)</h2><p><em>지금은 모르더라도 나중에 꼭 알아둬야할 내용</em></p>
-<ol>
-<li>레지스터  </li>
-<li>캐시  <ul>
-<li>지역성 원리(principle of locality) -&gt; 캐시 히트, 캐시 미스  </li>
-</ul>
-</li>
-<li>메모리  <ul>
-<li>segmentation  <ul>
-<li>코드  </li>
-<li>데이터  </li>
-<li>힙 (slow)  </li>
-<li>스택 (fast)  </li>
-</ul>
-</li>
-<li>가상메모리  <ul>
-<li>page  </li>
-<li>page frame  </li>
-<li>page fault  </li>
-<li>page title  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>하드디스크  </li>
-</ol>
-<h2 id="Big-O"><a href="#Big-O" class="headerlink" title="Big O"></a>Big O</h2><p>데이터 갯수가 늘어날 때 T(n)이 어떤 식으로 늘어나는가<br>(어떤 형태의 그래프를 그리는가) 우리의 주 관심사.<br>그래프의 모양만 알기 위해서는 최고차항만 필요하다. -&gt; <code>O(n^2)</code></p>
-<p><strong>이해가 안 되면 외워</strong>  </p>
-<ol>
-<li>O(a): 상수 시간<br> ex) 배열의 인덱싱  <pre><code>링크드 리스트의 삽입,삭제  
-</code></pre></li>
-<li>O(log n): 로그 시간<br> ex) BST - insert, search, delete  </li>
-<li>O(n): 선형 시간<br> ex) 링크드 리스트의 탐색 / 특정배열에서의 삽입,삭제  </li>
-<li>O(n log n): 선형 로그 시간<br> ex) quick sort, merge sort<br> 비교 정렬(comparison sorting)의 경우 성능이 아무리 좋아도 O(n log n)보다 성능이 좋을 순 없다.  </li>
-<li>O(n^2): 지수 시간<br> ex) 버블 소트, 선택 정렬, 삽입 정렬  </li>
-</ol>
-<hr>
-<h2 id="OS"><a href="#OS" class="headerlink" title="OS"></a>OS</h2><ul>
-<li>Job scheduling -&gt; scheduler<br>-&gt; context switching<br>process status(프로세스 상태)<br>thread -&gt; multi threading(cpu 작업이 많을 때)  </li>
-</ul>
-<p>multi threading 의 문제  </p>
+        <h1 id="파이썬-기초와-알고리즘-3일차"><a href="#파이썬-기초와-알고리즘-3일차" class="headerlink" title="파이썬 기초와 알고리즘 3일차"></a>파이썬 기초와 알고리즘 3일차</h1><p><code>.replace()</code> - 원본의 데이터를 바꾸지 않음.  </p>
 <ul>
-<li>race condition  </li>
-<li>dead-lock </li>
+<li><p>튜플은 <strong>성능 최적화</strong>를 위해 존재.<br>데이터를 바꿀 수 없기 때문에 데이터를 가져와서 읽는 용도로만 사용한다.<br>리스트보다 빠르다. 튜플을 쓸 수 있다면 튜플을 쓸 것.  </p>
+</li>
+<li><p>딕셔너리 = “Collection of Pairs”<br>pair = <code>key : item</code><br>키와 밸류가 한 쌍으로 모여있다.  </p>
+</li>
+<li><p>뷰객체와 리스트객체의 차이<br>원본에 데이터를 추가했을 때 뷰 객체에서는 변경사항이 저장되지만 리스트는 안됨.  </p>
+</li>
 </ul>
-<h3 id="Concurrency-Programming-동시성-프로그래밍"><a href="#Concurrency-Programming-동시성-프로그래밍" class="headerlink" title="Concurrency Programming (동시성 프로그래밍)"></a>Concurrency Programming (동시성 프로그래밍)</h3><ul>
-<li><code>Asyncronous I/O</code><br>자바스크립트는 헤비한 연산 하지 않는다.<br>따라서 I/O bound 작업에만 쓴다.  </li>
+<p>파이썬은 단순성이 존재목적.  </p>
+<ul>
+<li>expression: 식.<br>무언가를 반환할 수 있다면 그것은 식이다.<br>단항식 역시 참과 거짓, 혹은 값 자체를 반환할 수 있으므로 식이다.  </li>
 </ul>
-<h2 id="program-과-process"><a href="#program-과-process" class="headerlink" title="program 과 process"></a>program 과 process</h2><ul>
-<li>program :<br>하드디스크에 저장되어 있는 “하나”의 이미지  </li>
-<li>process :<br>메인 메모리에 올라와서 <code>실행</code>을 시작한 프로그램  </li>
+<p>a+b : <code>이항식. binary expression</code><br>“abc” : <code>단항식 unary expression</code>  </p>
+<p>파이썬에서는 함수도 식이다.<br>식이라면 반드시 무언가를 반환해야 한다.<br>print() 도 함수고, 반환이 없어보이지만 실제로는 none 을 반환함.  </p>
+<p><code>stdin</code> : standard input (키보드), 0<br><code>stdout</code> : standard output (모니터), 1<br><code>stderr</code> : standard error (모니터), 2  </p>
+<h2 id="문자열"><a href="#문자열" class="headerlink" title="문자열"></a>문자열</h2><ul>
+<li>ASCII  </li>
+<li><p>UNICODE  </p>
+<ul>
+<li>UTF-8  </li>
+<li>UTF-16  </li>
+<li>UTF-32  </li>
+<li>~CP949~  </li>
 </ul>
-<p>notepad.exe 라는 프로그램은 하나이지만(program),<br>노트패드 창을 여러 개 띄워서 <code>실행</code>(process) 수 있다.<br>실행되고 있는 여러 개의 notepad 는 <code>PID</code> 를 부여하여 구분  </p>
-<h3 id="선점형-스케줄링과-비선점형-스케줄링"><a href="#선점형-스케줄링과-비선점형-스케줄링" class="headerlink" title="선점형 스케줄링과 비선점형 스케줄링"></a>선점형 스케줄링과 비선점형 스케줄링</h3><ul>
-<li><p>선점형 스케줄링(pre-emptive scheduling) : 새치기가 가능하다.  </p>
+</li>
+<li><p>문자집합 :<br>영어, 불어, 독일어는 언어체계는 다르지만 같은 문자집합을 공유한다.  </p>
+</li>
+<li><p>문자 인코딩 : 모스부호처럼 문자를 부호화하는 것.<br>  반대로 모스부호를 문자로 만드는 것은 복호화.  </p>
+</li>
+<li><p>코트 포인트 : 내 맘대로 a를 13으로 바꿀 수 없다. 전세계 사람들이 약속을 해야 한다.<br>  a = 97 일때, a는 chracter 고, 97은 코드포인트. 어떠한 문자에 매핑되어있는 숫자.<br>  이렇게 매핑된 문자와 숫자를 테이블로 정리를 해놓은 것이 ASCII.  </p>
+</li>
+</ul>
+<p>ASCII의 치명적 약점 : </p>
 <ol>
-<li><p>created : process 생성<br>OS의 스케줄러가 <strong>우선순위</strong>를 파악  </p>
-</li>
-<li><p>waiting : Queue 실행 대기 상태<br>우선순위가 높으면 이미 실행 중인 프로세스를 waiting 으로 보내고 실행됨<br>-&gt; <code>Priority Algorithm</code><br>우선순위가 같다면 <strong>정해진 시간동안</strong> 실행<br>-&gt; <code>Round Robin Algorithm</code>  </p>
-</li>
+<li>7비트만 사용할 수 있고 127개까지만 문자가 매핑되어있다.  </li>
+<li>영어밖에 없다.  </li>
 </ol>
+<p>-&gt; <strong>UNICODE</strong><br>16비트짜리 평면을 17개 만들었다.<br>ASCII 코드가 임베디드 되어 있다.  </p>
 <ul>
-<li>time slice  </li>
-<li><p>quantum  </p>
-<p>정해진 시간동안의 실행이 모두 끝나면 상태가 어떻든 무조건 queue 로 돌아감<br>-&gt; <code>aging</code><br>우선순위가 높은 프로세스들이 들어와서 우선순위가 낮은 프로세스가 실행되지 못하고<br>무한히 대기중인 상태인 <strong>기아상태</strong> 를 해결하기 위한 방법. 오랫동안 대기한<br>프로세스의 우선순위를 점진적으로 증가시켜 실행할 수 있도록 해준다. </p>
-<p><em>I/O 작업</em><br>파일 입출력이나 네트워크 작업<br>CPU가 필요없고 미친듯이 느리다.<br>-&gt; blocked 로 가서 작업이 완료된 후 waiting 으로 갔다가 running 으로.  </p>
-<p>-&gt; waiting 과 blocked<br>waiting 은 cpu 가 부르면 바로 올라갈 수 있다.<br>blocked 는 i/o 가 끝날 때까지 무조건 기다려야 함.</p>
+<li>UTF-8<ul>
+<li>8비트 기반</li>
+<li>아스키에 소속된 영어는 여전히 1바이트, 한글은 3바이트로 저장됨  </li>
+</ul>
 </li>
 </ul>
-<ol start="3">
-<li>running : CPU 할당(실행)<br>실행이 끝나면 terminated  </li>
-</ol>
-</li>
-<li><p>비선점형 스케줄링 : 새치기가 불가능하다.  </p>
-</li>
-</ul>
-<h3 id="context-switching"><a href="#context-switching" class="headerlink" title="context switching"></a>context switching</h3><p>정해진 시간동안의 실행이 끝나면 무조건 queue 로 돌아가서 waiting 상태가 되는데,<br>queue 로 끌어내려지는 시점에서 CPU 레지스터에 저장되어있는 실행상태정보(IR과 PC 등)를<br>PCB라는 별도의 공간에 저장한다.  </p>
+<p>big endian &amp; little endian &amp; endian less(빅, 리틀 상관없이 그 자체가 저장됨)  </p>
 <ul>
-<li>Instruction Register: 실행되고 있는 부분  </li>
-<li>Program Counter: 다음 실행될 코드를 가리키고 있는 부분  </li>
-<li>PCB(Process Control Block)<br>그리고 다시 실행할 차례가 돌아오면 PCB의 내용을 다시 CPU에 넣어서 실행할 수 있도록 한다.<br>  -&gt;(디스패치라고도 한다)  </li>
+<li>단순 정렬 알고리즘(bubble sort)<br><a href="https://blueshirudy.tistory.com/13" target="_blank" rel="noopener">과정 정리해본 노트</a></li>
 </ul>
-<p>context switching 이 많이 일어나면 시스템에 과부하가 생긴다.<br>100분의 1초마다 프로세스가 전환이 되면, 1초에 컨텍스트스위칭이 100번 일어나는 것인데,<br>두 프로세스를 실행하기 위해 그 사이에 작업이 추가되는 것이니까<br>그만큼 일종의 오버헤드가 걸릴 수 있다. </p>
-<p><em>context switching 을 안할 수 없는 이유</em><br>라운드로빈에서 시간이 다 될 때마다 끌어내려질건데<br>이때는 무조건 컨텍스트 스위칭이 일어날 수 밖에 없음.<br>그렇다고 컨텍스트스위칭을 줄이겠다고 5초마다 한 번 한다면<br>내가 뭔가 할때마다 최소 5초는 기다려야한다는 뜻.<br>즉, 멀티태스킹이 아니게 되는거임.<br>그렇다고 내가 기다리는 시간을 줄여서 컨텍스트 스위칭을 많이 하면 시스템 과부하가 일어나고.<br>-&gt;<code>sys.getswitchinterval() == 0.005</code>  </p>
 
       
     </div>
@@ -330,6 +305,18 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/09/10/0910/">React Basic2</a></h6>
+              <span>September 10, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -391,18 +378,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/07/01/0701/">옵저버블, 에러핸들러, 인터셉터</a></h6>
-              <span>July 1, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -412,7 +387,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -422,7 +397,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">38</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">39</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -433,7 +408,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

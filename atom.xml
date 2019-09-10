@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dearjsmc4.github.io/"/>
-  <updated>2019-09-09T06:33:59.508Z</updated>
+  <updated>2019-09-10T08:27:04.780Z</updated>
   <id>https://dearjsmc4.github.io/</id>
   
   <author>
@@ -17,19 +17,49 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>React Basic</title>
-    <link href="https://dearjsmc4.github.io/2019/09/09/0909/"/>
-    <id>https://dearjsmc4.github.io/2019/09/09/0909/</id>
-    <published>2019-09-08T15:00:00.000Z</published>
-    <updated>2019-09-09T06:33:59.508Z</updated>
+    <title>React Basic2</title>
+    <link href="https://dearjsmc4.github.io/2019/09/10/0910/"/>
+    <id>https://dearjsmc4.github.io/2019/09/10/0910/</id>
+    <published>2019-09-09T15:00:00.000Z</published>
+    <updated>2019-09-10T08:27:04.780Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="React-day-1"><a href="#React-day-1" class="headerlink" title="React day 1"></a>React day 1</h1><h2 id="리액트"><a href="#리액트" class="headerlink" title="리액트?"></a>리액트?</h2><ul><li>페이스북에서 만든 자바스크립트 UI 라이브러리</li></ul><p>웹사이트는 빠른 속도로 복잡해지고, HTML 코드는 정보에 따라 기하급수적으로 늘어난다.<br>이 많은 HTML 코드들을 정리정돈 하고 복잡한 코드 덩어리에 이름을 붙인다 -&gt; <strong>사용자 정의 태그</strong><br>그리고 index.html 에서는 사용자 정의 태그만 갖다 쓰면 끝.<br>-&gt; 앵귤러에서 컴포넌트를 <app-navigation></app-navigation> 이렇게 불러서 쓰는 것과 똑같다!</p><ul><li>장점: 가독성 / 재사용성 / 유지보수성 </li></ul><h2 id="개발환경-셋팅"><a href="#개발환경-셋팅" class="headerlink" title="개발환경 셋팅"></a>개발환경 셋팅</h2><p>툴 체인: 내게 필요한 여러가지 개발환경과 도구를 제공해준다.<br>-&gt; 나는 Create React App 을 사용</p><p>우선 npm 을 다운로드 한 후에 Create React App 설치<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g create-react-app</span><br></pre></td></tr></table></figure></p><p>(버전 확인은 <code>$ npm -v</code>)<br>(버전 업데이트는 <code>$ npm install npm@latest -g</code>)</p><p>앱을 관리할 디렉토리를 만들고 cd 로 이동한 뒤<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ create-react-app .</span><br></pre></td></tr></table></figure></p><p>해당 디렉토리 안에 개발 환경이 셋팅된다.</p><p>(+)<br><code>npx create-react-app</code> 은<br>일회용으로 다운받아 실행하고 지워버리므로 항상 최신버전에서 작업할 수 있다.<br>실무에서는 npx 를 쓰기를 권장.</p><h2 id="실행"><a href="#실행" class="headerlink" title="실행"></a>실행</h2><p>해당 디렉토리에서<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run start</span><br></pre></td></tr></table></figure></p><p>하면 브라우저에 리액트의 샘플 웹앱이 나타난다.</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="Create-React-App-의-디렉토리-구조"><a href="#Create-React-App-의-디렉토리-구조" class="headerlink" title="Create React App 의 디렉토리 구조"></a>Create React App 의 디렉토리 구조</h2><ul><li><p><strong>public</strong><br><code>npm run start</code> 했을 때의 document root 이다.<br>index.html 이 있는 곳이며, 그 안에서는<br><code>&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</code> 이 부분이 가장 중요하다.<br>내가 만든 컴포넌트들은 id 가 root 인 이 div 안에 모두 들어가기 때문이다.<br>그 컴포넌트들은 <strong>src</strong> 안에서 작업한다. </p></li><li><p><strong>src</strong><br>대부분의 파일들은 이 폴더에 들어간다.<br>entry 파일은 index.js 이다.<br>index.js 에서 눈여겨 볼 부분은<code>document.getElementById(&#39;root&#39;)</code>.<br>index.html 에 있었던 root div 를 참조한다.<br><code>&lt;App /&gt;</code> 은, 사용자 정의 태그인 컴포넌트이며, 이 컴포넌트의 실제 구현은 <strong>App.js</strong> 에서 한다.<br>Create React App이 샘플로 만든 컴포넌트의 실제 구현은 App.js 안에 들어있고,<br>실제 태그의 내용(JSX 식이라고 한다)은 return 문 안에 들어있다. </p></li></ul><h2 id="CSS-는"><a href="#CSS-는" class="headerlink" title="CSS 는?"></a>CSS 는?</h2><p>index.js 에서 index.css 를 import 하고 있고,<br>app.js 는 app.css 의 스타일이 적용된다.<br>(앵귤러의 app.component 가 리액트에서는 app.js 라고 생각된다.<br>앵귤러에서의 index.html, index.css 는 리액트와 같고.)</p><h2 id="배포"><a href="#배포" class="headerlink" title="배포"></a>배포</h2><p>Create React App 의 개발환경은 파일의 무게가 무겁다.<br>개발자만 쓸 때는 상관없지만, 배포할 때에는 문제가 있다.<br>그래서, 개발환경을 실행할 때에는 <code>npm run start</code> 를 쓰지만,<br>서비스하고자 빌드할 때에는 <code>npm run build</code> 라고 한다.<br>그러면 build 라는 디렉토리가 새로 생기게 되고,<br>서비스할 때에는 build 안에 있는 파일들을 쓰면 된다. </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g serve</span><br></pre></td></tr></table></figure><p>npm 을 통해 설치할 수 있는 간단한 서버이다.<br><code>serve -s build</code> 를 입력하면<br>내 컴퓨터 어디에서나 serve 라는 명령어를 통해 웹서버를 다운로드할 수 있게 된다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npx serve -s build</span><br></pre></td></tr></table></figure><p>일회용 서버를 설치한다.<br>-s 는, 웹 서버를 다운로드 받아 실행할 때<br>build 디렉토리를 document root 로 하겠다는 뜻이다. </p><p>빌드하고나면 불필요하게 용량을 차지하는 정보가 모두 사라져 용량이 작아진다.<br>(npm run start 했을 때에는 1.8MB 였지만<br>빌드하고나면 130KB 정도밖에 되지 않았다.)</p><h2 id="컴포넌트"><a href="#컴포넌트" class="headerlink" title="컴포넌트"></a>컴포넌트</h2><p>정리의 도구.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// React 의 Component 를 상속받는 Subject 컴포넌트를 제작</span><br><span class="line">class Subject extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        &lt;h1&gt;My Favorite Movies&lt;/h1&gt;</span><br><span class="line">      &lt;/header&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>render 함수의 return 문 안에는 최상위 태그가 하나 꼭 있어야 한다.<br>그렇지 않으면 return 문을 닫는 괄호에 빨간줄이 그어지면서<br><u>‘JSX 식에는 부모 요소가 하나 있어야 합니다’</u> 라는 메세지가 뜬다.<br>-&gt; <a href="https://reactjs-kr.firebaseapp.com/docs/introducing-jsx.html" target="_blank" rel="noopener">JSX 소개</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;React-day-1&quot;&gt;&lt;a href=&quot;#React-day-1&quot; class=&quot;headerlink&quot; title=&quot;React day 1&quot;&gt;&lt;/a&gt;React day 1&lt;/h1&gt;&lt;h2 id=&quot;리액트&quot;&gt;&lt;a href=&quot;#리액트&quot; class=&quot;he
+        &lt;h2 id=&quot;Create-React-App-의-디렉토리-구조&quot;&gt;&lt;a href=&quot;#Create-React-App-의-디렉토리-구조&quot; class=&quot;headerlink&quot; title=&quot;Create React App 의 디렉토리 구조&quot;&gt;&lt;/a&gt;Create R
+      
+    
+    </summary>
+    
+      <category term="React" scheme="https://dearjsmc4.github.io/categories/react/"/>
+    
+    
+      <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
+    
+      <category term="React" scheme="https://dearjsmc4.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>React Basic</title>
+    <link href="https://dearjsmc4.github.io/2019/09/09/0909/"/>
+    <id>https://dearjsmc4.github.io/2019/09/09/0909/</id>
+    <published>2019-09-08T15:00:00.000Z</published>
+    <updated>2019-09-10T08:27:05.616Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="리액트"><a href="#리액트" class="headerlink" title="리액트?"></a>리액트?</h2><ul><li>페이스북에서 만든 자바스크립트 UI 라이브러리</li></ul><p>웹사이트는 빠른 속도로 복잡해지고, HTML 코드는 정보에 따라 기하급수적으로 늘어난다.<br>이 많은 HTML 코드들을 정리정돈 하고 복잡한 코드 덩어리에 이름을 붙인다 -&gt; <strong>사용자 정의 태그</strong><br>그리고 index.html 에서는 사용자 정의 태그만 갖다 쓰면 끝.<br>-&gt; 앵귤러에서 컴포넌트를 <app-navigation></app-navigation> 이렇게 불러서 쓰는 것과 똑같다!</p><ul><li>장점: 가독성 / 재사용성 / 유지보수성 </li></ul><h2 id="개발환경-셋팅"><a href="#개발환경-셋팅" class="headerlink" title="개발환경 셋팅"></a>개발환경 셋팅</h2><p>툴 체인: 내게 필요한 여러가지 개발환경과 도구를 제공해준다.<br>-&gt; 나는 Create React App 을 사용</p><p>우선 npm 을 다운로드 한 후에 Create React App 설치<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g create-react-app</span><br></pre></td></tr></table></figure></p><p>(버전 확인은 <code>$ npm -v</code>)<br>(버전 업데이트는 <code>$ npm install npm@latest -g</code>)</p><p>앱을 관리할 디렉토리를 만들고 cd 로 이동한 뒤<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ create-react-app .</span><br></pre></td></tr></table></figure></p><p>해당 디렉토리 안에 개발 환경이 셋팅된다.</p><p>(+)<br><code>npx create-react-app</code> 은<br>일회용으로 다운받아 실행하고 지워버리므로 항상 최신버전에서 작업할 수 있다.<br>실무에서는 npx 를 쓰기를 권장.</p><h2 id="실행"><a href="#실행" class="headerlink" title="실행"></a>실행</h2><p>해당 디렉토리에서<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run start</span><br></pre></td></tr></table></figure></p><p>하면 브라우저에 리액트의 샘플 웹앱이 나타난다.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;리액트&quot;&gt;&lt;a href=&quot;#리액트&quot; class=&quot;headerlink&quot; title=&quot;리액트?&quot;&gt;&lt;/a&gt;리액트?&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;페이스북에서 만든 자바스크립트 UI 라이브러리&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;웹사이트는 빠른 속도로 복잡해지고
       
     
     </summary>
@@ -515,33 +545,6 @@
       
       
         &lt;h2 id=&quot;Disallow-use-of-Object-prototypes-builtins-directly-no-prototype-builtins&quot;&gt;&lt;a href=&quot;#Disallow-use-of-Object-prototypes-builtins-dire
-      
-    
-    </summary>
-    
-      <category term="Javascript TIL" scheme="https://dearjsmc4.github.io/categories/javascript-til/"/>
-    
-    
-      <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
-    
-      <category term="Javascript" scheme="https://dearjsmc4.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>전역객체, this</title>
-    <link href="https://dearjsmc4.github.io/2019/05/15/0515/"/>
-    <id>https://dearjsmc4.github.io/2019/05/15/0515/</id>
-    <published>2019-05-14T15:00:00.000Z</published>
-    <updated>2019-05-15T11:08:43.023Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="전역객체"><a href="#전역객체" class="headerlink" title="전역객체"></a>전역객체</h2><p>우리가 만드는 게 아니라 브라우저 열자마자 전역객체가 만들어진다. 그 안에는 전역객체가 가지고있는 프로퍼티와 메소드, var 로 만든 전역 변수, 암묵적 전역변수, WEB API가 들어있다. window의 프로퍼티는 window.을 생략해도 된다.  </p><h3 id="eval-함수"><a href="#eval-함수" class="headerlink" title="eval 함수"></a>eval 함수</h3><p>안 배워도 되고 가르치지도 않으려고 하는 함수…<br>얘를 왜 안 쓰냐면, 자기자신만의 스코프를 만들고 상위 스코프도 변형시키기 때문이다. 비용이 많이 드는 일들이다. 비용이 많이 드는 일은 대체로 최적화가 되는데 eval 은 그 최적화를 깨뜨린다. 보안문제도 있다. 사용자가 입력한 데이터는 untrusted data 라고 하는데, 이것은 한번 검사를 해야한다고 한다. eval이 받은 문자열을 바로 실행시켜버리니까 문제인듯하다. 그 안에 무슨 코드가 있을지 모르니까.  </p><p>(함수이름 짓는 팁: 빌트인메소드들 이름 따라하기)  </p><h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>객체에는 상태 데이터와 동작(메소드)이 있다고 했고, 동작인 메소드는 상태 데이터를 참조하고 변경할 수 있어야 한다. 메소드가 자신이 속한 객체의 프로퍼티를 참조하려면 자신이 속한 객체를 가리키는 식별자를 참조할 수 있어야 한다.<br><strong>this</strong>는 객체 자신의 프로퍼티나 메소드를 참조하기 위한 <strong>자기참조변수</strong>이다. <strong>this가 가리키는 값은 함수 호출 방식에 의해 동적으로 결정된다.</strong> 아무것도 신경쓰지말고 함수가 어떻게 호출되었느냐만 보면됨. 함수가 호출되어야 this 가 결정된다.<br><!-- (렉시컬 스코프는 함수정의가 평가될때 결정된다)  --></p><h3 id="다양한-함수호출방식"><a href="#다양한-함수호출방식" class="headerlink" title="다양한 함수호출방식"></a>다양한 함수호출방식</h3><ol><li>일반함수 호출 -&gt; this 는 기본적으로 window 를 가리키도록 세팅된 채로 시작한다.  </li><li>메소드 호출 -&gt; this 는 메소드를 호출한 객체를 가리킨다.  </li><li>생성자함수 호출 -&gt; this 는 생성될 인스턴스를 가리킨다.  </li><li>Function.prototype.apply/call/bind 메소드에 의한 간접 호출 -&gt; this를 명시적으로 바인딩  </li></ol><p>this는 객체의 참조를 얻기 위해 필요한 것이니까 전역이나 일반함수에서 this를 쓸 일은 없다. 그래서 엄격모드에서는 undefined를 내보낸다.  </p><p>메소드로 호출된 함수는 메소드를 <strong>호출한</strong> 객체를 가리킨다고 했다. 메소드를 <strong>가지고 있는</strong> 객체가 아니다! this 가 무엇인지 확인할 때에는 무조건 함수가 <strong>어떻게</strong> 호출되었는지만 확인하면 된다. 즉시실행함수도 this 가 window 이다. 메소드 안의 중첩함수도 일반함수로 호출되었다면 this 는 window 이다.<br>그런데 중첩함수는 외부함수를 도와주는 함수이다. 외부함수 안에서만 딱 쓰겠다는 의지가 나타났다는 말이다. 그럼 외부함수가 메소드로 호출돼서 this 가 객체를 가리키는 상태라면, 중첩함수에서 this가 window로 바뀌는 것은 기대에 어긋난다. 그래서 필요하다면 this를 갈아끼워줄 수 있다. 외부함수에서의 this를 변수에 회피시켜놓고 쓸 수도 있지만, bind/apply/call 빌트인 메소드를 사용할 수도 있다. 위 목록 중 4번 항목을 말하는 것이다. </p><!-- 호출이라는 것은 외부의 인수를 함수내부로 밀어넣는 행위이기도 하다. bind(this) 는 바깥의 this를 bind에 넣어주는거고 그럼 this 가 foo 안에 있는거고, foo는 obj가 호출했으니까... this가 obj 가 된다. --><h3 id="apply-와-call"><a href="#apply-와-call" class="headerlink" title="apply 와 call"></a>apply 와 call</h3><p>함수를 호출하는 것이 주 역할인 것은 똑같고 인수를 전달하는 방식만 다른 메소드들이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">뫄뫄.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure></p><p>뫄뫄.apply(thisArg) 일 때, 뫄뫄함수를 호출하면서 인자로 준 thisArg를 this로 바인딩해준다(간접호출도 해준다). 인수가 있을 때 인수도 전달할 수 있다. <code>[argsArray]</code> 는 함수에 전달할 인수 리스트 배열이다. 옵션이므로 생략 가능하다.  </p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">뫄뫄.call(thisArg, arg1, arg2, ...)</span><br></pre></td></tr></table></figure><p>call 메소드도 첫 번째 인자를 this 로 바인딩해주고 간접호출까지 해주는 것은 같다. 하지만 인자를 전달하는 방식이 apply 와는 다르다. 배열의 형태가 아니라 하나씩 전달해야 한다.  </p><ul><li><em>apply 를 쓰는 팁</em><br>내가 자주 접하는 가변인자함수중에는 Math.max() 가 있다. 인수를 한 개, 두 개, 세 개 내 맘대로 전달할 수 있다.<br>Math.max() 의 문법은 <code>Math.max([값1[, 값2[, ...]]])</code> 이고 예제는 다음과 같다.  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max(<span class="number">10</span>, <span class="number">20</span>);   <span class="comment">//  20</span></span><br></pre></td></tr></table></figure></li></ul><p>그런데 만약 내 숫자들이 배열 안에 들어있다면<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="built_in">Math</span>.max(arr); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure></p><p>배열을 통째로 넣어버리면 NaN이 나온다.  </p><p>Math는 this가 필요없는 정적메소드이다. 따라서<br><code>Math.max.apply(null, arr)</code> 이렇게 하면 arr라는 배열이 그대로 Math.max에 들어갈 수 있다.<br><code>Math.max(...arr)</code> ES6에서는 이 문법도 가능하다.  </p><h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p>호출을 자동으로 해주진 않고, 사용할 객체를 this로 전달하는 것까지만 해준다.<br>코드 이해가 잘 안되니까 내일 다시 알아보고 업데이트 해야겠다.  </p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;전역객체&quot;&gt;&lt;a href=&quot;#전역객체&quot; class=&quot;headerlink&quot; title=&quot;전역객체&quot;&gt;&lt;/a&gt;전역객체&lt;/h2&gt;&lt;p&gt;우리가 만드는 게 아니라 브라우저 열자마자 전역객체가 만들어진다. 그 안에는 전역객체가 가지고있는 프로퍼티와 메
       
     
     </summary>

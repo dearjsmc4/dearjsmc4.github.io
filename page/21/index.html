@@ -97,6 +97,72 @@
         
           <section id="main">
   
+    <article id="post-ir" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/04/11/ir/">Image Replacement 기법</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/04/11/ir/" class="article-date">
+	  <time datetime="2019-04-10T15:00:00.000Z" itemprop="datePublished">April 11, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/html-css/">HTML/CSS</a>
+ 
+      <!--  -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="IR-기법"><a href="#IR-기법" class="headerlink" title="IR 기법"></a>IR 기법</h1><p>버튼의 텍스트를 마크업 상에서 그대로 유지하면서 보이지는 않게 하는 법.<br>기법이라고는 하지만 엄청나게 대단하거나 복잡하진 않다.<br>대부분 내가 아는 속성들을 응용했을 뿐이었다.</p>
+<h2 id="버튼-만들기"><a href="#버튼-만들기" class="headerlink" title="버튼 만들기"></a>버튼 만들기</h2><p>우선 버튼부분의 마크업은 아래와 같고,<br>CSS의 박스사이징은 border-box 값을 준 상태다. <strong><em>중요</em></strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"next"</span>&gt;</span>다음으로 넘기기<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/../img/btn1.PNG" alt="다음으로 넘기기 버튼">  </p>
+<p>아무런 스타일도 주지 않은 상태이고, 버튼의 내용을 텍스트로 적어주었다.<br>이렇게 하면 화면낭독기가 버튼의 내용을 읽어줄 수 있고<br>사용자가 버튼의 사용목적을 명확히 알 수 있을 것이다.<br>이제 버튼의 크기를 설정해주자.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.next</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">22px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">22px</span>;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/../img/btn2.PNG" alt="텍스트 오버플로우">  </p>
+<p>버튼의 크기가 작아지자 텍스트가 오버플로우되는 상황이 발생하였다.<br>여기서 중요한 트릭이 나온다.  </p>
+<h2 id="padding-top"><a href="#padding-top" class="headerlink" title="padding-top"></a>padding-top</h2><p>버튼 안에 <strong>padding-top</strong> 을 주어서 <strong>텍스트를 밖으로 밀어내는 것</strong>이다.<br>위쪽에서 박스사이징을 <strong>border-box</strong> 로 주는 것이 중요하다고 했던 이유가 바로 이것이다.<br>border-box는 패딩값을 추가로 준다고 해서 버튼의 크기가 늘어나지 않기 때문이다.<br>(border-box 와 content-box에 대해 포스팅한 적이 있으니 <a href="https://dearjsmc4.github.io/2019/04/01/box-sizing/">참고</a>)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.next</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">22px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">22px</span>;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">padding-top</span>: <span class="number">22px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/../img/btn7.png" alt="왼쪽: border-box, 오른쪽: content-box">  </p>
+<p>각 버튼에 padding-top:22px 을 주어서 텍스트를 밀어낸 결과.<br>보더박스는 박스 크기에 변함이 없는 반면, 콘텐트박스는 패딩값만큼 박스높이가 늘어나버렸다.<br>의도대로 잘 나온 보더박스 쪽으로 진행을 계속 해야 한다.<br>버튼에 넣고자 하는 아이콘을 배치해준다. </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.next</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">22px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">22px</span>;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">  <span class="attribute">padding-top</span>: <span class="number">22px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/../img/btn5.PNG" alt="아이콘 추가"></p>
+<h2 id="overflow"><a href="#overflow" class="headerlink" title="overflow"></a>overflow</h2><p>이제 텍스트를 숨겨야 하니<br>버튼에 <code>overflow:hidden;</code> 을 사용해서 텍스트를 숨겨준다.<br>( display:none; 이나 visibility:hidden; 을 사용하게 되면<br><strong><em>화면 낭독기가 텍스트를 읽지 않고 지나가게 된다</em></strong>고 하니 주의하자.<br>웹 접근성을 위해 이런 복잡한 길로 가고 있는 것인데 말짱 도루묵이 되어버리면 안 되니 말이다.)</p>
+<p><img src="/../img/btn6.PNG" alt="완성!">  </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/html-css/">HTML/CSS</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">CSS</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-dldddt" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -177,71 +243,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-float" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/04/01/float/">float 이슈 해결해보기</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/04/01/float/" class="article-date">
-	  <time datetime="2019-03-31T15:00:00.000Z" itemprop="datePublished">April 1, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/html-css/">HTML/CSS</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/../img/1.jpg" alt><br>이 기괴한 레이아웃을  </p>
-<p><img src="/../img/2.jpg" alt><br>이렇게 바꾸기.  </p>
-<p>요소를 정렬할 때는 flex 를 많이 쓴다고 하는데.<br>만약 익스플로러 하위버전까지 호환되어야 한다면 플렉스는 저멀리 안녕 하고 보내주어야 한다.<br>그리고 나에게는 float 나 inline 과 같은 선택지가 주어지는데,<br>인라인같은 경우는 요소들 사이에 공백문자가 생겨버려서 이 상황엔 적절치 않고<br>float 를 쓰면 정렬할 수 있다.<br>그런데 float 는 말 그대로 다른 요소들 위에 붕 떠있게 되기 때문에<br>생각 없이 쓰다보면 레이아웃이 다 망가지게 된다.  </p>
-<p><img src="/../img/float_meme.png" alt="이런 밈이 괜히 나온 것이 아니다..."></p>
-<p>현재 박스1과 박스2에 float:left 를 준 상태이다.<br>float 로 정렬까지는 했는데 이 망가진 레이아웃을 어떻게 고칠 수 있을까.  </p>
-<h1 id="1-clear-both"><a href="#1-clear-both" class="headerlink" title="1. clear: both;"></a>1. clear: both;</h1><p><img src="/../img/3.jpg" alt="clear: both"><br>박스 4에 clear:both 를 주게 되면 박스 4는 float 로부터 벗어나 그 아래에 잘 놓이게 되지만,<br>박스 1, 박스2 의 부모요소는 여전히 그 자식요소의 크기를 놓치고 있다.  </p>
-<h1 id="2-overflow"><a href="#2-overflow" class="headerlink" title="2. overflow"></a>2. overflow</h1><p><img src="/../img/3.jpg" alt="overflow: visible"><br>박스1,2의 부모요소 에 overflow:visible 을 줬을 때.<br>visible 값을 주게 되면 같은 문제가 생긴다.<br>visible 값을 사용해서 float 이슈를 해결하려면<br>부모 요소에 너비와 크기를 명확히 지정해줘야 한다.<br>그런데 나는 박스1,2의 크기만큼 부모가 유동적으로 바뀌기를 원하기 때문에 높이값을 지정하고싶지 않다.<br>그럼 hidden 값을 주면?  </p>
-<p><img src="/../img/4.jpg" alt="overflow: hidden"><br>놀랍게도 문제가 해결되었다!<br>내가 원하는 모양대로 잘 나와주었다.  </p>
-<p>​<img src="/../img/5.jpg" alt="overflow:hidden 의 문제점"><br>예시를 위해 박스 2의 스타일을<br><code>position: relative;</code><br><code>left: 400px;</code><br>정도(다분히 고의적으로) 주게 되면부모요소에 주어진 overflow:hidden 속성에 충실하게도<br>내 박스 2가 제대로 보이지 않게 된다.<br>지금은 괜찮지만 나중에 문제가 생길 수도 있다.  </p>
-<h1 id="3-CSS-가상요소"><a href="#3-CSS-가상요소" class="headerlink" title="3. CSS 가상요소"></a>3. CSS 가상요소</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#div3</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">  <span class="attribute">display</span>:block;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>스타일 시트에 위와 같은 코드를 작성한다.  </p>
-<p>div3 은 박스1,2의 부모요소(노란색박스)의 아이디다.<br><strong>::after</strong> 는 div3의 <strong>마지막에 가상의 자식노드</strong>를 생성한다.<br>( 반대로 <strong>::before 는 가장 처음에 가상의 자식노드를 생성</strong>한다.)<br>이렇게 만들어진 가상 요소를 float 해결을 위해 쓰려면 반드시 content 가 있어야 하는데,<br>만약 content 에 값을 주게 되면,  </p>
-<p>​<img src="/../img/7.jpg" alt="content"><br>박스1과 2 아래에 “나는 가상으로 만들어진 노드!” 라는 content 텍스트가 보이게 된다.<br>나는 이 가상요소에 어떤 텍스트도 보이지 않기를 원하기에 그냥 “” 로 비워두기로 했다.  </p>
-<p>그리고 이 가상요소는 날 때부터 인라인 요소인데<br><strong>clear:both 는 인라인 요소에는 적용되지 않는다.</strong> 인라인블록에도 해봤는데 먹히지 않는다.<br>그래서 이 가상노드의 <strong>display 값을 block</strong> 으로 설정해주어서<br>clear:both 가 적용되도록 한다.  </p>
-<p>​<img src="/../img/8.jpg" alt="content"><br>오버플로우로 인한 문제도 해결되었다.<br>가상요소를 사용하면 overflow:hidden 을 썼을 때 박스가 잘려보이던 문제도 해결이 된다.  </p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/html-css/">HTML/CSS</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">CSS</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -259,6 +260,18 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/09/10/0910/">React Basic2</a></h6>
+              <span>September 10, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -320,18 +333,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/07/01/0701/">옵저버블, 에러핸들러, 인터셉터</a></h6>
-              <span>July 1, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -341,7 +342,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -351,7 +352,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">38</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">39</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -362,7 +363,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

@@ -162,7 +162,7 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-git-flow" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-float" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -170,7 +170,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/03/20/git-flow/">git flow 사용해보기</a>
+      <a class="article-title" href="/2019/04/01/float/">float 이슈 해결해보기</a>
     </h1>
   
 
@@ -178,49 +178,44 @@
     
     <div class="article-meta">
       
-	<a href="/2019/03/20/git-flow/" class="article-date">
-	  <time datetime="2019-03-19T15:00:00.000Z" itemprop="datePublished">March 20, 2019</time>
+	<a href="/2019/04/01/float/" class="article-date">
+	  <time datetime="2019-03-31T15:00:00.000Z" itemprop="datePublished">April 1, 2019</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/기타/">기타</a>
+    <a class="article-category-link" href="/categories/html-css/">HTML/CSS</a>
  
       <!--  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>git flow 로 편리하게 브랜치를 만들고 프로젝트를 관리할 수 있다.<br>여러 줄의 명령이 필요한 작업을 git flow 로는 한 줄로 끝낼 수 있다. </p>
-<h1 id="git-설치"><a href="#git-설치" class="headerlink" title="git 설치"></a>git 설치</h1><p>윈도우 사용자(나)는<br><a href="https://gitforwindows.org/" target="_blank" rel="noopener">Git for Windows</a><br>여기에서 git bash 를 다운받으면 자동으로 git flow 도 설치가 되어있기 때문에 편리하지만<br>그 외에 맥이나 리눅스 등은 설치가 따로 필요할 수 있다.<br><a href="https://danielkummer.github.io/git-flow-cheatsheet/" target="_blank" rel="noopener">여기</a>에 설치하는 방법이 나와있으니 참고하자.</p>
-<h1 id="사용"><a href="#사용" class="headerlink" title="사용"></a>사용</h1><p>설치가 되었다면 사용할 차례만 남았다.</p>
-<h2 id="git-flow-init"><a href="#git-flow-init" class="headerlink" title="git flow init"></a>git flow init</h2><p>레포 폴더에서 <code>git flow init</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">user@lr19022005 MINGW64 ~/documents/dev/git-flow-practice (master)</span><br><span class="line">$ git flow init</span><br><span class="line"></span><br><span class="line">No branches exist yet. Base branches must be created now.</span><br><span class="line">Branch name for production releases: [master]</span><br><span class="line">Branch name for &quot;next release&quot; development: [develop]</span><br><span class="line"></span><br><span class="line">How to name your supporting branch prefixes?</span><br><span class="line">Feature branches? []</span><br><span class="line">Bugfix branches? []</span><br><span class="line">Release branches? []</span><br><span class="line">Hotfix branches? []</span><br><span class="line">Support branches? []</span><br><span class="line">Version tag prefix? []</span><br><span class="line">Hooks and filters directory? [C:/Users/user/documents/dev/git-flow-practice/.git/hooks]</span><br></pre></td></tr></table></figure>
-<p>다른 건 모르겠는데 윈도우는 이 prefix 를 설정할 때 대괄호 안이 텅 비어서 나온다.<br>이걸 지금 설정을 안 해주면 나중에 브랜치를 만들고 git branch 로 확인할 때<br>feature/브랜치이름<br>이렇게 나오지 않고 그냥 브랜치이름만 나온다.<br>그렇다고 지금 설정을 해주면 나중에 브랜치가 아예 안 만들어지고 오류가 난다.<br>(not a valid branch name… 이었던가)<br>( [feature] 이렇게 해서 그런가? [feature/] 이렇게 해야 하나?)<br>그래서 일단 비워두고 엔터를 눌러서 진행시켰다.</p>
-<p><code>git branch</code> 로 확인하면 master 와 develop 브랜치가 생겨있다.<br>git flow에서 반드시 필요한 브랜치들이다.<br><u>master 에는 사용자가 사용하게 될 완벽한 소스코드, 즉 라이브 될 것들만 존재</u>하는 곳이다.<br><u>develop 에서 파생된 feature 브랜치에서 거의 모든 작업이 이루어지고, 작업이 완성되면 develop 으로 넣어준다.</u></p>
-<h2 id="git-flow-feature-start"><a href="#git-flow-feature-start" class="headerlink" title="git flow feature start"></a>git flow feature start</h2><p>예시로 README-edit 이라는 이름을 가진 feature 브랜치를 만들어보자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git flow feature start README-edit</span><br></pre></td></tr></table></figure>
-<p>브랜치 이름은 기능이나 목적을 알아볼 수 있도록 짓는 것이 좋다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user@lr19022005 MINGW64 ~/documents/dev/git-flow-practice (README-edit)</span><br></pre></td></tr></table></figure>
-<p>README-edit 이라는 feature 브랜치가 만들어지면 자동으로 그 곳으로 이동이 된다.<br>여기에서 파일을 수정하고 add 하고 commit 하면 된다.<br>commit 은 동작하는 최소 단위마다 해주는 것이 좋다.<br>commit 을 쌓은 후에 다 됐다 싶으면 push 를 해준다.<br>feature 에서 push를 하지 않으면 깃헙의 네트워크에 브랜치가 보이지 않게 되니 push 를 해주자.</p>
-<h2 id="git-flow-feature-finish"><a href="#git-flow-feature-finish" class="headerlink" title="git flow feature finish"></a>git flow feature finish</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">user@lr19022005 MINGW64 ~/documents/dev/git-flow-practice (README-edit)</span><br><span class="line">$ git flow feature finish README-edit</span><br><span class="line"></span><br><span class="line">Switched to branch &apos;develop&apos;</span><br><span class="line">Updating 25131e7..6b91c1f</span><br><span class="line">Fast-forward</span><br><span class="line"></span><br><span class="line"> README.md | 7 +++++++</span><br><span class="line"></span><br><span class="line"> 1 file changed, 7 insertions(+)</span><br><span class="line"> create mode 100644 README.md</span><br><span class="line"></span><br><span class="line">Deleted branch README-edit (was 6b91c1f).</span><br><span class="line"></span><br><span class="line">Summary of actions:</span><br><span class="line">- The feature branch &apos;README-edit&apos; was merged into &apos;develop&apos;</span><br><span class="line">- Feature branch &apos;README-edit&apos; has been locally deleted</span><br><span class="line">- You are now on branch &apos;develop&apos;</span><br></pre></td></tr></table></figure>
-<p>feature finish 를 하게 되면 develop 에 merge 가 되고,<br>README-edit 브랜치는 삭제되었다.<br>(finish 전에 push 를 해서 feature 가 존재했음을(?) 알려주는 것이 필요한 이유다.<br>finish 와 동시에 삭제되기 때문이다.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user@lr19022005 MINGW64 ~/documents/dev/git-flow-practice (develop)</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
-<p>내 위치는 다시 develop 으로 오게 된다.<br>develop에서 push를 해줘야 하긴 하지만 팀이 있다면 아마 내겐 권한이 없을 것이다(…)<br>모든 게 잘 완성되어서 release 를 해야 한다면 develop 에서 하면 된다.</p>
-<h2 id="git-flow-release-start"><a href="#git-flow-release-start" class="headerlink" title="git flow release start"></a>git flow release start</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">user@lr19022005 MINGW64 ~/documents/dev/git-flow-practice (develop)</span><br><span class="line">$ git flow release start v0.0.1.00190320001</span><br><span class="line">Fatal: Prefix parameter missing. </span><br><span class="line">Switched to a new branch &apos;v0.0.1.00190320001&apos;</span><br><span class="line"></span><br><span class="line">Summary of actions:</span><br><span class="line">- A new branch &apos;v0.0.1.00190320001&apos; was created, based on &apos;develop&apos;</span><br><span class="line">- You are now on branch &apos;v0.0.1.00190320001&apos;</span><br><span class="line"></span><br><span class="line">Follow-up actions:</span><br><span class="line">- Bump the version number now!</span><br><span class="line">- Start committing last-minute fixes in preparing your release</span><br><span class="line">- When done, run:</span><br><span class="line"></span><br><span class="line">     git flow release finish &apos;v0.0.1.00190320001&apos;​</span><br></pre></td></tr></table></figure>
-<p><code>git flow release start 버전명</code><br>버전명은 임의로 지었다. (0.0.1도 과분하다)<br>Fatal 이 뜨는 이유는 처음에 git flow init 을 했을 때 prefix 가 비워진 채 진행했기 때문이다.<br>별 문제 없으니 무시해도 된다.</p>
-<h2 id="git-flow-release-finish"><a href="#git-flow-release-finish" class="headerlink" title="git flow release finish"></a>git flow release finish</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">user@lr19022005 MINGW64 ~/documents/dev/git-flow-practice (v0.0.1.00190320001)</span><br><span class="line">$ git flow release finish v0.0.1.00190320001</span><br><span class="line"></span><br><span class="line">Switched to branch &apos;master&apos;</span><br><span class="line">Merge made by the &apos;recursive&apos; strategy.</span><br><span class="line"></span><br><span class="line"> README.md | 7 +++++++</span><br><span class="line"></span><br><span class="line"> 1 file changed, 7 insertions(+)</span><br><span class="line"> create mode 100644 README.md</span><br><span class="line"></span><br><span class="line">Already on &apos;master&apos;</span><br><span class="line">Switched to branch &apos;develop&apos;</span><br><span class="line">warning: refname &apos;v0.0.1.00190320001&apos; is ambiguous.</span><br><span class="line">warning: refname &apos;v0.0.1.00190320001&apos; is ambiguous.</span><br><span class="line">Already up to date!</span><br><span class="line">Merge made by the &apos;recursive&apos; strategy.</span><br><span class="line">Deleted branch v0.0.1.00190320001 (was 6b91c1f).</span><br><span class="line"></span><br><span class="line">Summary of actions:</span><br><span class="line">- Release branch &apos;v0.0.1.00190320001&apos; has been merged into &apos;master&apos;</span><br><span class="line">- The release was tagged &apos;v0.0.1.00190320001&apos;</span><br><span class="line">- Release tag &apos;v0.0.1.00190320001&apos; has been back-merged into &apos;develop&apos;</span><br><span class="line">- Release branch &apos;v0.0.1.00190320001&apos; has been merged into &apos;develop&apos;</span><br><span class="line">- Release branch &apos;v0.0.1.00190320001&apos; has been locally deleted</span><br><span class="line">- You are now on branch &apos;develop&apos;</span><br><span class="line"></span><br><span class="line">user@lr19022005 MINGW64 ~/documents/dev/git-flow-practice (develop)</span><br><span class="line">$ git branch</span><br><span class="line">* develop</span><br><span class="line">  master</span><br></pre></td></tr></table></figure>
-<p>git flow release finish 버전명<br>으로 release 를 마치면 되는데…<br>사실 finish 후에 master 브랜치로 와있어야 한다는데<br>git branch 로 확인하면 왜 develop 에 머물러있는지 모르겠다.<br>강사님은 큰 문제는 아닌 것처럼 말씀하셨는데… 흠.<br>아무튼 중요한 건 다른 feature 들이 삭제되어있고 master 와 develop 만 남아있다는 것이다.</p>
+        <p><img src="/../img/1.jpg" alt><br>이 기괴한 레이아웃을  </p>
+<p><img src="/../img/2.jpg" alt><br>이렇게 바꾸기.  </p>
+<p>요소를 정렬할 때는 flex 를 많이 쓴다고 하는데.<br>만약 익스플로러 하위버전까지 호환되어야 한다면 플렉스는 저멀리 안녕 하고 보내주어야 한다.<br>그리고 나에게는 float 나 inline 과 같은 선택지가 주어지는데,<br>인라인같은 경우는 요소들 사이에 공백문자가 생겨버려서 이 상황엔 적절치 않고<br>float 를 쓰면 정렬할 수 있다.<br>그런데 float 는 말 그대로 다른 요소들 위에 붕 떠있게 되기 때문에<br>생각 없이 쓰다보면 레이아웃이 다 망가지게 된다.  </p>
+<p><img src="/../img/float_meme.png" alt="이런 밈이 괜히 나온 것이 아니다..."></p>
+<p>현재 박스1과 박스2에 float:left 를 준 상태이다.<br>float 로 정렬까지는 했는데 이 망가진 레이아웃을 어떻게 고칠 수 있을까.  </p>
+<h1 id="1-clear-both"><a href="#1-clear-both" class="headerlink" title="1. clear: both;"></a>1. clear: both;</h1><p><img src="/../img/3.jpg" alt="clear: both"><br>박스 4에 clear:both 를 주게 되면 박스 4는 float 로부터 벗어나 그 아래에 잘 놓이게 되지만,<br>박스 1, 박스2 의 부모요소는 여전히 그 자식요소의 크기를 놓치고 있다.  </p>
+<h1 id="2-overflow"><a href="#2-overflow" class="headerlink" title="2. overflow"></a>2. overflow</h1><p><img src="/../img/3.jpg" alt="overflow: visible"><br>박스1,2의 부모요소 에 overflow:visible 을 줬을 때.<br>visible 값을 주게 되면 같은 문제가 생긴다.<br>visible 값을 사용해서 float 이슈를 해결하려면<br>부모 요소에 너비와 크기를 명확히 지정해줘야 한다.<br>그런데 나는 박스1,2의 크기만큼 부모가 유동적으로 바뀌기를 원하기 때문에 높이값을 지정하고싶지 않다.<br>그럼 hidden 값을 주면?  </p>
+<p><img src="/../img/4.jpg" alt="overflow: hidden"><br>놀랍게도 문제가 해결되었다!<br>내가 원하는 모양대로 잘 나와주었다.  </p>
+<p>​<img src="/../img/5.jpg" alt="overflow:hidden 의 문제점"><br>예시를 위해 박스 2의 스타일을<br><code>position: relative;</code><br><code>left: 400px;</code><br>정도(다분히 고의적으로) 주게 되면부모요소에 주어진 overflow:hidden 속성에 충실하게도<br>내 박스 2가 제대로 보이지 않게 된다.<br>지금은 괜찮지만 나중에 문제가 생길 수도 있다.  </p>
+<h1 id="3-CSS-가상요소"><a href="#3-CSS-가상요소" class="headerlink" title="3. CSS 가상요소"></a>3. CSS 가상요소</h1><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#div3</span><span class="selector-pseudo">::after</span>&#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">  <span class="attribute">display</span>:block;</span><br><span class="line">  <span class="attribute">clear</span>:both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>스타일 시트에 위와 같은 코드를 작성한다.  </p>
+<p>div3 은 박스1,2의 부모요소(노란색박스)의 아이디다.<br><strong>::after</strong> 는 div3의 <strong>마지막에 가상의 자식노드</strong>를 생성한다.<br>( 반대로 <strong>::before 는 가장 처음에 가상의 자식노드를 생성</strong>한다.)<br>이렇게 만들어진 가상 요소를 float 해결을 위해 쓰려면 반드시 content 가 있어야 하는데,<br>만약 content 에 값을 주게 되면,  </p>
+<p>​<img src="/../img/7.jpg" alt="content"><br>박스1과 2 아래에 “나는 가상으로 만들어진 노드!” 라는 content 텍스트가 보이게 된다.<br>나는 이 가상요소에 어떤 텍스트도 보이지 않기를 원하기에 그냥 “” 로 비워두기로 했다.  </p>
+<p>그리고 이 가상요소는 날 때부터 인라인 요소인데<br><strong>clear:both 는 인라인 요소에는 적용되지 않는다.</strong> 인라인블록에도 해봤는데 먹히지 않는다.<br>그래서 이 가상노드의 <strong>display 값을 block</strong> 으로 설정해주어서<br>clear:both 가 적용되도록 한다.  </p>
+<p>​<img src="/../img/8.jpg" alt="content"><br>오버플로우로 인한 문제도 해결되었다.<br>가상요소를 사용하면 overflow:hidden 을 썼을 때 박스가 잘려보이던 문제도 해결이 된다.  </p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/기타/">기타</a>
+    <a class="article-category-link" href="/categories/html-css/">HTML/CSS</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">Git</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">CSS</a></li></ul>
 
       
     </footer>
@@ -249,6 +244,18 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/09/10/0910/">React Basic2</a></h6>
+              <span>September 10, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -310,18 +317,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/07/01/0701/">옵저버블, 에러핸들러, 인터셉터</a></h6>
-              <span>July 1, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -331,7 +326,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -341,7 +336,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">38</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">39</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -352,7 +347,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
