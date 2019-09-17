@@ -3,26 +3,29 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>파이썬 기초 문법 | Rudy&#39;s Blog</title>
+  <title>Props | Rudy&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="TIL">
+  <meta name="keywords" content="TILReact">
   
   
   
   
-  <meta name="description" content="파이썬 자료형 기초 string = “abcde”   string[2] = ‘c’   string[2:] = ‘cde’ (2번 자리 이상)   string[:2] = ‘ab’ (0번 이상, 2번 미만)   string[0:1] = ‘a’ (0번 째 이상, 1번 미만)   string[0:2]+&amp;quot;z&amp;quot;+string[3:] = ‘abzde’ (">
-<meta name="keywords" content="TIL">
+  <meta name="description" content="Props1&amp;lt;Content title=&quot;Miss Sloane&quot; desc=&quot;Lobbying is about foresight.&quot;&amp;gt;&amp;lt;/Content&amp;gt; 사용자 정의 태그에 위와 같은 어트리뷰트를 추가하고, 12345678910class Content extends Component &amp;#123;  render() &amp;#123;    return">
+<meta name="keywords" content="TIL,React">
 <meta property="og:type" content="article">
-<meta property="og:title" content="파이썬 기초 문법">
-<meta property="og:url" content="https://dearjsmc4.github.io/2019/05/03/0419-python/index.html">
+<meta property="og:title" content="Props">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/09/17/0917-2/index.html">
 <meta property="og:site_name" content="Rudy&#39;s Blog">
-<meta property="og:description" content="파이썬 자료형 기초 string = “abcde”   string[2] = ‘c’   string[2:] = ‘cde’ (2번 자리 이상)   string[:2] = ‘ab’ (0번 이상, 2번 미만)   string[0:1] = ‘a’ (0번 째 이상, 1번 미만)   string[0:2]+&amp;quot;z&amp;quot;+string[3:] = ‘abzde’ (">
+<meta property="og:description" content="Props1&amp;lt;Content title=&quot;Miss Sloane&quot; desc=&quot;Lobbying is about foresight.&quot;&amp;gt;&amp;lt;/Content&amp;gt; 사용자 정의 태그에 위와 같은 어트리뷰트를 추가하고, 12345678910class Content extends Component &amp;#123;  render() &amp;#123;    return">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-03T10:42:44.876Z">
+<meta property="og:image" content="https://dearjsmc4.github.io/img/consoleprops.png">
+<meta property="og:image" content="https://dearjsmc4.github.io/img/props.png">
+<meta property="og:updated_time" content="2019-09-17T12:57:17.329Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="파이썬 기초 문법">
-<meta name="twitter:description" content="파이썬 자료형 기초 string = “abcde”   string[2] = ‘c’   string[2:] = ‘cde’ (2번 자리 이상)   string[:2] = ‘ab’ (0번 이상, 2번 미만)   string[0:1] = ‘a’ (0번 째 이상, 1번 미만)   string[0:2]+&amp;quot;z&amp;quot;+string[3:] = ‘abzde’ (">
+<meta name="twitter:title" content="Props">
+<meta name="twitter:description" content="Props1&amp;lt;Content title=&quot;Miss Sloane&quot; desc=&quot;Lobbying is about foresight.&quot;&amp;gt;&amp;lt;/Content&amp;gt; 사용자 정의 태그에 위와 같은 어트리뷰트를 추가하고, 12345678910class Content extends Component &amp;#123;  render() &amp;#123;    return">
+<meta name="twitter:image" content="https://dearjsmc4.github.io/img/consoleprops.png">
   
     <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
   
@@ -102,7 +105,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-0419-python" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
+          <section id="main" style="float:none;"><article id="post-0917-2" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -110,7 +113,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      파이썬 기초 문법
+      Props
     </h1>
   
 
@@ -118,13 +121,13 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/03/0419-python/" class="article-date">
-	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
+	<a href="/2019/09/17/0917-2/" class="article-date">
+	  <time datetime="2019-09-16T15:00:00.000Z" itemprop="datePublished">September 17, 2019</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
+    <a class="article-category-link" href="/categories/react/">React</a>
  
       <!-- 
 	<span id="busuanzi_container_page_pv">
@@ -134,71 +137,29 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="파이썬-자료형-기초"><a href="#파이썬-자료형-기초" class="headerlink" title="파이썬 자료형 기초"></a>파이썬 자료형 기초</h1><ul>
-<li>string = “abcde”  <ul>
-<li>string<code>[2]</code> = ‘c’  </li>
-<li>string<code>[2:]</code> = ‘cde’ (2번 자리 이상)  </li>
-<li>string<code>[:2]</code> = ‘ab’ (0번 이상, 2번 미만)  </li>
-<li>string<code>[0:1]</code> = ‘a’ (0번 째 이상, 1번 미만)  </li>
-<li>string<code>[0:2]+&quot;z&quot;+string[3:]</code> = ‘abzde’ ( ab + z + de )  </li>
-<li>string<code>.replace(&#39;c&#39;,&#39;z&#39;)</code> = ‘abzde’ (c 를 z 로 바꾸어서 보여줌. 원본이 바뀌지는 않는다.)  </li>
-</ul>
-</li>
-</ul>
-<h3 id="문자열-포매팅"><a href="#문자열-포매팅" class="headerlink" title="문자열 포매팅"></a>문자열 포매팅</h3><p>문자열 내의 어떤 값을 삽입하는 방법.  </p>
-<p>a = 10<br>b = ‘abcde’  </p>
-<ul>
-<li><code>print(&quot;%d, %s&quot; %(a,b))</code> = 10, abcde  </li>
-<li><code>print(&#39;숫자는 {0} 문자열은 {1}&#39;.format(a,b))</code><br>  = 숫자는 10 문자열은 abcde  </li>
-<li><code>print(f&#39;숫자는 {} 문자열은 {}&#39;)</code><br>  = 숫자는 10 문자열은 abcde  </li>
-</ul>
-<p>a = 0.1234512345  </p>
-<ul>
-<li><code>print(f&#39;{a:.3}&#39;)</code> = 0.123 (소수점 뒤의 3자리까지만 자르기)  </li>
-</ul>
-<h3 id="Dictionary"><a href="#Dictionary" class="headerlink" title="Dictionary"></a>Dictionary</h3><ul>
-<li>dic = {‘a’:1, 2:’two’, ‘func’:lambda a,b: a+b}<ul>
-<li>dic<code>[&#39;a&#39;]</code> = 1 (a라는 키의 value를 가져오기)  </li>
-<li>dic<code>[func](1,2)</code> = 3 (func 라는 키의 value 인 함수를 실행)<br>  lambda: 함수가 위치한 메모리 주소값  </li>
-<li>dic.<code>keys()</code> = dict_keys([‘a’, 2, ‘func’]) (dic 의 모든 키값을 가져오기)  </li>
-<li>dic.<code>items()</code> = dict_items<code>([(&#39;a&#39;, 1), (2, &#39;two&#39;), (&#39;func&#39;, &lt;function &lt;lambda&gt; at 0x05B738E8&gt;)])</code><br>  (key와 value값이 튜플로 묶여서 나옴) -&gt; 튜플인 이유가 있나?  </li>
-<li>key_list = <code>list(dic.keys())</code> = [‘a’, 2, ‘func’] (key만 모아서 리스트로 만들기)  </li>
-</ul>
-</li>
-</ul>
-<p><strong>list 와 view 객체와의 차이</strong><br>key_view = dic.keys() = dict_keys([‘a’, 2, ‘func’])<br>key_list = [‘a’, 2, ‘func’]<br>일 때,<br><code>dic[5]=&#39;five&#39;</code> 딕셔너리에 쌍을 추가하면<br>key_view = dict_keys([‘a’, 2, ‘func’, <code>5</code>]) -&gt; 추가되었음<br>key_list = [‘a’, 2, ‘func’] -&gt; 추가 되지 않았음  </p>
-<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>집합 자료형인 세트에서는 중복이 허용되지 않는다.  </p>
-<p>s1 = set([1,2,3,4])<br>s2 = set([3,4,5,6])  </p>
-<ul>
-<li><code>s1|s2</code> or <code>s1.union(s2)</code>= {1,2,3,4,5,6} (합집합)  </li>
-<li><code>s1&amp;s2</code> or <code>s1.intersection(s2)</code>= {3,4} (교집합)  </li>
-<li><code>s1-s2</code> or <code>s1.difference(s2)</code> = {1,2} (차집합)  </li>
-<li><code>s2-s1</code> or <code>s2.difference(s1)</code> = {5,6} (차집합)  </li>
-<li><code>s1^s2</code> or <code>s1.symmetric_difference(s2)</code>= {1,2,5,6} (대칭 차집합)  </li>
-</ul>
-<h3 id="True-False"><a href="#True-False" class="headerlink" title="True / False"></a>True / False</h3><ul>
-<li><strong>거짓</strong>으로 취급하는 데이터  <ul>
-<li>“” 빈 문자열  </li>
-<li>[] 빈 리스트  </li>
-<li>() 빈 튜플  </li>
-<li>{} 빈 딕셔너리  </li>
-<li>false  </li>
-<li>none (JS의 undefined)  </li>
-<li>0  </li>
-</ul>
-</li>
-</ul>
+        <h2 id="Props"><a href="#Props" class="headerlink" title="Props"></a>Props</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Content</span> <span class="attr">title</span>=<span class="string">"Miss Sloane"</span> <span class="attr">desc</span>=<span class="string">"Lobbying is about foresight."</span>&gt;</span><span class="tag">&lt;/<span class="name">Content</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>사용자 정의 태그에 위와 같은 어트리뷰트를 추가하고,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Content extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;article&gt;</span><br><span class="line">        &lt;h2&gt;&#123;this.props.title&#125;&lt;/h2&gt;</span><br><span class="line">        &lt;p&gt;&#123;this.props.desc&#125;&lt;/p&gt;</span><br><span class="line">      &lt;/article&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>렌더 함수에 <code>{this.props.title}</code> 과 <code>{this.props.desc}</code> 를 추가해준다.<br>이렇게 되면 같은 컴포넌트일지라도 사용자 정의 태그의 어트리뷰트 입력값에 따라 달라진 내용을 출력할 수 있다.</p>
+<h3 id="Props-객체"><a href="#Props-객체" class="headerlink" title="Props 객체"></a>Props 객체</h3><p><a href="https://ko.reactjs.org/docs/components-and-props.html" target="_blank" rel="noopener">Components and Props</a>에서 살펴보았다.</p>
+<blockquote>
+<p>React가 사용자 정의 컴포넌트로 작성한 엘리먼트를 발견하면 JSX 어트리뷰트를 해당 컴포넌트에 단일 객체로 전달합니다. 이 객체를 “props”라고 합니다.</p>
+</blockquote>
+<p>Content 컴포넌트에서 this 를 콘솔창에 출력해보면 다음과 같은 내용을 확인할 수 있다.<br>​<img src="/../img/consoleprops.png" alt="콘솔창에서 확인할 수 있는 props"><br>props 객체 안에 title 과 desc 라는 키와 함께 내가 작성한 값이 들어있는 것을 확인할 수 있다.</p>
+<p>(+)<br>props 라는 객체를 확인해보려다가 좋은 개발자도구 툴을 발견했다.<br><a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en" target="_blank" rel="noopener">React Developer Tools</a> 을 크롬에 추가하면 된다.</p>
+<p>​<img src="/../img/props.png" alt="props">  </p>
+<p>이 툴을 이용하면 props 의 값을 임의로 바꿔볼 수도 있다. </p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
+    <a class="article-category-link" href="/categories/react/">React</a>
 
       
   <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
 
       
     </footer>
@@ -208,19 +169,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/05/03/0419/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/09/17/0917/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          컴퓨터 공학 TIL 0419
+          컴포넌트 파일 분리
         
       </div>
     </a>
   
   
-    <a href="/2019/05/03/0423-2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/09/10/0910/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">컴퓨터 공학 TIL 0423-2</div>
+      <div class="article-nav-title">디렉토리 구조, 배포, 컴포넌트</div>
     </a>
   
 </nav>
@@ -234,7 +195,7 @@
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-      <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#파이썬-자료형-기초"><span class="nav-number">1.</span> <span class="nav-text">파이썬 자료형 기초</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#문자열-포매팅"><span class="nav-number">1.0.1.</span> <span class="nav-text">문자열 포매팅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dictionary"><span class="nav-number">1.0.2.</span> <span class="nav-text">Dictionary</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set"><span class="nav-number">1.0.3.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#True-False"><span class="nav-number">1.0.4.</span> <span class="nav-text">True / False</span></a></li></ol></li></ol>
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Props"><span class="nav-number">1.</span> <span class="nav-text">Props</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Props-객체"><span class="nav-number">1.1.</span> <span class="nav-text">Props 객체</span></a></li></ol></li></ol>
     
     </div>
   </aside>

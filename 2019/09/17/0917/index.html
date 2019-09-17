@@ -3,7 +3,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>React Basic3 | Rudy&#39;s Blog</title>
+  <title>컴포넌트 파일 분리 | Rudy&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="TILReact">
@@ -14,14 +14,14 @@
   <meta name="description" content="컴포넌트 파일 분리 src 디렉토리에 components 라는 폴더를 만들었다. js 파일을 만들었다.  코드를 작성한다.   1234567891011121314import React, &amp;#123; Component &amp;#125; from &amp;apos;react&amp;apos;;class Subject extends Component &amp;#123;  render()">
 <meta name="keywords" content="TIL,React">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React Basic3">
+<meta property="og:title" content="컴포넌트 파일 분리">
 <meta property="og:url" content="https://dearjsmc4.github.io/2019/09/17/0917/index.html">
 <meta property="og:site_name" content="Rudy&#39;s Blog">
 <meta property="og:description" content="컴포넌트 파일 분리 src 디렉토리에 components 라는 폴더를 만들었다. js 파일을 만들었다.  코드를 작성한다.   1234567891011121314import React, &amp;#123; Component &amp;#125; from &amp;apos;react&amp;apos;;class Subject extends Component &amp;#123;  render()">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-17T12:23:08.329Z">
+<meta property="og:updated_time" content="2019-09-17T12:57:24.572Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React Basic3">
+<meta name="twitter:title" content="컴포넌트 파일 분리">
 <meta name="twitter:description" content="컴포넌트 파일 분리 src 디렉토리에 components 라는 폴더를 만들었다. js 파일을 만들었다.  코드를 작성한다.   1234567891011121314import React, &amp;#123; Component &amp;#125; from &amp;apos;react&amp;apos;;class Subject extends Component &amp;#123;  render()">
   
     <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
@@ -110,7 +110,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      React Basic3
+      컴포넌트 파일 분리
     </h1>
   
 
@@ -147,7 +147,7 @@
 </blockquote>
 <p>app.js 로 import 할 때에는 아래와 같이 작성한다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Subject <span class="keyword">from</span> <span class="string">'./components/subject'</span>;</span><br></pre></td></tr></table></figure>
-<p>(+)<br>index.js 에서 App 의 이름을 바꿔도 상관없었던 이유가<br>App 이 디폴트로 export 되고 있었기 때문이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));</span><br></pre></td></tr></table></figure></p>
+<p>(+)<br>index.js 에서 App 의 이름을 바꿔도 상관없었던 이유가<br>App 이 디폴트로 export 되고 있었기 때문이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span>, document.getElementById('root'));</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -169,9 +169,9 @@
 <nav id="article-nav">
   
   
-    <a href="/2019/09/10/0910/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/09/17/0917-2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">React Basic2</div>
+      <div class="article-nav-title">Props</div>
     </a>
   
 </nav>
