@@ -97,70 +97,6 @@
         
           <section id="main">
   
-    <article id="post-0423-2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0423-2/">컴퓨터 공학 TIL 0423-2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/05/03/0423-2/" class="article-date">
-	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="process-와-thread"><a href="#process-와-thread" class="headerlink" title="process 와 thread"></a>process 와 thread</h2><p>process : 인스트럭션의 나열.<br>OS 가 프로세스에게 할당해주는 메모리는 실제 메모리가 아닌 <strong>가상 주소 공간(VAS)</strong><br>각 프로세스에 할당된 메모리는 가상메모리.  </p>
-<h3 id="IPC-InterProcess-Communication-프로세스간-커뮤니케이션"><a href="#IPC-InterProcess-Communication-프로세스간-커뮤니케이션" class="headerlink" title="IPC: InterProcess Communication, 프로세스간 커뮤니케이션"></a>IPC: InterProcess Communication, 프로세스간 커뮤니케이션</h3><p>프로세스간 공간은 완전히 분리되어 있으므로,<br>기본적으로 프로세스끼리 서로의 데이터에 직접적으로 접근하거나 데이터를 바꿀 수는 없다.<br>그럼에도 불구하고 별도로 커뮤니케이션을 해야 할 때가 있다.<br>성능을 높이기 위해 여러 프로세스를 동시에 실행할 때<br>( ex) 웹 서버가 사용자 요청이 올 때마다 새로운 프로세스를 만들어 즉시 대응 )<br><em>프로세스간 상태 확인 및 데이터 송수신</em> 이 필요하기 때문이다. 이때 쓰는 것이 IPC기법이다.<br>대부분의 IPC기법은 각 프로세스가 공유하는 커널공간을 이용한다.  </p>
-<ul>
-<li><p>Shared resource</p>
-</li>
-<li><p>Multi Threading<br>여러 개의 실행흐름이 필요하다 -&gt; concurrency programming<br>동시에 도는 것 같은 실행흐름.  </p>
-</li>
-</ul>
-<p>스레드는 프로세스에 포함된 개념.<br>우리가 만든 프로그램은 스레드가 하나.<br>스레드가 하나면 <code>싱글스레드</code>.<br>자바스크립트는 흐름이 하나밖에 없는 것.  </p>
-<h3 id="멀티스레딩"><a href="#멀티스레딩" class="headerlink" title="멀티스레딩"></a>멀티스레딩</h3><p><code>멀티스레드</code>는 흐름이 여러 개인 것.<br>스레드가 각자의 스택을 따로 가지고 있다.<br>실행흐름이란게 인스트럭션인데 인스트럭션은 함수 실행. 함수가 실행되려면 스택프레임이 필요하고<br>이 스택프레임은 스택에 쌓인다.<br>코드와 데이터와 힙은 공유를 하고 스택만 따로 따로 가지고 있다.<br>여러 개의 스레드가 공유자원을 공유.  </p>
-<p>Shared Resource(각 스레드가 접근하는 하나의 자원) 가 있을 때<br>race condition, 경쟁조건이 발생한다.<br>-&gt; 상호배제 를 통해 예방<br>-&gt; <strong>GIL : Global Interpreter Lock</strong><br>공유자원을 먼저 점유한 스레드가 작업을 마치고 릴리즈를 할 때까지 다른 스레드들이 기다리게 한다.  </p>
-<p>모든 스레드가 접근해서 사용하는 리스트: shared list<br>각 스레드가 접근하는 리스트가 같을 때, 그 안에서 접근하는 데이터는 다른 것이 좋다.  </p>
-<h3 id="동시성-프로그래밍과-병렬-프로그래밍"><a href="#동시성-프로그래밍과-병렬-프로그래밍" class="headerlink" title="동시성 프로그래밍과 병렬 프로그래밍"></a>동시성 프로그래밍과 병렬 프로그래밍</h3><p><strong>동시성 프로그래밍</strong>은 cpu(프로세스)가 하나여도 동시성 프로그래밍을 구현할 수 있다.<br>멀티스레딩을 하게되면 라운드로빈으로 돌아갈 수 있으니까.<br>하지만 여러 개를 하나씩 순서대로 돌리는거지, 엄밀한 의미의 병렬은 아니다.<br><strong>병렬 프로그래밍</strong>은 아예 하드웨어가 최소 두 개 이상 있어서<br>어떤 태스크가 있을 때 각 하드웨어가 일을 같이 처리하는 것이다.<br>2초 걸릴 일을 1초만에 할 수 있는 것이다.  </p>
-<p>싱글코어 멀티스레딩: 단순하게 동시성프로그래밍. 스레드를 여러 개 만들어서 실행.<br>멀티코어 멀티스레딩: 병렬 + 동시성. 동시에 두 개 이상 돌 수 있는 것.  </p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cs/">CS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
     <article id="post-0423-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -295,11 +231,75 @@
 <!-- Table of Contents -->
 
   
+    <article id="post-0423-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/03/0423-2/">컴퓨터 공학 TIL 0423-2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/05/03/0423-2/" class="article-date">
+	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
+ 
+      <!--  -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="process-와-thread"><a href="#process-와-thread" class="headerlink" title="process 와 thread"></a>process 와 thread</h2><p>process : 인스트럭션의 나열.<br>OS 가 프로세스에게 할당해주는 메모리는 실제 메모리가 아닌 <strong>가상 주소 공간(VAS)</strong><br>각 프로세스에 할당된 메모리는 가상메모리.  </p>
+<h3 id="IPC-InterProcess-Communication-프로세스간-커뮤니케이션"><a href="#IPC-InterProcess-Communication-프로세스간-커뮤니케이션" class="headerlink" title="IPC: InterProcess Communication, 프로세스간 커뮤니케이션"></a>IPC: InterProcess Communication, 프로세스간 커뮤니케이션</h3><p>프로세스간 공간은 완전히 분리되어 있으므로,<br>기본적으로 프로세스끼리 서로의 데이터에 직접적으로 접근하거나 데이터를 바꿀 수는 없다.<br>그럼에도 불구하고 별도로 커뮤니케이션을 해야 할 때가 있다.<br>성능을 높이기 위해 여러 프로세스를 동시에 실행할 때<br>( ex) 웹 서버가 사용자 요청이 올 때마다 새로운 프로세스를 만들어 즉시 대응 )<br><em>프로세스간 상태 확인 및 데이터 송수신</em> 이 필요하기 때문이다. 이때 쓰는 것이 IPC기법이다.<br>대부분의 IPC기법은 각 프로세스가 공유하는 커널공간을 이용한다.  </p>
+<ul>
+<li><p>Shared resource</p>
+</li>
+<li><p>Multi Threading<br>여러 개의 실행흐름이 필요하다 -&gt; concurrency programming<br>동시에 도는 것 같은 실행흐름.  </p>
+</li>
+</ul>
+<p>스레드는 프로세스에 포함된 개념.<br>우리가 만든 프로그램은 스레드가 하나.<br>스레드가 하나면 <code>싱글스레드</code>.<br>자바스크립트는 흐름이 하나밖에 없는 것.  </p>
+<h3 id="멀티스레딩"><a href="#멀티스레딩" class="headerlink" title="멀티스레딩"></a>멀티스레딩</h3><p><code>멀티스레드</code>는 흐름이 여러 개인 것.<br>스레드가 각자의 스택을 따로 가지고 있다.<br>실행흐름이란게 인스트럭션인데 인스트럭션은 함수 실행. 함수가 실행되려면 스택프레임이 필요하고<br>이 스택프레임은 스택에 쌓인다.<br>코드와 데이터와 힙은 공유를 하고 스택만 따로 따로 가지고 있다.<br>여러 개의 스레드가 공유자원을 공유.  </p>
+<p>Shared Resource(각 스레드가 접근하는 하나의 자원) 가 있을 때<br>race condition, 경쟁조건이 발생한다.<br>-&gt; 상호배제 를 통해 예방<br>-&gt; <strong>GIL : Global Interpreter Lock</strong><br>공유자원을 먼저 점유한 스레드가 작업을 마치고 릴리즈를 할 때까지 다른 스레드들이 기다리게 한다.  </p>
+<p>모든 스레드가 접근해서 사용하는 리스트: shared list<br>각 스레드가 접근하는 리스트가 같을 때, 그 안에서 접근하는 데이터는 다른 것이 좋다.  </p>
+<h3 id="동시성-프로그래밍과-병렬-프로그래밍"><a href="#동시성-프로그래밍과-병렬-프로그래밍" class="headerlink" title="동시성 프로그래밍과 병렬 프로그래밍"></a>동시성 프로그래밍과 병렬 프로그래밍</h3><p><strong>동시성 프로그래밍</strong>은 cpu(프로세스)가 하나여도 동시성 프로그래밍을 구현할 수 있다.<br>멀티스레딩을 하게되면 라운드로빈으로 돌아갈 수 있으니까.<br>하지만 여러 개를 하나씩 순서대로 돌리는거지, 엄밀한 의미의 병렬은 아니다.<br><strong>병렬 프로그래밍</strong>은 아예 하드웨어가 최소 두 개 이상 있어서<br>어떤 태스크가 있을 때 각 하드웨어가 일을 같이 처리하는 것이다.<br>2초 걸릴 일을 1초만에 할 수 있는 것이다.  </p>
+<p>싱글코어 멀티스레딩: 단순하게 동시성프로그래밍. 스레드를 여러 개 만들어서 실행.<br>멀티코어 멀티스레딩: 병렬 + 동시성. 동시에 두 개 이상 돌 수 있는 것.  </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cs/">CS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/13/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/15/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/13/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/15/">Next</a>
   </nav>
 
 </section>
@@ -312,6 +312,18 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/09/17/0917/">React Basic3</a></h6>
+              <span>September 17, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -373,18 +385,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/07/03/0703/">Forms</a></h6>
-              <span>July 3, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -394,7 +394,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -404,7 +404,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">39</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">40</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -415,7 +415,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

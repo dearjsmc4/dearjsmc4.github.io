@@ -97,142 +97,6 @@
         
           <section id="main">
   
-    <article id="post-0426" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0426/">컴퓨터 공학 TIL 0426</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/05/03/0426/" class="article-date">
-	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="ADT-abstract-data-type-추상-자료형"><a href="#ADT-abstract-data-type-추상-자료형" class="headerlink" title="ADT(abstract data type), 추상 자료형"></a>ADT(abstract data type), 추상 자료형</h2><p>자료구조의 인터페이스(함수 시그니쳐를, 함수 사용법을) 명시해 놓은 것. 기능 명세.<br>구체적인 구현설명이 들어가면 안 된다.<br>-&gt; 인터페이스와 내부구현의 분리, 추상화.  </p>
-<p>이미 존재하는 자료구조를 이용해서 새로운 자료구조를 구현.<br>스택 구현 방법:  </p>
-<ol>
-<li>배열  </li>
-<li>연결 리스트  </li>
-<li>파이썬의 리스트  </li>
-</ol>
-<h3 id="스택"><a href="#스택" class="headerlink" title="스택"></a>스택</h3><p>접시쌓기를 생각해보자.<br>접시를 하나씩 위로 쌓는다면 보통은 위에서부터 하나씩 가져간다.<br>이처럼, 데이터1, 데이터2, 데이터3, 데이터4 가 쌓였을 때 데이터4 부터 먼저 사라지는 것.<br>제일 나중에 들어오면 제일 먼저 나간다. : <code>Last In First Out</code> = 후입선출  </p>
-<p>pop: 삭제하면서 반환<br>peek: 다음으로 나올 데이터를 반환만 하고 삭제하지 않음  </p>
-<p>일반적으로 스택의 맨 위 데이터는 top 으로 가리킨다.  </p>
-<p><em>나중에 꼭 풀어볼 것</em>  </p>
-<ol>
-<li>후위 표기법 계산기  </li>
-<li>미로찾기  </li>
-</ol>
-<h3 id="큐"><a href="#큐" class="headerlink" title="큐"></a>큐</h3><p>줄서기와 같다.<br>맨 처음에 데이터1이 들어오고 그 다음에 데이터2, 데이터3가 들어온다면<br>제일 먼저 온 데이터1이 먼저 나간다. : <code>First In First Out</code> = 선입선출  </p>
-<h2 id="연결-리스트-linked-list"><a href="#연결-리스트-linked-list" class="headerlink" title="연결 리스트(linked list)"></a>연결 리스트(linked list)</h2><ol>
-<li><code>싱글 링크드 리스트</code><br>노드가 데이터 + 링크<br>싱글 링크드 리스트의 노드는 데이터에 대한 링크가 하나이다.<br>링크가 하나만 있으면 양방향이 아니게 된다.<br>1 -&gt; 2 -&gt; 1 이 안 됨.  </li>
-<li><code>더미 더블 링크드 리스트</code> -&gt; 이중 연결 리스트<br>노드가 링크 + 데이터 + 링크<br>링크가 두 개이기 때문에 양방향이다.<br>1 -&gt; 2 -&gt; 1 이 가능함. </li>
-</ol>
-<p><code>더미 노드</code>:  </p>
-<ul>
-<li>데이터가 없다  </li>
-<li><p>구현 편의성이 높아지면서 에러 가능성이 낮다<br>  구현이 좋아진다 = 프로그래머의 실수를 줄일 수 있다<br><code>dummy</code>(head)~<code>1</code>~<code>2</code>~<code>3</code>~<code>dummy</code>(tail)</p>
-</li>
-<li><p>delete<br>reference count 가 0 이 되면<br>(어떤 값을 참조하는 것들이 모두 사라지면)<br>garbage collection 에 의해 사라진다.  </p>
-</li>
-</ul>
-<p>delete 도 이와 비슷하게<br>지우려는 노드를 참조하는 다른 노드의 연결을 끊어버리면 된다.  </p>
-<h2 id="배열과-링크드리스트의-차이"><a href="#배열과-링크드리스트의-차이" class="headerlink" title="배열과 링크드리스트의 차이"></a>배열과 링크드리스트의 차이</h2><p><strong>배열 :</strong><br>실제 메모리에도 데이터가 일렬로 들어간다.<br>인덱싱이 가능하므로 검색도 빠르다. O(1)<br>단, 데이터 삽입이나 삭제를 할 때 최악의 경우 O(n)<br>검색을 자주 할 때 배열을 쓴다.  </p>
-<p><strong>연결리스트 :</strong><br>실제 메모리에서 데이터가 일렬로 들어가지 않고 흩어져있으며 서로 연결되어 있다.<br>인덱싱을 하려면 모든 데이터를 순회해야 하므로 검색이 느리다. O(n)<br>데이터 삽입을 할 때 싱글 링크드 리스트의 경우 O(1),<br>더블 링크드 리스트의 경우도 O(1).<br>삽입과 삭제를 자주 할 때 연결리스트를 쓴다.  </p>
-<h1 id="앞으로-공부하라고-하신-내용"><a href="#앞으로-공부하라고-하신-내용" class="headerlink" title="앞으로 공부하라고 하신 내용"></a>앞으로 공부하라고 하신 내용</h1><p>linked list, stack, queue 는 선형 자료구조.<br>앞으로는 비선형 자료구조도 공부해야 할 것.  </p>
-<ul>
-<li>tree(이진트리)  <ul>
-<li>순회(travorsal)  <ul>
-<li>전위(preorder)  </li>
-<li>중위(inorder)  </li>
-<li>후위(postorder)<br>-&gt; 전위, 중위, 후위는 스택의 일종이고, 스택은 DFS의 일종.<br>  반복문과 재귀로 구현  </li>
-<li>레벨 순서(level order)  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li>BST(Binary Search Tree)<br>  O(n^2)  </li>
-<li><p>균형이진트리 (Balanced, self balancing)  </p>
-<ul>
-<li>AVL 트리  </li>
-<li>RED-BLACK 트리  </li>
-</ul>
-</li>
-<li><p>B-Tree (데이터베이스의 인덱스에 쓰임)<br>  : 균형이진트리 + 하드웨어 아키텍쳐  </p>
-</li>
-<li><p>Heap (완전이진트리, 배열로 구현한다)  </p>
-</li>
-<li><p>Hash Table(map)  </p>
-<ul>
-<li>hash function  </li>
-<li>collision(충돌)  <ul>
-<li>chaining(체이닝)  </li>
-<li>open-addressing 기법  </li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Graph(그래프)  </p>
-<ul>
-<li>순회  <ul>
-<li>DFS (깊이 우선 탐색) -&gt; 스택 기반  </li>
-<li>BFS (너비 우선 탐색) -&gt; 큐 기반  </li>
-</ul>
-</li>
-<li>MST(Minimum Spanning Tree) 최소 신장 트리  <ul>
-<li>그리디 알고리즘 기반  </li>
-<li>kruskal algorithm  </li>
-<li>prim algorithm  </li>
-</ul>
-</li>
-<li>최단 경로 문제(shortest path)  <ul>
-<li>dijkstra algorithm -&gt; 그리디 알고리즘  </li>
-<li>Balman-ford algorithm  </li>
-<li>flord-warshall -&gt; 다이나믹 프로그래밍  </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cs/">CS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
     <article id="post-0419" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -333,11 +197,110 @@
 <!-- Table of Contents -->
 
   
+    <article id="post-0418" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/03/0418/">컴퓨터 공학 TIL 0418</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/05/03/0418/" class="article-date">
+	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
+ 
+      <!--  -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="파이썬-기초와-알고리즘-2일차"><a href="#파이썬-기초와-알고리즘-2일차" class="headerlink" title="파이썬 기초와 알고리즘 2일차"></a>파이썬 기초와 알고리즘 2일차</h1><p>프로그래머는 프로그래밍(추상화) 하는 사람.  </p>
+<ul>
+<li>Procedual Programming : 함수를 통한 추상화<br>함수(function, (routine, procedure, subroutine))  </li>
+<li>OOP(Object-Oriented Programming) : 객체를 통한 추상화  </li>
+</ul>
+<h3 id="함수에서의-추상화"><a href="#함수에서의-추상화" class="headerlink" title="함수에서의 추상화"></a>함수에서의 추상화</h3><p>함수 시그니쳐/인터페이스 와 내부구현을 구분하기  </p>
+<ul>
+<li>함수 시그니쳐(Function Signature)<br>-&gt; 함수 이름, 매개변수(parameter, argument), 결과값(반환)  </li>
+<li>인터페이스(Interface)  </li>
+<li>내부 구현(Implementation)  </li>
+</ul>
+<p>나는 <code>Math.pow()</code>함수를 사용할 때 내부 구현을 몰라도, 함수 시그니쳐만 알면 사용할 수 있다.<br>자바스크립트를 만든 사람들은 내부 구현을 맡아서 하는 것이고,<br>유저 프로그래머는 인터페이스만 알면 된다.<br>함수 시그니쳐를 모아놓은 것 -&gt; documentation  </p>
+<h3 id="시그니쳐를-설계할-때-주의할-점"><a href="#시그니쳐를-설계할-때-주의할-점" class="headerlink" title="시그니쳐를 설계할 때 주의할 점"></a>시그니쳐를 설계할 때 주의할 점</h3><ol>
+<li>함수 이름은 누가 봐도 이 함수가 하는 일이 뭔지 알 수 있게 지어야 한다.  </li>
+<li>매개변수와 리턴값을 잘 설계해야 한다.<br>어떤 함수를 설계했을 때, 그 함수의 리턴값을 이용해 또다른 함수를 실행할 때 문제가 없도록.<br>예를 들어 내가 만든 함수는 문자형을 반환하는데, 다른 사람이 만든 함수가 숫자형을 매개변수로 받는 경우.<br>-&gt; “인터페이스도 안 맞추고 일하냐, 가관이다.” 소리가 나오는 상황.<br>-&gt; 기능 명세  </li>
+</ol>
+<h2 id="실수-real-number"><a href="#실수-real-number" class="headerlink" title="실수(real number)"></a>실수(real number)</h2><h3 id="부동-소수점"><a href="#부동-소수점" class="headerlink" title="부동 소수점"></a>부동 소수점</h3><ol>
+<li><p>32비트로 실수를 표현하기 : <strong>단정도</strong> </p>
+</li>
+<li><p>64비트로 실수를 표현하기 : <strong>배정도</strong> -&gt; 자바스크립트  </p>
+</li>
+</ol>
+<ul>
+<li>첫 번째 비트는 부호를 의미 한다.  </li>
+<li>가수부(mantissa)가 52bit 이다.  </li>
+</ul>
+<h3 id="64-실수-자료형-설계하기"><a href="#64-실수-자료형-설계하기" class="headerlink" title="64 실수 자료형 설계하기"></a>64 실수 자료형 설계하기</h3><p>실수 자료형을 표현한 수식<br><code>± 1.man × 2^exp - bias</code><br>1.man 은 가수(mantissa), 2는 밑수, exp-bias 는 지수(exponent)  </p>
+<h4 id="정규화"><a href="#정규화" class="headerlink" title="정규화"></a>정규화</h4><p>정수부분을 0이 아닌 자연수로 만들기.<br>ex) 5234.433 -&gt; 5.234433 * 10^3  </p>
+<ul>
+<li>10진수 실수 10.625를 2진수 실수로 바꾸고 정규화<br>10.625 -&gt; 1010.101(2) -&gt; <code>1</code>.010101(2) * 2^3  </li>
+</ul>
+<p>2진수의 경우 0이 아닌 자연수는 1밖에 없다.<br>그래서 실제 가수부는 1.010101 이지만<br>정수부분을 뺀 소수부분 <code>010101</code> 을 가수부(mantissa)에 저장한다.<br>(나머지 부분은 0으로 채운다)<br>배정도의 가수부는 52bit 이지만,<br>-&gt; <code>&gt;&gt;&gt; sys.float_info.mant_dig</code> 이 53이었던 이유.  </p>
+<p>(+)</p>
+<p>10진수를 2진수가 커버할 때,<br>한 자리 수 중에 가장 큰 수인 9를 커버하려면<br>2진수 4자리가 필요하다. <code>1111(2) = 15</code><br>두 자리 수 중에 가장 큰 수인 99를 커버하려면<br>7자리가 필요하다. <code>1111111(2) = 127</code>  </p>
+<p>이때, 가수부를 53자리까지 (맨 앞의 1 포함) 키운다면<br>9,007,199,254,740,991 까지 커버할 수 있고, 총 15자리이다.<br>-&gt; <code>&gt;&gt;&gt; sys.float_info.dig</code> 가 15인 이유.  </p>
+<h4 id="exp-bias"><a href="#exp-bias" class="headerlink" title="exp-bias"></a>exp-bias</h4><p>1.010101(2) * 2^<code>3</code><br>지수를 저장하기.  </p>
+<p><code>± 1.man * 2^exp-bias</code><br>즉, 3이 exp-bias 이다.<br>bias 는 음수를 지원하기 위해 IEEE 가 자체적으로 만든 프로토콜.<br>ex) 만약 -8 을 저장해야 한다면?  </p>
+<p>double 의 bias 를 구하는 식은,<br><code>bias = 2^n-1 - 1</code><br>n은 지수부의 비트 수를 뜻한다.<br>double 의 지수부의 비트 수는 11bit 이므로,<br>bias = 2^11-1 - 1<br>bias = 2^10 - 1 = 1023  </p>
+<p>지수부에는 3이 들어가야 맞는 것이지만, 편향치를 고려하여 저장해야 한다.<br>내가 저장해야 하는 실제 지수 값과 편향치를 안다면 메모리에 저장할 값도 알 수 있다.  </p>
+<p><code>Ere = Emem - bias</code><br>즉, <code>Emem = Ere + bias</code>  </p>
+<p>Emem = 3 + 1023 = 1026 이 된다.  </p>
+<p><strong>이제 필요한 값은 다 구했다</strong>  </p>
+<p><code>± 1.man × 2^exp - bias</code>  </p>
+<ol>
+<li>sign : 0  </li>
+<li>exponent(exp - bias) : Emem = 1026 = 01000000001(2)  </li>
+<li>mantissa : 010101000000…. (52bit를 채울 때까지 0을 넣는다)  </li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/cs-til/">CS TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cs/">CS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/14/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/16/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/14/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="space">&hellip;</span><a class="page-number" href="/page/25/">25</a><a class="extend next" rel="next" href="/page/16/">Next</a>
   </nav>
 
 </section>
@@ -350,6 +313,18 @@
     </ul>
     <div class="widget">
       <ul>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/09/17/0917/">React Basic3</a></h6>
+              <span>September 17, 2019</span>
+            </div>
+
+          </li>
         
           <li class="clearfix">
 
@@ -411,18 +386,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/07/03/0703/">Forms</a></h6>
-              <span>July 3, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -432,7 +395,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -442,7 +405,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">39</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">40</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -453,7 +416,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
