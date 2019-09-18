@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dearjsmc4.github.io/"/>
-  <updated>2019-09-17T12:57:24.572Z</updated>
+  <updated>2019-09-17T12:57:17.329Z</updated>
   <id>https://dearjsmc4.github.io/</id>
   
   <author>
@@ -15,34 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>컴포넌트 파일 분리</title>
-    <link href="https://dearjsmc4.github.io/2019/09/17/0917/"/>
-    <id>https://dearjsmc4.github.io/2019/09/17/0917/</id>
-    <published>2019-09-16T15:00:00.000Z</published>
-    <updated>2019-09-17T12:57:24.572Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="컴포넌트-파일-분리"><a href="#컴포넌트-파일-분리" class="headerlink" title="컴포넌트 파일 분리"></a>컴포넌트 파일 분리</h2><ol><li>src 디렉토리에 components 라는 폴더를 만들었다.</li><li>js 파일을 만들었다. </li><li>코드를 작성한다. </li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line"></span><br><span class="line">class Subject extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        &lt;h1&gt;My Favorite Movies&lt;/h1&gt;</span><br><span class="line">        &lt;p&gt;... that most of my friends don&apos;t know&lt;/p&gt;</span><br><span class="line">      &lt;/header&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Subject;</span><br></pre></td></tr></table></figure><p>export 를 꼭 해주자.<br>이렇게 파일로 분리를 해두면 다른 파일에서도 import 하여 쓸 수 있다. </p><h3 id="export-default"><a href="#export-default" class="headerlink" title="export default?"></a>export default?</h3><p><a href="https://create-react-app.dev/docs/importing-a-component" target="_blank" rel="noopener">Create React App</a> 에서 살펴보았다.</p><blockquote><p>Be aware of the difference between default and named exports. It is a common source of mistakes.<br><strong>(default exports 와 name exports 의 차이점을 잘 알아두세요. 흔한 실수의 원인입니다.)</strong><br>We suggest that you stick to using default imports and exports when a module only exports a single thing (for example, a component).<br><strong>(모듈이 단 하나만(컴포넌트 하나라든지) export 할 경우에는 꼭 default imports 와 exports 를 사용하길 권장합니다.)</strong><br>That’s what you get when you use <code>export default Button</code> and <code>import Button from &#39;./Button&#39;</code>.<br><strong>(<code>export default Button</code> 와 <code>import Button from &#39;./Button&#39;</code> 를 쓰면 디폴트로 적용됩니다.)</strong><br>Named exports are useful for utility modules that export several functions. A module may have at most one default export and as many named exports as you like.<br><strong>(Named exports 는 다수의 함수를 export 하는 유틸리티 모듈에 유용합니다. 이 경우에 모듈은 최대 하나의 default export 와 다수의 named exports 를 포함할 수 있습니다.)</strong></p></blockquote><p>app.js 로 import 할 때에는 아래와 같이 작성한다.</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Subject <span class="keyword">from</span> <span class="string">'./components/subject'</span>;</span><br></pre></td></tr></table></figure><p>(+)<br>index.js 에서 App 의 이름을 바꿔도 상관없었던 이유가<br>App 이 디폴트로 export 되고 있었기 때문이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span>, document.getElementById('root'));</span></span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;컴포넌트-파일-분리&quot;&gt;&lt;a href=&quot;#컴포넌트-파일-분리&quot; class=&quot;headerlink&quot; title=&quot;컴포넌트 파일 분리&quot;&gt;&lt;/a&gt;컴포넌트 파일 분리&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;src 디렉토리에 components 라는 폴더를 만들었다
-      
-    
-    </summary>
-    
-      <category term="React" scheme="https://dearjsmc4.github.io/categories/react/"/>
-    
-    
-      <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
-    
-      <category term="React" scheme="https://dearjsmc4.github.io/tags/react/"/>
-    
-  </entry>
   
   <entry>
     <title>Props</title>
@@ -58,6 +30,34 @@
       
       
         &lt;h2 id=&quot;Props&quot;&gt;&lt;a href=&quot;#Props&quot; class=&quot;headerlink&quot; title=&quot;Props&quot;&gt;&lt;/a&gt;Props&lt;/h2&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;
+      
+    
+    </summary>
+    
+      <category term="React" scheme="https://dearjsmc4.github.io/categories/react/"/>
+    
+    
+      <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
+    
+      <category term="React" scheme="https://dearjsmc4.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>컴포넌트 파일 분리</title>
+    <link href="https://dearjsmc4.github.io/2019/09/17/0917/"/>
+    <id>https://dearjsmc4.github.io/2019/09/17/0917/</id>
+    <published>2019-09-16T15:00:00.000Z</published>
+    <updated>2019-09-18T04:56:18.317Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="컴포넌트-파일-분리"><a href="#컴포넌트-파일-분리" class="headerlink" title="컴포넌트 파일 분리"></a>컴포넌트 파일 분리</h2><ol><li>src 디렉토리에 components 라는 폴더를 만들었다.</li><li>js 파일을 만들었다. </li><li>코드를 작성한다. </li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line"></span><br><span class="line">class Subject extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        &lt;h1&gt;My Favorite Movies&lt;/h1&gt;</span><br><span class="line">        &lt;p&gt;... that most of my friends don&apos;t know&lt;/p&gt;</span><br><span class="line">      &lt;/header&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Subject;</span><br></pre></td></tr></table></figure><p>export 를 꼭 해주자.<br>이렇게 파일로 분리를 해두면 다른 파일에서도 import 하여 쓸 수 있다. </p><h3 id="export-default"><a href="#export-default" class="headerlink" title="export default?"></a>export default?</h3><p><a href="https://create-react-app.dev/docs/importing-a-component" target="_blank" rel="noopener">Create React App</a> 에서 살펴보았다.</p><blockquote><p>Be aware of the difference between default and named exports. It is a common source of mistakes.<br><strong>(default export 와 named export 의 차이점을 잘 알아두세요. 흔한 실수의 원인입니다.)</strong><br>We suggest that you stick to using default imports and exports when a module only exports a single thing (for example, a component).<br><strong>(모듈이 단 하나만(컴포넌트 하나라든지) export 할 경우에는 꼭 default imports 와 exports 를 사용하길 권장합니다.)</strong><br>That’s what you get when you use <code>export default Button</code> and <code>import Button from &#39;./Button&#39;</code>.<br><strong>(<code>export default Button</code> 와 <code>import Button from &#39;./Button&#39;</code> 를 쓰면 디폴트로 적용됩니다.)</strong><br>Named exports are useful for utility modules that export several functions. A module may have at most one default export and as many named exports as you like.<br><strong>(Named exports 는 다수의 함수를 export 하는 유틸리티 모듈에 유용합니다. 이 경우에 모듈은 최대 하나의 default export 와 다수의 named exports 를 포함할 수 있습니다.)</strong></p></blockquote><p>app.js 로 import 할 때에는 아래와 같이 작성한다.</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Subject <span class="keyword">from</span> <span class="string">'./components/subject'</span>;</span><br></pre></td></tr></table></figure><p>(+)<br>index.js 에서 App 의 이름을 바꿔도 상관없었던 이유가<br>App 이 디폴트로 export 되고 있었기 때문이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;컴포넌트-파일-분리&quot;&gt;&lt;a href=&quot;#컴포넌트-파일-분리&quot; class=&quot;headerlink&quot; title=&quot;컴포넌트 파일 분리&quot;&gt;&lt;/a&gt;컴포넌트 파일 분리&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;src 디렉토리에 components 라는 폴더를 만들었다
       
     
     </summary>
@@ -156,6 +156,31 @@
   </entry>
   
   <entry>
+    <title>Angular Template Driven Form</title>
+    <link href="https://dearjsmc4.github.io/2019/07/08/template-form/"/>
+    <id>https://dearjsmc4.github.io/2019/07/08/template-form/</id>
+    <published>2019-07-07T15:00:00.000Z</published>
+    <updated>2019-07-11T09:42:01.591Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Angular-Forms"><a href="#Angular-Forms" class="headerlink" title="Angular Forms"></a>Angular Forms</h1><h2 id="Template-driven-forms"><a href="#Template-driven-forms" class="headerlink" title="Template driven forms"></a>Template driven forms</h2><p>컴포넌트 클래스는 거의 쓰지않고 템플릿에서 폼을 관리한다. 리액티브 폼(컴포넌트 클래스에서 폼을 관리)과는 반대되는 방식이다.  </p><p>템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 중심으로 동작하는데, 이들을 이용할 때에는 먼저 루트 모듈에 <code>FormsModule</code> 을 추가해준다.<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; FormsModule &#125; <span class="keyword">from</span> <span class="string">'@angular/forms'</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    FormsModule</span><br><span class="line">  ],</span><br></pre></td></tr></table></figure></p><p>이렇게 하면 모든 폼에 <strong>NgForm 디렉티브가 자동 적용</strong>되어 템플릿 기반 폼으로 동작한다. 이제 폼은 HTML 표준 폼으로서가 아니라 앵귤러가 관리하는 폼으로서 동작한다. 콘솔에서 폼을 확인해보면 form 태그 안에 novalidate 가 추가되어 있음을 확인할 수 있다.<br>(novalidate 와 반대로 <code>ngNoForm</code> 은 HTML 표준 폼으로 동작하게 한다.)<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> #<span class="attr">userForm</span>=<span class="string">"ngForm"</span> (<span class="attr">ngSubmit</span>)=<span class="string">"onSubmit(userForm)"</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>템플릿 기반 폼에도 참조변수를 사용할 수 있으며, 이때 참조변수가 <code>NgForm</code> 인스턴스를 가리킬 수 있도록 바인딩 해주어야 한다.<br>앞으로 컨트롤 요소값을 확인할 때 이 참조변수명을 이용하여 확인한다. <code>ex) userForm.value</code><br>또한 현재 폼은 NgForm 디렉티브가 적용되어 있으므로 HTML 표준 폼으로서의 submit 이벤트가 실행되지 않는다. 따라서 대신 <code>ngSubmit</code> 이벤트를 사용해야 한다.  </p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"userid"</span> #<span class="attr">userid</span>=<span class="string">"ngModel"</span> <span class="attr">ngModel</span>&gt;</span></span><br></pre></td></tr></table></figure><p>NgForm 디렉티브는 폼 요소의 자식 폼 컨트롤 요소 중에 <code>NgModel</code> 디렉티브가 적용된 요소를 탐색하여 <code>FormGroup</code> 인스턴스에 추가한다. NgModel 디렉티브는 <code>FormControl</code> 인스턴스를 생성하는데, FormControl 은 FormGroup 의 프로퍼티로 추가된다. 따라서 템플릿 기반 폼의 구조는 다음과 같아진다.  </p><ul><li>NgForm  <ul><li>FormGroup  <ul><li>FormControl</li><li>FormControl</li><li>FormControl<br>(…)  </li></ul></li></ul></li></ul><p>템플릿 기반 폼은 input 태그 내에 <code>name</code> 어트리뷰트가 없으면 에러가 난다. 왜냐면<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">userForm.value: &#123;</span><br><span class="line">  <span class="string">"userid"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"password"</span>: <span class="string">""</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>userForm.value 로 상태값을 찍어보면 위와 같이 나오는데, 폼 컨트롤 요소의 상태값을 나타낼 때의 키는 name 어트리뷰트의 값이기 때문이다. 따라서 name 어트리뷰트가 반드시 있어야 한다.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"userid"</span> </span></span><br><span class="line"><span class="tag">  #<span class="attr">userid</span>=<span class="string">"ngModel"</span> [(<span class="attr">ngModel</span>)]=<span class="string">"user.userid"</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>NgModel 디렉티브에 <code>[()]</code> 문법을 사용하면 양방향 데이터 바인딩으로 사용가능하다. 양방향 바인딩은 이벤트 바인딩(ngModelChange)과 프로퍼티 바인딩(ngModel)의 축약표현이다.  </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Angular-Forms&quot;&gt;&lt;a href=&quot;#Angular-Forms&quot; class=&quot;headerlink&quot; title=&quot;Angular Forms&quot;&gt;&lt;/a&gt;Angular Forms&lt;/h1&gt;&lt;h2 id=&quot;Template-driven-forms
+      
+    
+    </summary>
+    
+      <category term="Angular" scheme="https://dearjsmc4.github.io/categories/angular/"/>
+    
+    
+      <category term="Angular" scheme="https://dearjsmc4.github.io/tags/angular/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Module</title>
     <link href="https://dearjsmc4.github.io/2019/07/08/0708/"/>
     <id>https://dearjsmc4.github.io/2019/07/08/0708/</id>
@@ -177,31 +202,6 @@
     
     
       <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
-    
-      <category term="Angular" scheme="https://dearjsmc4.github.io/tags/angular/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Angular Template Driven Form</title>
-    <link href="https://dearjsmc4.github.io/2019/07/08/template-form/"/>
-    <id>https://dearjsmc4.github.io/2019/07/08/template-form/</id>
-    <published>2019-07-07T15:00:00.000Z</published>
-    <updated>2019-07-11T09:42:01.591Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Angular-Forms"><a href="#Angular-Forms" class="headerlink" title="Angular Forms"></a>Angular Forms</h1><h2 id="Template-driven-forms"><a href="#Template-driven-forms" class="headerlink" title="Template driven forms"></a>Template driven forms</h2><p>컴포넌트 클래스는 거의 쓰지않고 템플릿에서 폼을 관리한다. 리액티브 폼(컴포넌트 클래스에서 폼을 관리)과는 반대되는 방식이다.  </p><p>템플릿 기반 폼은 NgForm, NgModel, NgModelGroup 디렉티브를 중심으로 동작하는데, 이들을 이용할 때에는 먼저 루트 모듈에 <code>FormsModule</code> 을 추가해준다.<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; FormsModule &#125; <span class="keyword">from</span> <span class="string">'@angular/forms'</span></span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule,</span><br><span class="line">    FormsModule</span><br><span class="line">  ],</span><br></pre></td></tr></table></figure></p><p>이렇게 하면 모든 폼에 <strong>NgForm 디렉티브가 자동 적용</strong>되어 템플릿 기반 폼으로 동작한다. 이제 폼은 HTML 표준 폼으로서가 아니라 앵귤러가 관리하는 폼으로서 동작한다. 콘솔에서 폼을 확인해보면 form 태그 안에 novalidate 가 추가되어 있음을 확인할 수 있다.<br>(novalidate 와 반대로 <code>ngNoForm</code> 은 HTML 표준 폼으로 동작하게 한다.)<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> #<span class="attr">userForm</span>=<span class="string">"ngForm"</span> (<span class="attr">ngSubmit</span>)=<span class="string">"onSubmit(userForm)"</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>템플릿 기반 폼에도 참조변수를 사용할 수 있으며, 이때 참조변수가 <code>NgForm</code> 인스턴스를 가리킬 수 있도록 바인딩 해주어야 한다.<br>앞으로 컨트롤 요소값을 확인할 때 이 참조변수명을 이용하여 확인한다. <code>ex) userForm.value</code><br>또한 현재 폼은 NgForm 디렉티브가 적용되어 있으므로 HTML 표준 폼으로서의 submit 이벤트가 실행되지 않는다. 따라서 대신 <code>ngSubmit</code> 이벤트를 사용해야 한다.  </p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"userid"</span> #<span class="attr">userid</span>=<span class="string">"ngModel"</span> <span class="attr">ngModel</span>&gt;</span></span><br></pre></td></tr></table></figure><p>NgForm 디렉티브는 폼 요소의 자식 폼 컨트롤 요소 중에 <code>NgModel</code> 디렉티브가 적용된 요소를 탐색하여 <code>FormGroup</code> 인스턴스에 추가한다. NgModel 디렉티브는 <code>FormControl</code> 인스턴스를 생성하는데, FormControl 은 FormGroup 의 프로퍼티로 추가된다. 따라서 템플릿 기반 폼의 구조는 다음과 같아진다.  </p><ul><li>NgForm  <ul><li>FormGroup  <ul><li>FormControl</li><li>FormControl</li><li>FormControl<br>(…)  </li></ul></li></ul></li></ul><p>템플릿 기반 폼은 input 태그 내에 <code>name</code> 어트리뷰트가 없으면 에러가 난다. 왜냐면<br><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">userForm.value: &#123;</span><br><span class="line">  <span class="string">"userid"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"password"</span>: <span class="string">""</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>userForm.value 로 상태값을 찍어보면 위와 같이 나오는데, 폼 컨트롤 요소의 상태값을 나타낼 때의 키는 name 어트리뷰트의 값이기 때문이다. 따라서 name 어트리뷰트가 반드시 있어야 한다.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"userid"</span> </span></span><br><span class="line"><span class="tag">  #<span class="attr">userid</span>=<span class="string">"ngModel"</span> [(<span class="attr">ngModel</span>)]=<span class="string">"user.userid"</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>NgModel 디렉티브에 <code>[()]</code> 문법을 사용하면 양방향 데이터 바인딩으로 사용가능하다. 양방향 바인딩은 이벤트 바인딩(ngModelChange)과 프로퍼티 바인딩(ngModel)의 축약표현이다.  </p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Angular-Forms&quot;&gt;&lt;a href=&quot;#Angular-Forms&quot; class=&quot;headerlink&quot; title=&quot;Angular Forms&quot;&gt;&lt;/a&gt;Angular Forms&lt;/h1&gt;&lt;h2 id=&quot;Template-driven-forms
-      
-    
-    </summary>
-    
-      <category term="Angular" scheme="https://dearjsmc4.github.io/categories/angular/"/>
-    
     
       <category term="Angular" scheme="https://dearjsmc4.github.io/tags/angular/"/>
     

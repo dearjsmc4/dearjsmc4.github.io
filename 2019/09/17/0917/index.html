@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Rudy&#39;s Blog">
 <meta property="og:description" content="컴포넌트 파일 분리 src 디렉토리에 components 라는 폴더를 만들었다. js 파일을 만들었다.  코드를 작성한다.   1234567891011121314import React, &amp;#123; Component &amp;#125; from &amp;apos;react&amp;apos;;class Subject extends Component &amp;#123;  render()">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-09-17T12:57:24.572Z">
+<meta property="og:updated_time" content="2019-09-18T04:56:18.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="컴포넌트 파일 분리">
 <meta name="twitter:description" content="컴포넌트 파일 분리 src 디렉토리에 components 라는 폴더를 만들었다. js 파일을 만들었다.  코드를 작성한다.   1234567891011121314import React, &amp;#123; Component &amp;#125; from &amp;apos;react&amp;apos;;class Subject extends Component &amp;#123;  render()">
@@ -143,11 +143,11 @@
 <p>export 를 꼭 해주자.<br>이렇게 파일로 분리를 해두면 다른 파일에서도 import 하여 쓸 수 있다. </p>
 <h3 id="export-default"><a href="#export-default" class="headerlink" title="export default?"></a>export default?</h3><p><a href="https://create-react-app.dev/docs/importing-a-component" target="_blank" rel="noopener">Create React App</a> 에서 살펴보았다.</p>
 <blockquote>
-<p>Be aware of the difference between default and named exports. It is a common source of mistakes.<br><strong>(default exports 와 name exports 의 차이점을 잘 알아두세요. 흔한 실수의 원인입니다.)</strong><br>We suggest that you stick to using default imports and exports when a module only exports a single thing (for example, a component).<br><strong>(모듈이 단 하나만(컴포넌트 하나라든지) export 할 경우에는 꼭 default imports 와 exports 를 사용하길 권장합니다.)</strong><br>That’s what you get when you use <code>export default Button</code> and <code>import Button from &#39;./Button&#39;</code>.<br><strong>(<code>export default Button</code> 와 <code>import Button from &#39;./Button&#39;</code> 를 쓰면 디폴트로 적용됩니다.)</strong><br>Named exports are useful for utility modules that export several functions. A module may have at most one default export and as many named exports as you like.<br><strong>(Named exports 는 다수의 함수를 export 하는 유틸리티 모듈에 유용합니다. 이 경우에 모듈은 최대 하나의 default export 와 다수의 named exports 를 포함할 수 있습니다.)</strong></p>
+<p>Be aware of the difference between default and named exports. It is a common source of mistakes.<br><strong>(default export 와 named export 의 차이점을 잘 알아두세요. 흔한 실수의 원인입니다.)</strong><br>We suggest that you stick to using default imports and exports when a module only exports a single thing (for example, a component).<br><strong>(모듈이 단 하나만(컴포넌트 하나라든지) export 할 경우에는 꼭 default imports 와 exports 를 사용하길 권장합니다.)</strong><br>That’s what you get when you use <code>export default Button</code> and <code>import Button from &#39;./Button&#39;</code>.<br><strong>(<code>export default Button</code> 와 <code>import Button from &#39;./Button&#39;</code> 를 쓰면 디폴트로 적용됩니다.)</strong><br>Named exports are useful for utility modules that export several functions. A module may have at most one default export and as many named exports as you like.<br><strong>(Named exports 는 다수의 함수를 export 하는 유틸리티 모듈에 유용합니다. 이 경우에 모듈은 최대 하나의 default export 와 다수의 named exports 를 포함할 수 있습니다.)</strong></p>
 </blockquote>
 <p>app.js 로 import 할 때에는 아래와 같이 작성한다.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Subject <span class="keyword">from</span> <span class="string">'./components/subject'</span>;</span><br></pre></td></tr></table></figure>
-<p>(+)<br>index.js 에서 App 의 이름을 바꿔도 상관없었던 이유가<br>App 이 디폴트로 export 되고 있었기 때문이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span>, document.getElementById('root'));</span></span><br></pre></td></tr></table></figure></p>
+<p>(+)<br>index.js 에서 App 의 이름을 바꿔도 상관없었던 이유가<br>App 이 디폴트로 export 되고 있었기 때문이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App'</span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -168,10 +168,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2019/09/17/0917-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Props
+        
+      </div>
+    </a>
   
-    <a href="/2019/09/17/0917-2/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2019/09/10/0910/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Props</div>
+      <div class="article-nav-title">디렉토리 구조, 배포, 컴포넌트</div>
     </a>
   
 </nav>
