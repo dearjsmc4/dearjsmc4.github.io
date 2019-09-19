@@ -3,19 +3,26 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Page 1 | Rudy&#39;s Blog</title>
+  <title>이벤트 설치, bind(this) | Rudy&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="TILReact">
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Rudy&#39;s Blog">
-<meta property="og:url" content="https://dearjsmc4.github.io/index.html">
+  
+  <meta name="description" content="Event1234 &amp;lt;!-- App.js --&amp;gt;&amp;lt;Subject title=&quot;My Favorite Movies&quot;  onChangePage=&amp;#123;this.goToMain&amp;#125;&amp;gt;&amp;lt;/Subject&amp;gt; 제목을 클릭하면 goToMain() 함수가 동작하여 state 를 바꾸도록 할 것이다.state 가 바뀌었음을 리액트가 감지하">
+<meta name="keywords" content="TIL,React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="이벤트 설치, bind(this)">
+<meta property="og:url" content="https://dearjsmc4.github.io/2019/09/19/0919/index.html">
 <meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:description" content="Event1234 &amp;lt;!-- App.js --&amp;gt;&amp;lt;Subject title=&quot;My Favorite Movies&quot;  onChangePage=&amp;#123;this.goToMain&amp;#125;&amp;gt;&amp;lt;/Subject&amp;gt; 제목을 클릭하면 goToMain() 함수가 동작하여 state 를 바꾸도록 할 것이다.state 가 바뀌었음을 리액트가 감지하">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-19T10:03:52.673Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rudy&#39;s Blog">
+<meta name="twitter:title" content="이벤트 설치, bind(this)">
+<meta name="twitter:description" content="Event1234 &amp;lt;!-- App.js --&amp;gt;&amp;lt;Subject title=&quot;My Favorite Movies&quot;  onChangePage=&amp;#123;this.goToMain&amp;#125;&amp;gt;&amp;lt;/Subject&amp;gt; 제목을 클릭하면 goToMain() 함수가 동작하여 state 를 바꾸도록 할 것이다.state 가 바뀌었음을 리액트가 감지하">
   
     <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
   
@@ -48,7 +55,7 @@
 </html>
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
   
@@ -95,9 +102,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main">
-  
-    <article id="post-0919" class="article article-type-post" itemscope itemprop="blogPost">
+          <section id="main" style="float:none;"><article id="post-0919" style="width: 66%; float:left;" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +110,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/09/19/0919/">이벤트 설치, bind(this)</a>
+      이벤트 설치, bind(this)
     </h1>
   
 
@@ -121,7 +126,11 @@
 	<span class="ico-folder"></span>
     <a class="article-category-link" href="/categories/react/">React</a>
  
-      <!--  -->
+      <!-- 
+	<span id="busuanzi_container_page_pv">
+	  本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+	</span>
+ -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
@@ -160,194 +169,31 @@
     <hr class="entry-footer-hr">
   </div>
   
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-0918" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/09/18/0918/">State</a>
-    </h1>
   
+    <a href="/2019/09/18/0918/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">State</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/09/18/0918/" class="article-date">
-	  <time datetime="2019-09-17T15:00:00.000Z" itemprop="datePublished">September 18, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/react/">React</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="State"><a href="#State" class="headerlink" title="State"></a>State</h2><p><a href="https://ko.reactjs.org/docs/state-and-lifecycle.html" target="_blank" rel="noopener">State 와 생명주기</a><br>공식 문서가 읽기 좋게 되어 있어서 다행이다. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      mode: <span class="string">'read'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>state 초기 설정은 <code>this.state = {}</code></li>
-<li>state 업데이트는 <code>this.setState()</code><br>→ state 를 설정할 수 있는 곳은 constructor 뿐이며,<br><code>this.state.mode = &#39;main&#39;</code> 처럼 직접 수정할 수 없다.</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/react/">React</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
   
 </article>
 
 <!-- Table of Contents -->
 
-  
-
-
-  <nav id="page-nav">
+  <aside id="sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/2/">Next</a>
-  </nav>
-
+      <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Event"><span class="nav-number">1.</span> <span class="nav-text">Event</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bind-this"><span class="nav-number">2.</span> <span class="nav-text">bind(this)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#this-문제를-해결하기"><span class="nav-number">2.1.</span> <span class="nav-text">this 문제를 해결하기</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
 </section>
-          <aside id="sidebar">
-  
-    
-  <div class="widget_athemes_tabs">
-    <ul id="widget-tab" class="clearfix widget-tab-nav">
-      <li class="active"><a>Recent Posts</a></li>
-    </ul>
-    <div class="widget">
-      <ul>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/09/19/0919/">이벤트 설치, bind(this)</a></h6>
-              <span>September 19, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/09/18/0918/">State</a></h6>
-              <span>September 18, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/09/17/0917-2/">Props</a></h6>
-              <span>September 17, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/09/17/0917/">컴포넌트 파일 분리</a></h6>
-              <span>September 17, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/09/10/0910/">디렉토리 구조, 배포, 컴포넌트</a></h6>
-              <span>September 10, 2019</span>
-            </div>
-
-          </li>
-        
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/09/09/0909/">개발환경 셋팅</a></h6>
-              <span>September 9, 2019</span>
-            </div>
-
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">43</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
-    </div>
-  </div>
-
-
-  
-</aside>
         
       </div>
 

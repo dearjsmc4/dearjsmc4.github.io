@@ -97,6 +97,81 @@
         
           <section id="main">
   
+    <article id="post-0515" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/05/15/0515/">전역객체, this</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/05/15/0515/" class="article-date">
+	  <time datetime="2019-05-14T15:00:00.000Z" itemprop="datePublished">May 15, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+ 
+      <!--  -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="전역객체"><a href="#전역객체" class="headerlink" title="전역객체"></a>전역객체</h2><p>우리가 만드는 게 아니라 브라우저 열자마자 전역객체가 만들어진다. 그 안에는 전역객체가 가지고있는 프로퍼티와 메소드, var 로 만든 전역 변수, 암묵적 전역변수, WEB API가 들어있다. window의 프로퍼티는 window.을 생략해도 된다.  </p>
+<h3 id="eval-함수"><a href="#eval-함수" class="headerlink" title="eval 함수"></a>eval 함수</h3><p>안 배워도 되고 가르치지도 않으려고 하는 함수…<br>얘를 왜 안 쓰냐면, 자기자신만의 스코프를 만들고 상위 스코프도 변형시키기 때문이다. 비용이 많이 드는 일들이다. 비용이 많이 드는 일은 대체로 최적화가 되는데 eval 은 그 최적화를 깨뜨린다. 보안문제도 있다. 사용자가 입력한 데이터는 untrusted data 라고 하는데, 이것은 한번 검사를 해야한다고 한다. eval이 받은 문자열을 바로 실행시켜버리니까 문제인듯하다. 그 안에 무슨 코드가 있을지 모르니까.  </p>
+<p>(함수이름 짓는 팁: 빌트인메소드들 이름 따라하기)  </p>
+<h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>객체에는 상태 데이터와 동작(메소드)이 있다고 했고, 동작인 메소드는 상태 데이터를 참조하고 변경할 수 있어야 한다. 메소드가 자신이 속한 객체의 프로퍼티를 참조하려면 자신이 속한 객체를 가리키는 식별자를 참조할 수 있어야 한다.<br><strong>this</strong>는 객체 자신의 프로퍼티나 메소드를 참조하기 위한 <strong>자기참조변수</strong>이다. <strong>this가 가리키는 값은 함수 호출 방식에 의해 동적으로 결정된다.</strong> 아무것도 신경쓰지말고 함수가 어떻게 호출되었느냐만 보면됨. 함수가 호출되어야 this 가 결정된다.<br><!-- (렉시컬 스코프는 함수정의가 평가될때 결정된다)  --></p>
+<h3 id="다양한-함수호출방식"><a href="#다양한-함수호출방식" class="headerlink" title="다양한 함수호출방식"></a>다양한 함수호출방식</h3><ol>
+<li>일반함수 호출 -&gt; this 는 기본적으로 window 를 가리키도록 세팅된 채로 시작한다.  </li>
+<li>메소드 호출 -&gt; this 는 메소드를 호출한 객체를 가리킨다.  </li>
+<li>생성자함수 호출 -&gt; this 는 생성될 인스턴스를 가리킨다.  </li>
+<li>Function.prototype.apply/call/bind 메소드에 의한 간접 호출 -&gt; this를 명시적으로 바인딩  </li>
+</ol>
+<p>this는 객체의 참조를 얻기 위해 필요한 것이니까 전역이나 일반함수에서 this를 쓸 일은 없다. 그래서 엄격모드에서는 undefined를 내보낸다.  </p>
+<p>메소드로 호출된 함수는 메소드를 <strong>호출한</strong> 객체를 가리킨다고 했다. 메소드를 <strong>가지고 있는</strong> 객체가 아니다! this 가 무엇인지 확인할 때에는 무조건 함수가 <strong>어떻게</strong> 호출되었는지만 확인하면 된다. 즉시실행함수도 this 가 window 이다. 메소드 안의 중첩함수도 일반함수로 호출되었다면 this 는 window 이다.<br>그런데 중첩함수는 외부함수를 도와주는 함수이다. 외부함수 안에서만 딱 쓰겠다는 의지가 나타났다는 말이다. 그럼 외부함수가 메소드로 호출돼서 this 가 객체를 가리키는 상태라면, 중첩함수에서 this가 window로 바뀌는 것은 기대에 어긋난다. 그래서 필요하다면 this를 갈아끼워줄 수 있다. 외부함수에서의 this를 변수에 회피시켜놓고 쓸 수도 있지만, bind/apply/call 빌트인 메소드를 사용할 수도 있다. 위 목록 중 4번 항목을 말하는 것이다. </p>
+<!-- 호출이라는 것은 외부의 인수를 함수내부로 밀어넣는 행위이기도 하다. bind(this) 는 바깥의 this를 bind에 넣어주는거고 그럼 this 가 foo 안에 있는거고, foo는 obj가 호출했으니까... this가 obj 가 된다. -->
+<h3 id="apply-와-call"><a href="#apply-와-call" class="headerlink" title="apply 와 call"></a>apply 와 call</h3><p>함수를 호출하는 것이 주 역할인 것은 똑같고 인수를 전달하는 방식만 다른 메소드들이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">뫄뫄.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure></p>
+<p>뫄뫄.apply(thisArg) 일 때, 뫄뫄함수를 호출하면서 인자로 준 thisArg를 this로 바인딩해준다(간접호출도 해준다). 인수가 있을 때 인수도 전달할 수 있다. <code>[argsArray]</code> 는 함수에 전달할 인수 리스트 배열이다. 옵션이므로 생략 가능하다.  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">뫄뫄.call(thisArg, arg1, arg2, ...)</span><br></pre></td></tr></table></figure>
+<p>call 메소드도 첫 번째 인자를 this 로 바인딩해주고 간접호출까지 해주는 것은 같다. 하지만 인자를 전달하는 방식이 apply 와는 다르다. 배열의 형태가 아니라 하나씩 전달해야 한다.  </p>
+<ul>
+<li><em>apply 를 쓰는 팁</em><br>내가 자주 접하는 가변인자함수중에는 Math.max() 가 있다. 인수를 한 개, 두 개, 세 개 내 맘대로 전달할 수 있다.<br>Math.max() 의 문법은 <code>Math.max([값1[, 값2[, ...]]])</code> 이고 예제는 다음과 같다.  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max(<span class="number">10</span>, <span class="number">20</span>);   <span class="comment">//  20</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>그런데 만약 내 숫자들이 배열 안에 들어있다면<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="built_in">Math</span>.max(arr); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure></p>
+<p>배열을 통째로 넣어버리면 NaN이 나온다.  </p>
+<p>Math는 this가 필요없는 정적메소드이다. 따라서<br><code>Math.max.apply(null, arr)</code> 이렇게 하면 arr라는 배열이 그대로 Math.max에 들어갈 수 있다.<br><code>Math.max(...arr)</code> ES6에서는 이 문법도 가능하다.  </p>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p>호출을 자동으로 해주진 않고, 사용할 객체를 this로 전달하는 것까지만 해준다.<br>코드 이해가 잘 안되니까 내일 다시 알아보고 업데이트 해야겠다.  </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-0513" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -177,117 +252,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-0510" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/10/0510/">전역변수 문제점, 모듈패턴, 프로퍼티 정의, 생성자 함수</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/05/10/0510/" class="article-date">
-	  <time datetime="2019-05-09T15:00:00.000Z" itemprop="datePublished">May 10, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="전역-변수의-문제점"><a href="#전역-변수의-문제점" class="headerlink" title="전역 변수의 문제점"></a>전역 변수의 문제점</h2><ol>
-<li><p>중복 선언이 가능하다.<br> var 키워드의 경우 중복 선언이 가능한데, 이때 의도치않은 재할당이 일어날 수 있다.</p>
-</li>
-<li><p>생명 주기가 길다.<br> 스코프에 식별자가 등록되면 태어나는 것이고, 스코프가 죽으면 그 스코프의 변수도 죽는다. 전역 변수는 스코프가 소멸되지 않는다. 전역 스코프가 소멸되면 다른 window 전역 객체들도 다 못 쓰게 되는 것이다. 게다가 변수가 소멸되지 않으면 계속 메모리공간을 차지하고 있게 되는 문제도 있다.  </p>
-</li>
-</ol>
-<p>함수의 생명 주기가 끝날 때는 식별자가 함수 객체를 가리키고 있는 그 참조를 끊어버리고 나중에 다시 함수를 호출하면 다시 참조하게 된다. 함수는 최대한 간결하고 짧게(스코프를 좁게) 만들고, 함수 하나당 할 일도 하나만 준다. 변수가 태어나자마자 빨리 소멸되도록 하는 것이다.</p>
-<ol start="3">
-<li><p>누구나 접근 가능하고 누구나 변경 가능하다. 값이 변할 확률이 높다.<br> 예상치못한 값의 변경은 에러를 일으키기 딱 좋다.  </p>
-</li>
-<li><p>네임 스페이스 오염<br> 브라우저에서는 파일별로 스코프가 생기지 않는다. 따라서 각 파일마다 전역변수를 따로 설정하더라도 브라우저에서 변수가 충돌할 수 있다.</p>
-</li>
-</ol>
-<p><strong>캡슐화</strong>:<br>인터넷에서 내가 쓰지 않은 남의 댓글은 특별한 방법을 쓰지 않는 이상 삭제하거나 수정할 수 없다. 애초에 삭제나 수정버튼이 제공되지 않기 때문이다. 이처럼 어떤 변수를 아무나 참조하거나 변경할 수 없게 하고 싶다면 캡슐화를 통해 변수를 숨겨버릴 수도 있다. 자바스크립트는 클로저를 통해 캡슐화를 한다.  </p>
-<h2 id="모듈패턴"><a href="#모듈패턴" class="headerlink" title="모듈패턴"></a>모듈패턴</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Counter = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// private 변수</span></span><br><span class="line">    <span class="keyword">var</span> num = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        increase()&#123;</span><br><span class="line">            <span class="keyword">return</span> ++num;</span><br><span class="line">        &#125;,</span><br><span class="line">        decrease()&#123;</span><br><span class="line">            <span class="keyword">return</span> --num;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Counter.num); <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(Counter.increase()); <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(Counter.decrease()); <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
-<p>전역 변수를 사용하지 않는 방법 중 하나다. (이해가 안 되면 외워야 한다)<br>중첩함수가 외부함수보다 더 오래 살아남으면 그것을 클로져라고 한다. 함수 객체는 생성되어질때 자신의 상위스코프를 기억한다. (렉시컬 스코프와 연결되는 얘기다) 그래서 외부함수가 죽었어도 중첩함수가 갖고있던 상위스코프는 살아있다. 따라서 참조도 가능하고, 상위스코프에 있던 지역변수는 자유변수가 된다. 살아있는 상위스코프를 참조하고 있으니까 상태유지도 가능하다. 하지만 밖에서 변수 num 을 참조할 순 없다. 중첩함수만이 외부함수를 참조하고 변경할 수 있다.  </p>
-<!-- 외부스코프를 나타내는 객체가 사실은 절대 죽지 않으니까 메모리낭비가 아닌가?
-요즘 브라우저에서 클로져를 엄청나게 최적화해놔서 괜찮다는듯...
-100개의 변수가 있더라도 참조하는 변수만 기억함. 나머지는 기억안함. -->
-<h2 id="프로퍼티-정의"><a href="#프로퍼티-정의" class="headerlink" title="프로퍼티 정의"></a>프로퍼티 정의</h2><p>프로퍼티를 정의한다는건 프로퍼티 생성과 다르다.<br><code>Object.getOwnPropertyDescriptor</code> 메소드가 반환하는 게 프로퍼티의 어트리뷰트들인데, 이것들은 자바스크립트 엔진이 프로퍼티를 생성할 때 자동으로 기본값으로 정의해준다. 함수로 이렇게 정의된 어트리뷰트들을 바꿀 수도 있지만 실제로 그렇게 할 일이 많지는 않다.<br><!-- (enumerable : 열거가능한지. for in 문같은걸로 돌렸을 때 열거될수있는지.) --><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> me = &#123;</span><br><span class="line">name : <span class="string">'Rudy'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(me,<span class="string">'name'</span>));</span><br><span class="line"><span class="comment">//&#123;value: "Rudy", writable: true, enumerable: true, configurable: true&#125;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="내부슬롯-내부메소드"><a href="#내부슬롯-내부메소드" class="headerlink" title="내부슬롯/내부메소드"></a>내부슬롯/내부메소드</h3><p>ECMAScript 스펙에서 나오는 말…<br><code>[[Call]]</code> 이나 <code>[[Prototype]]</code> 처럼 대괄호가 두 개 겹쳐있는 애들이 내부슬롯이다.<br><!-- ecmascript 스펙이 뭔가. 스펙은 설계서. 일을 왜하는지, 어떻게하는지. 
-자바스크립트엔진을 어떻게 구현해야하는지.
-내부 슬롯, 내부 메소드는  --><br>자바스크립트 엔진이 코드를 실행하는 알고리즘을 설명하기 위해 ECMAScript 스펙에서 사용하는 의사 프로퍼티. 자바스크립트엔진은 내부슬롯과 내부메소드의 사양을 만족시키는 것이 중요하다. 이 내부 슬롯은 내가 직접 접근할 수는 없고 필요하다면 간접적으로 접근 가능하다. 하지만 접근할 수 없게 만든 것들에는 역시 접근하지 않는 것이 좋겠다.  </p>
-<h3 id="데이터-프로퍼티와-접근자-프로퍼티"><a href="#데이터-프로퍼티와-접근자-프로퍼티" class="headerlink" title="데이터 프로퍼티와 접근자 프로퍼티"></a>데이터 프로퍼티와 접근자 프로퍼티</h3><p>프로퍼티에는 두 가지 종류가 있다. 데이터 프로퍼티와 접근자 프로퍼티이다.<br>위에서 살펴보았듯, <code>Object.getOwnPropertyDescriptor</code> 는 객체가 가지고 있는 프로퍼티의 정의값을 본다. 프로퍼티 어트리뷰트들을 담아서 프로퍼티 디스크립터라는 객체를 반환해준다고 하는데, 데이터 프로퍼티에는 value, writable, enumerable, configurable 이렇게 네 가지 어트리뷰트가 있다. 보통 우리가 보는 대부분의 프로퍼티는 데이터 프로퍼티이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.getOwnPropertyDescriptor(me,<span class="string">'name'</span>));</span><br><span class="line"><span class="comment">// &#123;value: "Rudy", writable: true, enumerable: true, configurable: true&#125;</span></span><br></pre></td></tr></table></figure></p>
-<p>접근자 프로퍼티에는 자체적으로는 값이 없고, 다른 데이터 프로퍼티의 값을 가져오거나 갱신할 때 쓴다.  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(me.__proto__);</span><br><span class="line"><span class="comment">// &#123;constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …&#125;</span></span><br></pre></td></tr></table></figure>
-<p><code>__proto__</code> 는 접근자 프로퍼티이다. 접근자 프로퍼티에는 value 가 보이지 않는다.  </p>
-<h2 id="생성자-함수에-의한-객체-생성"><a href="#생성자-함수에-의한-객체-생성" class="headerlink" title="생성자 함수에 의한 객체 생성"></a>생성자 함수에 의한 객체 생성</h2><p>타입변환할 때 쓸 수 있는 방법 중 하나가 생성자 함수인데, 생성자함수는 타입변환이 주 업무가 아니다.<br>생성자 함수는 매개변수로 외부정보를 받아서 new 연산자와 함께 호출하여 여러 개의 객체를 만들어낼 수 있는 함수다. constructor 라고 한다. 리터럴 표기법으로도 여러 개의 객체를 만들 수 있지만, 한 번에 하나의 객체만 만들어낼 수 있고, 그러므로 여러 개를 만들려면 그만큼의 노가다가 필요하다. 게다가 같은 로직이 중복될 수 있는 문제가 있다. 또한 재사용이 불가능하다. 리터럴 표기법으로는 객체가 생성되고 말 뿐, 미리 만들어진 프로퍼티를 사용할 수는 없기 때문이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> <span class="built_in">Object</span>());</span><br><span class="line"><span class="comment">// &#123;&#125;</span></span><br></pre></td></tr></table></figure></p>
-<p>당장 콘솔창에서 <code>new Object();</code> 를 찍어보면 빈 객체가 만들어지는 것을 볼 수 있다. <strong>Object 생성자 함수</strong> 라고 한다. 물론 new 연산자를 붙이지 않아도 자바스크립트 엔진이 new 연산자가 붙어있는 것처럼 동작하기는 하지만, new 연산자를 붙여주는 것이 정석이니 그렇게 하도록 하자. 만들어진 빈 객체에는 프로퍼티나 메소드를 추가할 수 있다. 그런데 이렇게 일일이 추가하여 만들 것이라면 리터럴로 만드는 것보다 그렇게 큰 메리트는 없다. 객체를 만드는 방법에는  </p>
-<ul>
-<li>리터럴표기법  </li>
-<li>Object 생성자 함수  </li>
-<li>생성자 함수(우리가 만든)(중요!)  </li>
-<li>Object.create() 함수  </li>
-<li>Class  </li>
-</ul>
-<p>등이 있지만 생성자 우리가 만드는 생성자 함수를 먼저 살펴보자.<br><del>왜냐면 마지막 2개는 아직 안 배웠다.</del>  </p>
-<!-- 인자로 원시값을 주면 랩핑해서 문자열이면 문자열객체를 만들고 숫자면 숫자객체를 만든다.
-원시값을 객체처럼쓰면(메소드를 쓰면) 자바스크립트엔진이 그것을 객체타입으로 만든다. 
-메소드를 호출하고 난 후에 변경된값을 반환하고 다시 원래값으로 돌아간다(부수효과가없음)
-래퍼객체. 원시값타입을 객체로 바꾸는거 -->
-<h3 id="생성자-함수가-객체를-만드는-방법"><a href="#생성자-함수가-객체를-만드는-방법" class="headerlink" title="생성자 함수가 객체를 만드는 방법"></a>생성자 함수가 객체를 만드는 방법</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Person = <span class="function"><span class="keyword">function</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> me = <span class="keyword">new</span> Person(<span class="string">'Rudy'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(me);</span><br><span class="line"><span class="comment">// Person &#123;name: "Rudy"&#125;</span></span><br></pre></td></tr></table></figure>
-<p>(객체 앞에 붙어있는 Person 은 생성자 함수의 이름이다.)<br>new 연산자와 함께 생성자 함수가 호출되면, 생성자 함수 내부로 컨트롤이 이동하여 두 가지의 암묵적인 동작이 일어난다.  </p>
-<ol>
-<li>빈 객체를 만들어서  </li>
-<li>this에 할당한다.(이를 <strong>this 바인딩</strong> 이라고 한다.)  </li>
-</ol>
-<p>그리고 <code>this.name = &#39;Rudy&#39;;</code> 와 같이 프로퍼티들을 추가하고 할당해준다. 이것이 프로퍼티 동적추가/동적생성이다.<br>이때 <strong>this는 생성자함수가 (미래에) 생성할 객체(인스턴스)</strong>를 가리킨다. 마지막에는 암묵적으로 <strong>this 인 객체</strong>를 반환한다.  </p>
-<p>생성자 함수 내부에 return문이 없더라도 생성자 함수는 암묵적으로 this 를 반환해준다. 그러므로 굳이 return 문을 넣을 필요도 없고 넣어서도 안 된다. 만약 return 문을 넣게 되면 무시되거나, 원시값을 리턴하도록 설정해둔 경우 this 가 아닌 원시값이 리턴되어버린다.  </p>
-<p>생성자 함수를 new 없이 호출하면 일반함수호출이 되고, 이때의 this 는 무조건 생성자 함수가 만들어낼 객체가 아니라 전역 객체인 window 가 된다. 그리고 return 문이 없으므로 undefined 가 반환된다. 그래서 생성자함수가 일반함수와 똑같이 생겼더라도 <strong>반드시 new 로 호출</strong>해야 한다. 애초에 생성자 함수의 함수명을 파스칼케이스로 써서 구별하도록 약속되어 있으니 잘 알아보고 호출하도록 하자(이것도 개발자들끼리의 약속이지, 자바스크립트 엔진이 알아주는 것은 아니다). 이처럼 함수도 다양한 방식으로 호출할 수 있고 그때마다 this가 동적으로 결정된다.  </p>
-<p>그리고 this 바인딩이라고 하였는데, 변수에는 값을 <em>할당</em> 한다고 하고 식별자에는 값을 <em>바인딩</em> 한다고 한다.  </p>
-<!-- - 일반 객체를 호출할 수 없는 이유?  
-함수 객체만 가지고있는
-`[[call]]` 과 `[[constructor]]` 내부메소드가 없기때문이다.
-일반함수,    생성자함수.
-이렇게 둘로 나눠놓고 new 를 붙엿나 안붙엿나 검사를 한단다.
-new가 붙으면 생성자함수니까... -->
-<p>일반함수는 다 호출할 수 있지만 생성자 함수로 호출할 수 있는 함수는 정해져 있다. 화살표함수는 생성자 함수로 호출할 수 없다. 화살표함수는 콜백으로 자주 쓰이고, 생성자 내부메소드가 없다. 객체 내에서 메소드축약표현으로 쓴 메소드 역시 생성자함수로 호출이 안 된다.  </p>
-<ul>
-<li><code>new.target</code><br>생성자 함수가 new와 함께 호출되었는지 아닌지를 검사한다. IE에서는 지원이 되지 않는다.  </li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -312,7 +276,19 @@ new가 붙으면 생성자함수니까... -->
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/18/0918/">state</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/09/19/0919/">이벤트 설치, bind(this)</a></h6>
+              <span>September 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/09/18/0918/">State</a></h6>
               <span>September 18, 2019</span>
             </div>
 
@@ -366,18 +342,6 @@ new가 붙으면 생성자함수니까... -->
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/07/10/0710/">Routing</a></h6>
-              <span>July 10, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -387,7 +351,7 @@ new가 붙으면 생성자함수니까... -->
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -397,7 +361,7 @@ new가 붙으면 생성자함수니까... -->
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">42</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">43</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -408,7 +372,7 @@ new가 붙으면 생성자함수니까... -->
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

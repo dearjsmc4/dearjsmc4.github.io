@@ -97,7 +97,7 @@
         
           <section id="main">
   
-    <article id="post-0425" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0417" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +105,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0425/">컴퓨터 공학 TIL 0425</a>
+      <a class="article-title" href="/2019/05/03/0417/">컴퓨터 공학 TIL 0417</a>
     </h1>
   
 
@@ -113,7 +113,7 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/03/0425/" class="article-date">
+	<a href="/2019/05/03/0417/" class="article-date">
 	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
 	</a>
 
@@ -125,50 +125,116 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Internet-네트워크-계층-IP담당"><a href="#Internet-네트워크-계층-IP담당" class="headerlink" title="Internet(네트워크 계층): IP담당"></a>Internet(네트워크 계층): IP담당</h2><p>IP는 IP라우팅을 한다.<br>인터넷 계층 : 아이피.(아이피주소는 내가 데이터를 보내고자 하는 상대 호스트 컴퓨터)<br>최종적으로 도달하는 <strong>호스트를 특정</strong>하기 위해 아이피주소가 필요함.<br>상대방의 호스트를 특정하기 위한 <strong>아이피주소를 관리</strong>하는 계층이 네트워크 계층.<br>강사님 추천 책: “TCP/IP 완벽 가이드”  </p>
-<p><strong>NAT</strong> : 호스트1이 유투브에게 데이터를 요구하면 유투브는 공인아이피인 라우터까지는 보낼 수 있는데 정확히<br>어느 호스트가 보낸 건지 사설아이피까지는 알 수 없다. 그렇다고 늘 브로드캐스트로 보낼 수는 없다.<br>그래서 라우터는 랜카드 중 하나를 임대하여 사설 아이피를 공인 아이피와 매핑한다.<br>그리고 소스 아이피를 자신의 공인아이피로 바꿔서 보낸다.<br>서버가 영상을 공인아이피로 보내면, 변환테이블에서 공인아이피와 연결된 사설아이피를 찾는다.<br>그리고 사설아이피를 다시 목적지로 설정하여 보내준다. 랜카드가 많이 필요하다는 단점이 있다.  </p>
-<p><strong>NAPT</strong> : 호스트가 서버와 통신하고자 할때, 모든 호스트들이 같은 랜카드를 빌려오되,<br>구분을 해야하므로 포트번호까지 이용하여 구분한다. 같은 123.108.157.1 이라는 랜카드를 써도<br>포트번호를 달리해서 쓰면 구분지을 수 있는 것이다.  </p>
-<h2 id="Transport-전송계층-포트담당"><a href="#Transport-전송계층-포트담당" class="headerlink" title="Transport(전송계층): 포트담당"></a>Transport(전송계층): 포트담당</h2><p>특정 컴퓨터에게 데이터가 잘 도착했을 때 해당 <strong>프로세스</strong>에게 데이터를 전달하기위해 <code>포트번호</code>가 필요.<br>이 포트는 패킷이 필요한 프로세스를 특정하기 위해 사용된다.<br>이 <strong>포트를 관리</strong>하는 계층이 전송계층. 포트번호는 2^16-1 까지 할당가능하다.<br>패킷에는 아이피주소 말고도 포트번호가 쓰여있어서,<br>해당 포트번호가 특정하는 프로세스에게 데이터를 전송된다.<br>ex) 데이터를 보내긴 보내는데, 유투브 프로세스가 3개 돌아가고 있다면 그 중 어느 프로세스에 데이터를<br>    보낼 것인가?</p>
-<p>서버에는 소켓이 많다. 서버는 특정 컴퓨터의 특정 프로세스일 뿐이다.<br>포트가 특정 프로세스를 특정한다고 했는데, 포트는 소켓에 부여된 숫자이다.<br>이 숫자가 0부터 2^16-1 까지. 2바이트짜리 정수.<br>소켓에는 두 가지 종류가 있다.  </p>
+        <h1 id="파이썬-기초와-알고리즘-1일차"><a href="#파이썬-기초와-알고리즘-1일차" class="headerlink" title="파이썬 기초와 알고리즘 1일차"></a>파이썬 기초와 알고리즘 1일차</h1><p><a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ" target="_blank" rel="noopener">What the heck is the event loop anyway?</a><br>목표 : 수업이 끝나고 이 영상의 내용을 100% 이해할 수 있는 것  </p>
+<p>자바스크립트는 웹을 위한 언어로서 발전해왔기 때문에<br>자바스크립트가 가지는 단점과 한계를 숙지하고 있어야 한다.  </p>
+<p>Foundation knowledge quiz  </p>
+<ul>
+<li>Recursion, index, sort, binary search -&gt; 자료구조. 알고리즘  </li>
+<li>Stack / heap -&gt; 메모리 레이아웃. 메모리 계층. 세그먼트.  </li>
+<li>Process, thread -&gt; OS  </li>
+<li>Call by value / call by reference -&gt; 함수관련  </li>
+<li>Native code  </li>
+<li>MVC Architecture  </li>
+<li>Write simple text-based games  </li>
+</ul>
+<p>오늘 배울 내용  </p>
 <ol>
-<li><p>데이터를 전송하고 있는 <code>데이터 소켓</code><br>실제로 클라이언트와 일대일로 매핑되어 데이터를 주고 받는다.  </p>
+<li>메모리.  32bit와 64bit 의 차이는 무엇인가?  </li>
+<li>Number. 컴퓨터가 실제로 아는 것은 0과 1뿐인데 어떻게 정수와 실수, 문자를 인식하고 표현하는가.<br>( 픽셀 역시 4바이트짜리 숫자에 불과하다는 것. )  </li>
+</ol>
+<h2 id="메모리"><a href="#메모리" class="headerlink" title="메모리"></a>메모리</h2><ul>
+<li>32bit 컴퓨터와 64bit 컴퓨터의 차이  </li>
+</ul>
+<ol>
+<li><p>컴퓨터는 0과 1을 전압으로 읽는다. 0v는 0이고, 5v는 1이다.<br>CPU와 RAM 사이를 연결하는 와이어가 있다.<br>전압은 와이어로 흐르는데, 와이어가 8개라면 8bit 의 데이터를 보낼 수 있다.<br>16bit 는 16개, 32bit 는 32개, 64bit 는 64개의 와이어가 깔려 있는 것이다.<br>32bit 프로그램, 32bit 운영체제, 32bit 컴퓨터는 다 다른 것이다.</p>
 </li>
-<li><p>서버를 대표하는 <code>리스닝 소켓</code><br>클라이언트가 리퀘스트를 날릴 때 서버에서 데이터를 받는 소켓<br>리스닝 소켓은 클라이언트로부터 최초의 접속 요청을 받는 소켓<br>접속 후에 실제로 데이터를 주고받는 것은 데이터 소켓  </p>
+<li><p>메모리 주소값.<br>2진수로 32개의 자릿수를 메모리주소로 쓴다. -&gt; 32bit<br>2진수로 64개의 자릿수를 메모리주소로 쓴다. -&gt; 64bit<br>메모리에서는 1byte 당 메모리주소 자릿수 하나를 할당해준다. (1byte = 8bit)<br>32bit 컴퓨터는 0 ~ 2^32-1 까지 메모리를 할당할 수 있는데, 4GB 짜리 램에 이미 메모리주소가 모두 할당되기 때문에<br>램을 하나 더 꽂더라도 메모리 주소가 할당될 수 없고 접근할 수 없기 때문에 사용할 수 없게 된다.  </p>
 </li>
 </ol>
-<p><code>well-known port</code>: 자주 쓰이는 유명한 포트번호.<br>0~1023 번까지 있는데 서버가 특정 서비스에 따라 특정 포트를 쓴다.  </p>
-<p>전송계층에는 두 가지 프로토콜이 있다.  </p>
-<h2 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP / UDP"></a>TCP / UDP</h2><ul>
-<li><p><strong>TCP</strong><br>신뢰도가 높다. 패킷이 유실되면 <strong>재전송</strong>을 해준다. HTTP는 일반적으로 TCP 위에서 돈다.<br>패킷을 보낸 다음에 상대방이 패킷을 잘 받았는지 인증을 받아서 확인한다.<br>-&gt; 패킷이 유실되었는지 계속 관리해야하기 때문에 네트워크에 부담이 된다.<br>파일 전송이나 메일 전송은 TCP를 이용한다.<br>연결 지향성: 서버와 호스트가 데이터를 주고받을 때 소켓을 가지고 접속과 연결이 되어야 한다.  </p>
-</li>
-<li><p><strong>UDP</strong><br>신뢰도가 낮다. 패킷이 유실되더라도 재전송을 해주지 않는다. 보내면 끝.<br>-&gt; 한번 보내면 끝이기 때문에 가볍고 빠르다.<br>동영상이나 빠른 속도가 필요한 게임 등은 UDP를 이용한다.<br>비연결 지향성: 접속이나 연결이 없이 그냥 보내기만 한다.  </p>
-</li>
+<h2 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h2><ul>
+<li>기수법  </li>
 </ul>
-<h2 id="Application-응용-표현-세션-계층"><a href="#Application-응용-표현-세션-계층" class="headerlink" title="Application (응용, 표현, 세션 계층)"></a>Application (응용, 표현, 세션 계층)</h2><p><code>Secure Socket Layer(SSL)</code>(Transport Layer Security)를 어플리케이션과 트랜스포트 사이에 끼워넣는다.<br>이 레이어는 <strong>암호화</strong>를 한다. 내가 html 과 js를 만들어서 보내면<br>다른 해커가 스푸핑을 통해서 파일들을 뺏더라도 암호화가 되어있어서 볼 수 없다.<br>받는 상대방은 <strong>복호화</strong>를 해서 볼 수 있다.  </p>
-<ul>
-<li>http: 메세지 기반의 프로토콜. 단순한 문자열을 주고 받고 해석함.<br>(html 파일이나 js 파일도 결국 문자열일 뿐이다)  </li>
-<li>dns: 도메인 네임 시스템. 사람이 읽고 기억하기 쉬운 이름.<br>원래 어떤 사이트에 가려면 아이피주소를 써야하는데,<br>우리는 그 누구도 페이스북에 접속하려고 아이피를 적지 않는다. 대신 도메인 위치를 적는다.<br>그리고 DNS SERVER 에서 도메인 네임에 대한 아이피를 알려준다.<br>받아온 아이피는 캐시로 저장된다.  </li>
-</ul>
-<p><code>HTTP</code> : 하이퍼 텍스트 트랜스퍼 프로토콜<br>“나 이번에 새로 쓴 논문이 있어 인터넷에 링크 걸어둘게!”<br>원래는 진짜 정적파일 텍스트만 보는 용도였다.<br>http 1.0 이하에서는 연결이 일시적이다. 한번 데이터 주고받으면 끝.<br>그런데 점점 컴퓨터 성능이 좋아지니까 이미지나 동영상, 스크립트 파일도 받게 되었다.<br>그래서 한번 리퀘스트를 받은 다음에 한번의 리스폰스로 끝나는 게 아니게 되었다.<br>그래서 http 1.1부터는 연결을 유지한다. 한번 연결하면 끊지 않고 계속 연결.<br>만약 일시적 연결을 원한다면 헤더에 <code>connection:close</code> 를 포함하면 된다.  </p>
-<p><strong>메서드</strong>: 클라이언트 요청의 종류  </p>
-<ul>
-<li><code>GET</code> : URL 이 지원하는 자원을 찾아 클라이언트에 전송</li>
-<li><code>POST</code> : 클라이언트가 임의의 데이터를 서버로 보낸다.<br>주로 form 형식을 사용하며 서버의 프로그램에 전달</li>
-<li>HEAD: GET과 같지만 메세지 본문이 없다. 테스트 용도</li>
-<li>PUT: 지정한 URL에 요청의 본문내용을 저장</li>
-<li>DELETE: 지정한 자원을 지움</li>
-<li>TRACE: 클라이언트가 서버에 보낸 요청의 복사본을 돌려받는다.</li>
-</ul>
-<h3 id="상태코드"><a href="#상태코드" class="headerlink" title="상태코드"></a>상태코드</h3><p>200번대 : 성공<br>300번대 : 서버가 옮겨간것같은데 저쪽으로 다시 시도해볼래?<br>400번대 : 클라이언트가 잘못했다<br>500번대 : 서버가 잘못했다  </p>
-<h3 id="컨텐트-협상"><a href="#컨텐트-협상" class="headerlink" title="컨텐트 협상:"></a>컨텐트 협상:</h3><ol>
-<li><p>서버 주도 협상:<br> -&gt; 최선 추측<br>클라이언트가 원하는 것이 없을 때, 요청과 가장 비슷한 것을 가져감.  </p>
-</li>
-<li><p>에이전트 주도 협상:<br> 클라이언트가 자원을 고를 수 있음<br>-&gt; 클라이언트: 글 좀 보내봐<br>서버: 한국어도 있고 영어도 있고 프랑스어도 있는데… 뭐 보내지?<br>클라이언트: Accept - Language: kr;q=0.7, fr;q=0, en;q=0.4<br> “한국어가 최우선이고 한국어 없으면 영어 보내줘. 프랑스어는 있어도 보내지마”  </p>
-</li>
+<ol>
+<li>2진수  </li>
+<li>10진수  </li>
+<li>16진수  </li>
+<li>~8진수~  </li>
 </ol>
 <ul>
-<li>random pivot<br>리스트의 첫번째, 중간, 마지막 값을 가져와서 중간값을 찾아서 pivot 으로 설정.<br>-&gt; 거의 average case 에 가깝게 구현이 되더라는 것이 정설.  </li>
+<li>10진수 : 0,1,2,3,4,5,6,7,8,9 - 한 자릿수에 표현할 수 있는 숫자가 10개. -&gt; 밑수, radix  </li>
+<li>2진수 : 0,1 - 한 자릿수에 표현할 수 있는 숫자가 2개.  </li>
+<li>16진수 : 0,1,2,3 … 9, a,b,c,d,e,f -&gt; radix 가 16개.  </li>
 </ul>
+<p>16진수 하나는 2진수 4개로 표현된다.<br>32bit 메모리 주소는 16진수 8개로 표현된다.  </p>
+<ul>
+<li>2진수(BIN)  </li>
+<li>10진수(DEC)  </li>
+<li>16진수(HEX)  </li>
+</ul>
+<h3 id="10진수-gt-2진수"><a href="#10진수-gt-2진수" class="headerlink" title="10진수 -&gt; 2진수"></a>10진수 -&gt; 2진수</h3><p>37을 2진수로 바꾼다면,<br>32(2^<code>5</code>) + 4(2^<code>2</code>) + 1(2^<code>0</code>)<br><code>5</code>,4,3,<code>2</code>,1,<code>0</code><br>-&gt; 100101(2)</p>
+<ul>
+<li>연습문제</li>
+</ul>
+<ol>
+<li>27</li>
+<li>289</li>
+<li>1125</li>
+</ol>
+<h3 id="2진수-gt-10진수"><a href="#2진수-gt-10진수" class="headerlink" title="2진수 -&gt; 10진수"></a>2진수 -&gt; 10진수</h3><p>ex) 110010(2) = 2^5 + 2^4 + 2^1 = 32 + 16 + 2 = 50<br>거꾸로 543210 적어서 더하기  </p>
+<ul>
+<li>연습문제</li>
+</ul>
+<ol>
+<li>1101(2)</li>
+<li>1010(2)</li>
+<li>1111(2)</li>
+</ol>
+<h3 id="2진수-gt-16진수"><a href="#2진수-gt-16진수" class="headerlink" title="2진수 -&gt; 16진수"></a>2진수 -&gt; 16진수</h3><p>111 1011 -&gt; 뒤에서부터 4자리씩 자르고 앞에 빈자리는 0을 채워넣는다.<br>0111 1011 -&gt; 0x7b<br>16진수의 0 ~ 9는 2진수의 0 ~ 9와 똑같다.<br>9 이상의 10~16 이 나오면 a부터 f까지 할당.<br>a부터 f까지의 2진수는 외우면 된다.<br>a : 1010<br>b : 1011<br>c : 1100<br>d : 1101<br>e : 1110<br>f : 1111  </p>
+<ul>
+<li>연습문제  </li>
+</ul>
+<ol>
+<li>1111 1010(2)  </li>
+<li>11 0101(2)  </li>
+<li>101 1111 0110(2)  </li>
+<li>111 0011 0011(2)  </li>
+<li>101 0011 1001(2)  </li>
+<li>1111 0000 0101 1100(2)  </li>
+<li>0101 1100 1111(2)  </li>
+<li>1111 1010 1100 1101(2)  </li>
+</ol>
+<h3 id="16진수-gt-2진수"><a href="#16진수-gt-2진수" class="headerlink" title="16진수 -&gt; 2진수"></a>16진수 -&gt; 2진수</h3><p>거꾸로 세어나간 후에 맨 앞의 0들은 지워버리기.<br>ex) 0xf137 = 1111 0001 0011 0111<br>    0x1fac = 0001 1111 1010 1100  </p>
+<ul>
+<li>연습문제  </li>
+</ul>
+<ol>
+<li>0x1234  </li>
+<li>0xf1ac  </li>
+<li>0x7523  </li>
+<li>0xfacd  </li>
+</ol>
+<h2 id="숫자"><a href="#숫자" class="headerlink" title="숫자"></a>숫자</h2><p>자바스크립트는 모든 숫자가 double.<br>실수형 double 은 8byte. 더블을 헨들하려면 fpu. 무척 헤비한데<br>자바스크립트에서는 cpu 작업을 할일이 별로 없어서 그렇다.<br>자바스크립트는 웹을 위한 언어.<br>네트워크 통신을 할 때 일어나는 I/O bound(인풋아웃풋 작업) 가 많이 일어난다.<br>자바스크립트는 이러한 IO 작업을 헤비하게 처리할 수 있도록 만들어진 언어이다.<br>그래서 숫자가 double 이어도 큰 상관이 없는 것이다.  </p>
+<p>var a = 10<br>var b = 2.34<br>typeof(a)==typeof(b)<br>true<br>다른 언어에선 이와같은 결과가 불가능하다.<br>자바스크립트는 모든 숫자를 더블로 보기에 가능한 결과.</p>
+<h3 id="정수-integer"><a href="#정수-integer" class="headerlink" title="정수(integer)"></a>정수(integer)</h3><ul>
+<li><p>인티져 오버플로우<br>1바이트짜리 변수(-128부터 127까지 담을 수 있음)에 128이 들어가면 결과가 -128이 나오고<br>129 -&gt; -127<br>130 -&gt; -126<br>왜냐면 8비트를 사용한다고는 하지만 양수음수를 표현하려면 맨 앞의 첫 비트는 양수 / 음수를 구별할 sign 으로 쓰여야 하기 때문에<br>사실상 7비트만으로, 즉 양수 음수 각각 2^7 까지의 숫자를 표현한다고 볼 수 있다.  </p>
+</li>
+<li><p>1바이트(= 8비트) : 2^8, 256개의 숫자 가능<br>양수: 0~255. (0 ~ 2^8-1)<br>양수, 음수:  - 2^7 ~ 2^7-1 (-128 ~ 127) </p>
+</li>
+<li><p>2바이트(= 16비트) : 2^16, 65,536개의 숫자 가능<br>양수: 0 ~ 65535. (0 ~ 2^16-1)<br>양수, 음수:  - 2^15 ~ 2^15-1</p>
+</li>
+<li><p>4바이트(= 32비트) : 2^32, 4,294,967,296개의 숫자 가능<br>양수: 0 ~ 65535. (0 ~ 2^32-1)<br>양수, 음수:  - 2^31 ~ 2^31-1</p>
+</li>
+</ul>
+<h4 id="양수의-표현"><a href="#양수의-표현" class="headerlink" title="양수의 표현"></a>양수의 표현</h4><p>1바이트(8비트)로 양수를 표현할 때<br>ex) 34 = 2^5 + 2^1 -&gt; 100010(2)<br>총 여덟자리를 할당하고 첫 비트는 sign 으로 쓴다.<br>뒤에서부터 채운 뒤 남는 자리는 0으로 채운다.<br>-&gt; <code>0</code>0100010</p>
+<h4 id="음수의-표현"><a href="#음수의-표현" class="headerlink" title="음수의 표현"></a>음수의 표현</h4><ul>
+<li><p>9의 보수<br>자릿수가 바뀌지 않으면서 가장 큰 수가 되는 것.<br>6은 3의 9의 보수.<br>74는 25의 9의 보수.  </p>
+</li>
+<li><p>10의 보수 (모든 9의 보수에 1을 더하면 10의 보수가 됨)<br>어떤 숫자에 수를 더하면 자릿수가 바뀌는 것.<br>3의 10의 보수는 7.<br>25의 10의 보수는 75.  </p>
+</li>
+</ul>
+<p>음수는 2의 보수로 표현함.<br>ex)-43<br>43을 2진수로 바꾼 뒤 1바이트 정수형으로 표현하고 1의 보수에 1을 더해 2의 보수를 만든다.  </p>
+<p>43 = 2^5 + 2^3 + 2^1 + 2^0 = 101011(2)<br>00101011 의 1의 보수 = 11010100<br>+1 -&gt; 11010101<br>1101 = d<br>0101 = 5<br>-43 = 0xd5  </p>
+<p>(+)<br><a href="https://blueshirudy.tistory.com/12" target="_blank" rel="noopener">연습문제 풀이</a></p>
 
       
     </div>
@@ -191,7 +257,7 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-0422" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-0424" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -199,7 +265,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/03/0422/">컴퓨터 공학 TIL 0422</a>
+      <a class="article-title" href="/2019/05/03/0424/">컴퓨터 공학 TIL 0424</a>
     </h1>
   
 
@@ -207,7 +273,7 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/03/0422/" class="article-date">
+	<a href="/2019/05/03/0424/" class="article-date">
 	  <time datetime="2019-05-03T02:45:18.000Z" itemprop="datePublished">May 3, 2019</time>
 	</a>
 
@@ -219,26 +285,38 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="함수"><a href="#함수" class="headerlink" title="함수"></a>함수</h1><ol>
-<li>namespace  </li>
-<li>stack frame  </li>
-<li>call by value<br>call by reference<br>call by object reference  </li>
+        <h1 id="OOP-꼭-공부해야-함"><a href="#OOP-꼭-공부해야-함" class="headerlink" title="OOP (꼭 공부해야 함)"></a>OOP (꼭 공부해야 함)</h1><ol>
+<li>캡슐화(encapsulation) : 정보 은닉을 포함  </li>
+<li>정보 은닉(information hiding)  </li>
+<li>다형성 (polymophism) : 상속(inheritance)<br> -&gt; 메소드 오버라이딩(method overriding)<br> -&gt; 함수 오버로딩과 헷갈리면 안됨.  </li>
+<li>디자인 패턴(SOLID)  <ul>
+<li>Single responsibility principle(단일 책임 원칙)  </li>
+<li>Open-closed principle(확장-폐쇄 원칙)  </li>
+<li>Liskov substitution principle(리스코브 치환 원칙)  </li>
+<li>Interface segregation principle(인터페이스 분리 원칙)  </li>
+<li>Dependancy inversion principle (의존 역전 원칙)  </li>
+</ul>
+</li>
 </ol>
-<p><em>“왜 call by value 와 call by reference 를 나누는가?”</em>  </p>
-<h2 id="전역변수-vs-지역변수"><a href="#전역변수-vs-지역변수" class="headerlink" title="전역변수 vs 지역변수"></a>전역변수 vs 지역변수</h2><ul>
-<li>지역변수가 생기는 시점은?<br><code>def func(): b=20</code><br>라고 함수를 선언해둘 때가 아니라, 함수를 실행할 때.  </li>
+<p><strong>객체 지향</strong><br>객체지향 : 관련 있는 변수와 함수를 묶어둠.<br>    변수 : 상태정보(<code>데이터</code>)<br>    함수(여기선 함수가 아니라 메서드) : <code>기능</code>   </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Account:</span><br><span class="line">    #생성자(constructor): 객체를 생성할 때 반드시 한번호출한다 --&gt; Account() 형태로 쓴다</span><br><span class="line">    def __init__(self, cust_name, init_balance):</span><br><span class="line">        # 인스턴스 멤버(속성, 데이터, 변수)를 설정</span><br><span class="line">        self.name=cust_name</span><br><span class="line">        self.balance=init_balance</span><br><span class="line">    #소멸자(destructor): 객체가 소멸될 때 반드시 한번 호출</span><br><span class="line">    def __del__(self):</span><br><span class="line">        pass</span><br><span class="line">    #인스턴스 메서드(기능, 행동)</span><br><span class="line">    def deposit(self, money):</span><br><span class="line">        if money &lt; 0:</span><br><span class="line">            return False</span><br><span class="line">        #관련 있는 변수 : 인스턴스멤버</span><br><span class="line">        self.balance+=money</span><br><span class="line">        return True</span><br><span class="line">        </span><br><span class="line">    def withdraw(self, money):</span><br><span class="line">        if money &gt; self.balance:</span><br><span class="line">            return 0</span><br><span class="line">        self.balance -= money</span><br><span class="line">        return money</span><br><span class="line">    </span><br><span class="line">    def transter(self, other, money):</span><br><span class="line">        self.balance -= money</span><br><span class="line">        #다른 객체의 멤버에 바로 접근하지 않는다는 것이 원칙이다</span><br><span class="line">        #다른 객체의 멤버값(데이터)을 변경할때는 반드시 상대 객체가 가진 메서드에 위임해야한다.</span><br><span class="line">        # = 메시지 패싱 </span><br><span class="line">        other.deposit(money)</span><br></pre></td></tr></table></figure>
+<p>-&gt; <strong>입력값은 같지만 상태정보에 따라 결과값은 다르게 나온다</strong></p>
+<h1 id="네트워크"><a href="#네트워크" class="headerlink" title="네트워크"></a>네트워크</h1><h2 id="Network-Interface-물리계층-데이터-링크-계층-mac-address-담당"><a href="#Network-Interface-물리계층-데이터-링크-계층-mac-address-담당" class="headerlink" title="Network Interface(물리계층, 데이터 링크 계층): mac address 담당"></a>Network Interface(물리계층, 데이터 링크 계층): mac address 담당</h2><h3 id="LAN-amp-WAN"><a href="#LAN-amp-WAN" class="headerlink" title="LAN &amp; WAN"></a>LAN &amp; WAN</h3><ul>
+<li><p>LAN : <code>Local Area Network</code><br>같은 지역 내에서 라우터를 통해 서로 연결.<br>아이피주소가 필요없이 물리주소만 알고있으면 라우터를 거치지 않고도 연결이 가능.<br>맥주소를 통해 LAN 안에서만 데이터를 주고받는 프로토콜 = <code>이더넷 프로토콜</code><br>패킷 : 패킷의 맨 윗 부분에 이더넷 헤더가 들어감.<br>이더넷 헤더에는 패킷을 받을 상대방의 맥주소와 송신자의 맥주소가 들어감.<br>받는 사람과 보내는 사람은 같은 LAN 안에 존재해야함.<br><code>MTU(maximum transfer unit)</code> : 한번에 보낼 수 있는 데이터의 크기.<br>패킷은 한번에 1500바이트를 넘지 않는다.  </p>
+</li>
+<li><p>WAN : <code>Wide Area Network</code>  </p>
+</li>
 </ul>
-<p>namespace = 변수가 저장되어 있는 공간. 함수가 가지는 자기만의 공간.  </p>
-<h2 id="stack-frame"><a href="#stack-frame" class="headerlink" title="stack frame"></a>stack frame</h2><p>함수가 실행될 때 함수 내부적으로 연산에 필요한 지역변수들이 쌓이는 공간.<br>블로킹이 걸리면 새로운 함수에게 다시 주도권이 넘어감.<br>함수 실행(연산)이 끝나면 연산에 필요한 변수들은 사라지고 스택프레임도 사라짐.<br>그리고 블로킹 걸렸던 시점에서부터 다시 실행이 되고 원래 함수에게 주도권 넘어감.<br>함수 실행이 종료되면 연산에 필요없는 변수가 다 사라지고,<br>실행 주도권은 다시 글로벌 프레임으로 넘어온다.<br>(파이썬 튜터로 스택프레임을 비주얼적으로 보면 좋다.)  </p>
+<h2 id="Internet-네트워크-계층-IP담당"><a href="#Internet-네트워크-계층-IP담당" class="headerlink" title="Internet(네트워크 계층): IP담당"></a>Internet(네트워크 계층): IP담당</h2><p><code>ARP(Address Resolution Protocol)</code>: 브로드캐스트로 어떤 IP 를 사용하는 호스트의 맥 주소를 알아낸다.   </p>
+<p><strong>How? :</strong><br>서로 맥 주소를 모르는 상태에서 호스트1과 호스트2가<br>이더넷 프로토콜을 이용해 데이터를 주고 받고 싶을 때.<br>이때 호스트1이 특별한 <code>패킷</code>을 만들어서 송신자부분에 자신의 아이피와 맥 주소를 쓴다.<br>그리고 수신자 부분엔 호스트2의 아이피를 써놓음. 맥주소는 00:00:00… 과 같이 쓴다.<br>라우터에게 패킷을 던진다.<br>“이거 <code>브로드캐스트</code>로 좀 쏴줄래?” -&gt; 마치 방송하듯이 모든 호스트에게 패킷을 다 보낸다.<br>다른 호스트들이 패킷을 받았을 때, 아이피주소를 보고 자신의 것과 같은지 확인한 후에 무시하거나 리스폰스 한다.<br>호스트2는 <code>리스폰스 패킷</code>을 보낸다.<br>보내는 호스트에다가 자신의 아이피주소와 맥주소를 쓰고<br>받는 호스트에는 처음에 보냈던 호스트1의 주소를 그대로 써서 보낸다.<br>-&gt; 이제 서로의 맥주소를 알게 되었으므로 <code>라우터를 거치지 않고 직접</code> 통신한다.<br>호스트1: “나 이제 호스트2 주소 알아! 직접 통신하자.”<br>한번 ARP를 하고 나면 <code>ARP 테이블</code>(모든 컴퓨터에 다 있음)에다가 맥주소를 저장해둔다.  </p>
+<h3 id="IP프로토콜"><a href="#IP프로토콜" class="headerlink" title="IP프로토콜:"></a>IP프로토콜:</h3><p>IPv4 : 내 아이피주소, 서브넷마스크, 게이트웨이  </p>
 <ul>
-<li>call by value :<br>  변수의 값 10을 복사해서 단순히 <strong>값</strong>을 스택프레임에 넘겨주는 것.  </li>
-<li>call by reference :<br>  변수의 값이 아니라 <strong>주소값</strong>을 전달함. = 참조값을 전달하는 것과 같다.<br>  주소값을 알고 잇으면 주소값을 통해 접근할 수 있다.<br>  원래 블로킹 상태라면, 실행 중인 함수의 프레임을 벗어나서 참조할 수 없는데,<br>  주소값으로 전달하면 주소값을 참조하여 <strong>현재 실행중인 프레임의 바깥 스택프레임의 변수에 접근할 수 있다.</strong><br>  <code>*a = 30</code> -&gt; a의 메모리 자체에 접근하여, 그 메모리에 값 30을 넣겠다.  </li>
+<li><code>아이피</code>는 주소. 4바이트로 구성이 되어있다. 한 자리당 1바이트, 0~255까지.<br>  첫번째 자리에서 클라스 단위를 구분한다.  </li>
+<li><code>서브넷마스크</code>: 어디까지가 네트워크 주소인가?<br>호스트아이디에 할당된 비트를 서브넷으로 쪼갤 수 있다.<br>호스트아이디중에 앞의 두 개 비트를 서브넷아이디로.<br>네트워크가 여러 개일때 연결할 수 있는 호스트의 수는 적어진다.  </li>
 </ul>
-<p><strong>call by value와 call by reference의 차이</strong><br>-&gt; 새로운 스택프레임이 쌓였을 때  </p>
-<ul>
-<li>call by value : 그 어떤 변수를 이용하더라도 바깥으로 접근할 수 없다.<br>실행하고 있는 프레임 바깥의 데이터에 접근하는게 완벽히 불가능하다.  </li>
-<li>call by reference : 스택프레임이 갈라지고, 새로운 프레임이 실행하는 상황에서 특정 변수를 이용해<br>바깥 프레임의 데이터에 접근하여 값을 수정하는 것이 가능하다.  </li>
-</ul>
+<p>전세계적으로 유니크한, 세상에 하나 뿐인 <code>공인 아이피(public IP)</code>.<br><code>사설 네트워크(privite network)</code>가 구성되어 공인 아이피를 공유하고,<br>그들이 쓰는 아이피가 <code>사설 아이피(privite IP)</code>.<br>사설아이피는 동적으로 할당되기때문에<br>컴퓨터를 껐다 키면 바뀌어있다.<br>(커피숍에서 해킹을 해도 날 잡으러 오기는 힘든 이유.)  </p>
+<h2 id="정렬-알고리즘"><a href="#정렬-알고리즘" class="headerlink" title="정렬 알고리즘"></a>정렬 알고리즘</h2><p>단순 알고리즘(비교정렬) : <a href="https://blueshirudy.tistory.com/13" target="_blank" rel="noopener">버블 정렬</a>,<br><a href="https://blueshirudy.tistory.com/19" target="_blank" rel="noopener">삽입 정렬</a>, <a href="https://blueshirudy.tistory.com/20" target="_blank" rel="noopener">선택 정렬</a><br>분할 정복: <a href="https://blueshirudy.tistory.com/18" target="_blank" rel="noopener">퀵 정렬</a>, 병합 정렬, 힙 정렬  </p>
+<p><strong>분할 정복 기법(divide &amp; conquer)</strong><br>어떤 어려운 문제를 잘개 <em>쪼개서</em>,  작게 쪼개진 문제를 하나씩 <em>해결</em> 해나감으로써<br>작은 솔루션들이 모여 전체 문제에 대한 솔루션을 구하는 기법.  </p>
 
       
     </div>
@@ -285,7 +363,19 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/18/0918/">state</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/09/19/0919/">이벤트 설치, bind(this)</a></h6>
+              <span>September 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/09/18/0918/">State</a></h6>
               <span>September 18, 2019</span>
             </div>
 
@@ -339,18 +429,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/07/10/0710/">Routing</a></h6>
-              <span>July 10, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -360,7 +438,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -370,7 +448,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">42</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">43</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -381,7 +459,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

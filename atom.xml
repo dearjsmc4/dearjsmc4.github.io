@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dearjsmc4.github.io/"/>
-  <updated>2019-09-18T13:23:26.229Z</updated>
+  <updated>2019-09-19T10:03:52.673Z</updated>
   <id>https://dearjsmc4.github.io/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>state</title>
+    <title>이벤트 설치, bind(this)</title>
+    <link href="https://dearjsmc4.github.io/2019/09/19/0919/"/>
+    <id>https://dearjsmc4.github.io/2019/09/19/0919/</id>
+    <published>2019-09-18T15:00:00.000Z</published>
+    <updated>2019-09-19T10:03:52.673Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Event"><a href="#Event" class="headerlink" title="Event"></a>Event</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">&lt;!-- App.js --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">Subject</span> <span class="attr">title</span>=<span class="string">"My Favorite Movies"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">onChangePage</span>=<span class="string">&#123;this.goToMain&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Subject</span>&gt;</span></span><br></pre></td></tr></table></figure><p>제목을 클릭하면 goToMain() 함수가 동작하여 state 를 바꾸도록 할 것이다.<br>state 가 바뀌었음을 리액트가 감지하면 렌더 함수를 다시 호출하여 화면을 새로 그려준다.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Subject.js --&gt;</span><br><span class="line"></span><br><span class="line">class Subject extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        &lt;h1&gt;</span><br><span class="line">          &lt;a href=&quot;/&quot; onClick=&#123;function(e)&#123;</span><br><span class="line">            e.preventDefault();</span><br><span class="line">            this.props.onChangePage();</span><br><span class="line">          &#125;.bind(this)&#125;&gt;</span><br><span class="line">          &#123;this.props.title&#125;  </span><br><span class="line">          &lt;/a&gt;</span><br><span class="line">        &lt;/h1&gt;</span><br><span class="line">      &lt;/header&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><code>onClick</code> 이벤트가 발생하면<br>a 태그의 기본적인 동작(주소창을 바꾸고 페이지를 리로드)을 <code>e.preventDefault();</code> 로 막아주었고,<br>JSX 어트리뷰트는 해당 컴포넌트에 단일 객체로 전달되었으므로<br>Subject 컴포넌트 내에서 <code>this.props.onChangePage();</code> 로 호출해준다.<br><code>bind(this)</code> 를 해주어야 this 가 Subject 컴포넌트를 가리키게 되어<br><code>this.props.onChangePage();</code> 가 정상적으로 동작할 수 있다. </p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// App.js</span></span><br><span class="line"></span><br><span class="line">goToMain = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">/* setState 로 state 를 바꾸면 렌더함수가 다시 호출됨.</span></span><br><span class="line"><span class="comment">    this.state = ~~ 로 바꾸면 바뀌긴 하지만 </span></span><br><span class="line"><span class="comment">    react 는 바뀐줄 모르기때문에 다시 렌더되지 않음. */</span></span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">      mode: <span class="string">'main'</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><p><code>onChangePage</code> 에 연결된 <code>goToMain()</code> 함수는 <code>this.setState()</code> 메소드로<br>mode 를 main 으로 바꿔준다. </p><h2 id="bind-this"><a href="#bind-this" class="headerlink" title="bind(this)"></a>bind(this)</h2><p>사실 <code>bind(this)</code> 를 왜 굳이 해줘야하는지는 아직 이해가 완전히 되진 않았다.<br>글을 여러 개 찾아보았는데도…<br><a href="https://stackoverflow.com/questions/33973648/react-this-is-undefined-inside-a-component-function" target="_blank" rel="noopener">스택오버플로우</a>에서는 ‘리액트 컴포넌트는 메소드를 자동으로 바인딩하지 않는다. 생성자 내부에서 직접 바인드 해주어야 한다’ 고 했다. 실제로 <code>bind(this)</code>를 하지 않고 메소드를 호출하면 this 는 undefined 가 된다. </p><h3 id="this-문제를-해결하기"><a href="#this-문제를-해결하기" class="headerlink" title="this 문제를 해결하기"></a>this 문제를 해결하기</h3><ol><li><p>화살표 함수<br>화살표 함수의 this는 사용된 곳의 상위 스코프의 this 를 가리키게 된다.<br>따라서 App 컴포넌트를 가리키는 this 에 자동으로 바인딩된 것과 마찬가지.</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myFunction = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>생성자에서 this 바인딩 해주기<br>메소드를 화살표 함수가 아닌 일반 함수로 정의했다면<br>생성자에서 <code>bind(this)</code> 를 해주면 된다.</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      mode: <span class="string">'read'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.goToMain = <span class="keyword">this</span>.goToMain.bind(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li><li><p>이벤트 걸 때 this 바인딩 해주기</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onClick=&#123;<span class="keyword">this</span>.goToMain.bind(<span class="keyword">this</span>)&#125;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Event&quot;&gt;&lt;a href=&quot;#Event&quot; class=&quot;headerlink&quot; title=&quot;Event&quot;&gt;&lt;/a&gt;Event&lt;/h2&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;
+      
+    
+    </summary>
+    
+      <category term="React" scheme="https://dearjsmc4.github.io/categories/react/"/>
+    
+    
+      <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
+    
+      <category term="React" scheme="https://dearjsmc4.github.io/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>State</title>
     <link href="https://dearjsmc4.github.io/2019/09/18/0918/"/>
     <id>https://dearjsmc4.github.io/2019/09/18/0918/</id>
     <published>2019-09-17T15:00:00.000Z</published>
-    <updated>2019-09-18T13:23:26.229Z</updated>
+    <updated>2019-09-19T08:20:48.319Z</updated>
     
     <content type="html"><![CDATA[<h2 id="State"><a href="#State" class="headerlink" title="State"></a>State</h2><p><a href="https://ko.reactjs.org/docs/state-and-lifecycle.html" target="_blank" rel="noopener">State 와 생명주기</a><br>공식 문서가 읽기 좋게 되어 있어서 다행이다. </p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      mode: <span class="string">'read'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><ul><li>state 초기 설정은 <code>this.state = {}</code></li><li>state 업데이트는 <code>this.setState()</code><br>→ state 를 설정할 수 있는 곳은 constructor 뿐이며,<br><code>this.state.mode = &#39;main&#39;</code> 처럼 직접 수정할 수 없다.</li></ul>]]></content>
     
@@ -519,33 +546,6 @@
       
       
         &lt;h2 id=&quot;웹-서버와-애플리케이션-서버&quot;&gt;&lt;a href=&quot;#웹-서버와-애플리케이션-서버&quot; class=&quot;headerlink&quot; title=&quot;웹 서버와 애플리케이션 서버&quot;&gt;&lt;/a&gt;웹 서버와 애플리케이션 서버&lt;/h2&gt;&lt;h3 id=&quot;웹-서버&quot;&gt;&lt;a href
-      
-    
-    </summary>
-    
-      <category term="Javascript TIL" scheme="https://dearjsmc4.github.io/categories/javascript-til/"/>
-    
-    
-      <category term="TIL" scheme="https://dearjsmc4.github.io/tags/til/"/>
-    
-      <category term="Javascript" scheme="https://dearjsmc4.github.io/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DOM, 동기식 &amp; 비동기식, 이벤트</title>
-    <link href="https://dearjsmc4.github.io/2019/05/23/0523/"/>
-    <id>https://dearjsmc4.github.io/2019/05/23/0523/</id>
-    <published>2019-05-22T15:00:00.000Z</published>
-    <updated>2019-06-09T12:57:17.664Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><p>트리를 만든다 -&gt; 부자관계가 있다.<br><strong>DOM 트리</strong> : html 텍스트문서를 파싱한 결과로, 메모리에 들어가있는 트리모양의 자료구조.<br>우리가 작성한 구조 안에 돔트리를 컨트롤 할 수있는 DOM API가 있다면 자바스크립트파일을 실행할 때 그것들을 조작할 수 있다. 직접 메모리에 접근하여 돔트리구조 자체를 바꿔버린다 -&gt; 화면을 다시 그려야함 -&gt; 비용이 든다!<br>우리는 SPA(single page application) 로 개발을 할 것이다. html을 딱 하나만 만든다는 것. html 코드의 조각들은 자바스크립트 내부에 들어가있다. -&gt; 앵귤러 리액트 (뷰) 가 이런 일들을 위한 것. 페이지를 리페인팅하는 비용은 적게 들고 퍼포먼스 올리고…<br>모던웹개발에서는 SPA를 만들때 프레임워크를 쓰는 것이 좋다.  </p><ul><li><p>html 태그안에 들어있는 <strong>어트리뷰트</strong>는 왜 어트리뷰트인가?<br>어트리뷰트는 초기값. 변하지 않는다. -&gt; 인풋의 타입이나 밸류는 태그 안에서 지정한 그대로다.<br>프로퍼티는 변한다 -&gt; 브라우저에서 인풋에 내용을 넣으면 프로퍼티 밸류가 바뀐다 -&gt; 상태<br>이 상태는 돔요소가 가지고 있다.  </p></li><li><p><strong>노드</strong>: 돔트리상의 하나하나의 가지 -&gt; 엘리먼트라고도 한다.<br>문서노드(진입점), 요소 노드, 텍스트노드, 어트리뷰트 노드 등이 있다.  </p></li><li><p>HTMLCollection &amp; NodeList<br><code>document.querySelector()</code>로 불러올 때는 NodeList라는 자료구조에 담아서 가져온다 -&gt; Non live<br>get 종류의 메소드로 불러오면 <code>HTMLCollection</code> 에 담겨서 온다 -&gt; live (실시간으로 바뀐다)<br>HTMLCollection은 유사배열객체이다. NodeList도 유사배열객체.<br>가져온 유사배열 객체를 elem 이라는 변수에 담았다고 했을 때,  </p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[...elems].forEach(<span class="function"><span class="params">elem</span> =&gt;</span> elem.className = <span class="string">'blue'</span>);</span><br></pre></td></tr></table></figure></li></ul><p>유사배열객체를 배열로 반환하면 배열고차함수를 사용할 수 있다.  </p><!-- id는 전역에 변수로 남아버린다. id를 많이 줄수록 변수도 많아지는것! --><h2 id="동기식-amp-비동기식"><a href="#동기식-amp-비동기식" class="headerlink" title="동기식 &amp; 비동기식"></a>동기식 &amp; 비동기식</h2><p>동기라는건 순서가 보장된다는 뜻이다.<br>반대로 비동기는 실행 순서가 보장되지 않는다.<br><!-- 비동기함수인 셋타임함수를 누가 호출하는가? 0초 경과 후에 콜백함수를 누가 호출? --></p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'func1'</span>);</span><br><span class="line">  func2();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'func2'</span>);</span><br><span class="line">  &#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">  func3();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'func3'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func1();</span><br></pre></td></tr></table></figure><p>함수가 종료된다는 건 콜스택에서 빠진다는 말이다.<br>setTimeout 함수는 0초가 경과했는지를 검사해야하고, 0초가 경과하면 tick 이라는 이벤트가 발생하는데<br>그때 셋타임은 이벤트큐로 들어간다(큐는 선입선출이고 콜스택은 후입선출이다). 그리고 콜스택이 비었는지를 이벤트루프가 돌면서 체크하다가 콜스택이 비면 이벤트큐에서 이벤트를 갖다가 콜스택에 넣는다. 즉 동기함수들이 모두 끝난 후에 가장 마지막에 실행된다.</p><p>자바스크립트는 콜스택이 1개이고, 단일스레드이고, 병렬처리가 안 된다.<br>그러나 워낙 고속이다보니 한번에 여러 일을 하는것처럼 보일뿐이다.<br>함수를 잘게잘게 나누라는것도 이런 이유때문이다. 빨리 실행하고 버리게.  </p><h2 id="이벤트"><a href="#이벤트" class="headerlink" title="이벤트"></a>이벤트</h2><ul><li>이벤트를 등록하는 세 가지 방법  </li></ul><ol><li>html 태그 안에 직접 함수를 호출 -&gt; html과 js는 분리하도록 하자…  </li><li><strong>on 프로퍼티</strong>를 이용한다. 원래 값이 null 인 상태인데 여기다 이벤트를 우리가 달아주면 된다.<br><code>btn.onclick = function foo() {}</code> -&gt; 이벤트 핸들러 프로퍼티 방식<br>여기서 foo 는 메소드이다. 프로퍼티의 값이 함수면 메소드니까.<br>이벤트 핸들러를 하나밖에 달 수 없다. 두 개를 달면 덮어쓴다. html요소에만 쓸 수 있다.  </li><li><strong>addEventListener 메소드</strong> 방식. 요소 선택 후에 <code>btn.addEventListener(&#39;click&#39;, function () {})</code> 이런 식으로 호출. 이때 인수로 함수를 주는거니까 콜백으로 주는 것이다. 클릭 이벤트가 발생하면 함수호출해달라는 뜻. html요소뿐 아니라 모든 돔요소에서 동작한다. 돔요소를 지정해주지 않으면 전역 어디에서든 이벤트가 동작한다.  </li></ol><p>이벤트가 시작되면 window에서부터 시작해서 지정된 요소까지 타고 내려간다 -&gt; 캡처링<br>요소를 찍고 다시 window로 거슬러 올라간다 -&gt; 기본값은 버블링  </p><p>이벤트객체: (e)  </p><p><strong>이벤트타겟!!!</strong><br>실제로 이벤트를 발생시킨 요소에 대한 참조.<br>버튼이 여러개일때 내가 누른 ‘그’ 버튼을 참조한다.<br><!-- e.target 는 애드이벤트리스너 안에서 this와 같다. 애드이벤트리스너 앞에 있는 요소. --></p><p><strong>이벤트 위임</strong><br>div에 이벤트를 걸고, div 안에서 어떤 버튼이 이벤트를 발생시켰는지를 e.target과 버블링을 이용하여 잡아낸다.  </p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;DOM&quot;&gt;&lt;a href=&quot;#DOM&quot; class=&quot;headerlink&quot; title=&quot;DOM&quot;&gt;&lt;/a&gt;DOM&lt;/h2&gt;&lt;p&gt;트리를 만든다 -&amp;gt; 부자관계가 있다.&lt;br&gt;&lt;strong&gt;DOM 트리&lt;/strong&gt; : html 텍스트문서를 파
       
     
     </summary>

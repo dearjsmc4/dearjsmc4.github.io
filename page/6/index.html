@@ -97,6 +97,87 @@
         
           <section id="main">
   
+    <article id="post-0701" class="article article-type-post" itemscope itemprop="blogPost">
+  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2019/07/01/0701/">옵저버블, 에러핸들러, 인터셉터</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/07/01/0701/" class="article-date">
+	  <time datetime="2019-06-30T15:00:00.000Z" itemprop="datePublished">July 1, 2019</time>
+	</a>
+
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
+ 
+      <!--  -->
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="subscribe-옵저버블-옵저버"><a href="#subscribe-옵저버블-옵저버" class="headerlink" title="subscribe, 옵저버블, 옵저버"></a>subscribe, 옵저버블, 옵저버</h2><p>http 메소드 get 을 날렸을 때, <strong>subscribe</strong>를 안 하면 요청을 받을 수 없다.<br>옵저버블은 관측 대상이므로, 그것을 지켜보고 있는 옵저버가 없으면 아무것도 하지 않는다.<br>옵저버블과 옵저버를 이어주어야 하는데(옵저버가 옵저버블을 바라보게), 그것이 바로 subscribe 이다.  </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.http.get&lt;Todo[]&gt;(<span class="keyword">this</span>.url)</span><br><span class="line">  .subscribe(<span class="function"><span class="params">todos</span> =&gt;</span> <span class="keyword">this</span>.todos = todos);</span><br></pre></td></tr></table></figure>
+<p>옵저버는 subscribe 라는 메소드를 통해서 옵저버블을 지켜보고 있다.<br>데이터를 가져온 결과물을 옵저버에게 notification 해준다.  </p>
+<ul>
+<li>옵저버블: 데이터 스트림을 방출할 수 있는 객체.<br>즉, 데이터 스트림을 가지고 있다. 옵저버가 있으면 옵저버에게 방출하고, 옵저버가 없으면 방출하지 않는다.  </li>
+<li>옵저버: 관측자. 옵저버블을 관측하며 데이터를 받는다.  </li>
+<li>subscribe: 옵저버블과 옵저버를 이어준다.  </li>
+</ul>
+<p>subscribe의 인수로 전달하는 것이 옵저버이다.<br>옵저버블이 객체고, 옵저버는 함수.<br><code>옵저버블.subscribe(옵저버)</code><br>=&gt; 인수로 전달한 옵저버가 옵저버블을 subscribe한다는 뜻이다.<br>뭔가 행위를 통해서 가져온 데이터를 옵저버의 인수로 넘겨준다.<br>따라서 인수의 네이밍을 제대로 하려면 우리가 무엇을 가져올 지를 알아야 한다.  </p>
+<p>위의 예제에서, 옵저버블은 todos를 옵저버에게 전달한다.<br>get 메소드는 자기가 무엇을 가져올 지를 모른다. 그래서 무조건 <strong>객체를 리턴</strong>하도록 되어있고, 타입을 맞춰서 할당해주어야 하므로 <code>&lt;Todo[]&gt;</code> 를 해주는 것이다. -&gt; 제네릭!<br>or,<br><code>todos as Todo[]</code> -&gt; todos는 Todo[]타입으로 보겠다. -&gt; 강제형변환. 타입캐스팅.  </p>
+<p>subscribe 안에는 데이터가 왔을 때 할 일을 적어주는 것이다.<br>-&gt; 옵저버블님, 데이터 가져오시면 todos에 주세요. 그럼 제가 어떠한 일을 하겠습니다.  </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.http.delete&lt;Todo&gt;(<span class="string">`<span class="subst">$&#123;this.url&#125;</span><span class="subst">$&#123;id&#125;</span>`</span>)</span><br><span class="line">  .subscribe(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.todos = <span class="keyword">this</span>.todos.filter(<span class="function"><span class="params">todo</span> =&gt;</span> todo.id !== id));</span><br><span class="line">  <span class="comment">// subscribe(_ =&gt; this.todos = this.todos.filter(todo =&gt; todo.id !== id));</span></span><br></pre></td></tr></table></figure>
+<p>위의 예제에서는 빈 객체가 넘어오는 상황이고, 빈 객체는 받아줄 필요가 없으므로 함수의 매개변수는 비워둔다.<br><code>()</code> 대신 <code>_</code> 를 쓰면, 인수가 넘어왔을 때 쓰지 않겠다는 명확한 의사표시이다.  </p>
+<p>subscribe도 then과 마찬가지로, 두 번째 함수를 주면 에러를 캐치하게 된다.  </p>
+<h2 id="에러핸들러"><a href="#에러핸들러" class="headerlink" title="에러핸들러"></a>에러핸들러</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.http.get&lt;Todo[]&gt;(<span class="keyword">this</span>.url)</span><br><span class="line">  .subscribe(</span><br><span class="line">    <span class="comment">// 요청 성공 처리 콜백 함수 (Observer의 next 메소드)</span></span><br><span class="line">    todos =&gt; <span class="keyword">this</span>.todos = todos,</span><br><span class="line">    <span class="comment">// 요청 실패 처리 콜백 함수 (Observer의 error 메소드)</span></span><br><span class="line">    (error: HttpErrorResponse) =&gt; <span class="built_in">console</span>.error(error)</span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+<p>에러핸들러에 인수로 에러를 전달해서, 에러가 이벤트객체타입이다, 라고 판별되면 클라이언트 에러이고, 아니면 백엔드의 에러로 판별된다.  </p>
+<p><code>todos$</code> 처럼 달러가 뒤에 붙으면 옵저버블이라는 암묵적 표시이다.  </p>
+<p>파이프로 <code>shareReplay</code>를 걸어주면 옵저버블이 <strong>공유옵저버블</strong>이 된다.  </p>
+<h3 id="콜드-옵저버블-핫-옵저버블"><a href="#콜드-옵저버블-핫-옵저버블" class="headerlink" title="콜드 옵저버블, 핫 옵저버블"></a>콜드 옵저버블, 핫 옵저버블</h3><p><strong>콜드 옵저버블</strong>: 옵저버와 옵저버블이 일대일관계. 유니캐스트.<br><strong>핫 옵저버블</strong>: 여러 개의 옵저버가 하나의 옵저버블을 <strong>공유</strong>. 멀티캐스트.  </p>
+<p>shareReplay 라는 오퍼레이터는, 콜드 옵저버블을 핫 옵저버블로 만든다.<br>-&gt; 여러번 subscribe을 해도 동일한 데이터가 간다.  </p>
+<h2 id="인터셉터"><a href="#인터셉터" class="headerlink" title="인터셉터"></a>인터셉터</h2><!-- 좀 어려운데, 프로젝트에 쓰일 수도 있음.  -->
+<ul>
+<li><p>인터셉터가 왜 필요한가<br>만약 로그인을 하지 않은 상태에서 메인페이지로 바로 접근하려고 하면 튕겨낼 필요가 있다.<br>이때 로그인을 했는지 안 했는지 확인하고 튕겨내야 하는데, 보통 서버가 보안을 걸어놓는다.<br>그럼 우리는, 로그인에 성공하면 백엔드가 우리에게 넘겨주는 토큰을(지금은 일단 JWT(JSON Web Token)방법) 받는다. 로그인에 성공했으므로 토큰이라는 객체를 json으로 주고, 그것을 받아서 클라이언트가 가지고 있어야 한다(이 방법은 여러가지인데 심플하게는 로컬스토리지나 쿠키에 담는다. 보안 측면에서는 쿠키가 조금 더 낫지만 둘 다 장단점이 있다). 토큰은 암호화되어서 오기 때문에 우리가 열어봐도 뭔지 모른다. 로그인 페이지 이후에 보안이 필요한 다른 페이지로 갈때는 항상 토큰을 들고 간다. 그럼 토큰을 어떻게 서버에 줄것인가? 결론은 ‘<strong>헤더</strong>에 담는다’. 라우팅을 써서 이동할 때마다 헤더셋팅을 해야한다는 말인데, 귀찮다! 그래서 인터셉터라는 것을 만들어둬서 무조건 토큰을 담아가게 만든다. 인터셉터를 만들어두면, 우리가 요청할 때마다 헤더셋팅을 일일이 해줄 필요가 없어진다.  </p>
+</li>
+<li><p>파이프라인이란?<br>우리가 서버에 요청을 보내려고 코드로 적는 모든 과정들을 파이프라인이라고 한다.<br>인터셉터를 한 번 만들어두면 HTTP 요청을 검사하거나 변환할 수 있다.  </p>
+</li>
+</ul>
+<p>인터셉터를 작성하려면 HttpInterceptor 인터페이스를 implements 해야 한다.  </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AuthInterceptor <span class="keyword">implements</span> HttpInterceptor &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> auth: AuthService</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line">  intercept(req: HttpRequest&lt;<span class="built_in">any</span>&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;<span class="built_in">any</span>&gt;&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> authToken = <span class="keyword">this</span>.auth.getToken();</span><br><span class="line">    <span class="keyword">const</span> clonedRequest = req.clone(&#123;</span><br><span class="line">      headers: req.headers.set(<span class="string">'Authorization'</span>, authToken)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> next.handle(clonedRequest);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  ...</span><br><span class="line">  providers: [&#123;</span><br><span class="line">    provide: HTTP_INTERCEPTORS,</span><br><span class="line">    useClass: AuthInterceptor,</span><br><span class="line">    multi: <span class="literal">true</span></span><br><span class="line">  &#125;]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>리퀘스트 메세지에 있는 헤더에는 키가 있고 값이 있다. 요청할 때 우리가 authorization(백엔드와 합의된 키 이름)이라는 키를 넣고, 값으로는 토큰의 전체문자열을 넣고 서버에 날린다. 서버는 우리와 합의된 그 authorization이라는 키에 토큰이 담겨있겠거니 생각하고 그것을 꺼내서 서버에서 확인한다. 암호화된 토큰을 서버에서는 풀 수 있기 때문에, 확인해서 권한이 있는지 없는지를 확인한다. 따라서 JWT를 쓸 것이라면 서버와 클라이언트는 이 키를 합의해놓아야 한다. 그리고 그 키의 값으로 로컬스토리지에 담아놓은 토큰을 꺼내서 요청할 때 키와 값을 담아서 보내는 것이다.<br>인터셉트는 첫번째 인수로 우리가 날릴 리퀘스트 객체를 준다. (여기에서 백엔드와 합의한 키와 토큰값을 셋팅한다)<br>그리고 루트모듈에 providers 를 추가한다.  </p>
+
+      
+    </div>
+    <footer class="entry-meta entry-footer">
+      
+	<span class="ico-folder"></span>
+    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
+
+      
+  <span class="ico-tags"></span>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
+
+      
+    </footer>
+    <hr class="entry-footer-hr">
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-0625" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
@@ -193,70 +274,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-0624" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/06/24/0624/">Directive</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/06/24/0624/" class="article-date">
-	  <time datetime="2019-06-23T15:00:00.000Z" itemprop="datePublished">June 24, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li><p>상태는 stateful 컴포넌트에서만 관리한다.<br>다른 컴포넌트들은 상태를 직접적으로 고치지 않고, <code>stateful</code>(or <code>smart</code>) 컴포넌트에게 ‘의뢰’ 한다. stateful 컴포넌트는, 상태를 직접 고칠 자격을 부여한 컴포넌트이다. 마치 사령관처럼! 자격이 없는 컴포넌트는 stateless 컴포넌트, 혹은 dumb 컴포넌트라고 한다. todos-container 는 다른 컴포넌트들을 호출할 뿐, 자신만의 템플릿은 없다. 즉, 다른 컴포넌트들을 관장하는 것이다. stateless 의 주 역할은, view 만 생성하는 것이다. view를 생성하기 위한 상태데이터는 container 가 보내주어야 한다. 만약 stateless 에서 상태가 변하면(인풋에 데이터가 입력되었다거나 하는) 상태 변경에 필요한 데이터를 보내줄 뿐, 직접 변경하진 않는다.  </p>
-</li>
-<li><p>ngModel content<br>양방향 데이터 바인딩. 템플릿에서 변경된 값을 클래스 컴포넌트에 갱신하고, 클래스 컴포넌트에서 변경된 값은 템플릿에 갱신된다. 따라서 인풋에 글자가 한 자 한자 입력될때마다 클래스 컴포넌트의 content에 갱신되고, 인풋 폼의 값은 content와 항상 같다.  </p>
-</li>
-<li><p>앵귤러의 css style<br>컴포넌트의 스코프 단위로 적용된다.  </p>
-</li>
-<li><p>변화감지 매커니즘<br>이 매커니즘을 이해하는 것은 어려운 일이니, 일단 참조를 바꾸는 것에 중점을 두자. 그래서 변화감지를 하기 쉽게 만들어주자.  </p>
-</li>
-</ul>
-<h2 id="디렉티브"><a href="#디렉티브" class="headerlink" title="디렉티브"></a>디렉티브</h2><p>컴포넌트들의 <strong>공통된 기능</strong>이 있다면, 그 기능을 빼내서 디렉티브로 만든다.<br>디렉티브의 셀렉터는, 대괄호 안에 있는 텍스트가 어트리뷰트로써 사용될 것이라는 뜻이다. css의 셀렉터문법에서 어트리뷰트는 대괄호를 이용해 지정했었다.<br><code>input[type=text]</code> =&gt; input 태그이고, type 이라는 어트리뷰트 값이 text인 요소를 선택<br>디렉티브의 셀렉터를 클래스로써 사용하고 싶다면 대괄호대신 <code>.</code>을 붙여주면 된다. 그러나 가급적 어트리뷰트로 사용하기로 한다.<br>디렉티브는, 호스트요소를 서포트한다.  </p>
-<ul>
-<li><code>public el: ElementRef</code><br>‘앵귤러야, ElementRef 타입의 객체를 생성해서 내게 인수로 전달해줘.’ =&gt; 의존성주입<br>el이라는 참조를 디렉티브 전역에서 사용할 수 있게 된다. public 이기때문에.<br>el은 객체이며, 이 객체는 프로퍼티로 호스트요소를 가지고 있다.<br>그래서 <code>el.nativeElement.style.color = &quot;blue&quot;;</code> 으로 할 수 있지만 보안문제로 쓰지않는다.<br>-&gt; <strong>Renderer2</strong> 를 쓰자. DOM을 컨트롤할때 쓰는 API를 제공한다.<br><code>this.renderer.setStyle(this.el.nativeElement, &#39;color&#39;, &#39;blue&#39;);</code><br>-&gt; 위와 동일하게 동작한다.<br><code>@HostListener()</code> : 이벤트를 적용한다.<br><code>window.pageYOffset</code> : 스크롤이 얼마나 되었는지 잡아낸다.  </li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
 
 
   <nav id="page-nav">
@@ -281,7 +298,19 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/18/0918/">state</a></h6>
+              <h6 style="margin: 0;"><a href="/2019/09/19/0919/">이벤트 설치, bind(this)</a></h6>
+              <span>September 19, 2019</span>
+            </div>
+
+          </li>
+        
+          <li class="clearfix">
+
+            
+              <div class="widget-entry-summary" style="margin: 0;">
+            
+
+              <h6 style="margin: 0;"><a href="/2019/09/18/0918/">State</a></h6>
               <span>September 18, 2019</span>
             </div>
 
@@ -335,18 +364,6 @@
 
           </li>
         
-          <li class="clearfix">
-
-            
-              <div class="widget-entry-summary" style="margin: 0;">
-            
-
-              <h6 style="margin: 0;"><a href="/2019/07/10/0710/">Routing</a></h6>
-              <span>July 10, 2019</span>
-            </div>
-
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -356,7 +373,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -366,7 +383,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">42</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">43</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -377,7 +394,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
