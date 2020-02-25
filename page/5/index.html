@@ -3,21 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Page 5 | Rudy&#39;s Blog</title>
+  <title>Page 5 | Rudy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Rudy&#39;s Blog">
+  <meta name="description" content="master loki has returned!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rudy">
 <meta property="og:url" content="https://dearjsmc4.github.io/page/5/index.html">
-<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:site_name" content="Rudy">
+<meta property="og:description" content="master loki has returned!">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rudy&#39;s Blog">
+<meta name="twitter:title" content="Rudy">
+<meta name="twitter:description" content="master loki has returned!">
   
-    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Rudy" type="application/atom+xml">
   
   <link rel="icon" href="/css/images/favicon.ico">
   
@@ -60,10 +63,14 @@
 
           <h1 class="site-title">
             
-              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+              <a href="/" rel="home">
+                <img style="margin-bottom: 10px;" width="150px" height="150px" alt="Hike News" src=" /css/images/loki.jpg">
+              </a>
             
           </h1>
           
+          
+            <div class="site-description">master loki has returned!</div>
           
             
           <nav id="main-navigation" class="main-navigation" role="navigation">
@@ -75,11 +82,9 @@
                     
                       <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
-                    
                       <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
                     
               </ul>
             </div>
@@ -97,7 +102,7 @@
         
           <section id="main">
   
-    <article id="post-0708" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20180225" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +110,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/07/08/0708/">Module</a>
+      <a class="article-title" href="/2018/02/25/20180225/">2018년 2월 25일</a>
     </h1>
   
 
@@ -113,130 +118,30 @@
     
     <div class="article-meta">
       
-	<a href="/2019/07/08/0708/" class="article-date">
-	  <time datetime="2019-07-07T15:00:00.000Z" itemprop="datePublished">July 8, 2019</time>
+	<a href="/2018/02/25/20180225/" class="article-date">
+	  <time datetime="2018-02-24T15:00:00.000Z" itemprop="datePublished">February 25, 2018</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
+    <a class="article-category-link" href="/categories/to-loki/">To. Loki</a>
  
       <!--  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Angular-NgModule"><a href="#Angular-NgModule" class="headerlink" title="Angular NgModule"></a>Angular NgModule</h1><p>모듈은 컴포넌트를 가지고 있다.  </p>
-<p>Angular의 큰 덩어리 하나하나가 합쳐져 하나의 모듈이 된다.<br>키워드: <strong>재사용성</strong>. 같은 기능을 하나로 합친다.  </p>
-<ul>
-<li>Angular의 모듈<ol>
-<li><strong>기능모듈</strong>  <ul>
-<li>프론트에게 가장 중요한 건 화면이다.  </li>
-</ul>
-</li>
-<li><strong>공유모듈</strong><ul>
-<li>여러 화면에 쓰이는 공유모듈은 shared라는 이름으로 만들어주는게 통상적이다. 기능모듈이 공유모듈을 import 한다.  </li>
-</ul>
-</li>
-<li><strong>코어모듈</strong>  <ul>
-<li>서비스 위주이다.  </li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h2 id="About-Module"><a href="#About-Module" class="headerlink" title="About Module"></a>About Module</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; BrowserModule &#125; <span class="keyword">from</span> <span class="string">'@angular/platform-browser'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; NgModule &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; AppComponent &#125; <span class="keyword">from</span> <span class="string">'./app.component'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@NgModule</span>(&#123;</span><br><span class="line">  declarations: [</span><br><span class="line">    AppComponent</span><br><span class="line">  ],</span><br><span class="line">  imports: [</span><br><span class="line">    BrowserModule</span><br><span class="line">  ],</span><br><span class="line">  providers: [],</span><br><span class="line">  bootstrap: [AppComponent]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AppModule &#123; &#125;</span><br></pre></td></tr></table></figure>
-<p>데코레이터의 인자는 <strong>메타데이터 객체</strong>이다. 메타데이터 객체에는 컴퓨터에게 알려주는 정보들이 담겨있다. 메타데이터 객체 안의 정보를 전달하여 데코레이터가 장식하는 클래스의 인스턴스가 만들어질 때 관여한다. 위의 상황에서는 AppModule 인스턴스가 만들어질 때 메타데이터 객체가 필요한 것이다.  </p>
-<p>가장 중요한 부분은 <strong>선언부(declarations)</strong>이다. 이 부분에는 우리가 만드는 모든 컴포넌트, 모든 파이프, 모든 디렉티브를 나열하여준다. 그러면 루트모듈이 관장하는 전체 애플리케이션에서 루트모듈 선언부에 등록된 것들이 사용가능해진다. </p>
-<p><strong>imports</strong>에서는 루트모듈이 사용하는 <strong>모듈</strong>을 쓴다. 모듈은 모듈을 사용할 수 있다. 루트모듈이 기능모듈과 코어모듈을 임포트하여 쓴다고 했듯이. 루트모듈은 <code>BrowserModule</code> 을 사용하고있는데, BrowserModule 은 루트모듈에 반드시 들어가있어야한다. BrowserModule 은 브라우저에서 동작하는 애플리케이션을 만들 때 필요한 모듈들을 모아놓은 것이다. 코어모듈을 자체적으로 임포트하고 있는데, 그 코어모듈안에는 ngIf, ngFor 같은 디렉티브들이 들어가있다. BrowserModule 은 루트모듈에만 정의해두면된다. 추후에 만들 모듈에는 BrowserModule 이 아닌 <code>CommonModule</code> 만 있다. CommonModule 은 코어모듈의 디렉티브들을 지원하는 것들이 있다. </p>
-<p><strong>providers</strong>는 서비스만 써준다. 요즘에는 역할이 무색해졌는데, Angular6로 넘어오면서 Injectable 데코레이터에 <code>provideIn</code> 이 생기면서 여기에 서비스를 써줄 수 있게 되었기 때문이다. 만약 provideIn 에 쓰지 않으면 providers에 적어주면 된다. </p>
-<p>루트모듈은  <code>bootstrap: [AppComponent]</code> 를 갖고있어야 한다. Angular 애플리케이션을 가동하면 루트모듈이 돌면서 필요한 모듈이나 컴포넌트, 디렉티브를 불러모으는데, 가장 먼저 실행하는 것이 모든 컴포넌트들의 부모인 <strong>App Component 를 발화</strong>하는 것이다. 즉, 진입점인 App Component 가 뜨지 않으면 다른 컴포넌트들도 다 뜨지 않는다. 루트컴포넌트가 발화하면 루트컴포넌트의 템플릿에 쓰여진 내용이 가장 먼저 기동된다. 보통 라우터를 먼저 쓴다. </p>
-<!-- 서비스내의 providedIn 이 있으니까 모듈에 따로 안 넣어도 되고, root 라는 말은 전역에서 사용할 수 있는 서비스라는 뜻이다. 
-root 를 코어모듈로 바꿔주면 된다. 
-
-exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-0703" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/07/03/0703/">Forms</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/07/03/0703/" class="article-date">
-	  <time datetime="2019-07-02T15:00:00.000Z" itemprop="datePublished">July 3, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Forms"><a href="#Forms" class="headerlink" title="Forms"></a>Forms</h2><h3 id="HTML-Forms"><a href="#HTML-Forms" class="headerlink" title="HTML Forms"></a>HTML Forms</h3><p>폼은 직접 사용자와 대면하는 곳이기 때문에 친절해야하고 사용하기 편해야 하며, 깨끗하고 아름다워야 한다. 꼼꼼히 만들어야 한다. 폼이 있으면 폼 상에 submit 이벤트가 발생할 수 있도록 submit 타입의 버튼이 있어야 한다. (요즘은 button tag에 submit 타입을 걸어주는 경우가 많다고 한다)  </p>
-<p>서버에 스트레스를 주지 않기 위해 폼에 대한 <strong>유효성 검사</strong>(validation check)는 클라이언트 측에서 해주어야 한다. 그리고 틀린 곳이 있다면 사용자에게 알려주어서 다시 데이터를 입력할 수 있게 안내해야 한다. 모든 절차가 끝난 후에야 서버로 날리는 것이다. 그리고 데이터를 보낼 때에는 조금씩 여러 번 보내는 것이 아니라, 한번에 보내는 것이 좋다. 서버는 요청이 와야 동작하고, 서버와 클라이언트는 일대다 관계이기 때문에 최소한의 요청을 보내야 서버의 스트레스를 줄여줄 수 있다.  </p>
-<ul>
-<li>폼 요소 : form 태그 전체  </li>
-<li>폼 컨트롤 : form 태그 안의 요소들  </li>
-</ul>
-<p>폼에는 <code>action</code> 과 <code>method</code> 라는 두 어트리뷰트를 쓰는데,<br><code>action=&quot;url&quot;</code><br><code>method=&quot;GET/POST&quot;</code><br>와 같은 형태로 써준다.<br>클라이언트가 서버에게 정보를 주는 방식은 다양한데 그 중 대표적인건 GET과 POST<br>url의 <strong>쿼리</strong>에 담아서 보낸다. 쿼리부분은 ?키=밸류&amp;키=밸류&amp;키=밸류… 형식으로 이루어진 부분이다.  </p>
-<!-- 그러나 ajax에서는 폼요소가 아니라 폼컨트롤들만 써서 그걸로 객체를 만들어서 페이로드를 날렷엇는데, 앵귤러에서는 폼요소를 쓴다.-->
-<p>폼을 왜 쓰냐면, 모든 폼 컨트롤의 유효성검사 결과가 true이면 폼 전체의 유효성검사 결과 역시 true이므로, <strong>폼 컨트롤 전체를 하나로 관리</strong>하기 위해서 쓰는 것이다. 앵귤러에서는 두 가지 방식이 있는데,  </p>
-<ol>
-<li><strong>템플릿 기반 폼</strong> -&gt; 폼 관리의 주체가 템플릿 -&gt; 템플릿이 복잡해지는 단점 -&gt; 간단한 폼일 때 쓴다  </li>
-<li><strong>리액티브 폼</strong> -&gt; 폼 관리의 주체가 컴포넌트 클래스 -&gt; 폼이 클 때 쓴다<br>이 두 가지 방식으로는 특히 에러처리가 편하다. </li>
-</ol>
-<p>ex) <code>action=&quot;/signup&quot;</code> 일 때 -&gt; REST API 라는 뜻이다. 파일명으로 요청하는 게 아니라 path 로 요청하고 있기 때문이다. HTML 파일을 준 서버와 데이터를 요청할 서버가 다를 수 있는데, 이 상황에선 같은 곳에 있다는 뜻이다.  </p>
-<p>input 태그의 어트리뷰트  </p>
-<ul>
-<li><strong>required</strong> : 값이 반드시 입력되어야 함    </li>
-<li><strong>pattern</strong> : 정규표현식  </li>
-</ul>
-<h3 id="Angular-Forms"><a href="#Angular-Forms" class="headerlink" title="Angular Forms"></a>Angular Forms</h3><p><code>FormsModule</code> 을 추가한 순간, <code>novalidate</code> 가 자동으로 form 태그에 추가된다. 이는 HTML 표준 폼으로써의 동작을 막는다. 그로 인해 submit 의 기본동작도 막는다: form action 에 걸려있는 경로로 리퀘스트를 날리고, 화면 전환하는 동작을 막는다. 따라서 앵귤러에서는 대신 <code>ngSubmit</code> 이벤트를 이용한다.  </p>
-<p>폼 요소는 폼 컨트롤 요소의 부모로서 존재하며, 모든 폼 컨트롤 요소들의 유효성검증 상태가 true 이면 폼 자체의 유효성검증상태도 true가 된다.</p>
-<p><code>#form=&quot;ngForm&quot;</code><br>템플릿 참조변수를 선언하고, 앵귤러가 관리하는 폼에 대한 인스턴스를 바인딩한다.<br>폼 컨트롤 요소에 ngModel 을 추가하면 앵귤러가 관리하게 되고, 이때부터는 앵귤러가 관리하는 폼 컨트롤 요소에 name 어트리뷰트가 없으면 에러가 난다.  </p>
+        <p><img src="/../img/2018.jpg" alt="2018년 편지"></p>
+<p>쓴 사람이 다시 읽으려니까<br>부끄럽다……<br>자기성찰의 시간도 가지게 된다<br>이 편지 찾다가<br>예전에 알바하다가 실수한 것 같다고<br>(실수를 한 것도 아니고 <strong>한 것 같다</strong>고…)<br>로키님한테 찡찡대다 혼난 기억이 났다</p>
+<p>부끄럽다………….. 왜그랬니<br>철들자</p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/angular-til/">Angular TIL</a>
+    <a class="article-category-link" href="/categories/to-loki/">To. Loki</a>
 
       
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
       
     </footer>
     <hr class="entry-footer-hr">
@@ -251,7 +156,7 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/6/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/4/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/6/">Next</a>
   </nav>
 
 </section>
@@ -271,8 +176,8 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/19/0919/">이벤트 설치, bind(this)</a></h6>
-              <span>September 19, 2019</span>
+              <h6 style="margin: 0;"><a href="/2020/02/25/2020letter/">2020년 2월 25일</a></h6>
+              <span>February 25, 2020</span>
             </div>
 
           </li>
@@ -283,8 +188,8 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/18/0918/">State</a></h6>
-              <span>September 18, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/12/26/20191226/">2019년 12월 26일</a></h6>
+              <span>December 26, 2019</span>
             </div>
 
           </li>
@@ -295,8 +200,8 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/17/0917-2/">Props</a></h6>
-              <span>September 17, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/02/25/20190225/">2019년 2월 25일</a></h6>
+              <span>February 25, 2019</span>
             </div>
 
           </li>
@@ -307,8 +212,8 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/17/0917/">컴포넌트 파일 분리</a></h6>
-              <span>September 17, 2019</span>
+              <h6 style="margin: 0;"><a href="/2018/05/02/20180502/">2018년 5월 2일</a></h6>
+              <span>May 2, 2018</span>
             </div>
 
           </li>
@@ -319,8 +224,8 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/10/0910/">디렉토리 구조, 배포, 컴포넌트</a></h6>
-              <span>September 10, 2019</span>
+              <h6 style="margin: 0;"><a href="/2018/02/25/20180225/">2018년 2월 25일</a></h6>
+              <span>February 25, 2018</span>
             </div>
 
           </li>
@@ -331,8 +236,8 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/09/0909/">개발환경 셋팅</a></h6>
-              <span>September 9, 2019</span>
+              <h6 style="margin: 0;"><a href="/2017/12/14/20171214/">2017년 12월 14일</a></h6>
+              <span>December 14, 2017</span>
             </div>
 
           </li>
@@ -346,17 +251,7 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">43</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/flower/">Flower</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/memories/">Memories</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/to-loki/">To. Loki</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -367,7 +262,7 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -382,11 +277,9 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
   
     <a href="/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
     <a href="/categories" class="mobile-nav-link">Categories</a>
   
-    <a href="/tags" class="mobile-nav-link">Tags</a>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
 </nav> -->
     <footer id="footer" class="site-footer">
@@ -394,7 +287,7 @@ exports는 모듈이 아니라 컴포넌트를 가지고 한다.  -->
 
   <div class="clearfix container">
       <div class="site-info">
-	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+	      &copy; 2020 Rudy All Rights Reserved.
         <!-- 
             <span id="busuanzi_container_site_uv">
               本站访客数<span id="busuanzi_value_site_uv"></span>人次  

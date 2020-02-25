@@ -3,21 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Page 13 | Rudy&#39;s Blog</title>
+  <title>Page 13 | Rudy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Rudy&#39;s Blog">
+  <meta name="description" content="master loki has returned!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rudy">
 <meta property="og:url" content="https://dearjsmc4.github.io/page/13/index.html">
-<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:site_name" content="Rudy">
+<meta property="og:description" content="master loki has returned!">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rudy&#39;s Blog">
+<meta name="twitter:title" content="Rudy">
+<meta name="twitter:description" content="master loki has returned!">
   
-    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Rudy" type="application/atom+xml">
   
   <link rel="icon" href="/css/images/favicon.ico">
   
@@ -60,10 +63,14 @@
 
           <h1 class="site-title">
             
-              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+              <a href="/" rel="home">
+                <img style="margin-bottom: 10px;" width="150px" height="150px" alt="Hike News" src=" /css/images/loki.jpg">
+              </a>
             
           </h1>
           
+          
+            <div class="site-description">master loki has returned!</div>
           
             
           <nav id="main-navigation" class="main-navigation" role="navigation">
@@ -75,11 +82,9 @@
                     
                       <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
-                    
                       <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
                     
               </ul>
             </div>
@@ -97,7 +102,7 @@
         
           <section id="main">
   
-    <article id="post-0515" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20141210" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +110,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/15/0515/">전역객체, this</a>
+      <a class="article-title" href="/2014/12/10/20141210/">2014년 12월 10일</a>
     </h1>
   
 
@@ -113,135 +118,29 @@
     
     <div class="article-meta">
       
-	<a href="/2019/05/15/0515/" class="article-date">
-	  <time datetime="2019-05-14T15:00:00.000Z" itemprop="datePublished">May 15, 2019</time>
+	<a href="/2014/12/10/20141210/" class="article-date">
+	  <time datetime="2014-12-09T15:00:00.000Z" itemprop="datePublished">December 10, 2014</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+    <a class="article-category-link" href="/categories/memories/">Memories</a>
  
       <!--  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="전역객체"><a href="#전역객체" class="headerlink" title="전역객체"></a>전역객체</h2><p>우리가 만드는 게 아니라 브라우저 열자마자 전역객체가 만들어진다. 그 안에는 전역객체가 가지고있는 프로퍼티와 메소드, var 로 만든 전역 변수, 암묵적 전역변수, WEB API가 들어있다. window의 프로퍼티는 window.을 생략해도 된다.  </p>
-<h3 id="eval-함수"><a href="#eval-함수" class="headerlink" title="eval 함수"></a>eval 함수</h3><p>안 배워도 되고 가르치지도 않으려고 하는 함수…<br>얘를 왜 안 쓰냐면, 자기자신만의 스코프를 만들고 상위 스코프도 변형시키기 때문이다. 비용이 많이 드는 일들이다. 비용이 많이 드는 일은 대체로 최적화가 되는데 eval 은 그 최적화를 깨뜨린다. 보안문제도 있다. 사용자가 입력한 데이터는 untrusted data 라고 하는데, 이것은 한번 검사를 해야한다고 한다. eval이 받은 문자열을 바로 실행시켜버리니까 문제인듯하다. 그 안에 무슨 코드가 있을지 모르니까.  </p>
-<p>(함수이름 짓는 팁: 빌트인메소드들 이름 따라하기)  </p>
-<h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>객체에는 상태 데이터와 동작(메소드)이 있다고 했고, 동작인 메소드는 상태 데이터를 참조하고 변경할 수 있어야 한다. 메소드가 자신이 속한 객체의 프로퍼티를 참조하려면 자신이 속한 객체를 가리키는 식별자를 참조할 수 있어야 한다.<br><strong>this</strong>는 객체 자신의 프로퍼티나 메소드를 참조하기 위한 <strong>자기참조변수</strong>이다. <strong>this가 가리키는 값은 함수 호출 방식에 의해 동적으로 결정된다.</strong> 아무것도 신경쓰지말고 함수가 어떻게 호출되었느냐만 보면됨. 함수가 호출되어야 this 가 결정된다.<br><!-- (렉시컬 스코프는 함수정의가 평가될때 결정된다)  --></p>
-<h3 id="다양한-함수호출방식"><a href="#다양한-함수호출방식" class="headerlink" title="다양한 함수호출방식"></a>다양한 함수호출방식</h3><ol>
-<li>일반함수 호출 -&gt; this 는 기본적으로 window 를 가리키도록 세팅된 채로 시작한다.  </li>
-<li>메소드 호출 -&gt; this 는 메소드를 호출한 객체를 가리킨다.  </li>
-<li>생성자함수 호출 -&gt; this 는 생성될 인스턴스를 가리킨다.  </li>
-<li>Function.prototype.apply/call/bind 메소드에 의한 간접 호출 -&gt; this를 명시적으로 바인딩  </li>
-</ol>
-<p>this는 객체의 참조를 얻기 위해 필요한 것이니까 전역이나 일반함수에서 this를 쓸 일은 없다. 그래서 엄격모드에서는 undefined를 내보낸다.  </p>
-<p>메소드로 호출된 함수는 메소드를 <strong>호출한</strong> 객체를 가리킨다고 했다. 메소드를 <strong>가지고 있는</strong> 객체가 아니다! this 가 무엇인지 확인할 때에는 무조건 함수가 <strong>어떻게</strong> 호출되었는지만 확인하면 된다. 즉시실행함수도 this 가 window 이다. 메소드 안의 중첩함수도 일반함수로 호출되었다면 this 는 window 이다.<br>그런데 중첩함수는 외부함수를 도와주는 함수이다. 외부함수 안에서만 딱 쓰겠다는 의지가 나타났다는 말이다. 그럼 외부함수가 메소드로 호출돼서 this 가 객체를 가리키는 상태라면, 중첩함수에서 this가 window로 바뀌는 것은 기대에 어긋난다. 그래서 필요하다면 this를 갈아끼워줄 수 있다. 외부함수에서의 this를 변수에 회피시켜놓고 쓸 수도 있지만, bind/apply/call 빌트인 메소드를 사용할 수도 있다. 위 목록 중 4번 항목을 말하는 것이다. </p>
-<!-- 호출이라는 것은 외부의 인수를 함수내부로 밀어넣는 행위이기도 하다. bind(this) 는 바깥의 this를 bind에 넣어주는거고 그럼 this 가 foo 안에 있는거고, foo는 obj가 호출했으니까... this가 obj 가 된다. -->
-<h3 id="apply-와-call"><a href="#apply-와-call" class="headerlink" title="apply 와 call"></a>apply 와 call</h3><p>함수를 호출하는 것이 주 역할인 것은 똑같고 인수를 전달하는 방식만 다른 메소드들이다.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">뫄뫄.apply(thisArg, [argsArray])</span><br></pre></td></tr></table></figure></p>
-<p>뫄뫄.apply(thisArg) 일 때, 뫄뫄함수를 호출하면서 인자로 준 thisArg를 this로 바인딩해준다(간접호출도 해준다). 인수가 있을 때 인수도 전달할 수 있다. <code>[argsArray]</code> 는 함수에 전달할 인수 리스트 배열이다. 옵션이므로 생략 가능하다.  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">뫄뫄.call(thisArg, arg1, arg2, ...)</span><br></pre></td></tr></table></figure>
-<p>call 메소드도 첫 번째 인자를 this 로 바인딩해주고 간접호출까지 해주는 것은 같다. 하지만 인자를 전달하는 방식이 apply 와는 다르다. 배열의 형태가 아니라 하나씩 전달해야 한다.  </p>
-<ul>
-<li><em>apply 를 쓰는 팁</em><br>내가 자주 접하는 가변인자함수중에는 Math.max() 가 있다. 인수를 한 개, 두 개, 세 개 내 맘대로 전달할 수 있다.<br>Math.max() 의 문법은 <code>Math.max([값1[, 값2[, ...]]])</code> 이고 예제는 다음과 같다.  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.max(<span class="number">10</span>, <span class="number">20</span>);   <span class="comment">//  20</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>그런데 만약 내 숫자들이 배열 안에 들어있다면<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"><span class="built_in">Math</span>.max(arr); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure></p>
-<p>배열을 통째로 넣어버리면 NaN이 나온다.  </p>
-<p>Math는 this가 필요없는 정적메소드이다. 따라서<br><code>Math.max.apply(null, arr)</code> 이렇게 하면 arr라는 배열이 그대로 Math.max에 들어갈 수 있다.<br><code>Math.max(...arr)</code> ES6에서는 이 문법도 가능하다.  </p>
-<h3 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h3><p>호출을 자동으로 해주진 않고, 사용할 객체를 this로 전달하는 것까지만 해준다.<br>코드 이해가 잘 안되니까 내일 다시 알아보고 업데이트 해야겠다.  </p>
+        <p><img src="/../img/p.jpg" alt="변태력에 관심이 많으셨던"></p>
+<p>…<br>수치스러운 과거이지만<br>그렇다고 웃어넘기지 못할 정도도 아니기에..!!!</p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
+    <a class="article-category-link" href="/categories/memories/">Memories</a>
 
       
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-0513" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/05/13/0513/">함수, 프로토타입</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/05/13/0513/" class="article-date">
-	  <time datetime="2019-05-12T15:00:00.000Z" itemprop="datePublished">May 13, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- constructor 와 프로토타입은 전부 객체지향에 대한 이야기고.
-프로토타입에서 상속을 모르면 안 된다. 프로토타입은 면접질문으로 나올테니까 잘 알아두기. -->
-<h2 id="함수와-일급객체"><a href="#함수와-일급객체" class="headerlink" title="함수와 일급객체"></a>함수와 일급객체</h2><p>일급객체: 값처럼 쓸 수 있는 객체<br>객체는 변수에 담을 수도 있고 프로퍼티의 값으로 할당할 수도 있고 함수 인수로 전달하거나 리턴으로 반환할 수 있다. 함수도 위의 조건을 만족시키므로 일급객체이다.  </p>
-<h3 id="함수-객체의-함수-객체만이-가지고있는-프로퍼티"><a href="#함수-객체의-함수-객체만이-가지고있는-프로퍼티" class="headerlink" title="함수 객체의(함수 객체만이 가지고있는) 프로퍼티"></a>함수 객체의(함수 객체만이 가지고있는) 프로퍼티</h3><p>함수는 객체이므로 프로퍼티를 가질 수 있다.<br>함수를 console.dir 로 찍었을 때 나오는 함수객체 고유의 프로퍼티는<br>arguments, caller, length, name, prototype 이렇게 다섯 가지이다.  </p>
-<ul>
-<li><p><code>arguments</code>: 함수 호출 시 전달된 <strong>인수들의 정보</strong>를 가지고 있다.(중요함!!!)<br>  유사배열객체이므로 for문 등으로 순회가 가능하다. 하지만 arguments는 프로퍼티처럼 쓰면 안 되고 함수의 암묵적인 지역변수처럼 써야 한다. arguments 객체는 매개변수 개수를 확정할 수 없는 <strong>가변인자함수</strong>에서 쓰면 좋다. 만약 for 문을 돌리면서 <code>arguments[i]</code> 이런 식으로 접근하는 것은 배열표현식이 아니라 프로퍼티접근이다. i 에 0, 1, 2, 3 이런 숫자들이 들어가더라도 숫자를 문자로 바꿔서 접근하기 때문에 사실은 <code>arguments.0</code> 이런식으로 접근하는 것과 같다.  </p>
-</li>
-<li><p><code>length</code>: <strong>매개변수</strong>의 개수를 가리킨다.  </p>
-</li>
-<li><code>name</code>: <strong>함수명</strong>을 나타낸다.  </li>
-<li><code>prototype</code>: 함수만 가지고 있는 객체. 생성자 함수의 경우 함수가 생성할 객체의 프로토타입을 가리킨다.  </li>
-</ul>
-<h2 id="프로토타입"><a href="#프로토타입" class="headerlink" title="프로토타입"></a>프로토타입</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> me = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">me.name = <span class="string">'Rudy'</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(me);</span><br><span class="line"><span class="comment">// &#123;name: "Rudy"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(me.hasOwnProperty(<span class="string">'name'</span>));</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
-<p>Object 생성자 함수가 빈 객체를 만들고 내가 me 객체 안에 프로퍼티를 추가하였다. 그런데 me 객체는 내가 만들지 않은 여러 메소드들도 가지고 있다. 내가 선언하지 않았지만 쓸 수 있는 함수들이 있다는 말이다. <code>hasOwnProperty()</code> 역시 그 중 하나이다. 나는 이 메소드를 만든 적이 없지만 me 객체에서 사용할 수 있다. 왜냐면 모든 객체는 자신의 부모역할을 하는 프로토타입과 연결되어있다는 전제가 깔려있어서 그렇다.  </p>
-<p>결론부터 말하자면 프로토타입 체인의 종점에 해당하는 <code>Object.prototype</code> 이 가지고 있는 메소드들은 모든 객체가 상속받아서 사용할 수 있다. 자식객체가 부모객체의 자산을 자신의 것인냥 사용할 수 있다는 것이다. 하지만 부모객체는 자식객체의 자산을 사용할 수 없다.(프로토타입 체인은 단방향 링크드 리스트로 구현되어있다.) 프로토타입 체인은 상속을 구현하는 방식이다.  </p>
-<p>me 객체의 부모역할을 하는 프로토타입은 <code>Object.prototype</code> 이며, 따라서 me 객체는 <code>Object.prototype</code> 가 가지고 있는 모든 메소드들을 상속받아 사용할 수 있다.  </p>
-<h3 id="Object-생성자-함수와-Object-prototype"><a href="#Object-생성자-함수와-Object-prototype" class="headerlink" title="Object 생성자 함수와 Object.prototype"></a>Object 생성자 함수와 Object.prototype</h3><p>Object 생성자함수는 객체이면서 함수이며, prototype 이라는 프로퍼티를 가지고 있다. 이 prototype 프로퍼티는 함수 객체만이 가지고 있으며, <code>Object.prototype</code>을 가리키고 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">생성자 함수 객체의 prototype 프로퍼티는 생성자 함수가 생성할 객체의 </span><br><span class="line">프로토타입을 가리킨다고 했다. 일반함수도 가지고 prototype 프로퍼티를 가지고 있지만 </span><br><span class="line">이 때에는 의미가 없다. 화살표함수나 메소드축약표현으로 만든 함수는 아예 이 메소드가 없다.</span><br></pre></td></tr></table></figure></p>
-<p>그리고 모든 프로토타입 객체는 constructor 라는 프로퍼티를 가지고 있고, 이것은 생성자함수를 가리킨다. 그래서 Object 생성자함수와 <code>Object.prototype</code>은 서로를 가리키고 있다.  </p>
-<p><code>Object.prototype</code>은 프로토타입체인의 종점이다. 모든 객체는 <code>Object.prototype</code> 의 자식이고, 모든 객체는 <code>Object.prototype</code> 의 자산을 상속받는다. <code>Array.prototype</code> 이나 <code>Function.prototype</code>도 <code>Object.prototype</code>의 아래에 연결되어있다.  </p>
-<!-- `me.hasOwnProperty('name')` 일 때, me를 스코프체인에서 먼저 찾고, 성공하면, 프로퍼티를 프로토타입체인에서 찾아서 호출.
-스코프는 상속되는게 아니지. 스코프는 그냥 보이느냐 아니냐 문제지. 하위스코프에서 상위스코프를 볼 수 있을뿐 상속받는건 아님.-->
-<h3 id="proto-접근자-프로퍼티"><a href="#proto-접근자-프로퍼티" class="headerlink" title="__proto__ 접근자 프로퍼티"></a><code>__proto__</code> 접근자 프로퍼티</h3><p>프로퍼티에는 데이터프로퍼티와 접근자프로퍼티 두 가지 종류가 있다. 데이터 프로퍼티와 달리 접근자 프로퍼티는 value가 없다. 접근자 프로퍼티는 다른 데이터프로퍼티의 값을 가져오거나 변경/갱신할때 쓰는 것. 어떤 데이터프로퍼티 값을 보호하고 싶을 때, 혹은 조건에 부합할 때만 바꾸고 싶을 때 쓴다. <code>__proto__</code> 접근자 프로퍼티는 <code>Object.prototype</code> 에 있기 때문에 모든 객체와 함수가 사용할 수 있다. (모든 객체가 <code>__proto__</code> 를 ‘가지고 있는’ 것이 아니다!)</p>
-<p>그럼 <code>__proto__</code> 접근자 프로퍼티는 어디서 데이터를 가져올까?<br><code>[[Prototype]]</code> 내부슬롯에서 가져온다. 모든 객체는 자기가 생성될때 <code>[[prototype]]</code> 이라는 내부슬롯을 가지고, 이 안에 자신의 프로토타입 객체를 넣는다. 원래 직접적인 접근은 할 수 없지만, 간접적인 방법으로 접근을 허용한다.<br>따라서 <code>me.__proto__ === Object.prototype</code> 은 true 가 된다. <code>__proto__</code> 접근자 프로퍼티를 이용하여 프로토타입을 교체하거나 프로토타입에 프로퍼티를 추가할 수도 있지만, 그보다는 <code>Object.getPrototypeOf</code> 메소드나 <code>Object.setPrototypeOf</code> 를 이용하는 것이 좋다. <code>__proto__</code> 접근자 프로퍼티는 객체의 프로토타입을 찾기 위한 것이고 원래는 직접 접근해서는 안 되는 프로퍼티이기 때문이다.  </p>
-<!-- 
-### 객체지향 프로그래밍  
-
-객체는 데이터뿐만 아니라 메소드도 가지고있는데 내부데이터만 조작을 한다.
-그래서 프로퍼티를 상태데이터라고 함(바뀔값이라는 뜻. 메소드가 동작하는 순간 바뀔테니까)
-메소드는 동작이라고 함.
-객체는 상태와 동작을 그룹화한것. -->
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/javascript-til/">Javascript TIL</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
       
     </footer>
     <hr class="entry-footer-hr">
@@ -256,7 +155,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/12/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/14/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/12/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span>
   </nav>
 
 </section>
@@ -276,8 +175,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/19/0919/">이벤트 설치, bind(this)</a></h6>
-              <span>September 19, 2019</span>
+              <h6 style="margin: 0;"><a href="/2020/02/25/2020letter/">2020년 2월 25일</a></h6>
+              <span>February 25, 2020</span>
             </div>
 
           </li>
@@ -288,8 +187,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/18/0918/">State</a></h6>
-              <span>September 18, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/12/26/20191226/">2019년 12월 26일</a></h6>
+              <span>December 26, 2019</span>
             </div>
 
           </li>
@@ -300,8 +199,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/17/0917-2/">Props</a></h6>
-              <span>September 17, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/02/25/20190225/">2019년 2월 25일</a></h6>
+              <span>February 25, 2019</span>
             </div>
 
           </li>
@@ -312,8 +211,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/17/0917/">컴포넌트 파일 분리</a></h6>
-              <span>September 17, 2019</span>
+              <h6 style="margin: 0;"><a href="/2018/05/02/20180502/">2018년 5월 2일</a></h6>
+              <span>May 2, 2018</span>
             </div>
 
           </li>
@@ -324,8 +223,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/10/0910/">디렉토리 구조, 배포, 컴포넌트</a></h6>
-              <span>September 10, 2019</span>
+              <h6 style="margin: 0;"><a href="/2018/02/25/20180225/">2018년 2월 25일</a></h6>
+              <span>February 25, 2018</span>
             </div>
 
           </li>
@@ -336,8 +235,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/09/0909/">개발환경 셋팅</a></h6>
-              <span>September 9, 2019</span>
+              <h6 style="margin: 0;"><a href="/2017/12/14/20171214/">2017년 12월 14일</a></h6>
+              <span>December 14, 2017</span>
             </div>
 
           </li>
@@ -351,17 +250,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">43</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/flower/">Flower</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/memories/">Memories</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/to-loki/">To. Loki</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -372,7 +261,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -387,11 +276,9 @@
   
     <a href="/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
     <a href="/categories" class="mobile-nav-link">Categories</a>
   
-    <a href="/tags" class="mobile-nav-link">Tags</a>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
 </nav> -->
     <footer id="footer" class="site-footer">
@@ -399,7 +286,7 @@
 
   <div class="clearfix container">
       <div class="site-info">
-	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+	      &copy; 2020 Rudy All Rights Reserved.
         <!-- 
             <span id="busuanzi_container_site_uv">
               本站访客数<span id="busuanzi_value_site_uv"></span>人次  

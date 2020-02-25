@@ -3,21 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Page 3 | Rudy&#39;s Blog</title>
+  <title>Page 3 | Rudy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Rudy&#39;s Blog">
+  <meta name="description" content="master loki has returned!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rudy">
 <meta property="og:url" content="https://dearjsmc4.github.io/page/3/index.html">
-<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:site_name" content="Rudy">
+<meta property="og:description" content="master loki has returned!">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rudy&#39;s Blog">
+<meta name="twitter:title" content="Rudy">
+<meta name="twitter:description" content="master loki has returned!">
   
-    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Rudy" type="application/atom+xml">
   
   <link rel="icon" href="/css/images/favicon.ico">
   
@@ -60,10 +63,14 @@
 
           <h1 class="site-title">
             
-              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+              <a href="/" rel="home">
+                <img style="margin-bottom: 10px;" width="150px" height="150px" alt="Hike News" src=" /css/images/loki.jpg">
+              </a>
             
           </h1>
           
+          
+            <div class="site-description">master loki has returned!</div>
           
             
           <nav id="main-navigation" class="main-navigation" role="navigation">
@@ -75,11 +82,9 @@
                     
                       <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
-                    
                       <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
                     
               </ul>
             </div>
@@ -97,7 +102,7 @@
         
           <section id="main">
   
-    <article id="post-0910" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-20190225" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +110,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/09/10/0910/">디렉토리 구조, 배포, 컴포넌트</a>
+      <a class="article-title" href="/2019/02/25/20190225/">2019년 2월 25일</a>
     </h1>
   
 
@@ -113,111 +118,32 @@
     
     <div class="article-meta">
       
-	<a href="/2019/09/10/0910/" class="article-date">
-	  <time datetime="2019-09-09T15:00:00.000Z" itemprop="datePublished">September 10, 2019</time>
+	<a href="/2019/02/25/20190225/" class="article-date">
+	  <time datetime="2019-02-24T15:00:00.000Z" itemprop="datePublished">February 25, 2019</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/react/">React</a>
+    <a class="article-category-link" href="/categories/memories/">Memories</a>
  
       <!--  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Create-React-App-의-디렉토리-구조"><a href="#Create-React-App-의-디렉토리-구조" class="headerlink" title="Create React App 의 디렉토리 구조"></a>Create React App 의 디렉토리 구조</h2><ul>
-<li><p><strong>public</strong><br><code>npm run start</code> 했을 때의 document root 이다.<br>index.html 이 있는 곳이며, 그 안에서는<br><code>&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</code> 이 부분이 가장 중요하다.<br>내가 만든 컴포넌트들은 id 가 root 인 이 div 안에 모두 들어가기 때문이다.<br>그 컴포넌트들은 <strong>src</strong> 안에서 작업한다. </p>
-</li>
-<li><p><strong>src</strong><br>대부분의 파일들은 이 폴더에 들어간다.<br>entry 파일은 index.js 이다.<br>index.js 에서 눈여겨 볼 부분은<code>document.getElementById(&#39;root&#39;)</code>.<br>index.html 에 있었던 root div 를 참조한다.<br><code>&lt;App /&gt;</code> 은, 사용자 정의 태그인 컴포넌트이며, 이 컴포넌트의 실제 구현은 <strong>App.js</strong> 에서 한다.<br>Create React App이 샘플로 만든 컴포넌트의 실제 구현은 App.js 안에 들어있고,<br>실제 태그의 내용(JSX 식이라고 한다)은 return 문 안에 들어있다. </p>
-</li>
-</ul>
-<h2 id="CSS-는"><a href="#CSS-는" class="headerlink" title="CSS 는?"></a>CSS 는?</h2><p>index.js 에서 index.css 를 import 하고 있고,<br>app.js 는 app.css 의 스타일이 적용된다.<br>(앵귤러의 app.component 가 리액트에서는 app.js 라고 생각된다.<br>앵귤러에서의 index.html, index.css 는 리액트와 같고.)</p>
-<h2 id="배포"><a href="#배포" class="headerlink" title="배포"></a>배포</h2><p>Create React App 의 개발환경은 파일의 무게가 무겁다.<br>개발자만 쓸 때는 상관없지만, 배포할 때에는 문제가 있다.<br>그래서, 개발환경을 실행할 때에는 <code>npm run start</code> 를 쓰지만,<br>서비스하고자 빌드할 때에는 <code>npm run build</code> 라고 한다.<br>그러면 build 라는 디렉토리가 새로 생기게 되고,<br>서비스할 때에는 build 안에 있는 파일들을 쓰면 된다. </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g serve</span><br></pre></td></tr></table></figure>
-<p>npm 을 통해 설치할 수 있는 간단한 서버이다.<br><code>serve -s build</code> 를 입력하면<br>내 컴퓨터 어디에서나 serve 라는 명령어를 통해 웹서버를 다운로드할 수 있게 된다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npx serve -s build</span><br></pre></td></tr></table></figure>
-<p>일회용 서버를 설치한다.<br>-s 는, 웹 서버를 다운로드 받아 실행할 때<br>build 디렉토리를 document root 로 하겠다는 뜻이다. </p>
-<p>빌드하고나면 불필요하게 용량을 차지하는 정보가 모두 사라져 용량이 작아진다.<br>(npm run start 했을 때에는 1.8MB 였지만<br>빌드하고나면 130KB 정도밖에 되지 않았다.)</p>
-<h2 id="컴포넌트"><a href="#컴포넌트" class="headerlink" title="컴포넌트"></a>컴포넌트</h2><p>정리의 도구.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// React 의 Component 를 상속받는 Subject 컴포넌트를 제작</span><br><span class="line">class Subject extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        &lt;h1&gt;My Favorite Movies&lt;/h1&gt;</span><br><span class="line">      &lt;/header&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>render 함수의 return 문 안에는 최상위 태그가 하나 꼭 있어야 한다.<br>그렇지 않으면 return 문을 닫는 괄호에 빨간줄이 그어지면서<br><u>‘JSX 식에는 부모 요소가 하나 있어야 합니다’</u> 라는 메세지가 뜬다.<br>-&gt; <a href="https://reactjs-kr.firebaseapp.com/docs/introducing-jsx.html" target="_blank" rel="noopener">JSX 소개</a></p>
+        <p><img src="/../img/a1.jpg" alt="2주년 당시"></p>
+<p>HTML/CSS/Javascript 를 배운 지 얼마 되지 않았을 때<br>페이지들을 만들었다가 실패했던 가슴 아픈 기억…☆<br>로키님께선 그래도 고마워해주셨다.<br>감동이었다.</p>
+<p><strong>(+)</strong></p>
+<p><img src="/../img/a2.jpg" alt></p>
+<p>여전히 로키님을 숭배하고 찬양하는 마음은 한결 같다^^*<br>어록을 의식하신 건 아니라 하셨지만(그럼요 그럼요)<br>그냥 시간 흐르는대로 잊어버리기엔 아까워서 찾아보려고 했으나<br>애석하게도 파랑새가 너무 오래 전 기록은 찾아주기를 거부하였다.</p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/react/">React</a>
+    <a class="article-category-link" href="/categories/memories/">Memories</a>
 
       
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-0909" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/09/09/0909/">개발환경 셋팅</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/09/09/0909/" class="article-date">
-	  <time datetime="2019-09-08T15:00:00.000Z" itemprop="datePublished">September 9, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/react/">React</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="리액트"><a href="#리액트" class="headerlink" title="리액트?"></a>리액트?</h2><ul>
-<li>페이스북에서 만든 자바스크립트 UI 라이브러리</li>
-</ul>
-<p>웹사이트는 빠른 속도로 복잡해지고, HTML 코드는 정보에 따라 기하급수적으로 늘어난다.<br>이 많은 HTML 코드들을 정리정돈 하고 복잡한 코드 덩어리에 이름을 붙인다 -&gt; <strong>사용자 정의 태그</strong><br>그리고 index.html 에서는 사용자 정의 태그만 갖다 쓰면 끝.<br>-&gt; 앵귤러에서 컴포넌트를 <app-navigation></app-navigation> 이렇게 불러서 쓰는 것과 똑같다!</p>
-<ul>
-<li>장점: 가독성 / 재사용성 / 유지보수성 </li>
-</ul>
-<h2 id="개발환경-셋팅"><a href="#개발환경-셋팅" class="headerlink" title="개발환경 셋팅"></a>개발환경 셋팅</h2><p>툴 체인: 내게 필요한 여러가지 개발환경과 도구를 제공해준다.<br>-&gt; 나는 Create React App 을 사용</p>
-<p>우선 npm 을 다운로드 한 후에 Create React App 설치<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g create-react-app</span><br></pre></td></tr></table></figure></p>
-<p>(버전 확인은 <code>$ npm -v</code>)<br>(버전 업데이트는 <code>$ npm install npm@latest -g</code>)</p>
-<p>앱을 관리할 디렉토리를 만들고 cd 로 이동한 뒤<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ create-react-app .</span><br></pre></td></tr></table></figure></p>
-<p>해당 디렉토리 안에 개발 환경이 셋팅된다.</p>
-<p>(+)<br><code>npx create-react-app</code> 은<br>일회용으로 다운받아 실행하고 지워버리므로 항상 최신버전에서 작업할 수 있다.<br>실무에서는 npx 를 쓰기를 권장.</p>
-<h2 id="실행"><a href="#실행" class="headerlink" title="실행"></a>실행</h2><p>해당 디렉토리에서<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run start</span><br></pre></td></tr></table></figure></p>
-<p>하면 브라우저에 리액트의 샘플 웹앱이 나타난다.</p>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/react/">React</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
       
     </footer>
     <hr class="entry-footer-hr">
@@ -232,7 +158,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/4/">Next</a>
+    <a class="extend prev" rel="prev" href="/page/2/">Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/4/">Next</a>
   </nav>
 
 </section>
@@ -252,8 +178,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/19/0919/">이벤트 설치, bind(this)</a></h6>
-              <span>September 19, 2019</span>
+              <h6 style="margin: 0;"><a href="/2020/02/25/2020letter/">2020년 2월 25일</a></h6>
+              <span>February 25, 2020</span>
             </div>
 
           </li>
@@ -264,8 +190,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/18/0918/">State</a></h6>
-              <span>September 18, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/12/26/20191226/">2019년 12월 26일</a></h6>
+              <span>December 26, 2019</span>
             </div>
 
           </li>
@@ -276,8 +202,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/17/0917-2/">Props</a></h6>
-              <span>September 17, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/02/25/20190225/">2019년 2월 25일</a></h6>
+              <span>February 25, 2019</span>
             </div>
 
           </li>
@@ -288,8 +214,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/17/0917/">컴포넌트 파일 분리</a></h6>
-              <span>September 17, 2019</span>
+              <h6 style="margin: 0;"><a href="/2018/05/02/20180502/">2018년 5월 2일</a></h6>
+              <span>May 2, 2018</span>
             </div>
 
           </li>
@@ -300,8 +226,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/10/0910/">디렉토리 구조, 배포, 컴포넌트</a></h6>
-              <span>September 10, 2019</span>
+              <h6 style="margin: 0;"><a href="/2018/02/25/20180225/">2018년 2월 25일</a></h6>
+              <span>February 25, 2018</span>
             </div>
 
           </li>
@@ -312,8 +238,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/09/0909/">개발환경 셋팅</a></h6>
-              <span>September 9, 2019</span>
+              <h6 style="margin: 0;"><a href="/2017/12/14/20171214/">2017년 12월 14일</a></h6>
+              <span>December 14, 2017</span>
             </div>
 
           </li>
@@ -327,17 +253,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">43</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/flower/">Flower</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/memories/">Memories</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/to-loki/">To. Loki</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -348,7 +264,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -363,11 +279,9 @@
   
     <a href="/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
     <a href="/categories" class="mobile-nav-link">Categories</a>
   
-    <a href="/tags" class="mobile-nav-link">Tags</a>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
 </nav> -->
     <footer id="footer" class="site-footer">
@@ -375,7 +289,7 @@
 
   <div class="clearfix container">
       <div class="site-info">
-	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+	      &copy; 2020 Rudy All Rights Reserved.
         <!-- 
             <span id="busuanzi_container_site_uv">
               本站访客数<span id="busuanzi_value_site_uv"></span>人次  

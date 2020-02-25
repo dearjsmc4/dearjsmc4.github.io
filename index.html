@@ -3,21 +3,24 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Page 1 | Rudy&#39;s Blog</title>
+  <title>Page 1 | Rudy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Rudy&#39;s Blog">
+  <meta name="description" content="master loki has returned!">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rudy">
 <meta property="og:url" content="https://dearjsmc4.github.io/index.html">
-<meta property="og:site_name" content="Rudy&#39;s Blog">
+<meta property="og:site_name" content="Rudy">
+<meta property="og:description" content="master loki has returned!">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rudy&#39;s Blog">
+<meta name="twitter:title" content="Rudy">
+<meta name="twitter:description" content="master loki has returned!">
   
-    <link rel="alternate" href="/atom.xml" title="Rudy&#39;s Blog" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Rudy" type="application/atom+xml">
   
   <link rel="icon" href="/css/images/favicon.ico">
   
@@ -60,10 +63,14 @@
 
           <h1 class="site-title">
             
-              <a href="/" title="Rudy&#39;s Blog" rel="home"> Rudy&#39;s Blog </a>
+              <a href="/" rel="home">
+                <img style="margin-bottom: 10px;" width="150px" height="150px" alt="Hike News" src=" /css/images/loki.jpg">
+              </a>
             
           </h1>
           
+          
+            <div class="site-description">master loki has returned!</div>
           
             
           <nav id="main-navigation" class="main-navigation" role="navigation">
@@ -75,11 +82,9 @@
                     
                       <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/">Home</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
-                    
                       <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/categories">Categories</a> </li>
                     
-                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/tags">Tags</a> </li>
+                      <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1663"> <a class href="/archives">Archives</a> </li>
                     
               </ul>
             </div>
@@ -97,7 +102,7 @@
         
           <section id="main">
   
-    <article id="post-0919" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2020letter" class="article article-type-post" itemscope itemprop="blogPost">
   <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
     
     
@@ -105,7 +110,7 @@
         
   
     <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/09/19/0919/">이벤트 설치, bind(this)</a>
+      <a class="article-title" href="/2020/02/25/2020letter/">2020년 2월 25일</a>
     </h1>
   
 
@@ -113,104 +118,28 @@
     
     <div class="article-meta">
       
-	<a href="/2019/09/19/0919/" class="article-date">
-	  <time datetime="2019-09-18T15:00:00.000Z" itemprop="datePublished">September 19, 2019</time>
+	<a href="/2020/02/25/2020letter/" class="article-date">
+	  <time datetime="2020-02-24T15:00:00.000Z" itemprop="datePublished">February 25, 2020</time>
 	</a>
 
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/react/">React</a>
+    <a class="article-category-link" href="/categories/to-loki/">To. Loki</a>
  
       <!--  -->
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Event"><a href="#Event" class="headerlink" title="Event"></a>Event</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">&lt;!-- App.js --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">Subject</span> <span class="attr">title</span>=<span class="string">"My Favorite Movies"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">onChangePage</span>=<span class="string">&#123;this.goToMain&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Subject</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>제목을 클릭하면 goToMain() 함수가 동작하여 state 를 바꾸도록 할 것이다.<br>state 가 바뀌었음을 리액트가 감지하면 렌더 함수를 다시 호출하여 화면을 새로 그려준다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Subject.js --&gt;</span><br><span class="line"></span><br><span class="line">class Subject extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;header&gt;</span><br><span class="line">        &lt;h1&gt;</span><br><span class="line">          &lt;a href=&quot;/&quot; onClick=&#123;function(e)&#123;</span><br><span class="line">            e.preventDefault();</span><br><span class="line">            this.props.onChangePage();</span><br><span class="line">          &#125;.bind(this)&#125;&gt;</span><br><span class="line">          &#123;this.props.title&#125;  </span><br><span class="line">          &lt;/a&gt;</span><br><span class="line">        &lt;/h1&gt;</span><br><span class="line">      &lt;/header&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>onClick</code> 이벤트가 발생하면<br>a 태그의 기본적인 동작(주소창을 바꾸고 페이지를 리로드)을 <code>e.preventDefault();</code> 로 막아주었고,<br>JSX 어트리뷰트는 해당 컴포넌트에 단일 객체로 전달되었으므로<br>Subject 컴포넌트 내에서 <code>this.props.onChangePage();</code> 로 호출해준다.<br><code>bind(this)</code> 를 해주어야 this 가 Subject 컴포넌트를 가리키게 되어<br><code>this.props.onChangePage();</code> 가 정상적으로 동작할 수 있다. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// App.js</span></span><br><span class="line"></span><br><span class="line">goToMain = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">/* setState 로 state 를 바꾸면 렌더함수가 다시 호출됨.</span></span><br><span class="line"><span class="comment">    this.state = ~~ 로 바꾸면 바뀌긴 하지만 </span></span><br><span class="line"><span class="comment">    react 는 바뀐줄 모르기때문에 다시 렌더되지 않음. */</span></span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">      mode: <span class="string">'main'</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<p><code>onChangePage</code> 에 연결된 <code>goToMain()</code> 함수는 <code>this.setState()</code> 메소드로<br>mode 를 main 으로 바꿔준다. </p>
-<h2 id="bind-this"><a href="#bind-this" class="headerlink" title="bind(this)"></a>bind(this)</h2><p>사실 <code>bind(this)</code> 를 왜 굳이 해줘야하는지는 아직 이해가 완전히 되진 않았다.<br>글을 여러 개 찾아보았는데도…<br><a href="https://stackoverflow.com/questions/33973648/react-this-is-undefined-inside-a-component-function" target="_blank" rel="noopener">스택오버플로우</a>에서는 ‘리액트 컴포넌트는 메소드를 자동으로 바인딩하지 않는다. 생성자 내부에서 직접 바인드 해주어야 한다’ 고 했다. 실제로 <code>bind(this)</code>를 하지 않고 메소드를 호출하면 this 는 undefined 가 된다. </p>
-<h3 id="this-문제를-해결하기"><a href="#this-문제를-해결하기" class="headerlink" title="this 문제를 해결하기"></a>this 문제를 해결하기</h3><ol>
-<li><p>화살표 함수<br>화살표 함수의 this는 사용된 곳의 상위 스코프의 this 를 가리키게 된다.<br>따라서 App 컴포넌트를 가리키는 this 에 자동으로 바인딩된 것과 마찬가지.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myFunction = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>생성자에서 this 바인딩 해주기<br>메소드를 화살표 함수가 아닌 일반 함수로 정의했다면<br>생성자에서 <code>bind(this)</code> 를 해주면 된다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      mode: <span class="string">'read'</span>,</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.goToMain = <span class="keyword">this</span>.goToMain.bind(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>이벤트 걸 때 this 바인딩 해주기</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onClick=&#123;<span class="keyword">this</span>.goToMain.bind(<span class="keyword">this</span>)&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+        <p><img src="/../img/letter.jpg" alt="♥"></p>
 
       
     </div>
     <footer class="entry-meta entry-footer">
       
 	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/react/">React</a>
+    <a class="article-category-link" href="/categories/to-loki/">To. Loki</a>
 
       
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
-      
-    </footer>
-    <hr class="entry-footer-hr">
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-0918" class="article article-type-post" itemscope itemprop="blogPost">
-  <div id="articleInner" class="clearfix post-1016 post type-post status-publish format-standard has-post-thumbnail hentry category-template-2 category-uncategorized tag-codex tag-edge-case tag-featured-image tag-image tag-template">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2019/09/18/0918/">State</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2019/09/18/0918/" class="article-date">
-	  <time datetime="2019-09-17T15:00:00.000Z" itemprop="datePublished">September 18, 2019</time>
-	</a>
-
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/react/">React</a>
- 
-      <!--  -->
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="State"><a href="#State" class="headerlink" title="State"></a>State</h2><p><a href="https://ko.reactjs.org/docs/state-and-lifecycle.html" target="_blank" rel="noopener">State 와 생명주기</a><br>공식 문서가 읽기 좋게 되어 있어서 다행이다. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      mode: <span class="string">'read'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>state 초기 설정은 <code>this.state = {}</code></li>
-<li>state 업데이트는 <code>this.setState()</code><br>→ state 를 설정할 수 있는 곳은 constructor 뿐이며,<br><code>this.state.mode = &#39;main&#39;</code> 처럼 직접 수정할 수 없다.</li>
-</ul>
-
-      
-    </div>
-    <footer class="entry-meta entry-footer">
-      
-	<span class="ico-folder"></span>
-    <a class="article-category-link" href="/categories/react/">React</a>
-
-      
-  <span class="ico-tags"></span>
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/til/">TIL</a></li></ul>
-
       
     </footer>
     <hr class="entry-footer-hr">
@@ -225,7 +154,7 @@
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><a class="extend next" rel="next" href="/page/2/">Next</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/">Next</a>
   </nav>
 
 </section>
@@ -245,8 +174,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/19/0919/">이벤트 설치, bind(this)</a></h6>
-              <span>September 19, 2019</span>
+              <h6 style="margin: 0;"><a href="/2020/02/25/2020letter/">2020년 2월 25일</a></h6>
+              <span>February 25, 2020</span>
             </div>
 
           </li>
@@ -257,8 +186,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/18/0918/">State</a></h6>
-              <span>September 18, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/12/26/20191226/">2019년 12월 26일</a></h6>
+              <span>December 26, 2019</span>
             </div>
 
           </li>
@@ -269,8 +198,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/17/0917-2/">Props</a></h6>
-              <span>September 17, 2019</span>
+              <h6 style="margin: 0;"><a href="/2019/02/25/20190225/">2019년 2월 25일</a></h6>
+              <span>February 25, 2019</span>
             </div>
 
           </li>
@@ -281,8 +210,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/17/0917/">컴포넌트 파일 분리</a></h6>
-              <span>September 17, 2019</span>
+              <h6 style="margin: 0;"><a href="/2018/05/02/20180502/">2018년 5월 2일</a></h6>
+              <span>May 2, 2018</span>
             </div>
 
           </li>
@@ -293,8 +222,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/10/0910/">디렉토리 구조, 배포, 컴포넌트</a></h6>
-              <span>September 10, 2019</span>
+              <h6 style="margin: 0;"><a href="/2018/02/25/20180225/">2018년 2월 25일</a></h6>
+              <span>February 25, 2018</span>
             </div>
 
           </li>
@@ -305,8 +234,8 @@
               <div class="widget-entry-summary" style="margin: 0;">
             
 
-              <h6 style="margin: 0;"><a href="/2019/09/09/0909/">개발환경 셋팅</a></h6>
-              <span>September 9, 2019</span>
+              <h6 style="margin: 0;"><a href="/2017/12/14/20171214/">2017년 12월 14일</a></h6>
+              <span>December 14, 2017</span>
             </div>
 
           </li>
@@ -320,17 +249,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/angular/">Angular</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/angular-til/">Angular TIL</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cs-til/">CS TIL</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css/">HTML/CSS</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">Javascript</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript-til/">Javascript TIL</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">React</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/기타/">기타</a><span class="category-list-count">2</span></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular/">Angular</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cs/">CS</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/">CSS</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html5/">HTML5</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">Javascript</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">React</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/til/">TIL</a><span class="tag-list-count">43</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/">Typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">Web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/flower/">Flower</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/memories/">Memories</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/to-loki/">To. Loki</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -341,7 +260,7 @@
     <h3 class="widget-title">Archives</h3>
 
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -356,11 +275,9 @@
   
     <a href="/" class="mobile-nav-link">Home</a>
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
     <a href="/categories" class="mobile-nav-link">Categories</a>
   
-    <a href="/tags" class="mobile-nav-link">Tags</a>
+    <a href="/archives" class="mobile-nav-link">Archives</a>
   
 </nav> -->
     <footer id="footer" class="site-footer">
@@ -368,7 +285,7 @@
 
   <div class="clearfix container">
       <div class="site-info">
-	      &copy; 2019 Rudy&#39;s Blog All Rights Reserved.
+	      &copy; 2020 Rudy All Rights Reserved.
         <!-- 
             <span id="busuanzi_container_site_uv">
               本站访客数<span id="busuanzi_value_site_uv"></span>人次  
